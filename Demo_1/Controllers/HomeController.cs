@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Demo_1.Repository.PeruTourism;
 
 namespace Demo_1.Controllers
 {
@@ -26,5 +27,18 @@ namespace Demo_1.Controllers
 
             return View();
         }
+
+
+        public JsonResult ListadoPedido() {
+
+            PedidoAccess objPedido = new PedidoAccess();
+            var vPedido = objPedido.ObtenerListadoPedido();
+
+
+            return Json(vPedido, JsonRequestBehavior.AllowGet);
+
+        }
+
+
     }
 }
