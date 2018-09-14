@@ -20,7 +20,6 @@ namespace Demo_1.Repository.PeruTourism
 
             using (SqlConnection objConnection = new SqlConnection(Data.Data.StrCnx_WebsSql)) {
 
-
                 using (SqlCommand objCommand = new SqlCommand())
                 {
                     
@@ -32,12 +31,13 @@ namespace Demo_1.Repository.PeruTourism
                     using (var reader = objCommand.ExecuteReader()) {
 
                         while(reader.Read()){
-                       
-                            var pedido = new Pedido();
 
-                            pedido.NroPedido = int.Parse(GetValue(reader, "NroPedido"));
-                            pedido.DesPedido = GetValue(reader, "DesPedido");
-                            pedido.FchPedido = DateTime.Parse(GetValue(reader, "FchPedido"));
+                            var pedido = new Pedido
+                            {
+                                NroPedido = int.Parse(GetValue(reader, "NroPedido")),
+                                DesPedido = GetValue(reader, "DesPedido"),
+                                FchPedido = DateTime.Parse(GetValue(reader, "FchPedido"))
+                            };
                             //pedido.CodVendedor = Convert.ToChar(GetValue(reader, "CodVendedor"));
 
                             lstPedido.Add(pedido);
@@ -52,16 +52,7 @@ namespace Demo_1.Repository.PeruTourism
 
             }
 
-
-
-
-
-
-
-
-
         }
-
 
         private string GetValue(IDataReader registo,
                            string columna)

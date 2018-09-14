@@ -1,7 +1,7 @@
 ﻿$(function () {
 
      
-    //*LISTA PROVEEDOR*//
+
     var grid = $('#resultados').DataTable({
         scrollX: true,
         paging: true,
@@ -70,14 +70,14 @@
             {
                 title: 'PEDIDO',
                 data: 'NroPedido',
-                width: 110,
+                width: 50,
                 className: 'not-mobile'
             },
 
             {
                 title: 'DESCRIPCION PEDIDO',
                 data: 'DesPedido',
-                width: 70,
+                width: 50,
                 className: 'not-mobile'
             },
 
@@ -99,7 +99,7 @@
             {
                 title: 'FECHA PEDIDO',
                 data: 'FchPedido',
-                width: 70,
+                width: 50,
                 className: 'not-mobile'
             }
 
