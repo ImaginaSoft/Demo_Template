@@ -1,5 +1,14 @@
-﻿@{
+﻿@model Demo_1.Models.PeruTourism.PropuestaViewModel
+
+@{
     ViewBag.Title = "Home Page";
+
+
+
+
+    var lstProgramas = Model.lstPrograma;
+
+  
 }
 
 @section Scripts {
@@ -15,16 +24,20 @@
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Results</h3>
-                    @*<select>
-                            <option value=""></option>
-                            <option value="Activo">ACTIVO</option>
-                            <option value="Inactivo">INACTIVO</option>
-
-                        </select>*@
+         
                 </div>
                 <form>
                     <div class="box-body">
-                        <table id="resultados" class="table table-bordered table-hover dataTable" role="grid" style="width: 100%;" aria-describedby="example2_info"></table>
+                        @*<table id="resultados" class="table table-bordered table-hover dataTable" role="grid" style="width: 100%;" aria-describedby="example2_info"></table>*@
+
+
+                        @for ( int i=0; i < lstProgramas.Count; i++) {
+
+                            <div id="propuesta"> <span>@i</span><p>@lstProgramas[i].DesPrograma -  @lstProgramas[i].StsPrograma</p> <a>Ver</a>  </div>
+
+                        }
+
+                       
                         @*<table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>*@
                     </div>
                 </form>

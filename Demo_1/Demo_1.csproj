@@ -149,7 +149,10 @@
     </Compile>
     <Compile Include="Models\PeruTourism\Cliente.cs" />
     <Compile Include="Models\PeruTourism\Pedido.cs" />
+    <Compile Include="Models\PeruTourism\Programa.cs" />
     <Compile Include="Models\PeruTourism\Propuesta.cs" />
+    <Compile Include="Models\PeruTourism\PropuestaViewModel.cs" />
+    <Compile Include="Models\PeruTourism\UltimaPublicacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Data\Data.cs" />
     <Compile Include="Repository\PeruTourism\FichaPropuestaAccess.cs" />
@@ -194,10 +197,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\PeruTourism\ValidarAcceso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\PeruTourism\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

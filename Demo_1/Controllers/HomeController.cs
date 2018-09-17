@@ -4,14 +4,59 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Demo_1.Repository.PeruTourism;
+using Demo_1.Models.PeruTourism;
 
 namespace Demo_1.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            return View();
+            string idCliente = id;
+            string codCLiente = id.Substring(7, 5);
+            string acceso = "A";
+
+            LoginAccess objLogin = new LoginAccess();
+            FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+
+            PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+            try
+            {
+
+                if (id.Trim().Length > 0)
+                {
+
+                    var lstCliente = objLogin.LeerCliente(idCliente, codCLiente);
+
+                    Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
+                    Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
+                    Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
+
+                }
+
+
+                if (Session["CodCliente"] != null)
+                {
+
+                    var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCLiente));
+                    var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido);
+
+
+                    objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+
+
+            }
+
+            
+            return View(objPropuestaViewModel);
+
         }
 
         public ActionResult About()

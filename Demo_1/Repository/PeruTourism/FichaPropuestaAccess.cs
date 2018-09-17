@@ -10,7 +10,81 @@ namespace Demo_1.Repository.PeruTourism
 {
     public class FichaPropuestaAccess
     {
-        public IEnumerable<Propuesta> ObtenerListadoPropuesta()
+
+
+
+
+
+        public IEnumerable<Programa> ObtenerListadoPropuesta(int pNroPedido)
+        {
+            try
+            {
+                List<Programa> lstfprograma = new List<Programa>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
+                    SqlCommand cmd = new SqlCommand("P4E_Publica_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@CodZonaVta", SqlDbType.Char,3).Value = "PER";
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = 6;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        Programa fprograma = new Programa
+                        {
+
+                            FchSys = Convert.ToDateTime(rdr["FchSys"].ToString()),
+                            NroPrograma = rdr["NroPrograma"].ToString(),
+                            StsPrograma = rdr["StsPrograma"].ToString(),
+                            DesPrograma = rdr["DesPrograma"].ToString(),
+                            CantDias = Convert.ToInt32(rdr["CantDias"]),
+                            KeyReg = rdr["KeyReg"].ToString()
+
+                        };
+
+                        lstfprograma.Add(item: fprograma);
+                    }
+
+                    con.Close();
+                }
+
+                return lstfprograma;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public IEnumerable<Propuesta> ObtenerListadoPropuesta_GG()
         {
             try
             {

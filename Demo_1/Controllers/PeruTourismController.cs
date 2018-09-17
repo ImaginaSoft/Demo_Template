@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using Demo_1.Models.PeruTourism;
 using Demo_1.Repository.PeruTourism;
 
@@ -15,15 +16,10 @@ namespace Demo_1.Controllers
         {
             return View();
         }
-
-
-
-        public ActionResult ValidarAcceso(string userId) {
-
-            //string sParamID = Request.QueryString["id"];
+        public ActionResult ValidarAcceso(string userId) {          
 
             string idCliente = userId;
-            string codCLiente = userId.Substring(7, 10);
+            string codCLiente = userId.Substring(7, 5);
             string acceso = "A";
             
             LoginAccess objLogin = new LoginAccess();
@@ -38,11 +34,13 @@ namespace Demo_1.Controllers
                     Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
                     Session["NomCliente"] =lstCliente.FirstOrDefault().NomCliente;
                     Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
+
                 }
 
 
                 if (Session["CodCliente"] != null) {
 
+                    var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCLiente));
 
 
                 }
@@ -57,14 +55,14 @@ namespace Demo_1.Controllers
 
 
             }
+            
 
-
-            return View();
+            return View("Shared/_Layout");
 
         }
 
 
-
+      
 
 
         public JsonResult ListadoPropuesta(string q)
@@ -72,7 +70,7 @@ namespace Demo_1.Controllers
 
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
 
-            var vPropuesta = objPropuesta.ObtenerListadoPropuesta();
+            var vPropuesta = objPropuesta.ObtenerListadoPropuesta_GG();
             return Json(vPropuesta,JsonRequestBehavior.AllowGet);
             
             // objPedido = new Propuesta();
