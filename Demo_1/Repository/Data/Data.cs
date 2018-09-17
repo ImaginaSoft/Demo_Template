@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 
-namespace Demo_1.Repository.Data
+namespace PeruTourism.Repository.Data
 {
     public class Data
     {

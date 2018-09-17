@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using Demo_1.Models.PeruTourism;
-using Demo_1.Repository.PeruTourism;
+using PeruTourism.Models.PeruTourism;
+using PeruTourism.Repository.PeruTourism;
 
-namespace Demo_1.Controllers
+namespace PeruTourism.Controllers
 {
     public class PeruTourismController : Controller
     {

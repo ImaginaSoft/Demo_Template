@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Demo_1.Repository.PeruTourism;
-using Demo_1.Models.PeruTourism;
+using PeruTourism.Repository.PeruTourism;
+using PeruTourism.Models.PeruTourism;
 
-namespace Demo_1.Controllers
+namespace PeruTourism.Controllers
 {
     public class HomeController : Controller
     {

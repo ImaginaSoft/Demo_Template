@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Demo_1.Models.PeruTourism;
+using PeruTourism.Models.PeruTourism;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace Demo_1.Repository.PeruTourism
+namespace PeruTourism.Repository.PeruTourism
 {
     public class FichaPropuestaAccess
     {

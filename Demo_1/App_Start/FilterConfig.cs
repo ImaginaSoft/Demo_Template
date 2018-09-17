@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Demo_1
+namespace PeruTourism
 {
     public class FilterConfig
     {

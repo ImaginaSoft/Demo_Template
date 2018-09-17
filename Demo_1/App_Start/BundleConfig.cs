@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Demo_1
+namespace PeruTourism
 {
     public class BundleConfig
     {

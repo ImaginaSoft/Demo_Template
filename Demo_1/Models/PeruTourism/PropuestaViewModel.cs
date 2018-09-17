@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Demo_1.Models.PeruTourism
+namespace PeruTourism.Models.PeruTourism
 {
     public class PropuestaViewModel
     {
