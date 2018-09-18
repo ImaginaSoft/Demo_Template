@@ -1,0 +1,6 @@
+Bootstrap 3:
+- full
+- glyphicons not included
+- gutter by default: 10px
+
+https://getbootstrap.com/docs/3.3/customize/

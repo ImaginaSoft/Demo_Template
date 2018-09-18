@@ -18,16 +18,18 @@ namespace PeruTourism.Controllers
 
             LoginAccess objLogin = new LoginAccess();
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
-
             PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+
             try
             {
 
-                if (id.Trim().Length > 0)
+                if (idCliente.Trim().Length > 0)
                 {
 
                     var lstCliente = objLogin.LeerCliente(idCliente, codCLiente);
 
+
+                    Session["IdCliente"] = idCliente.Trim();
                     Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
                     Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
                     Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
@@ -59,6 +61,45 @@ namespace PeruTourism.Controllers
 
         }
 
+        public ActionResult VerPropuesta() {
+
+
+            LoginAccess objLogin = new LoginAccess();
+            FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+            PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+            var codCliente = Session["CodCliente"];
+
+
+
+            if (codCliente != null)
+            {
+
+                var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCliente));
+                var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido);
+
+                objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
+
+            }
+
+
+            return View(objPropuestaViewModel);
+        }
+
+        public ActionResult VerPropuestaDetalle(string KeyReg) {
+
+            string nroPedido = KeyReg.Substring(0,5);
+            string nroPropuesta = KeyReg.Substring(8,1);
+            string nroVersion = KeyReg.Substring(10,1);
+
+
+
+
+
+
+            return View();
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -78,9 +119,6 @@ namespace PeruTourism.Controllers
 
             PedidoAccess objPedido = new PedidoAccess();
             var vPedido = objPedido.ObtenerListadoPedido();
-
-            
-           
             return Json(vPedido, JsonRequestBehavior.AllowGet);
 
         }

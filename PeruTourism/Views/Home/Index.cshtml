@@ -4,64 +4,85 @@
     ViewBag.Title = "Home Page";
 
     var lstProgramas = Model.lstPrograma;
+
+    var NombreCliente = Session["NomCliente"];
 }
 
 @section Scripts {
     <script src="~/Scripts/PeruTourism/Pedido.js"></script>
 }
 
-<div class="jumbotron">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Results</h3>
 
+
+<div class="content">
+    <div class="container">
+        <section class="welcome">
+            <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
+            <p>Bienvenido a la página personalizada para tu viaje</p>
+        </section>
+        <section class="options">
+            <div class="op-group">
+                <div class="op op-propuesta">
+                    <a href="@Url.Action("VerPropuesta", "Home")">
+                        <div class="icon icon-propuesta"></div>
+                        <div class="description">
+                            Propuestas<br>
+                            para mi viaje
+                        </div>
+                    </a>
                 </div>
-                <form>
-                    <div class="box-body">
-                        @*<table id="resultados" class="table table-bordered table-hover dataTable" role="grid" style="width: 100%;" aria-describedby="example2_info"></table>*@
-
-
-                        @for (int i = 0; i < lstProgramas.Count; i++)
-                        {
-
-                            <div id="propuesta"> <span>@i</span><p>@lstProgramas[i].DesPrograma -  @lstProgramas[i].StsPrograma</p> <a>Ver</a>  </div>
-
-                        }
-
-
-                        @*<table id="resultados" class="display compact responsive no-wrap" style="width: 100%;"></table>*@
-                    </div>
-                </form>
+                <div class="op op-info">
+                    <a href="javascript:void(0)">
+                        <div class="icon icon-info"></div>
+                        <div class="description">Información antes de mi viaje</div>
+                    </a>
+                </div>
+                <div class="op op-testimonio">
+                    <a href="javascript:void(0)">
+                        <div class="icon icon-testimonio"></div>
+                        <div class="description">Testimonios de otros clientes</div>
+                    </a>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
-
-
-    @*<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+    <div class="container-fluid">
+        <section class="slider" id="scene">
+            <div class="container" data-depth="0.2">
+                <span class="description">Go Beyond Ordinary Travel</span>
+                <img src="~/Content/resources/images/slider-group.png" class="img-group">
+            </div>
+            <img src="~/Content/resources/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+        </section>
+    </div>
 </div>
 
-@*<div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+@*<div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Results</h3>
+
+                    </div>
+                    <form>
+                        <div class="box-body">
+
+                            @for (int i = 0; i < lstProgramas.Count; i++)
+                            {
+
+                                <div id="propuesta"> <span>@i</span><p>@lstProgramas[i].DesPrograma -  @lstProgramas[i].StsPrograma</p> <a>Ver</a>  </div>
+
+                            }
+
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
+
+
     </div>*@
+
 

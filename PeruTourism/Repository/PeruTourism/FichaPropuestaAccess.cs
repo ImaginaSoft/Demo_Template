@@ -11,10 +11,6 @@ namespace PeruTourism.Repository.PeruTourism
     public class FichaPropuestaAccess
     {
 
-
-
-
-
         public IEnumerable<Programa> ObtenerListadoPropuesta(int pNroPedido)
         {
             try
@@ -69,18 +65,6 @@ namespace PeruTourism.Repository.PeruTourism
                 throw;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

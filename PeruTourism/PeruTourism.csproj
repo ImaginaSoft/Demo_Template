@@ -164,6 +164,26 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\resources\css\home.css" />
+    <Content Include="Content\resources\css\home.min.css" />
+    <Content Include="Content\resources\css\layout.css" />
+    <Content Include="Content\resources\css\layout.min.css" />
+    <Content Include="Content\resources\fonts\perutourism.svg" />
+    <Content Include="Content\resources\images\header-bg.jpg" />
+    <Content Include="Content\resources\images\header-bg.png" />
+    <Content Include="Content\resources\images\perutourism-logo.png" />
+    <Content Include="Content\resources\images\slider-bg.jpg" />
+    <Content Include="Content\resources\images\slider-group.png" />
+    <Content Include="Content\resources\sass\framework\bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\resources\sass\framework\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\resources\sass\framework\bootstrap\bootstrap.css" />
+    <Content Include="Content\resources\sass\framework\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\resources\sass\framework\bootstrap\customized.txt" />
+    <Content Include="Content\resources\scripts\third\bootstrap.js" />
+    <Content Include="Content\resources\scripts\third\bootstrap.min.js" />
+    <Content Include="Content\resources\scripts\third\parallax.js" />
+    <Content Include="Content\resources\scripts\third\parallax.min.js" />
+    <Content Include="Content\resources\scripts\views\home.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -192,6 +212,19 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\resources\css\home.css.map" />
+    <Content Include="Content\resources\css\layout.css.map" />
+    <Content Include="Content\resources\fonts\perutourism.eot" />
+    <Content Include="Content\resources\fonts\perutourism.ttf" />
+    <Content Include="Content\resources\fonts\perutourism.woff" />
+    <Content Include="Content\resources\sass\framework\bootstrap-theme.scss" />
+    <Content Include="Content\resources\sass\framework\bootstrap.scss" />
+    <Content Include="Content\resources\sass\home.scss" />
+    <Content Include="Content\resources\sass\icons\style.scss" />
+    <Content Include="Content\resources\sass\icons\variables.scss" />
+    <Content Include="Content\resources\sass\layout.scss" />
+    <Content Include="Content\resources\sass\_mixins.scss" />
+    <Content Include="Content\resources\sass\_variables.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -244,6 +277,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Home\VerPropuesta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

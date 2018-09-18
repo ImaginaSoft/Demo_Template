@@ -1,0 +1,24 @@
+﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@{
+    ViewBag.Title = "VerPropuesta";
+
+    var lstProgramas = Model.lstPrograma;
+
+    var NombreCliente = Session["NomCliente"];
+}
+
+
+<div class="content">
+
+    <h2>Propuestas</h2>
+
+    @for (int i = 0; i < lstProgramas.Count; i++)
+    {
+
+        <div id="" class="propuesta" nroPrograma ="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()"><span>@lstProgramas[i].NroPrograma</span> @lstProgramas[i].DesPrograma  - @lstProgramas[i].StsPrograma <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim() })">ver</a></div>
+    }
+
+
+</div>
+
+

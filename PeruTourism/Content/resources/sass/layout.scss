@@ -1,0 +1,66 @@
+// Peru Tourism : Layout
+// -------------------------------------
+
+// Import Bootstrap Styles
+
+@import "framework/bootstrap";
+@import "framework/bootstrap-theme";
+
+// Import Icons
+
+@import "icons/style";
+
+$color-rosa: #e41973;
+$color-naranja: #ff8820;
+$color-verde: #126f38;
+
+/* General
+*************************************************************************************************/
+html, body {font-family: Montserrat, Arial, Helvetica, sans-serif; font-size: 16px;}
+
+/* Cabecera
+*************************************************************************************************/
+#header {margin-bottom: 10px;}
+#header .navbar-default {background: none; border: 0; box-shadow: none;}
+#header .navbar-default {background: url(../images/header-bg.png) top left repeat-x;}
+#header .navbar-header {border-bottom: 1px solid $color-verde; padding-top: 65px; transition: border .15s linear}
+#header.active .navbar-header {border-color: #fff}
+#header .brand img {margin:0 50px 30px; /*max-width: 250px*/}
+#header .slogan {margin: 40px 15px; color: #0e6f39; font-weight: 600}
+#header .brand, #header .slogan {float: left}
+
+/* Navegacion
+*************************************************************************************************/
+#header .navbar-collapse {background: #117036;}
+#header .navbar-brand, 
+#header .navbar-nav>li>a {text-shadow: none;color: #fff;}
+
+@media (min-width: 768px) {
+  #header .navbar-header {float: none}
+  #header .navbar-toggle {margin: 40px 20px 20px;}    
+  #header .navbar-toggle,
+  #header .navbar-collapse.collapse.in {display: block !important;}
+  #header .navbar-collapse.collapse {display: none !important}
+  #header .navbar-collapse.collapse.in,
+  #header .navbar-collapse.collapsing {border: 0 !important;}    
+  #header .navbar-default .navbar-nav>.open>a, 
+  #header .navbar-default .navbar-nav>.open>a:focus, 
+  #header .navbar-default .navbar-nav>.open>a:hover {background: $color-verde;}
+  #header .navbar-nav>li>a {padding: 15px 25px; transition: background .15s linear}
+  #header .navbar-nav>li>a:hover {background: darken($color-verde,5%)}
+  #header .dropdown-menu {border-radius: 0 0 2px;box-shadow: 0 1px 5px rgba(0, 0, 0, 0.175); border: 0;}    
+}
+
+/* Sections
+*************************************************************************************************/
+section:before, 
+section:after { content: ""; display: table;} 
+section:after { clear: both;}
+section {zoom: 1;}
+
+/* Clearfix
+*************************************************************************************************/
+.group:before, 
+.group:after { content: ""; display: table;} 
+.group:after { clear: both;}
+.group {zoom: 1;}
