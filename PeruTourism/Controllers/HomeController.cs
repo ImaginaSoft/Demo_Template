@@ -69,8 +69,6 @@ namespace PeruTourism.Controllers
             PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
             var codCliente = Session["CodCliente"];
 
-
-
             if (codCliente != null)
             {
 
@@ -81,22 +79,24 @@ namespace PeruTourism.Controllers
 
             }
 
-
             return View(objPropuestaViewModel);
         }
 
         public ActionResult VerPropuestaDetalle(string KeyReg) {
 
-            string nroPedido = KeyReg.Substring(0,5);
+            string nroPedido = KeyReg.Substring(0,6);
             string nroPropuesta = KeyReg.Substring(8,1);
             string nroVersion = KeyReg.Substring(10,1);
 
+            FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
 
+            PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
 
+            var lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuesta(Convert.ToInt32(nroPedido),Convert.ToInt32(nroPropuesta));
 
+            objPropuestaViewModel.lstServicio = lstPropuestaDetalle.ToList();
 
-
-            return View();
+            return View(objPropuestaViewModel);
         }
 
 

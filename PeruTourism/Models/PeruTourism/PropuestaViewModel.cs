@@ -9,5 +9,7 @@ namespace PeruTourism.Models.PeruTourism
     {
 
         public List<Programa> lstPrograma { get; set; }
+
+        public List<Servicio> lstServicio { get; set; }
     }
 }
