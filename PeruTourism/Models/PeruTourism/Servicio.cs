@@ -24,6 +24,8 @@ namespace PeruTourism.Models.PeruTourism
 
         public string KeyReg { get; set; }
 
+        public string DesServicio { get; set; }
+
 
     }
 }

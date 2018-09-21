@@ -15,7 +15,12 @@
 <div class="content">
     <h2>VerPropuestaDetalle</h2>
 
-
+    @for (int i = 0; i < lstServicios.Count; i++)
+    {
+    <div id="" class="propuestaTitulo" DesServicio="@lstServicios[i].DesServicio">
+        <span>@lstServicios[i].DesServicio</span>
+    </div>
+    }
 
 
 </div>

@@ -67,6 +67,8 @@ namespace PeruTourism.Repository.PeruTourism
         }
 
         public IEnumerable<Servicio> ObtenerListadoServiciosPropuesta(int pNroPedido, int pNroPropuesta)
+        
+        
         {
             try
             {
@@ -76,7 +78,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
 
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
-                    SqlCommand cmd = new SqlCommand("P4I_PropuestaServiciosDet_S", con);
+                    SqlCommand cmd = new SqlCommand("P4I_PropuestaServ_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     // cmd.CommandType = CommandType.Text;
@@ -93,14 +95,8 @@ namespace PeruTourism.Repository.PeruTourism
                         Servicio fservicio = new Servicio
                         {
 
-                            Dia = rdr["Dia"].ToString(),
-                            FchInicio = Convert.ToDateTime(rdr["FchInicio"].ToString()),
-                            Ciudad = rdr["Ciudad"].ToString(),
-                            HoraServicio = rdr["HoraServicio"].ToString(),
-                            Serv = rdr["Servicio"].ToString(),
-                            NroDia = Convert.ToInt32(rdr["NroDia"]),
-                            NroOrden = Convert.ToInt32(rdr["NroOrden"]),
-                            KeyReg = rdr["KeyReg"].ToString(),
+                            DesServicio = rdr["DesServicio"].ToString()
+                           
                         };
 
                         lstfservicio.Add(item: fservicio);
