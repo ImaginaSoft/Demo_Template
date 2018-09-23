@@ -13,13 +13,58 @@
 
 
 <div class="content">
-    <h2>VerPropuestaDetalle</h2>
+
+    <!-- slider -->
+    <div class="container-fluid">
+        <section class="subtitle">
+            <div class="container">
+                <div class="options">
+                    <div class="op-group">
+                        <div class="op op-propuesta">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="title">Propuestas para mi viaje</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- contenido -->
+    <div class="container">
+        <section class="group prop-group">
+            <div class="group prop">
+                <div class="prop-num"><span>6</span></div>
+                <div class="prop-title">Propuesta de Viaje</div>
+                <div class="prop-status"><span class="status status-new">Nuevo</span></div>
+            </div>
+
+            <div class="group prop-detalle collapsed" data-toggle="collapse" data-target="#content1">
+                <div class="prop-num"><span>DÍA 1</span></div>
+                <div class="prop-title">Lake Titicaca: Uros & Amantani Islands</div>
+                <div class="prop-content collapse" id="content1">
+                    <ul>
+                        <li>Tour día completo a Valle Sagrado -  Servicio Compartido.</li>
+                        <li>Clase de alfarería - Servicio en privado.</li>
+                        <li>Alojamiento en Sonesta Valle Sagrado Hotel.</li>
+                        <li>Incluye: Desayuno y almuerzo.</li>
+                    </ul>
+                </div>
+                <div class="prop-icon"></div>
+            </div>
+
+        </section>
+    </div>
+
+
+
+
 
     @for (int i = 0; i < lstServicios.Count; i++)
     {
-    <div id="" class="propuestaTitulo" DesServicio="@lstServicios[i].DesServicio">
-        <span>@lstServicios[i].DesServicio</span>
-    </div>
+        <div id="" class="propuestaTitulo" DesServicio="@lstServicios[i].DesServicio">
+            <span>@lstServicios[i].DesServicio</span>
+        </div>
     }
 
 

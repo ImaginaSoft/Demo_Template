@@ -10,14 +10,49 @@
 
 <div class="content">
 
-    <h2>Propuestas</h2>
+    <div class="container-fluid">
+        <section class="slider" id="scenex">
+            <div class="container">
+                <div class="options">
+                    <div class="op-group">
+                        <div class="op op-propuesta">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="title">Propuestas para mi viaje</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="~/Content/resources/images/slider-prop.jpg" class="img-bg" data-depth="0.1">
+        </section>
+    </div>
 
-    @for (int i = 0; i < lstProgramas.Count; i++)
-    {
 
-        <div id="" class="propuesta" nroPrograma ="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()">
-    <span>@lstProgramas[i].NroPrograma</span> @lstProgramas[i].DesPrograma  - @lstProgramas[i].StsPrograma <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim() })">ver</a></div>
-    }
+
+    <div class="container">
+        <section class="group prop-group">
+
+
+
+            @for (int i = 0; i < lstProgramas.Count; i++)
+            {
+
+                @*<div id="" class="propuesta" nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()">
+                    <span>@lstProgramas[i].NroPrograma</span> @lstProgramas[i].DesPrograma  - @lstProgramas[i].StsPrograma <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim() })">ver</a>
+                </div>*@
+
+
+                <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim() })" class="group prop" >
+                    <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
+                    <div class="prop-title">@lstProgramas[i].DesPrograma</div>
+                    <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
+                </a>
+
+            }
+
+
+        </section>
+    </div>
+
 
 
 </div>

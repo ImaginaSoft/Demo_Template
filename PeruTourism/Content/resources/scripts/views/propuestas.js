@@ -1,8 +1,8 @@
-// JavaScript Document : Peru Tourism - Home
+// JavaScript Document : Peru Tourism - Propuestas
 
 jQuery(function ($) {
   "use strict";
-
+  
   // parallax
 	var scene = document.getElementById('scene');
 	var parallax = new Parallax(scene);
