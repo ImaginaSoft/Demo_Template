@@ -13,6 +13,8 @@ namespace PeruTourism.Controllers
         public ActionResult Index(string id)
         {
             string idCliente = id;
+
+         
             string codCLiente = id.Substring(7, 5);
             string acceso = "A";
 
@@ -30,6 +32,10 @@ namespace PeruTourism.Controllers
 
 
                     Session["IdCliente"] = idCliente.Trim();
+
+
+
+
                     Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
                     Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
                     Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
@@ -63,7 +69,6 @@ namespace PeruTourism.Controllers
 
         public ActionResult VerPropuesta() {
 
-
             LoginAccess objLogin = new LoginAccess();
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
             PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
@@ -82,15 +87,26 @@ namespace PeruTourism.Controllers
             return View(objPropuestaViewModel);
         }
 
-        public ActionResult VerPropuestaDetalle(string KeyReg) {
+        public ActionResult VerPropuestaDetalle(string KeyReg,string NroPrograma) {
 
             string nroPedido = KeyReg.Substring(0,6);
             string nroPropuesta = KeyReg.Substring(8,1);
             string nroVersion = KeyReg.Substring(10,1);
+            var codCliente = Session["CodCliente"];
 
+            LoginAccess objLogin = new LoginAccess();
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
-
             PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+
+            if (codCliente != null)
+            {
+
+                var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCliente));
+                var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido);
+
+                objPropuestaViewModel.lstPrograma = lstProgramaGG.Where(p => p.NroPrograma == NroPrograma).ToList();
+
+            }
 
             var lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuesta(Convert.ToInt32(nroPedido),Convert.ToInt32(nroPropuesta));
 

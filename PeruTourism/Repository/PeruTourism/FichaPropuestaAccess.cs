@@ -43,9 +43,9 @@ namespace PeruTourism.Repository.PeruTourism
                         {
 
                             FchSys = Convert.ToDateTime(rdr["FchSys"].ToString()),
-                            NroPrograma = rdr["NroPrograma"].ToString(),
-                            StsPrograma = rdr["StsPrograma"].ToString(),
-                            DesPrograma = rdr["DesPrograma"].ToString(),
+                            NroPrograma = rdr["NroPrograma"].ToString().Trim(),
+                            StsPrograma = rdr["StsPrograma"].ToString().Trim(),
+                            DesPrograma = rdr["DesPrograma"].ToString().Trim(),
                             CantDias = Convert.ToInt32(rdr["CantDias"]),
                             KeyReg = rdr["KeyReg"].ToString()
 

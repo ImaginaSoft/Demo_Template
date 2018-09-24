@@ -6557,21 +6557,21 @@ section {
 
 /* SECUNDARIAS
 *************************************************************************************************/
-body.secondary #header, body.secondary .navbar {
+.secondary #header, .secondary .navbar {
   margin-bottom: 0; }
 
-body.secondary #header .navbar-header {
+.secondary #header .navbar-header {
   border: 0; }
 
-body.secondary .options .op {
+.secondary .options .op {
   width: 100%;
   text-align: center; }
 
-body.secondary .options .op a {
+.secondary .options .op a {
   float: none;
   width: auto; }
 
-body.secondary .options .icon {
+.secondary .options .icon {
   width: 200px;
   height: 200px;
   border-radius: 115px;
@@ -6580,7 +6580,7 @@ body.secondary .options .icon {
   border: 8px solid #fff;
   margin-top: 40px; }
 
-body.secondary .options .title {
+.secondary .options .title {
   font-size: 28px;
   color: #fff;
   width: -webkit-fit-content;
@@ -6591,17 +6591,17 @@ body.secondary .options .title {
   border-radius: 15px;
   border: 4px solid #fff; }
 
-body.secondary .subtitle {
+.secondary .subtitle {
   height: 100px; }
 
-body.secondary .subtitle .options .op {
+.secondary .subtitle .options .op {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin: 15px auto;
   float: none; }
 
-body.secondary .subtitle .options .title {
+.secondary .subtitle .options .title {
   display: block;
   margin: 0;
   padding: 0;
@@ -6614,7 +6614,7 @@ body.secondary .subtitle .options .title {
   margin-left: 15px;
   font-size: 32px; }
 
-body.secondary .subtitle .options .icon {
+.secondary .subtitle .options .icon {
   border: 0;
   float: left;
   line-height: 62px;
@@ -6692,7 +6692,7 @@ body.secondary .subtitle .options .icon {
   top: 0;
   right: 0;
   height: 100%;
-  width: 15%;
+  width: 18%;
   text-align: center; }
 
 .prop .prop-title {

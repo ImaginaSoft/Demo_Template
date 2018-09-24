@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Peru Tourism</title>
+    <title>PeruTourism</title>
     <!-- ingresar descripcion del sitio -->
     <meta name="description" content="Peru Tourism: Your customized travel website. Go beyond ordinary travel!">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,62 +11,60 @@
     <meta name="theme-color" content="#0f703a">
     <meta name="msapplication-navbutton-color" content="#0f703a">
     <meta name="apple-mobile-web-app-status-bar-style" content="#0f703a">
-
-
-
-
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee|Montserrat:400,600,700,800">
     <link rel="stylesheet" href="~/Content/resources/css/layout.min.css" media="all">
     <link rel="stylesheet" href="~/Content/resources/css/home.min.css" media="all">
+    <link rel="stylesheet" href="~/Content/resources/css/propuestas.min.css" media="all">
 </head>
 @RenderSection("styles", false)
 <body id="home">
-    <header id="header">
-        <div class="container-fluid">
-            <div class="row">
-                <!-- navegacion -->
-                <nav class="navbar navbar-default">
-                    <div class="container">
-                        <div class="row">
-                            <div class="navbar-header">
-                                <!-- brand -->
-                                <div class="brand"><img src="~/Content/resources/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></div>
-                                <div class="slogan">Your customized travel website</div>
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="collapse navbar-collapse" id="siteNav">
+    
+        <header id="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- navegacion -->
+                    <nav class="navbar navbar-default">
                         <div class="container">
                             <div class="row">
-                                <ul class="nav navbar-nav">
-                                    <li class="active"><a href="index.htm">Bienvenida</a></li>
-                                    <li><a href="propuestas.htm">Propuestas</a></li>
-                                    <li><a href="javascript:void(0)">Información</a></li>
-                                    <li><a href="javascript:void(0)">Testimonios</a></li>
-                                    <!--<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Página 4</a>
+                                <div class="navbar-header">
+                                    <!-- brand -->
+                                    <div class="brand"><img src="~/Content/resources/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></div>
+                                    <div class="slogan">Your customized travel website</div>
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapse navbar-collapse" id="siteNav">
+                            <div class="container">
+                                <div class="row">
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a href="@Url.Action("Index", "Home",new { id = Session["IdCliente"] })">Bienvenida</a></li>
+                                        <li><a href="@Url.Action("VerPropuesta", "Home")">Propuestas</a></li>
+                                        <li><a href="javascript:void(0)">Información</a></li>
+                                        <li><a href="javascript:void(0)">Testimonios</a></li>
+                                        <!--<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Página 4</a>
                                       <ul class="dropdown-menu">
                                         <li><a href="javascript:void(0)">Hijo 1</a></li>
                                         <li><a href="javascript:void(0)">Hijo 2</a></li>
                                         <li><a href="javascript:void(0)">Hijo 3</a></li>
                                       </ul>
                                     </li>-->
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
             </div>
+            <!-- navegacion -->
+        </header>
+        <div class="content">
+
+            @RenderBody()
+
         </div>
-        <!-- navegacion -->
-    </header>
-    <div class="content">
-
-        @RenderBody()
-
-    </div>
-
+   
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type='text/javascript'></script>
