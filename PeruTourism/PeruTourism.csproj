@@ -171,8 +171,6 @@
     <Content Include="Content\resources\css\layout.min.css" />
     <Content Include="Content\resources\css\propuestas.css" />
     <Content Include="Content\resources\css\propuestas.min.css" />
-    <Content Include="Content\resources\css\_mixins.css" />
-    <Content Include="Content\resources\css\_variables.css" />
     <Content Include="Content\resources\fonts\perutourism.svg" />
     <Content Include="Content\resources\images\header-bg.jpg" />
     <Content Include="Content\resources\images\header-bg.png" />
@@ -232,8 +230,7 @@
     <Content Include="Content\resources\sass\_mixins.scss" />
     <Content Include="Content\resources\sass\_variables.scss" />
     <Content Include="Content\resources\css\propuestas.css.map" />
-    <Content Include="Content\resources\css\_mixins.css.map" />
-    <Content Include="Content\resources\css\_variables.css.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
