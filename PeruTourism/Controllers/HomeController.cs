@@ -137,7 +137,6 @@ namespace PeruTourism.Controllers
                         desServicio = itemAgrupado.DesServicio;
 
                     }
-
                     objServicio.NroDia = itemAgrupado.NroDia;
                     objServicio.DesServicio = (desServicio=="")?"SIN TITULO": desServicio;
                     objServicio.DesServicioDet = servDetAgrupado;
