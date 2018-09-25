@@ -13,10 +13,7 @@ namespace PeruTourism.Controllers
         public ActionResult Index(string id)
         {
             string idCliente = id;
-
-         
-            string codCLiente = id.Substring(7, 5);
-            string acceso = "A";
+            string codCLiente = string.Empty;
 
             LoginAccess objLogin = new LoginAccess();
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
@@ -27,28 +24,22 @@ namespace PeruTourism.Controllers
 
                 if (idCliente.Trim().Length > 0)
                 {
+                     codCLiente = idCliente.Substring(7, 5);
 
                     var lstCliente = objLogin.LeerCliente(idCliente, codCLiente);
 
-
                     Session["IdCliente"] = idCliente.Trim();
-
-
-
-
                     Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
                     Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
                     Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
 
                 }
 
-
                 if (Session["CodCliente"] != null)
                 {
 
                     var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCLiente));
                     var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido);
-
 
                     objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
 
@@ -58,31 +49,39 @@ namespace PeruTourism.Controllers
             catch (Exception ex)
             {
 
-
+                return View("~/Views/Shared/Error.cshtml");
 
             }
 
-            
             return View(objPropuestaViewModel);
 
         }
 
         public ActionResult VerPropuesta() {
 
-            LoginAccess objLogin = new LoginAccess();
-            FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
             PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
-            var codCliente = Session["CodCliente"];
-
-            if (codCliente != null)
+            try
             {
+                LoginAccess objLogin = new LoginAccess();
+                FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+               
+                var codCliente = Session["CodCliente"];
 
-                var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCliente));
-                var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido);
+                if (codCliente != null)
+                {
 
-                objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
+                    var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCliente));
+                    var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido);
 
+                    objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
+
+                }
             }
+            catch (Exception ex) {
+
+                return View("~/Views/Shared/Error.cshtml");
+            }
+
 
             return View(objPropuestaViewModel);
         }
@@ -92,11 +91,17 @@ namespace PeruTourism.Controllers
             string nroPedido = KeyReg.Substring(0,6);
             string nroPropuesta = KeyReg.Substring(8,1);
             string nroVersion = KeyReg.Substring(10,1);
+            
             var codCliente = Session["CodCliente"];
 
             LoginAccess objLogin = new LoginAccess();
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
             PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+
+            List<Servicio> ListServicios = new List<Servicio>();
+            Servicio objServicio = new Servicio();
+
+            //Servicio[] arrayServicio = new Servicio[] { };
 
             if (codCliente != null)
             {
@@ -110,26 +115,54 @@ namespace PeruTourism.Controllers
 
             var lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuesta(Convert.ToInt32(nroPedido),Convert.ToInt32(nroPropuesta));
 
-            objPropuestaViewModel.lstServicio = lstPropuestaDetalle.ToList();
+            var agrupacion = from p in lstPropuestaDetalle group p by p.NroDia into grupo select grupo;
+
+
+            foreach (var item in agrupacion) {
+
+                string nroDia = string.Empty;
+                string servDetAgrupado = string.Empty;
+                string desServicio = string.Empty;
+                int i = 0;
+                int cantidad = agrupacion.Count();
+
+                Servicio[] arrayServicio = new Servicio[cantidad];
+
+                foreach (var itemAgrupado in item) {
+                   
+                    servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + Environment.NewLine;
+
+                    if (itemAgrupado.DesServicio !="") {
+
+                        desServicio = itemAgrupado.DesServicio;
+
+                    }
+
+                    objServicio.NroDia = itemAgrupado.NroDia;
+                    objServicio.DesServicio = (desServicio=="")?"SIN TITULO": desServicio;
+                    objServicio.DesServicioDet = servDetAgrupado;
+
+                }
+
+
+                var servicioDetAgrupado = new Servicio {
+
+                    NroDia = item.FirstOrDefault().NroDia,
+                    DesServicio = desServicio,
+                    DesServicioDet = servDetAgrupado
+                };
+   
+
+                ListServicios.Add(servicioDetAgrupado);
+
+            }
+
+           // objPropuestaViewModel.lstServicio = lstPropuestaDetalle.ToList();
+
+            objPropuestaViewModel.lstServicio = ListServicios;
 
             return View(objPropuestaViewModel);
         }
-
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
 
         public JsonResult ListadoPedido() {
 

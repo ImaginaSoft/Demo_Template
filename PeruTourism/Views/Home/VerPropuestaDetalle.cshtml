@@ -41,15 +41,17 @@
             @for (int i = 0; i < lstServicios.Count; i++)
             {
 
-                <div class="group prop-detalle collapsed" data-toggle="collapse" data-target="#content1">
-                    <div class="prop-num"><span>DÍA 1</span></div>
+                <div class="group prop-detalle collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                    <div class="prop-num"><span>@lstServicios[i].NroDia.ToString()</span></div>
                     <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
-                    <div class="prop-content collapse" id="content1">
+                    <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
                         <ul>
-                            <li>Tour día completo a Valle Sagrado -  Servicio Compartido.</li>
-                            <li>Clase de alfarería - Servicio en privado.</li>
-                            <li>Alojamiento en Sonesta Valle Sagrado Hotel.</li>
-                            <li>Incluye: Desayuno y almuerzo.</li>
+                            @*<li>Tour día completo a Valle Sagrado -  Servicio Compartido.</li>
+        <li>Clase de alfarería - Servicio en privado.</li>
+        <li>Alojamiento en Sonesta Valle Sagrado Hotel.</li>
+        <li>Incluye: Desayuno y almuerzo.</li>*@
+
+                            @Html.Raw(lstServicios[i].DesServicioDet)
                         </ul>
                     </div>
                     <div class="prop-icon"></div>

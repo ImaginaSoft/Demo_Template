@@ -13,31 +13,20 @@ namespace PeruTourism.Repository.PeruTourism
     public class LoginAccess
     {
 
-
-
         public IEnumerable<Cliente> LeerCliente(string idCliente, string codCliente) {
-
 
             try
             {
-
 
                 List<Cliente> lstCliente = new List<Cliente>();
 
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
                     SqlCommand cmd = new SqlCommand("VTA_ClienteEmail_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    // cmd.CommandType = CommandType.Text;
-
                     cmd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = codCliente;
-                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = 6;
-
-                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
-                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
 
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -45,11 +34,8 @@ namespace PeruTourism.Repository.PeruTourism
 
                     while (rdr.Read())
                     {
-
-                       
                      
                         if (rdr["IDCliente"].ToString().Trim() == idCliente.Trim()) {
-
 
                             Cliente fcliente = new Cliente
                             {
@@ -58,14 +44,9 @@ namespace PeruTourism.Repository.PeruTourism
                                 NomCliente = rdr["NomCliente"].ToString(),
                                 EmailCliente = rdr["Email"].ToString()
 
-
                             };
 
-
                             lstCliente.Add(item: fcliente);
-                            //Session["CodCliente"] = codCLiente;
-                            //Session["NomCliente"] = rdr["NomCliente"];
-                            //Session["EmailCliente"] = rdr["Email"];
 
                         }
 
@@ -76,8 +57,6 @@ namespace PeruTourism.Repository.PeruTourism
 
                 return lstCliente;
 
-
-
             }
             catch (Exception ex) {
 
@@ -86,7 +65,6 @@ namespace PeruTourism.Repository.PeruTourism
             } 
 
         }
-
 
         public IEnumerable<UltimaPublicacion> LeeUltimaPublicacion(int pCodCliente)
         {
@@ -99,18 +77,12 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
+                 
                     SqlCommand cmd = new SqlCommand("P4I_PublicaUltimo_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    // cmd.CommandType = CommandType.Text;
-
                     cmd.Parameters.Add("@CodZonaVta", SqlDbType.Char,3).Value = "PER";
                     cmd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = pCodCliente;
-                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = 6;
-
-                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
-                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
 
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -118,8 +90,6 @@ namespace PeruTourism.Repository.PeruTourism
 
                     while (rdr.Read())
                     {
-
-
                         UltimaPublicacion fpublicacion = new UltimaPublicacion
                         {
 
@@ -128,7 +98,6 @@ namespace PeruTourism.Repository.PeruTourism
                                 NroVersion = Convert.ToInt32(rdr["NroVersion"]),
                                 FlagIdioma = Convert.ToChar(rdr["FlagIdioma"].ToString()),
                                 CantPropuestas = Convert.ToInt32(rdr["CantPropuestas"])
-
 
                         };
 

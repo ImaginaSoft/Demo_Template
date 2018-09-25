@@ -16,15 +16,15 @@ namespace PeruTourism.Models.PeruTourism
 
         public string HoraServicio { get; set; } 
 
-        public string Serv { get; set; }
+        public string DesServicio { get; set; }
 
-        public int NroDia { get; set; }
+        public string NroDia { get; set; }
 
         public int NroOrden { get; set; }
 
         public string KeyReg { get; set; }
 
-        public string DesServicio { get; set; }
+        public string DesServicioDet { get; set; }
 
 
     }

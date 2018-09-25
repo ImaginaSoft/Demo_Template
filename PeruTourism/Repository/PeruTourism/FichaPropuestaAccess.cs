@@ -95,8 +95,10 @@ namespace PeruTourism.Repository.PeruTourism
                         Servicio fservicio = new Servicio
                         {
 
-                            DesServicio = rdr["DesServicio"].ToString()
-                           
+                            DesServicio = rdr["DesServicio"].ToString(),
+                            NroDia = rdr["NroDia"].ToString(),
+                            DesServicioDet = rdr["DesServicioDet"].ToString()
+
                         };
 
                         lstfservicio.Add(item: fservicio);
