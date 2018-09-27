@@ -12,6 +12,7 @@ namespace PeruTourism.Controllers
     {
         public ActionResult Index(string id)
         {
+
             string idCliente = id;
             string codCLiente = string.Empty;
 
@@ -24,7 +25,9 @@ namespace PeruTourism.Controllers
 
                 if (idCliente.Trim().Length > 0)
                 {
-                     codCLiente = idCliente.Substring(7, 5);
+
+                    int gg = idCliente.Length - (idCliente.Length - (idCliente.Length - (idCliente.Substring(0, 7).Length)));
+                    codCLiente = idCliente.Substring(7, gg);
 
                     var lstCliente = objLogin.LeerCliente(idCliente, codCLiente);
 
@@ -56,6 +59,7 @@ namespace PeruTourism.Controllers
             return View(objPropuestaViewModel);
 
         }
+
 
         public ActionResult VerPropuesta() {
 
@@ -125,20 +129,25 @@ namespace PeruTourism.Controllers
                 string desServicio = string.Empty;
                 int i = 0;
                 int cantidad = agrupacion.Count();
-
+                
                 Servicio[] arrayServicio = new Servicio[cantidad];
 
                 foreach (var itemAgrupado in item) {
+
                    
                     servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + Environment.NewLine;
 
                     if (itemAgrupado.DesServicio !="") {
 
-                        desServicio = itemAgrupado.DesServicio;
+                       
+                        
+                        desServicio = itemAgrupado.DesServicio.FirstOrDefault().ToString();
+
+                        
 
                     }
                     objServicio.NroDia = itemAgrupado.NroDia;
-                    objServicio.DesServicio = (desServicio=="")?"SIN TITULO": desServicio;
+                    objServicio.DesServicio =  desServicio;
                     objServicio.DesServicioDet = servDetAgrupado;
 
                 }
@@ -147,7 +156,7 @@ namespace PeruTourism.Controllers
                 var servicioDetAgrupado = new Servicio {
 
                     NroDia = item.FirstOrDefault().NroDia,
-                    DesServicio = desServicio,
+                    DesServicio = item.FirstOrDefault().DesServicio,
                     DesServicioDet = servDetAgrupado
                 };
    
