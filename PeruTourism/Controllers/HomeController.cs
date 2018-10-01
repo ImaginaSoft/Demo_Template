@@ -127,6 +127,9 @@ namespace PeruTourism.Controllers
                 string nroDia = string.Empty;
                 string servDetAgrupado = string.Empty;
                 string desServicio = string.Empty;
+                string ciudad = string.Empty;
+                string horaServicio = string.Empty;
+                //DateTime fchInicio = string.Empty;
                 int i = 0;
                 int cantidad = agrupacion.Count();
                 
@@ -137,18 +140,17 @@ namespace PeruTourism.Controllers
                    
                     servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + Environment.NewLine;
 
-                    if (itemAgrupado.DesServicio !="") {
-
-                       
+                    if (itemAgrupado.DesServicio !="") {                       
                         
-                        desServicio = itemAgrupado.DesServicio.FirstOrDefault().ToString();
-
-                        
+                        desServicio = itemAgrupado.DesServicio.FirstOrDefault().ToString();                        
 
                     }
                     objServicio.NroDia = itemAgrupado.NroDia;
                     objServicio.DesServicio =  desServicio;
-                    objServicio.DesServicioDet = servDetAgrupado;
+                    objServicio.DesServicioDet = servDetAgrupado ;
+                    objServicio.Ciudad = itemAgrupado.Ciudad;
+                    objServicio.HoraServicio = itemAgrupado.HoraServicio;
+                   // objServicio.FchInicio = itemAgrupado.FchInicio;
 
                 }
 
@@ -157,7 +159,10 @@ namespace PeruTourism.Controllers
 
                     NroDia = item.FirstOrDefault().NroDia,
                     DesServicio = item.FirstOrDefault().DesServicio,
-                    DesServicioDet = servDetAgrupado
+                    DesServicioDet = servDetAgrupado,
+                    Ciudad = item.FirstOrDefault().Ciudad,
+                    HoraServicio = item.FirstOrDefault().HoraServicio,
+                    //FchInicio = item.FirstOrDefault().FchInicio
                 };
    
 

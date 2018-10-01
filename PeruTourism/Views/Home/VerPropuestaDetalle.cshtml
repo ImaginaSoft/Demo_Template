@@ -45,17 +45,19 @@
                     <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
                     <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio.ToString())</div>
                     <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
+                        <div class=""><span>@lstServicios[i].Ciudad.ToString()</span></div>
+                        <div class=""><span>@lstServicios[i].HoraServicio.ToString()</span></div>
                         <ul>
                             @*<li>Tour día completo a Valle Sagrado -  Servicio Compartido.</li>
-        <li>Clase de alfarería - Servicio en privado.</li>
-        <li>Alojamiento en Sonesta Valle Sagrado Hotel.</li>
-        <li>Incluye: Desayuno y almuerzo.</li>*@
-
+            <li>Clase de alfarería - Servicio en privado.</li>
+            <li>Alojamiento en Sonesta Valle Sagrado Hotel.</li>
+            <li>Incluye: Desayuno y almuerzo.</li>*@
                             @Html.Raw(lstServicios[i].DesServicioDet)
+
                         </ul>
                     </div>
-                    <div class="prop-icon"></div>
-                </div>
+                        <div class="prop-icon"></div>
+                    </div>
             }
 
         </section>

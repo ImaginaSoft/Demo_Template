@@ -97,7 +97,10 @@ namespace PeruTourism.Repository.PeruTourism
 
                             DesServicio = rdr["DesServicio"].ToString(),
                             NroDia = rdr["NroDia"].ToString(),
-                            DesServicioDet = rdr["DesServicioDet"].ToString()
+                            DesServicioDet = rdr["DesServicioDet"].ToString(),
+                            Ciudad = rdr["Ciudad"].ToString(),
+                            HoraServicio = rdr["HoraServicio"].ToString(),
+                            //FchInicio = rdr["FchInicio"].Date()
 
                         };
 
