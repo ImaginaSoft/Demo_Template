@@ -21,7 +21,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                    if(pFlagIdioma.Equals("I"))
+                    if(pFlagIdioma.Equals('I'))
                     {
                          cmd = new SqlCommand("P4I_Publica_S", con);
 
