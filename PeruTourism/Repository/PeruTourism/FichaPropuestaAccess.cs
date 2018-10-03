@@ -21,7 +21,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                    if(pFlagIdioma == 'I')
+                    if(pFlagIdioma.Equals("I"))
                     {
                          cmd = new SqlCommand("P4I_Publica_S", con);
 
@@ -77,7 +77,7 @@ namespace PeruTourism.Repository.PeruTourism
             }
         }
 
-        public IEnumerable<Servicio> ObtenerListadoServiciosPropuesta(int pNroPedido, int pNroPropuesta)
+        public IEnumerable<Servicio> ObtenerListadoServiciosPropuesta(int pNroPedido, int pNroPropuesta, char pFlagIdioma)
         
         
         {
@@ -96,7 +96,8 @@ namespace PeruTourism.Repository.PeruTourism
 
                     cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
                     cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
-                    
+                    cmd.Parameters.Add("@FlagIdioma", SqlDbType.Char).Value = pFlagIdioma;
+
                     con.Open();
                     cmd.ExecuteNonQuery();
                     SqlDataReader rdr = cmd.ExecuteReader();

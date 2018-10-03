@@ -13,6 +13,7 @@ namespace PeruTourism.Controllers
         public ActionResult Index(string id)
         {
 
+
             string idCliente = id;
             string codCLiente = string.Empty;
 
@@ -83,6 +84,8 @@ namespace PeruTourism.Controllers
 
                     objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
 
+                    ViewBag.Idioma = lstPublicacion.FirstOrDefault().FlagIdioma;
+
                 }
             }
             catch (Exception ex) {
@@ -94,13 +97,14 @@ namespace PeruTourism.Controllers
             return View(objPropuestaViewModel);
         }
 
-        public ActionResult VerPropuestaDetalle(string KeyReg,string NroPrograma) {
+        public ActionResult VerPropuestaDetalle(string KeyReg,string NroPrograma, char FlagIdioma) {
 
             string nroPedido = KeyReg.Substring(0,6);
             string nroPropuesta = KeyReg.Substring(8,1);
             string nroVersion = KeyReg.Substring(10,1);
             
             var codCliente = Session["CodCliente"];
+
 
             LoginAccess objLogin = new LoginAccess();
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
@@ -121,7 +125,7 @@ namespace PeruTourism.Controllers
 
             }
 
-            var lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuesta(Convert.ToInt32(nroPedido),Convert.ToInt32(nroPropuesta));
+            var lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuesta(Convert.ToInt32(nroPedido),Convert.ToInt32(nroPropuesta), FlagIdioma);
 
             var agrupacion = from p in lstPropuestaDetalle group p by p.NroDia into grupo select grupo;
 

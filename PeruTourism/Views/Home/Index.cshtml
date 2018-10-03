@@ -7,10 +7,10 @@
 
     var NombreCliente = Session["NomCliente"];
 
-    var idioma = ViewBag.Idioma;
+    char idioma = ViewBag.Idioma;
 }
 
-@if (idioma = "I")
+@if (idioma.Equals("I"))
 
 {
     <div class="content">

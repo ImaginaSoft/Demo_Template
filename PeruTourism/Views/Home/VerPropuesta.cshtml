@@ -5,6 +5,8 @@
     var lstProgramas = Model.lstPrograma;
 
     var NombreCliente = Session["NomCliente"];
+
+    char idioma = ViewBag.Idioma;
 }
 
 <div id="prop" class="secondary">
@@ -15,7 +17,15 @@
                     <div class="op-group">
                         <div class="op op-propuesta">
                             <div class="icon icon-propuesta"></div>
-                            <div class="title">Propuestas para mi viaje</div>
+                            @if (idioma.Equals("I"))
+                            {
+                            <div class="title">Proposals for my trip</div>
+                            }
+                            else
+                            {
+                                <div class="title">Propuestas para mi viaje</div>
+                            }
+                            
                         </div>
                     </div>
                 </div>
@@ -30,7 +40,7 @@
             @for (int i = 0; i < lstProgramas.Count; i++)
             {
 
-                <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() })" class="group prop">
+                <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma})" class="group prop">
                     <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
                     <div class="prop-title">@lstProgramas[i].DesPrograma</div>
                     <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
