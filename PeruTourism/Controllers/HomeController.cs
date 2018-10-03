@@ -138,7 +138,8 @@ namespace PeruTourism.Controllers
                 foreach (var itemAgrupado in item) {
 
                    
-                    servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + Environment.NewLine;
+                    //servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + Environment.NewLine;
+                    servDetAgrupado = servDetAgrupado  +itemAgrupado.DesServicioDet + "|";
 
                     if (itemAgrupado.DesServicio !="") {                       
                         
@@ -150,7 +151,7 @@ namespace PeruTourism.Controllers
                     objServicio.DesServicioDet = servDetAgrupado ;
                     objServicio.Ciudad = itemAgrupado.Ciudad;
                     objServicio.HoraServicio = itemAgrupado.HoraServicio;
-                   // objServicio.FchInicio = itemAgrupado.FchInicio;
+                    //objServicio.FchInicio = itemAgrupado.FchInicio;
 
                 }
 
@@ -162,7 +163,7 @@ namespace PeruTourism.Controllers
                     DesServicioDet = servDetAgrupado,
                     Ciudad = item.FirstOrDefault().Ciudad,
                     HoraServicio = item.FirstOrDefault().HoraServicio,
-                    //FchInicio = item.FirstOrDefault().FchInicio
+                    FchInicio = item.FirstOrDefault().FchInicio
                 };
    
 

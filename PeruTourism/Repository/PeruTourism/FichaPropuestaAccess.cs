@@ -100,7 +100,8 @@ namespace PeruTourism.Repository.PeruTourism
                             DesServicioDet = rdr["DesServicioDet"].ToString(),
                             Ciudad = rdr["Ciudad"].ToString(),
                             HoraServicio = rdr["HoraServicio"].ToString(),
-                            //FchInicio = rdr["FchInicio"].Date()
+                            FchInicio = Convert.ToDateTime(rdr["FchInicio"].ToString())
+                            //FchInicio = (rdr["FchInicio"] =null)? string.Empty : Convert.ToDateTime(rdr["FchInicio"].ToString())
 
                         };
 
