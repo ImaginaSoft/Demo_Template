@@ -6,54 +6,106 @@
     var lstProgramas = Model.lstPrograma;
 
     var NombreCliente = Session["NomCliente"];
+
+    var idioma = ViewBag.Idioma;
 }
 
-@*@section Scripts {
-        <script src="~/Scripts/PeruTourism/Pedido.js"></script>
-    }*@
+@if (idioma = "I")
 
-<div class="content">
-    <div class="container">
-        <section class="welcome">
-            <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
-            <p>Bienvenido a la página personalizada para tu viaje</p>
-        </section>
-        <section class="options">
-            <div class="op-group">
-                <div class="op op-propuesta">
-                    <a href="@Url.Action("VerPropuesta", "Home")">
-                        <div class="icon icon-propuesta"></div>
-                        <div class="description">
-                            Propuestas<br>
-                            para mi viaje
-                        </div>
-                    </a>
+{
+    <div class="content">
+        <div class="container">
+            <section class="welcome">
+                <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
+                <p> Welcome to the customized travel website for your trip </p>
+            </section>
+            <section class="options">
+                <div class="op-group">
+                    <div class="op op-propuesta">
+                        <a href="@Url.Action("VerPropuesta", "Home")">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="description">
+                                Proposals<br>
+                                for my trip
+                            </div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        <a href="javascript:void(0)">
+                            <div class="icon icon-info"></div>
+                            <div class="description">Information before my trip</div>
+                        </a>
+                    </div>
+                    <div class="op op-testimonio">
+                        <a href="javascript:void(0)">
+                            <div class="icon icon-testimonio"></div>
+                            <div class="description">Testimonials from our clients</div>
+                        </a>
+                    </div>
                 </div>
-                <div class="op op-info">
-                    <a href="javascript:void(0)">
-                        <div class="icon icon-info"></div>
-                        <div class="description">Información antes de mi viaje</div>
-                    </a>
+            </section>
+        </div>
+        <div class="container-fluid">
+            <section class="slider" id="scene">
+                <div class="container" data-depth="0.2">
+                    <span class="description">Go Beyond Ordinary Travel</span>
+                    <img src="~/Content/resources/images/slider-group.png" class="img-group">
                 </div>
-                <div class="op op-testimonio">
-                    <a href="javascript:void(0)">
-                        <div class="icon icon-testimonio"></div>
-                        <div class="description">Testimonios de otros clientes</div>
-                    </a>
-                </div>
-            </div>
-        </section>
+                <img src="~/Content/resources/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+            </section>
+        </div>
     </div>
-    <div class="container-fluid">
-        <section class="slider" id="scene">
-            <div class="container" data-depth="0.2">
-                <span class="description">Go Beyond Ordinary Travel</span>
-                <img src="~/Content/resources/images/slider-group.png" class="img-group">
-            </div>
-            <img src="~/Content/resources/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-        </section>
+
+}
+else
+{
+
+    <div class="content">
+        <div class="container">
+            <section class="welcome">
+                <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
+                <p>Bienvenido a la página personalizada para tu viaje</p>
+            </section>
+            <section class="options">
+                <div class="op-group">
+                    <div class="op op-propuesta">
+                        <a href="@Url.Action("VerPropuesta", "Home")">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="description">
+                                Propuestas<br>
+                                para mi viaje
+                            </div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        <a href="javascript:void(0)">
+                            <div class="icon icon-info"></div>
+                            <div class="description">Información antes de mi viaje</div>
+                        </a>
+                    </div>
+                    <div class="op op-testimonio">
+                        <a href="javascript:void(0)">
+                            <div class="icon icon-testimonio"></div>
+                            <div class="description">Testimonios de otros clientes</div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="container-fluid">
+            <section class="slider" id="scene">
+                <div class="container" data-depth="0.2">
+                    <span class="description">Go Beyond Ordinary Travel</span>
+                    <img src="~/Content/resources/images/slider-group.png" class="img-group">
+                </div>
+                <img src="~/Content/resources/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+            </section>
+        </div>
     </div>
-</div>
+
+
+}
+
 
 
 

@@ -11,7 +11,7 @@ namespace PeruTourism.Repository.PeruTourism
     public class FichaPropuestaAccess
     {
 
-        public IEnumerable<Programa> ObtenerListadoPropuesta(int pNroPedido)
+        public IEnumerable<Programa> ObtenerListadoPropuesta(int pNroPedido,char pFlagIdioma)
         {
             try
             {
@@ -19,9 +19,20 @@ namespace PeruTourism.Repository.PeruTourism
 
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
+                    SqlCommand cmd = new SqlCommand();
+
+                    if(pFlagIdioma == 'I')
+                    {
+                         cmd = new SqlCommand("P4I_Publica_S", con);
+
+                    }
+                    else
+                    {
+                         cmd = new SqlCommand("P4E_Publica_S", con);
+                    }
 
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
-                    SqlCommand cmd = new SqlCommand("P4E_Publica_S", con);
+                    //SqlCommand cmd = new SqlCommand("P4E_Publica_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     // cmd.CommandType = CommandType.Text;

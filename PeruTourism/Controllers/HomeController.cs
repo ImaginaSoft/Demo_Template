@@ -42,7 +42,11 @@ namespace PeruTourism.Controllers
                 {
 
                     var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCLiente));
-                    var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido);
+                    var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().FlagIdioma);
+
+
+
+                    ViewBag.Idioma = lstPublicacion.FirstOrDefault().FlagIdioma;
 
                     objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
 
@@ -75,7 +79,7 @@ namespace PeruTourism.Controllers
                 {
 
                     var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCliente));
-                    var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido);
+                    var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().FlagIdioma);
 
                     objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
 
@@ -111,7 +115,7 @@ namespace PeruTourism.Controllers
             {
 
                 var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCliente));
-                var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido);
+                var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().FlagIdioma);
 
                 objPropuestaViewModel.lstPrograma = lstProgramaGG.Where(p => p.NroPrograma == NroPrograma).ToList();
 
