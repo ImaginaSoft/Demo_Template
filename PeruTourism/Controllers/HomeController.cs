@@ -13,7 +13,6 @@ namespace PeruTourism.Controllers
         public ActionResult Index(string id)
         {
 
-
             string idCliente = id;
             string codCLiente = string.Empty;
 
@@ -46,6 +45,7 @@ namespace PeruTourism.Controllers
                     var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().FlagIdioma);
 
 
+                    Session["Idioma"]= lstPublicacion.FirstOrDefault().FlagIdioma;
 
                     ViewBag.Idioma = lstPublicacion.FirstOrDefault().FlagIdioma;
 
