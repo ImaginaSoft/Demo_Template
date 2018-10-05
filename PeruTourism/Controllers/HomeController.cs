@@ -17,81 +17,8 @@ namespace PeruTourism.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
-            //string idCliente = id;
-            //string codCLiente = string.Empty;
-            //string lineagg = "0,";
-
-            //string _IdCliente = string.Empty;
-            //string _CodCliente = string.Empty;
-            //string _NomCliente = string.Empty;
-            //string _EmailCliente = string.Empty;
-
-            //LoginAccess objLogin = new LoginAccess();
-            //FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
-            //PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
-
-            //try
-            //{
-
-            //    if (idCliente.Trim().Length > 0)
-            //    {
-
-            //        int gg = idCliente.Length - (idCliente.Length - (idCliente.Length - (idCliente.Substring(0, 7).Length)));
-            //        codCLiente = idCliente.Substring(7, gg);
-
-            //        var lstCliente = objLogin.LeerCliente(idCliente, codCLiente);
-
-
-
-            //        _IdCliente = idCliente.Trim();
-            //        _CodCliente = lstCliente.FirstOrDefault().CodCliente;
-            //        _NomCliente = lstCliente.FirstOrDefault().NomCliente;
-            //        _EmailCliente = lstCliente.FirstOrDefault().EmailCliente;
-
-            //        Session["IdCliente"] = idCliente.Trim();
-            //        Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
-            //        //Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
-            //        //Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
-
-            //    }
-
-            //    if (_CodCliente != null)
-            //    {
-
-            //        var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCLiente));
-            //        var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().FlagIdioma);
-
-
-            //        //Session["Idioma"] = lstPublicacion.FirstOrDefault().FlagIdioma;
-
-            //        ViewBag.Idioma = lstPublicacion.FirstOrDefault().FlagIdioma;
-
-
-            //        ViewBag.IdCliente = _IdCliente;
-            //        ViewBag.CodCliente = _CodCliente;
-            //        ViewBag.NomCliente = _NomCliente;
-            //        ViewBag.EmailCliente = _EmailCliente;
-
-            //        objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
-
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    ViewBag.error = ex.ToString() + lineagg;
-            //    return View("~/Views/Shared/Error.cshtml");
-
-            //}
-
-            //return View(objPropuestaViewModel);
             return View();
-
         }
-
-
 
         [HttpGet]
         public ActionResult Login(string id)
@@ -142,7 +69,7 @@ namespace PeruTourism.Controllers
                     var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().FlagIdioma);
 
 
-                    //Session["Idioma"] = lstPublicacion.FirstOrDefault().FlagIdioma;
+                    Session["Idioma"] = lstPublicacion.FirstOrDefault().FlagIdioma;
 
                     ViewBag.Idioma = lstPublicacion.FirstOrDefault().FlagIdioma;
 
