@@ -5,16 +5,17 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
-
 namespace PeruTourism.Repository.Data
 {
     public class Data
     {
+
         const string strSecureAppSettings = "secureAppSettings";
 
 
-        public static string StrNomServ_WebsSql {
-            
+        public static string StrNomServ_WebsSql
+        {
+
             get { return ((NameValueCollection)WebConfigurationManager.GetSection(strSecureAppSettings))[("bdturismo_SOURCE")]; }
 
         }
@@ -27,7 +28,8 @@ namespace PeruTourism.Repository.Data
         }
 
 
-        public static string StrUsuario_WebsSql {
+        public static string StrUsuario_WebsSql
+        {
 
             get { return ((NameValueCollection)WebConfigurationManager.GetSection(strSecureAppSettings))[("bdturismo_USER")]; }
 
@@ -40,17 +42,10 @@ namespace PeruTourism.Repository.Data
             {
                 return
               "Data Source=" + StrNomServ_WebsSql +
-              ";initial catalog ="+ StrBD_WebsSql +
+              ";initial catalog =" + StrBD_WebsSql +
               ";User ID=" + StrUsuario_WebsSql +
               ";Password=" + ((NameValueCollection)WebConfigurationManager.GetSection(strSecureAppSettings))[("bdturismo_PASSWORD")];
             }
         }
-
-
-
-
-
-
-
     }
 }

@@ -2,35 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PeruTourism.Models.PeruTourism;
-using PeruTourism.Repository.Data;
 using System.Data.SqlClient;
 using System.Data;
+using PeruTourism.Models.PeruTourism;
 
 namespace PeruTourism.Repository.PeruTourism
 {
     public class PedidoAccess
     {
 
-
         public IEnumerable<Pedido> ObtenerListadoPedido()
         {
 
             var lstPedido = new List<Pedido>();
 
-            using (SqlConnection objConnection = new SqlConnection(Data.Data.StrCnx_WebsSql)) {
+            using (SqlConnection objConnection = new SqlConnection(Data.Data.StrCnx_WebsSql))
+            {
 
                 using (SqlCommand objCommand = new SqlCommand())
                 {
-                    
+
                     objCommand.CommandText = "SELECT * FROM CPEDIDO WHERE CodVendedor='MAYRA' AND FchPedido > = '2018-06-15';";
                     objCommand.CommandType = CommandType.Text;
                     objCommand.Connection = objConnection;
                     objConnection.Open();
 
-                    using (var reader = objCommand.ExecuteReader()) {
+                    using (var reader = objCommand.ExecuteReader())
+                    {
 
-                        while(reader.Read()){
+                        while (reader.Read())
+                        {
 
                             var pedido = new Pedido
                             {
@@ -61,15 +62,6 @@ namespace PeruTourism.Repository.PeruTourism
 
             return (((lvalue is DBNull) || (lvalue == null)) ? null : registo[columna].ToString());
         }
-
-            
-
-
-
-
-
-
-
 
 
 

@@ -20,12 +20,24 @@ namespace PeruTourism
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/css/layout.min.css",
+                      "~/Content/css/home.min.css",
+                      "~/Content/css/propuestas.min.css"));
+
+
+
+            bundles.Add(new StyleBundle("~/Content/scripts").Include(
+                     "~/Content/scripts/third/bootstrap.min.js",
+                     "~/Content/scripts/third/parallax.min.js",
+                     "~/Content/scripts/views/home.js"));
+
+
+            //BundleTable.EnableOptimizations = true;
+
         }
     }
 }

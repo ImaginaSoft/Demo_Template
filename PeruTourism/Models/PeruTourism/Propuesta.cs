@@ -5,15 +5,14 @@ using System.Web;
 
 namespace PeruTourism.Models.PeruTourism
 {
-
     [Serializable]
     public class Propuesta
     {
-      
+
         public int NroPedido { get; set; }
-  
+
         public int NroPropuesta { get; set; }
-     
+
         public string DesPropuesta { get; set; }
 
         public int NroDia { get; set; }
@@ -23,8 +22,7 @@ namespace PeruTourism.Models.PeruTourism
         public int NroServicio { get; set; }
 
         public string DesServicio { get; set; }
-  
-        public string DesServicioDet { get; set; }
 
+        public string DesServicioDet { get; set; }
     }
 }

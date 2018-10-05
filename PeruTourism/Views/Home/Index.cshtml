@@ -1,16 +1,19 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@using PeruTourism.Utility
 
 @{
     ViewBag.Title = "Home Page";
 
     var lstProgramas = Model.lstPrograma;
 
-    var NombreCliente = Session["NomCliente"];
+    //var NombreCliente = (string)Session["NomCliente"];
+    var NombreCliente = ViewBag.NomCliente;
+    var CodCliente = ViewBag.CodCliente;
 
     char idioma = ViewBag.Idioma;
 }
 
-@if (idioma.Equals('I'))
+@if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
 
 {
     <div class="content">
@@ -22,7 +25,7 @@
             <section class="options">
                 <div class="op-group">
                     <div class="op op-propuesta">
-                        <a href="@Url.Action("VerPropuesta", "Home")">
+                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
                             <div class="icon icon-propuesta"></div>
                             <div class="description">
                                 Proposals<br>
@@ -49,9 +52,9 @@
             <section class="slider" id="scene">
                 <div class="container" data-depth="0.2">
                     <span class="description">Go Beyond Ordinary Travel</span>
-                    <img src="~/Content/resources/images/slider-group.png" class="img-group">
+                    <img src="~/Content/images/slider-group.png" class="img-group">
                 </div>
-                <img src="~/Content/resources/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+                <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
             </section>
         </div>
     </div>
@@ -69,7 +72,7 @@ else
             <section class="options">
                 <div class="op-group">
                     <div class="op op-propuesta">
-                        <a href="@Url.Action("VerPropuesta", "Home")">
+                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
                             <div class="icon icon-propuesta"></div>
                             <div class="description">
                                 Propuestas<br>
@@ -98,7 +101,7 @@ else
                     <span class="description">Go Beyond Ordinary Travel</span>
                     <img src="~/Content/resources/images/slider-group.png" class="img-group">
                 </div>
-                <img src="~/Content/resources/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+                <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
             </section>
         </div>
     </div>

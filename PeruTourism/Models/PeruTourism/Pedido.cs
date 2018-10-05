@@ -5,6 +5,7 @@ using System.Web;
 
 namespace PeruTourism.Models.PeruTourism
 {
+
     [Serializable]
     public class Pedido
     {
@@ -15,7 +16,5 @@ namespace PeruTourism.Models.PeruTourism
         public DateTime FchPedido { get; set; }
 
         public char CodVendedor { get; set; }
-
-
     }
 }

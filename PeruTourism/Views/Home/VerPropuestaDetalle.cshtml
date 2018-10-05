@@ -6,7 +6,7 @@
 
     var lstServicios = Model.lstServicio;
 
-    var NombreCliente = Session["NomCliente"];
+   
 }
 
 
@@ -50,9 +50,9 @@
                         <div class=""><span>@lstServicios[i].FchInicio.ToString()</span></div>
                         <ul>
                             @*<li>Tour día completo a Valle Sagrado -  Servicio Compartido.</li>
-        <li>Clase de alfarería - Servicio en privado.</li>
-        <li>Alojamiento en Sonesta Valle Sagrado Hotel.</li>
-        <li>Incluye: Desayuno y almuerzo.</li>*@
+                                <li>Clase de alfarería - Servicio en privado.</li>
+                                <li>Alojamiento en Sonesta Valle Sagrado Hotel.</li>
+                                <li>Incluye: Desayuno y almuerzo.</li>*@
 
                             @foreach (string servicio in servicios)
                             {
@@ -71,8 +71,8 @@
 
                         </ul>
                     </div>
-                        <div class="prop-icon"></div>
-                    </div>
+                    <div class="prop-icon"></div>
+                </div>
             }
 
         </section>

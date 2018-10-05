@@ -11,10 +11,10 @@ namespace PeruTourism.Models.PeruTourism
         public string Dia { get; set; }
 
         public DateTime FchInicio { get; set; }
-        
+
         public string Ciudad { get; set; }
 
-        public string HoraServicio { get; set; } 
+        public string HoraServicio { get; set; }
 
         public string DesServicio { get; set; }
 
@@ -25,7 +25,5 @@ namespace PeruTourism.Models.PeruTourism
         public string KeyReg { get; set; }
 
         public string DesServicioDet { get; set; }
-
-
     }
 }

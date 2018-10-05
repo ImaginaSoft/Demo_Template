@@ -5,7 +5,6 @@ using System.Web;
 
 namespace PeruTourism.Models.PeruTourism
 {
-
     [Serializable]
     public class Programa
     {
@@ -23,8 +22,5 @@ namespace PeruTourism.Models.PeruTourism
         public string Resumen { get; set; }
 
         public string ResumenComida { get; set; }
-
-
-
     }
 }

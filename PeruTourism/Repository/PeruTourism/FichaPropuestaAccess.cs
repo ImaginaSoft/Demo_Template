@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PeruTourism.Models.PeruTourism;
 using System.Data.SqlClient;
 using System.Data;
+using PeruTourism.Models.PeruTourism;
+using PeruTourism.Utility;
 
 namespace PeruTourism.Repository.PeruTourism
 {
     public class FichaPropuestaAccess
     {
 
-        public IEnumerable<Programa> ObtenerListadoPropuesta(int pNroPedido,char pFlagIdioma)
+        public IEnumerable<Programa> ObtenerListadoPropuesta(int pNroPedido, char pFlagIdioma)
         {
             try
             {
@@ -21,14 +22,14 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                    if(pFlagIdioma.Equals('I'))
+                    if (pFlagIdioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
                     {
-                         cmd = new SqlCommand("P4I_Publica_S", con);
+                        cmd = new SqlCommand("P4I_Publica_S", con);
 
                     }
                     else
                     {
-                         cmd = new SqlCommand("P4E_Publica_S", con);
+                        cmd = new SqlCommand("P4E_Publica_S", con);
                     }
 
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
@@ -37,7 +38,7 @@ namespace PeruTourism.Repository.PeruTourism
                     cmd.CommandType = CommandType.StoredProcedure;
                     // cmd.CommandType = CommandType.Text;
 
-                    cmd.Parameters.Add("@CodZonaVta", SqlDbType.Char,3).Value = "PER";
+                    cmd.Parameters.Add("@CodZonaVta", SqlDbType.Char, 3).Value = "PER";
                     cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
                     //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = 6;
 
@@ -78,8 +79,8 @@ namespace PeruTourism.Repository.PeruTourism
         }
 
         public IEnumerable<Servicio> ObtenerListadoServiciosPropuesta(int pNroPedido, int pNroPropuesta, char pFlagIdioma)
-        
-        
+
+
         {
             try
             {
@@ -301,8 +302,6 @@ namespace PeruTourism.Repository.PeruTourism
                 throw;
             }
         }
-
-
 
     }
 }

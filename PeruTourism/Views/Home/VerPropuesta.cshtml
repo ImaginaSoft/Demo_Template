@@ -1,11 +1,12 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@using PeruTourism.Utility
 @{
     ViewBag.Title = "VerPropuesta";
 
     var lstProgramas = Model.lstPrograma;
 
-    var NombreCliente = Session["NomCliente"];
-
+    //var NombreCliente = Session["NomCliente"];
+    var CodCliente = ViewBag.CodCliente;
     char idioma = ViewBag.Idioma;
 }
 
@@ -17,20 +18,20 @@
                     <div class="op-group">
                         <div class="op op-propuesta">
                             <div class="icon icon-propuesta"></div>
-                            @if (idioma.Equals('I'))
+                            @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
                             {
-                            <div class="title">Proposals for my trip</div>
+                                <div class="title">Proposals for my trip</div>
                             }
                             else
                             {
                                 <div class="title">Propuestas para mi viaje</div>
                             }
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
-            <img src="~/Content/resources/images/slider-prop.jpg" class="img-bg" data-depth="0.1">
+            <img src="~/Content/images/slider-prop.jpg" class="img-bg" data-depth="0.1">
         </section>
     </div>
 
@@ -40,7 +41,7 @@
             @for (int i = 0; i < lstProgramas.Count; i++)
             {
 
-                <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma})" class="group prop">
+                <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente})" class="group prop">
                     <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
                     <div class="prop-title">@lstProgramas[i].DesPrograma</div>
                     <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
