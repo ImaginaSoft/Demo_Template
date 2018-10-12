@@ -34,7 +34,7 @@
         <section class="group prop-group">
             <div class="group prop">
                 <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
-                <div class="prop-title">@lstProgramas.FirstOrDefault().DesPrograma</div>
+                <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
                 <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
             </div>
 
@@ -43,11 +43,11 @@
                 string[] servicios = lstServicios[i].DesServicioDet.Split('|');
                 <div class="group prop-detalle collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
                     <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
-                    <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio.ToString())</div>
+                    <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
                     <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
-                        <div class=""><span>@lstServicios[i].Ciudad.ToString()</span></div>
-                        <div class=""><span>@lstServicios[i].HoraServicio.ToString()</span></div>
-                        <div class=""><span>@lstServicios[i].FchInicio.ToString()</span></div>
+                        <div class="icon icon-location"><span>@lstServicios[i].Ciudad.ToString()</span></div>
+                        <div class="icon icon-time"><span>@lstServicios[i].HoraServicio.ToString()</span></div>
+                        <div class="icon icon-calendar"><span>@lstServicios[i].FchInicio.ToString()</span></div>
                         <ul>
                             @*<li>Tour día completo a Valle Sagrado -  Servicio Compartido.</li>
                                 <li>Clase de alfarería - Servicio en privado.</li>
