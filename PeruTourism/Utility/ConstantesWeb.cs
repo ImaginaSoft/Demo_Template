@@ -10,5 +10,7 @@ namespace PeruTourism.Utility
 
         public const char CHR_IDIOMA_INGLES = 'I';
         public const char CHR_IDIOMA_ESPAÑOL = 'E';
+
+        public const string strSecureAppSettings = "secureAppSettings";
     }
 }

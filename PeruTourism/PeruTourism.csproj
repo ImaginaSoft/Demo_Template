@@ -148,6 +148,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagoVisaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,10 +159,13 @@
     <Compile Include="Models\PeruTourism\PropuestaViewModel.cs" />
     <Compile Include="Models\PeruTourism\Servicio.cs" />
     <Compile Include="Models\PeruTourism\UltimaPublicacion.cs" />
+    <Compile Include="Models\Visa\PedidoVisa.cs" />
+    <Compile Include="Models\Visa\PedidoVisaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Data\Data.cs" />
     <Compile Include="Repository\PeruTourism\FichaPropuestaAccess.cs" />
     <Compile Include="Repository\PeruTourism\LoginAccess.cs" />
+    <Compile Include="Repository\PeruTourism\PagoVisaAccess.cs" />
     <Compile Include="Repository\PeruTourism\PedidoAccess.cs" />
     <Compile Include="Utility\ConstantesWeb.cs" />
   </ItemGroup>
@@ -233,6 +237,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Visa\PagoVisa.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -249,6 +254,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\VerPropuesta.cshtml" />
     <Content Include="Views\Home\VerPropuestaDetalle.cshtml" />
+    <Content Include="Views\PagoVisa\Pago.cshtml" />
+    <Content Include="Views\PagoVisa\Info.cshtml" />
+    <Content Include="Views\PagoVisa\ConfirmarPago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
