@@ -147,11 +147,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GaleriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PagoVisaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Galeria\Galeria.cs" />
+    <Compile Include="Models\Galeria\GaleriaViewModel.cs" />
     <Compile Include="Models\PeruTourism\Cliente.cs" />
     <Compile Include="Models\PeruTourism\Pedido.cs" />
     <Compile Include="Models\PeruTourism\Programa.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Data\Data.cs" />
     <Compile Include="Repository\PeruTourism\FichaPropuestaAccess.cs" />
+    <Compile Include="Repository\PeruTourism\GaleriaAccess.cs" />
     <Compile Include="Repository\PeruTourism\LoginAccess.cs" />
     <Compile Include="Repository\PeruTourism\PagoVisaAccess.cs" />
     <Compile Include="Repository\PeruTourism\PedidoAccess.cs" />
@@ -227,6 +231,7 @@
     <Content Include="Content\sass\_variables.scss" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Galeria\Galeria.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -257,6 +262,7 @@
     <Content Include="Views\PagoVisa\Pago.cshtml" />
     <Content Include="Views\PagoVisa\Info.cshtml" />
     <Content Include="Views\PagoVisa\ConfirmarPago.cshtml" />
+    <Content Include="Views\Galeria\Galeria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
