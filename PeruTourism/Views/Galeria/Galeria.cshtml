@@ -15,6 +15,12 @@
         OnComplete = "e_ajax_finalizando_form_ficha",
         OnFailure = "e_ajax_error"
     };
+
+
+
+    var base64 = Convert.ToBase64String(lstGaleria.FirstOrDefault().Imagen2);
+    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
 }
 
 <h2>Galeria</h2>
@@ -52,7 +58,9 @@
 </div>
 
 <div class="form-group">
-    <label for="Imagen2">Imagen 02:</label>
+    @*<label for="Imagen2">@imgSrc</label>*@
+
+    <img src="@imgSrc" />
     @*<label for="FlagImg01">@lstGaleria.FirstOrDefault().FlagImg01</label>*@
 
 </div>

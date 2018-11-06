@@ -87,7 +87,8 @@ namespace PeruTourism.Repository.PeruTourism
                         {
 
 
-                            //Imagen1 = Convert.FromBase64String("FlagImg01"),                          
+                            //Imagen1 = Convert.FromBase64String("Imagen2"),
+                            Imagen2 = (byte[]) rdr["Imagen2"],
                             flagImg01 = rdr["FlagImg01"].ToString(),
                             NroServicio = rdr["nroServicio"].ToString(),
                             DireccionHTL = rdr["DireccionHTL"].ToString(),

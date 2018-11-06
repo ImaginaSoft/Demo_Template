@@ -239,5 +239,14 @@ namespace PeruTourism.Controllers
             return Json(vPedido, JsonRequestBehavior.AllowGet);
 
         }
+
+
+        public ActionResult OpenModalHotelDetails(string pIdServicio) {
+
+
+            return View();
+
+
+        }
     }
 }
