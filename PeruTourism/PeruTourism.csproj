@@ -156,6 +156,7 @@
     <Compile Include="Models\Galeria\Galeria.cs" />
     <Compile Include="Models\Galeria\GaleriaViewModel.cs" />
     <Compile Include="Models\PeruTourism\Cliente.cs" />
+    <Compile Include="Models\PeruTourism\EnvioMensaje.cs" />
     <Compile Include="Models\PeruTourism\Galeria.cs" />
     <Compile Include="Models\PeruTourism\Pedido.cs" />
     <Compile Include="Models\PeruTourism\Programa.cs" />
@@ -235,6 +236,7 @@
     <Content Include="Content\sass\_variables.scss" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Envio\EnvioMensaje.js" />
     <Content Include="Scripts\Galeria\Galeria.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

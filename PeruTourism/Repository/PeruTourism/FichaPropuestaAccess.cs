@@ -305,5 +305,70 @@ namespace PeruTourism.Repository.PeruTourism
             }
         }
 
+
+
+        public string InsertarHistorialCliente(string pDesLog,string pCodCliente,string pNroPedido, string nroPropuesta, string pNroVersion)
+        {
+            try
+            {
+                //List<Propuesta> lstpropuestadet = new List<Propuesta>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("HST_cliente_I", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@DesLog", SqlDbType.Text).Value = pDesLog;
+                    cmd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = Convert.ToInt32(pCodCliente);
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = Convert.ToInt32(pNroPedido);
+                    cmd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value =Convert.ToInt32( nroPropuesta);
+                    cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = Convert.ToInt32(pNroVersion);
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    //while (rdr.Read())
+                    //{
+
+                    //    Propuesta fpropuesta = new Propuesta
+                    //    {
+                    //        NroPedido = Convert.ToInt32(rdr["NroPedido"]),
+                    //        //NroPropuesta = Convert.ToInt32(rdr["NroPropuesta"]),
+                    //        //DesPropuesta = rdr["DesPropuesta"].ToString()
+                    //        NroDia = Convert.ToInt32(rdr["NroDia"]),
+                    //        NroOrden = Convert.ToInt32(rdr["NroOrden"]),
+                    //        NroServicio = Convert.ToInt32(rdr["NroServicio"]),
+                    //        DesServicio = rdr["DesServicio"].ToString(),
+                    //        DesServicioDet = rdr["DesServicioDet"].ToString()
+
+                    //    };
+
+                    //    lstpropuestadet.Add(item: fpropuesta);
+                    //}
+
+                    con.Close();
+                }
+
+                return "ok";
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+
+
+
     }
 }

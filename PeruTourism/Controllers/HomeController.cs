@@ -150,6 +150,14 @@ namespace PeruTourism.Controllers
 
             //var codCliente = Session["CodCliente"];
 
+
+
+            ViewBag.nroPedido = nroPedido;
+            ViewBag.nroPropuesta = nroPropuesta;
+            ViewBag.codCliente = pCodCliente;
+            ViewBag.nroVersion = nroVersion;
+
+
             var codCliente = pCodCliente;
 
 
@@ -288,6 +296,28 @@ namespace PeruTourism.Controllers
         }
 
         [HttpPost]
+        public JsonResult RegistrarHistorialCliente(string pDesLog, string pCodCliente, string pNroPedido, string pNroPropuesta,string pNroVersion)
+        {
+
+
+            FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+
+            string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
+            //PersonModel person = new PersonModel
+            //{
+            //    Name = name,
+            //    DateTime = DateTime.Now.ToString()
+            //};
+
+
+
+
+            return Json(gg, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        [HttpPost]
         public JsonResult GG(string tableHtml)
         {
             Session["TableStr"] = tableHtml;
@@ -306,7 +336,7 @@ namespace PeruTourism.Controllers
 
 
 
-            return Json("", JsonRequestBehavior.AllowGet);
+            return Json(name, JsonRequestBehavior.AllowGet);
         }
     }
 }
