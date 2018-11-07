@@ -1,0 +1,116 @@
+﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@{
+
+    var lstGaleria = Model.lstServicio;
+
+    var NroServicio = lstGaleria.FirstOrDefault().NroServicio;
+
+    string path = Server.MapPath("~/Content/images/a.jpg");
+    byte[] imageByteData = System.IO.File.ReadAllBytes(path);
+    string imageBase64Data = Convert.ToBase64String(imageByteData);
+    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+
+    string imgSrc_1 = string.Empty;
+    string imgSrc_2 = string.Empty;
+    string imgSrc_3 = string.Empty;
+
+    if (lstGaleria.FirstOrDefault().Imagen1 != null)
+    {
+        byte[] imageByData_1 = lstGaleria.FirstOrDefault().Imagen1;
+        string base64_1 = Convert.ToBase64String(imageByData_1);
+        imgSrc_1 = string.Format("data:image/jpg;base64,{0}", base64_1);
+    }
+
+    if (lstGaleria.FirstOrDefault().Imagen2 != null)
+    {
+        byte[] imageByData_2 = lstGaleria.FirstOrDefault().Imagen2;
+        string base64_2 = Convert.ToBase64String(imageByData_2);
+        imgSrc_2 = string.Format("data:image/jpg;base64,{0}", base64_2);
+    }
+
+
+    if (lstGaleria.FirstOrDefault().Imagen3 != null)
+    {
+
+        byte[] imageByData_3 = lstGaleria.FirstOrDefault().Imagen3;
+        string base64_3 = Convert.ToBase64String(imageByData_3);
+        imgSrc_3 = string.Format("data:image/jpg;base64,{0}", base64_3);
+    }
+
+    if (lstGaleria != null)
+    {
+        <div class="modal fade" id="detalleHotel-1" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-DetalleHotel" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>Detalle de Hotel</strong>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <figure>
+                            <div class="galleryDetalleHotel" id="owl-detailPhotos">
+
+                                <div class="item"><img src="@imgSrc_1" style="max-width:100px; max-height:100px;" /></div>
+                                <div class="item"><img src="@imgSrc_2" style="max-width:100px; max-height:100px;" /></div>
+                                <div class="item"><img src="@imgSrc_3" style="max-width:100px; max-height:100px;" /></div>
+                                <div class="item"><img src="@imageDataURL" style="max-width:100px; max-height:100px;" /></div>
+
+                                @*@if (detailsRoom.RoomSelected.ListImages.Count() == 0)
+                                    {
+                                        <div class="item"><img src="~/Images/nopicture-ofertas.jpg" /></div>
+                                    }
+                                    else
+                                    {
+                                        foreach (var img in detailsRoom.RoomSelected.ListImages)
+                                        {
+                                            <div class="item"><img src="@img.URL" /></div>
+                                        }
+                                    }*@
+                            </div>
+                        </figure>
+                        <h4>Características principales</h4>
+                        @*@if (detailsRoom.RoomSelected.RoomDescription.Length < 10)
+                            {
+                                <p>Informacion no Disponible</p>
+                            }
+                            else
+                            { <p>@detailsRoom.RoomSelected.RoomDescription</p>}*@
+                        <div class="form-group">
+                            <label for="FlagImg01">Estrellas:</label>
+                            @*<label for="FlagImg01">@lstGaleria.FirstOrDefault().</label>*@
+
+                            <div class="stars">
+
+                                @for (int i = 1; i <= 5; i++)
+                                {
+
+                                    if (i <= 4)
+                                    {
+                                        <i class="icon-star">★ </i>
+                                    }
+
+                                }
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="DireccionHTL">Direccion:</label>
+                            <label for="DireccionHTL">@lstGaleria.FirstOrDefault().DireccionHTL</label>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="Telefono">Telefono:</label>
+                            <label for="FlagImg01">@lstGaleria.FirstOrDefault().Telefono</label>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+

@@ -55,11 +55,11 @@ namespace PeruTourism.Repository.PeruTourism
 
         }
 
-        public IEnumerable<Galeria> CargarGaleria(int sNroServicio)
+        public IEnumerable<Servicio> CargarGaleria(int sNroServicio)
         {
             try
             {
-                var lstGaleria = new List<Galeria>();
+                var lstGaleria = new List<Servicio>();
 
                 string sIdGaleria = string.Empty;
 
@@ -68,9 +68,7 @@ namespace PeruTourism.Repository.PeruTourism
                     SqlCommand cmd = new SqlCommand();
 
                     cmd = new SqlCommand("VTA_ListaIMG_S", con);
-
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = sNroServicio;
 
                     con.Open();
@@ -79,18 +77,15 @@ namespace PeruTourism.Repository.PeruTourism
 
                     while (rdr.Read())
                     {
-
-                        
-
-
-                        Galeria galeria = new Galeria
+                       
+                        Servicio galeria = new Servicio
                         {
-
-
                             //Imagen1 = Convert.FromBase64String("Imagen2"),
+                            Imagen1 = (byte[]) rdr["Imagen1"],
                             Imagen2 = (byte[]) rdr["Imagen2"],
+                            Imagen3 = (byte[]) rdr["Imagen3"],
                             flagImg01 = rdr["FlagImg01"].ToString(),
-                            NroServicio = rdr["nroServicio"].ToString(),
+                           // NroServicio = rdr["nroServicio"].ToString(),
                             DireccionHTL = rdr["DireccionHTL"].ToString(),
                             Telefono = rdr["Telefono"].ToString()
                         };

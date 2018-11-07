@@ -8,12 +8,18 @@ using PeruTourism.Utility;
 using PeruTourism.Models.PeruTourism;
 using System.Data.SqlClient;
 using System.Data;
+using PeruTourism.Models.Galeria;
 
 
 namespace PeruTourism.Controllers
 {
     public class HomeController : Controller
     {
+
+        GaleriaAccess objGaleriaAccess = new GaleriaAccess();
+        GaleriaViewModel objGaleriaViewModel = new GaleriaViewModel();
+        PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -190,7 +196,16 @@ namespace PeruTourism.Controllers
 
 
                     //servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + Environment.NewLine;
-                    servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + "|";
+
+                    if (itemAgrupado.CodTipoServicio == 2) {
+
+                        servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + "↕" + itemAgrupado.NroServicio + "|";
+                    }
+                    else {
+                        servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet+ "|";
+                    }
+
+                    
 
                     if (itemAgrupado.DesServicio != "")
                     {
@@ -203,6 +218,8 @@ namespace PeruTourism.Controllers
                     objServicio.DesServicioDet = servDetAgrupado;
                     objServicio.Ciudad = itemAgrupado.Ciudad;
                     objServicio.HoraServicio = itemAgrupado.HoraServicio;
+                    objServicio.CodTipoServicio = itemAgrupado.CodTipoServicio;
+                    objServicio.NroServicio = itemAgrupado.NroServicio;
                     //objServicio.FchInicio = itemAgrupado.FchInicio;
 
                 }
@@ -216,7 +233,10 @@ namespace PeruTourism.Controllers
                     DesServicioDet = servDetAgrupado,
                     Ciudad = item.FirstOrDefault().Ciudad,
                     HoraServicio = item.FirstOrDefault().HoraServicio,
-                    FchInicio = item.FirstOrDefault().FchInicio
+                    FchInicio = item.FirstOrDefault().FchInicio,
+                    NroServicio = item.FirstOrDefault().NroServicio,
+                    CodTipoServicio = item.FirstOrDefault().CodTipoServicio
+                    
                 };
 
 
@@ -240,13 +260,53 @@ namespace PeruTourism.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult OpenModalDetailsHotel(string pNroServicio)
+        {
+            try
+            {
+                string sIdServicio = string.Empty;
 
-        public ActionResult OpenModalHotelDetails(string pIdServicio) {
+                var lstGaleria = objGaleriaAccess.CargarGaleria(Convert.ToInt32(pNroServicio));
+
+                //objGaleriaViewModel.lstGaleria = lstGaleria.ToList();
+                objPropuestaViewModel.lstServicio = lstGaleria.ToList();
+
+                //sIdServicio = lstGaleria.FirstOrDefault().NroServicio.Trim();
+
+                //int sIdServicio_length = sIdServicio.Length;
+
+                return PartialView("~/Views/Galeria/_ModalDetalleHotel.cshtml", objPropuestaViewModel);
+                //return PartialView("~/Views/PaqueteCostum/VuelosHoteles/Hoteles/_ModalDetalleRooms.cshtml", objHotelViewModel);
+            }
+            catch (Exception)
+            {
+
+                return View("~/Views/Shared/Error.cshtml");
+                //return Redirect("paquetes");
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GG(string tableHtml)
+        {
+            Session["TableStr"] = tableHtml;
+            return Json(new { Data = "true" });
+        }
+
+        [HttpPost]
+        public JsonResult AjaxMethod(string name)
+        {
+            //PersonModel person = new PersonModel
+            //{
+            //    Name = name,
+            //    DateTime = DateTime.Now.ToString()
+            //};
 
 
-            return View();
 
 
+            return Json("", JsonRequestBehavior.AllowGet);
         }
     }
 }

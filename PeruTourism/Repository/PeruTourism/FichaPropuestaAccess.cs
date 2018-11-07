@@ -108,7 +108,9 @@ namespace PeruTourism.Repository.PeruTourism
                         Servicio fservicio = new Servicio
                         {
 
+                            NroServicio = Convert.ToInt32(rdr["NroServicio"]),
                             DesServicio = rdr["DesServicio"].ToString(),
+                            CodTipoServicio = Convert.ToInt32(rdr["CodTipoServicio"]),
                             NroDia = rdr["NroDia"].ToString(),
                             DesServicioDet = rdr["DesServicioDet"].ToString(),
                             Ciudad = rdr["Ciudad"].ToString(),

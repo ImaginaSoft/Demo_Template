@@ -18,8 +18,26 @@
 
 
 
-    var base64 = Convert.ToBase64String(lstGaleria.FirstOrDefault().Imagen2);
-    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+    string path = Server.MapPath("~/Content/images/a.jpg");
+    byte[] imageByteData = System.IO.File.ReadAllBytes(path);
+    string imageBase64Data = Convert.ToBase64String(imageByteData);
+    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+
+
+
+    byte[] imageByData_1 = lstGaleria.FirstOrDefault().Imagen1;
+    string base64_1 = Convert.ToBase64String(imageByData_1);
+    string imgSrc_1 = string.Format("data:image/jpg;base64,{0}", base64_1);
+
+    byte[] imageByData_2 = lstGaleria.FirstOrDefault().Imagen2;
+    string base64_2 = Convert.ToBase64String(imageByData_2);
+    string imgSrc_2 = string.Format("data:image/jpg;base64,{0}", base64_2);
+
+
+    byte[] imageByData_3 = lstGaleria.FirstOrDefault().Imagen3;
+    string base64_3 = Convert.ToBase64String(imageByData_3);
+    string imgSrc_3 = string.Format("data:image/jpg;base64,{0}", base64_3);
 
 }
 
@@ -53,22 +71,31 @@
 
 <div class="form-group">
     <label for="Imagen1">Imagen 01:</label>
+    <img src="@imgSrc_1" style="max-width:100px; max-height:100px;" />
     @*<label for="FlagImg01">@lstGaleria.FirstOrDefault().FlagImg01</label>*@
 
 </div>
 
 <div class="form-group">
-    @*<label for="Imagen2">@imgSrc</label>*@
-
-    <img src="@imgSrc" />
+    <label for="Imagen2">Imagen 02:</label>
+    
+    <img src="@imgSrc_2"  style="max-width:100px; max-height:100px;"/>
     @*<label for="FlagImg01">@lstGaleria.FirstOrDefault().FlagImg01</label>*@
 
 </div>
 
 <div class="form-group">
     <label for="Imagen3">Imagen 03:</label>
+
+    <img src="@imgSrc_3" style="max-width:100px; max-height:100px;" />
     @*<label for="FlagImg01">@lstGaleria.FirstOrDefault().FlagImg01</label>*@
 
+</div>
+
+<div class="form-group">
+    <label for="Imagen3">Imagen GG:</label>
+    @*<label for="FlagImg01">@lstGaleria.FirstOrDefault().FlagImg01</label>*@
+    <img src="@imageDataURL" style="max-width:100px; max-height:100px;" />
 </div>
 
 
