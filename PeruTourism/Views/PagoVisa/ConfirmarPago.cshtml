@@ -21,7 +21,7 @@
 
     @*<form id="formPagoVisa">*@
 
-    @using (Ajax.BeginForm("ConfirmarPago", "PagoVisa", null, lajaxOptionsForm, new { @id = "form-pagoVisa", @class = "well form-horizontal" }))
+    @using (Ajax.BeginForm("RealizarPago", "PagoVisa", null, lajaxOptionsForm, new { @id = "form-pagoVisa", @class = "well form-horizontal" }))
     {
 
         <input type="hidden" id="IDPedido" value="@IDPedido.Trim()" />
@@ -56,10 +56,6 @@
         <a class="pago">Realizar Pago</a>
 
     }
-
-
-
-    @*</form>*@
 
 
 </div>
