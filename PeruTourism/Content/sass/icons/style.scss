@@ -26,6 +26,41 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-calendar {
+  &:before {
+    content: $icon-calendar; 
+  }
+}
+.icon-hotel-detalle {
+  &:before {
+    content: $icon-hotel-detalle; 
+  }
+}
+.icon-location {
+  &:before {
+    content: $icon-location; 
+  }
+}
+.icon-time {
+  &:before {
+    content: $icon-time; 
+  }
+}
+.icon-win-close {
+  &:before {
+    content: $icon-win-close; 
+  }
+}
+.icon-win-minus {
+  &:before {
+    content: $icon-win-minus; 
+  }
+}
+.icon-chat-question {
+  &:before {
+    content: $icon-chat-question; 
+  }
+}
 .icon-chevron-down {
   &:before {
     content: $icon-chevron-down; 

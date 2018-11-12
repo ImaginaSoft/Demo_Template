@@ -16,9 +16,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee|Montserrat:400,600,700,800">
     @*@Styles.Render("~/Content/css")*@
 
-    <link rel="stylesheet" href="~/Content/css/layout.min.css" media="all">
+    <link rel="stylesheet" href="~/Content/css/layout.css" media="all">
     <link rel="stylesheet" href="~/Content/css/home.min.css" media="all">
     <link rel="stylesheet" href="~/Content/css/propuestas.min.css" media="all">
+    <link rel="stylesheet" href="~/Content/css/chat.css" media="all">
+
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 
@@ -113,44 +115,14 @@
 
     </div>
 
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>*@
-
-
-    @*@Scripts.Render("~/Content/scripts")*@
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")*@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Content/scripts/third/bootstrap.min.js"></script>
     <script src="~/Content/scripts/third/parallax.min.js"></script>
     <script src="~/Content/scripts/views/home.js"></script>
     <script src="~/Content/scripts/views/propuestas.js"></script>
-    <script src="~/Scripts/Galeria/Galerias.js"></script>
+    <script src="~/Content/scripts/views/chat.js"></script>
+    
 
 
     @RenderSection("scripts", required: false)
