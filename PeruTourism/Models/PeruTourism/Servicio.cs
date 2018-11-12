@@ -43,7 +43,7 @@ namespace PeruTourism.Models.PeruTourism
         public string DireccionHTL { get; set; }
         public string NombreHTL { get; set; }
         public string Telefono { get; set; }
-
+        public string Valoracion { get; set; }
 
     }
 }

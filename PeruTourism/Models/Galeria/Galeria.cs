@@ -18,8 +18,9 @@ namespace PeruTourism.Models.Galeria
         public byte[] Imagen3 { get; set; }
         public string flagImg03 { get; set; }
         public string NroServicio { get; set; }
-        public string DireccionHTL { get; set; }
+		public string NombreHTL { get; set; }
+		public string DireccionHTL { get; set; }
         public string Telefono { get; set; }
-
-    }
+		public string Valoracion { get; set; }
+	}
 }

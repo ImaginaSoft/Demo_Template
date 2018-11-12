@@ -45,21 +45,25 @@
 
 <div id="propDet" class="secondary">
 
-    @*<form id="formPagoVisa">*@
+	@*<form id="formPagoVisa">*@
 
-    <input type="hidden" id="NroServicio" value="@NroServicio.Trim()" />
+	<input type="hidden" id="NroServicio" value="@NroServicio.Trim()" />
+	<div class="form-group">
+		<label for="NombreHTL">Nombre:</label>
+		<label for="NombreHTL">@lstGaleria.FirstOrDefault().NombreHTL</label>
 
-    <div class="form-group">
-        <label for="FlagImg01">Estrellas:</label>
-        <label for="FlagImg01">@lstGaleria.FirstOrDefault().flagImg01</label>
+	</div>
+	<div class="form-group">
+		<label for="Valoracion">Estrellas:</label>
+		<label for="Valoracion">@lstGaleria.FirstOrDefault().Valoracion</label>
 
-    </div>
+	</div>
 
-    <div class="form-group">
-        <label for="DireccionHTL">Direccion:</label>
-        <label for="DireccionHTL">@lstGaleria.FirstOrDefault().DireccionHTL</label>
+	<div class="form-group">
+		<label for="DireccionHTL">Direccion:</label>
+		<label for="DireccionHTL">@lstGaleria.FirstOrDefault().DireccionHTL</label>
 
-    </div>
+	</div>
 
 </div>
 

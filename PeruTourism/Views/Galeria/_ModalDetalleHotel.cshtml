@@ -46,67 +46,75 @@
                         <strong>Detalle de Hotel</strong>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
-                    <div class="modal-body">
-                        <figure>
-                            <div class="galleryDetalleHotel" id="owl-detailPhotos">
+					<div class="modal-body">
+						<figure>
+							<div class="galleryDetalleHotel" id="owl-detailPhotos">
 
-                                <div class="item"><img src="@imgSrc_1" style="max-width:100px; max-height:100px;" /></div>
-                                <div class="item"><img src="@imgSrc_2" style="max-width:100px; max-height:100px;" /></div>
-                                <div class="item"><img src="@imgSrc_3" style="max-width:100px; max-height:100px;" /></div>
-                                <div class="item"><img src="@imageDataURL" style="max-width:100px; max-height:100px;" /></div>
+								<div class="item"><img src="@imgSrc_1" style="max-width:100px; max-height:100px;" /></div>
+								<div class="item"><img src="@imgSrc_2" style="max-width:100px; max-height:100px;" /></div>
+								<div class="item"><img src="@imgSrc_3" style="max-width:100px; max-height:100px;" /></div>
+								@*<div class="item"><img src="@imageDataURL" style="max-width:100px; max-height:100px;" /></div>*@
 
-                                @*@if (detailsRoom.RoomSelected.ListImages.Count() == 0)
-                                    {
-                                        <div class="item"><img src="~/Images/nopicture-ofertas.jpg" /></div>
-                                    }
-                                    else
-                                    {
-                                        foreach (var img in detailsRoom.RoomSelected.ListImages)
-                                        {
-                                            <div class="item"><img src="@img.URL" /></div>
-                                        }
-                                    }*@
-                            </div>
-                        </figure>
-                        <h4>Características principales</h4>
-                        @*@if (detailsRoom.RoomSelected.RoomDescription.Length < 10)
-                            {
-                                <p>Informacion no Disponible</p>
-                            }
-                            else
-                            { <p>@detailsRoom.RoomSelected.RoomDescription</p>}*@
-                        <div class="form-group">
-                            <label for="FlagImg01">Estrellas:</label>
-                            @*<label for="FlagImg01">@lstGaleria.FirstOrDefault().</label>*@
+								@*@if (detailsRoom.RoomSelected.ListImages.Count() == 0)
+				{
+					<div class="item"><img src="~/Images/nopicture-ofertas.jpg" /></div>
+				}
+				else
+				{
+					foreach (var img in detailsRoom.RoomSelected.ListImages)
+					{
+						<div class="item"><img src="@img.URL" /></div>
+					}
+				}*@
+							</div>
+						</figure>
+						@*<h4>Características principales</h4>*@
+						@*@if (detailsRoom.RoomSelected.RoomDescription.Length < 10)
+		{
+			<p>Informacion no Disponible</p>
+		}
+		else
+		{ <p>@detailsRoom.RoomSelected.RoomDescription</p>}*@
+						<div class="form-group">
+							<label for="NombreHTL">Nombre:</label>
+							<label for="NombreHTL">@lstGaleria.FirstOrDefault().NombreHTL</label>
 
-                            <div class="stars">
+						</div>
+						<div class="form-group">
+							@*<label for="Valoracion">Estrellas:</label>*@
+							<label for="Valoracion">@lstGaleria.FirstOrDefault().Valoracion</label>
 
-                                @for (int i = 1; i <= 5; i++)
-                                {
+							<div class="stars">
+								
+								
 
-                                    if (i <= 4)
-                                    {
-                                        <i class="icon-star">★ </i>
-                                    }
+								@for (int i = 1; i <= 5; i++)
+								{
 
-                                }
+									if (i <= 1)
+									{
+										<i class="icon-star">★ </i>
+									}							
+								
 
-                            </div>
+								}
 
-                        </div>
+							</div>
 
-                        <div class="form-group">
-                            <label for="DireccionHTL">Direccion:</label>
-                            <label for="DireccionHTL">@lstGaleria.FirstOrDefault().DireccionHTL</label>
+						</div>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="Telefono">Telefono:</label>
-                            <label for="FlagImg01">@lstGaleria.FirstOrDefault().Telefono</label>
+						<div class="form-group">
+							<label for="DireccionHTL">Direccion:</label>
+							<label for="DireccionHTL">@lstGaleria.FirstOrDefault().DireccionHTL</label>
 
-                        </div>
+						</div>
+						<div class="form-group">
+							<label for="Telefono">Telefono:</label>
+							<label for="FlagImg01">@lstGaleria.FirstOrDefault().Telefono</label>
 
-                    </div>
+						</div>
+
+					</div>
                 </div>
             </div>
         </div>

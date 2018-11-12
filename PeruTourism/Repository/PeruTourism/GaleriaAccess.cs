@@ -84,9 +84,10 @@ namespace PeruTourism.Repository.PeruTourism
                             Imagen1 = (byte[]) rdr["Imagen1"],
                             Imagen2 = (byte[]) rdr["Imagen2"],
                             Imagen3 = (byte[]) rdr["Imagen3"],
-                            flagImg01 = rdr["FlagImg01"].ToString(),
-                           // NroServicio = rdr["nroServicio"].ToString(),
-                            DireccionHTL = rdr["DireccionHTL"].ToString(),
+                            Valoracion = rdr["valoracion"].ToString(),
+							NombreHTL = rdr["NombreHTL"].ToString(),
+							// NroServicio = rdr["nroServicio"].ToString(),
+							DireccionHTL = rdr["DireccionHTL"].ToString(),
                             Telefono = rdr["Telefono"].ToString()
                         };
                         //pedido.CodVendedor = Convert.ToChar(GetValue(reader, "CodVendedor"));
