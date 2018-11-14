@@ -51,12 +51,6 @@
         })
 
 
-
-
-
-
-
-
         //VerOfertas(idHotel);
 
         //var este = jQuery(".tablinks_info");

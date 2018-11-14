@@ -20,6 +20,7 @@ namespace PeruTourism.Controllers
         GaleriaAccess objGaleriaAccess = new GaleriaAccess();
         GaleriaViewModel objGaleriaViewModel = new GaleriaViewModel();
         PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+        FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
 
         [HttpGet]
         public ActionResult Index()
@@ -41,7 +42,7 @@ namespace PeruTourism.Controllers
             string _EmailCliente = string.Empty;
 
             LoginAccess objLogin = new LoginAccess();
-            FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+            
             PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
 
             try
@@ -102,8 +103,6 @@ namespace PeruTourism.Controllers
             return View("Index",objPropuestaViewModel);
 
         }
-
-
 
         public ActionResult VerPropuesta(string pCodCliente)
         {
@@ -314,18 +313,38 @@ namespace PeruTourism.Controllers
 			return Json(gg, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult MostrarSaldo(string pCliente,string pNroPedido) {
+
+            DataTable dt = new DataTable("BalanceTable");
+            BalanceViewModel objBalance = new BalanceViewModel();
+
+            dt.Columns.Add(new DataColumn("Col1", typeof(string)));
+            dt.Columns.Add(new DataColumn("Col2", typeof(string)));
+            dt.Columns.Add(new DataColumn("Col3", typeof(string)));
 
 
-		//[HttpPost]
-		//public JsonResult EnvioCorreo(string pDesLog)
-		//{
-		//	FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+            for (int i = 0; i < 3; i++)
+            {
+                DataRow row = dt.NewRow();
+                row["Col1"] = "col 1, row " + i;
+                row["Col2"] = "col 2, row " + i;
+                row["Col3"] = "col 3, row " + i;
+                dt.Rows.Add(row);
+            }
 
-		//	string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
-		
-		//	return Json(gg, JsonRequestBehavior.AllowGet);
-		//}
 
+            var lstBalance = objPropuesta.CargaDocumentos(Convert.ToInt32(pCliente), Convert.ToInt32(pNroPedido));
+
+            objBalance.lstBalance = lstBalance.ToList();
+
+            return View(objBalance);
+        }
+
+        public JsonResult MostraBalanceData(string tableHtml)
+        {
+            Session["TableStr"] = tableHtml;
+            return Json(new { Data = "true" });
+        }
 
 
 		[HttpPost]

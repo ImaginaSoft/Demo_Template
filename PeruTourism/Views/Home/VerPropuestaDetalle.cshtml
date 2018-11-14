@@ -21,158 +21,265 @@
 }
 <div id="propDet" class="secondary">
 
-	<div class="container-fluid">
-		<section class="subtitle">
-			<div class="container">
-				<div class="options">
-					<div class="op-group">
-						<div class="op op-propuesta">
-							<div class="icon icon-propuesta"></div>
-							<div class="title">Propuestas para mi viaje</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	<!-- contenido -->
-	<div class="container">
-		<section class="group prop-group">
-			<div class="group prop">
-				<div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
-				<div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
-				<div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
-			</div>
 
-			@for (int i = 0; i < lstServicios.Count; i++)
-			{
-				string[] servicios = lstServicios[i].DesServicioDet.Split('|');
-				<div class="group prop-detalle">
-					<div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
-						<div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
-						<div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
-					</div>
-					<div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
-						<div class="group">
-							<div class="prop-info">
-								<div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
-								<div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
-								<div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString()</div>
-							</div>
-							<ul>
-								@foreach (string servicio in servicios)
-								{
+    <div class="container-fluid">
+        <section class="subtitle">
+            <div class="container">
+                <div class="options">
+                    <div class="op-group">
+                        <div class="op op-propuesta">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="title">Propuestas para mi viaje</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- contenido -->
+    <div class="container">
+        <section class="group prop-group">
+            <div class="group prop">
+                <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
+                <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
+                <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
+            </div>
 
-
-
-									if (servicio != string.Empty)
-									{
-
-										var posicionBuscado = servicio.IndexOf("↕");
-										var tamañoCadena = servicio.Length;
-
-										var starIndex = posicionBuscado + 1;
-										var endIndex = tamañoCadena - starIndex;
-										var servicioEncontrado = string.Empty;
-
-										if (posicionBuscado != -1)
-										{
-											servicioEncontrado = servicio.Substring(starIndex, endIndex);
-										}
+            @for (int i = 0; i < lstServicios.Count; i++)
+            {
+                string[] servicios = lstServicios[i].DesServicioDet.Split('|');
+                <div class="group prop-detalle">
+                    <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                        <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
+                        <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
+                    </div>
+                    <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
+                        <div class="group">
+                            <div class="prop-info">
+                                <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
+                                <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                                <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString()</div>
+                            </div>
+                            <ul>
+                                @foreach (string servicio in servicios)
+                                {
 
 
 
-										if (servicioEncontrado != string.Empty)
-										{
+                                    if (servicio != string.Empty)
+                                    {
 
-											<li>
-												@Html.Raw(servicio)
+                                        var posicionBuscado = servicio.IndexOf("↕");
+                                        var tamañoCadena = servicio.Length;
 
-											</li>
+                                        var starIndex = posicionBuscado + 1;
+                                        var endIndex = tamañoCadena - starIndex;
+                                        var servicioEncontrado = string.Empty;
 
-											<div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
-
-										}
-										else
-										{
-
-											<li>
-												@Html.Raw(servicio)
-											</li>
-
-										}
+                                        if (posicionBuscado != -1)
+                                        {
+                                            servicioEncontrado = servicio.Substring(starIndex, endIndex);
+                                        }
 
 
 
+                                        if (servicioEncontrado != string.Empty)
+                                        {
+
+                                            <li>
+                                                @Html.Raw(servicio)
+
+                                            </li>
+
+                                            <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
+
+                                        }
+                                        else
+                                        {
+
+                                            <li>
+                                                @Html.Raw(servicio)
+                                            </li>
+
+                                        }
 
 
-									}
 
 
 
-								}
-							</ul>
-						</div>
-					</div>
-					<div class="prop-icon"></div>
-				</div>
-			}
-		</section>
-	</div>
+                                    }
 
 
-	<div><a href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">Pagar</a></div>
-	<div id='detailsContainer'>
-		@Html.Partial("~/Views/Galeria/_ModalDetalleHotel.cshtml")
-	</div>
-	<div class="chat-window anim-slideup" id="chat_window_1">
-		<div class="col-sm-12">
-			<div class="panel panel-default">
-				<div class="panel-heading top-bar" data-toggle="collapse" data-target="#chat-content">
-					<div class="chat-title">
-						<h3 class="panel-title">Chat Assitance</h3>
-					</div>
-					<div class="chat-control">
-						<a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-win-minus"></i></a>
-						@*<a href="javascript:voud(0)"><i id="close_chat_window" data-id="chat_window_1" class="icon icon-win-close"></i></a>*@
-					</div>
-				</div>
-				<input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
-				<input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
-				<input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
 
-				<input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
-				<div class="msg_container_base collapse" id="chat-content">
-					<div class="group">
-						<div class="form-label">Im <b>@Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva)</b> , your Travel Designer, send me a message</div>
-						<div class="form-group">
-							<textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
-						</div>
-						<button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
-					</div>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="prop-icon"></div>
+                </div>
+            }
+        </section>
+    </div>
 
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="group">
+        <br />
+        <div style="width:70%; margin:0 auto;">
+            <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>DESCRIPTION</th>
+                        <th>PRICE PER PERSON</th>
+                        <th>NUMBER OF TRAVELLERS</th>
+                        <th>TOTAL PRICE</th>
+                       
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 
 
-	<div class="btn-group dropup">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-			<span class="glyphicon glyphicon-cog"></span>
-			<span class="sr-only">Toggle Dropdown</span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-			<li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
-			<li class="divider"></li>
-			<li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
-		</ul>
-	</div>
-	<script src="~/scripts/jquery-3.3.1.min.js"></script>
 
-	<script src="~/Scripts/Galeria/Galeria.js"></script>
-	<script src="~/Scripts/Envio/EnvioMensaje.js"></script>
+    <div class="botenesGG">
+
+        <div class="fare-detail" data-toggle="modal" data-target="#condicionPago">
+            <a href="javascript:void(0);" class="pago btn btn-primary">
+                <span onclick=""><i class="icon icon-hotel-detalle"></i> PAYMENT PROCEDURE</span>
+            </a>
+        </div>
+
+        <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">BOOK NOW</aclass="pago>
+
+        <a class="pago btn btn-primary" href="@Url.Action("MostrarSaldo", "Home",new { pCliente = @ViewBag.codCliente, pNroPedido = @ViewBag.nroPedido})">BALANCE</a>
+    </div>
+
+
+
+
+    <div id='detailsContainer'>
+        @Html.Partial("~/Views/Galeria/_ModalDetalleHotel.cshtml")
+    </div>
+
+    @*<div id='CondicionesContainer_GG'>
+            @Html.Partial("~/Views/Visa/_ModalCondicionesPago.cshtml")
+        </div>*@
+
+    <div id="CondicionesContainer">
+        <div class="modal fade" id="condicionPago" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-DetalleHotel" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>PAYMENT PROCEDURE</strong>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span></span></div>
+                                <div class="prop-title">Payment Procedure</div>
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span></span></div>
+                                <div class="prop-title">Our Cancellation Policy</div>
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+                        @*<figure>
+                                <div class="galleryDetalleHotel" id="owl-detailPhotos">
+                                    <div class="item"><img src="resources/images/demo1.jpg"></div>
+                                    <div class="item"><img src="resources/images/demo2.jpg"></div>
+                                    <div class="item"><img src="resources/images/demo3.jpg"></div>
+                                </div>
+                            </figure>
+                            <div class="info-hotel">
+                                <div class="form-group">
+                                    <label for="DireccionHTL">Direccion:</label>
+                                    <span>Jr. Jorge Chavez 154. Miraflores.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Telefono">Telefono:</label>
+                                    <span>072 9895 21657</span>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="chat-window anim-slideup" id="chat_window_1">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading top-bar" data-toggle="collapse" data-target="#chat-content">
+                    <div class="chat-title">
+                        <h3 class="panel-title">Chat Assitance</h3>
+                    </div>
+                    <div class="chat-control">
+                        <a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-win-minus"></i></a>
+                        @*<a href="javascript:voud(0)"><i id="close_chat_window" data-id="chat_window_1" class="icon icon-win-close"></i></a>*@
+                    </div>
+                </div>
+                <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
+                <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+                <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
+
+                <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
+                <div class="msg_container_base collapse" id="chat-content">
+                    <div class="group">
+                        <div class="form-label">Im <b>@Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva)</b> , your Travel Designer, send me a message</div>
+                        <div class="form-group">
+                            <textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="~/scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/Galeria/Galeria.js"></script>
+    <script src="~/Scripts/Envio/EnvioMensaje.js"></script>
+
 
 

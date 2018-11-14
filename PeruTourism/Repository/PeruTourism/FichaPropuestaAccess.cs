@@ -135,13 +135,6 @@ namespace PeruTourism.Repository.PeruTourism
         }
 
 
-
-
-
-
-
-
-
         public IEnumerable<Programa> ObtenerVersion(int pNroPedido, int pNroPropuesta, int pNroVersion)
         {
             try
@@ -340,6 +333,73 @@ namespace PeruTourism.Repository.PeruTourism
             }
         }
 
+
+
+
+        public IEnumerable<Balance> CargaDocumentos(int pCodCliente, int pNroPedido) {
+
+
+            try
+            {
+                List<Balance> lstbalancedet = new List<Balance>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_MovtosxCliente2_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = pCodCliente;
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        Balance fbalance = new Balance
+                        {
+
+                            FchEmision = Convert.ToDateTime(rdr["FchEmision"].ToString()),
+                            Referencia = rdr["Referencia"].ToString(),
+                            Cargo = Convert.ToDecimal(rdr["Cargo"]),
+                            TipoOperacion = rdr["TipoOperacion"].ToString(),
+                            Abono = Convert.ToDecimal(rdr["Abono"])
+
+                            //NroPedido = Convert.ToInt32(rdr["NroPedido"]),
+                       
+                            //NroDia = Convert.ToInt32(rdr["NroDia"]),
+                            //NroOrden = Convert.ToInt32(rdr["NroOrden"]),
+                            //NroServicio = Convert.ToInt32(rdr["NroServicio"]),
+                            //DesServicio = rdr["DesServicio"].ToString(),
+                            //DesServicioDet = rdr["DesServicioDet"].ToString()
+
+                        };
+
+                        lstbalancedet.Add(item: fbalance);
+                    }
+
+                    con.Close();
+                }
+
+                return lstbalancedet;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
 
 
 
