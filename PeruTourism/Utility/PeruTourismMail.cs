@@ -9,7 +9,7 @@ namespace PeruTourism.Utility
     public class PeruTourismMail
     {
 
-        public const string strServer = "";
+        public const string strServer = "smtp.gmail.com";
 
         /*Para Implementar
          
@@ -19,11 +19,11 @@ namespace PeruTourism.Utility
         {
             try
             {
-                MailAddress objFrom = new MailAddress("errores-webmaster@inboxplace.com");
+                MailAddress objFrom = new MailAddress("jlopez.j87@gmail.com");
                 MailMessage objMailMessage = new MailMessage();
                 if (pStrMailTo == null)
                 {
-                    objMailMessage.To.Add("webmaster@inboxplace.com");
+                    objMailMessage.To.Add("jlopez.j87@gmail.com");
                 }
                 else
                 {

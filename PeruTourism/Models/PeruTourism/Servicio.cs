@@ -29,10 +29,14 @@ namespace PeruTourism.Models.PeruTourism
         public string DesServicioDet { get; set; }
 
         public int CodTipoServicio { get; set; }
-        //Para servicios tipo Hotel
+
+		public string NombreEjecutiva { get; set; }
+				
+
+		//Para servicios tipo Hotel
 
 
-        public List<Galeria> ListaGaleria { get; set; }
+		public List<Galeria> ListaGaleria { get; set; }
 
         public byte[] Imagen1 { get; set; }
         public string flagImg01 { get; set; }
@@ -43,7 +47,7 @@ namespace PeruTourism.Models.PeruTourism
         public string DireccionHTL { get; set; }
         public string NombreHTL { get; set; }
         public string Telefono { get; set; }
-        public string Valoracion { get; set; }
+        public int Valoracion { get; set; }
 
     }
 }

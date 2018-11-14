@@ -1,179 +1,178 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
 
 @{
-    ViewBag.Title = "VerPropuestaDetalle";
+	ViewBag.Title = "VerPropuestaDetalle";
 
-    var lstProgramas = Model.lstPrograma;
+	var lstProgramas = Model.lstPrograma;
+		
 
-
-
-    var lstServicios = Model.lstServicio;
-
+	var lstServicios = Model.lstServicio;
 
 
-    var lajaxOptionsForm = new AjaxOptions()
-    {
-        HttpMethod = "POST",
-        OnBegin = "e_ajax_iniciando",
-        OnComplete = "e_ajax_finalizando_form_ficha",
-        OnFailure = "e_ajax_error"
-    };
+
+	var lajaxOptionsForm = new AjaxOptions()
+	{
+		HttpMethod = "POST",
+		OnBegin = "e_ajax_iniciando",
+		OnComplete = "e_ajax_finalizando_form_ficha",
+		OnFailure = "e_ajax_error"
+	};
 
 }
 <div id="propDet" class="secondary">
 
-    <div class="container-fluid">
-        <section class="subtitle">
-            <div class="container">
-                <div class="options">
-                    <div class="op-group">
-                        <div class="op op-propuesta">
-                            <div class="icon icon-propuesta"></div>
-                            <div class="title">Propuestas para mi viaje</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    <!-- contenido -->
-    <div class="container">
-        <section class="group prop-group">
-            <div class="group prop">
-                <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
-                <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
-                <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
-            </div>
+	<div class="container-fluid">
+		<section class="subtitle">
+			<div class="container">
+				<div class="options">
+					<div class="op-group">
+						<div class="op op-propuesta">
+							<div class="icon icon-propuesta"></div>
+							<div class="title">Propuestas para mi viaje</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- contenido -->
+	<div class="container">
+		<section class="group prop-group">
+			<div class="group prop">
+				<div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
+				<div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
+				<div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
+			</div>
 
-            @for (int i = 0; i < lstServicios.Count; i++)
-            {
-                string[] servicios = lstServicios[i].DesServicioDet.Split('|');
-                <div class="group prop-detalle">
-                    <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
-                        <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
-                        <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
-                    </div>
-                    <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
-                        <div class="group">
-                            <div class="prop-info">
-                                <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
-                                <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
-                                <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString()</div>
-                            </div>
-                            <ul>
-                                @foreach (string servicio in servicios)
-                                {
-
-
-
-                                    if (servicio != string.Empty)
-                                    {
-
-                                        var posicionBuscado = servicio.IndexOf("↕");
-                                        var tamañoCadena = servicio.Length;
-
-                                        var starIndex = posicionBuscado + 1;
-                                        var endIndex = tamañoCadena - starIndex;
-                                        var servicioEncontrado = string.Empty;
-
-                                        if (posicionBuscado != -1)
-                                        {
-                                            servicioEncontrado = servicio.Substring(starIndex, endIndex);
-                                        }
+			@for (int i = 0; i < lstServicios.Count; i++)
+			{
+				string[] servicios = lstServicios[i].DesServicioDet.Split('|');
+				<div class="group prop-detalle">
+					<div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+						<div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
+						<div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
+					</div>
+					<div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
+						<div class="group">
+							<div class="prop-info">
+								<div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
+								<div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+								<div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString()</div>
+							</div>
+							<ul>
+								@foreach (string servicio in servicios)
+								{
 
 
 
-                                        if (servicioEncontrado != string.Empty)
-                                        {
+									if (servicio != string.Empty)
+									{
 
-                                            <li>
-                                                @Html.Raw(servicio)
+										var posicionBuscado = servicio.IndexOf("↕");
+										var tamañoCadena = servicio.Length;
 
-                                            </li>
+										var starIndex = posicionBuscado + 1;
+										var endIndex = tamañoCadena - starIndex;
+										var servicioEncontrado = string.Empty;
 
-                                            <div class="fare-detail"  data-toggle="modal" ><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
-
-                                        }
-                                        else
-                                        {
-
-                                            <li>
-                                                @Html.Raw(servicio)
-                                            </li>
-
-                                        }
+										if (posicionBuscado != -1)
+										{
+											servicioEncontrado = servicio.Substring(starIndex, endIndex);
+										}
 
 
 
+										if (servicioEncontrado != string.Empty)
+										{
+
+											<li>
+												@Html.Raw(servicio)
+
+											</li>
+
+											<div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
+
+										}
+										else
+										{
+
+											<li>
+												@Html.Raw(servicio)
+											</li>
+
+										}
 
 
-                                    }
 
 
 
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="prop-icon"></div>
-                </div>
-            }
-        </section>
-    </div>
+									}
 
 
-    <div><a href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">Pagar</a></div>
-    <div id='detailsContainer'>
-        @Html.Partial("~/Views/Galeria/_ModalDetalleHotel.cshtml")
-    </div>
-    <div class="chat-window anim-slideup" id="chat_window_1">
-        <div class="col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-heading top-bar" data-toggle="collapse" data-target="#chat-content">
-                    <div class="chat-title">
-                        <h3 class="panel-title">Chat Assitance</h3>
-                    </div>
-                    <div class="chat-control">
-                        <a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-win-minus"></i></a>
-                        @*<a href="javascript:voud(0)"><i id="close_chat_window" data-id="chat_window_1" class="icon icon-win-close"></i></a>*@
-                    </div>
-                </div>
-                <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
-                <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
-                <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
 
-                <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
-                <div class="msg_container_base collapse" id="chat-content">
-                    <div class="group">
-                        <div class="form-label">Im gg , your Travel Designer, send me a message</div>
-                        <div class="form-group">
-                            <textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
-                        </div>
-                        <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+								}
+							</ul>
+						</div>
+					</div>
+					<div class="prop-icon"></div>
+				</div>
+			}
+		</section>
+	</div>
 
 
-    <div class="btn-group dropup">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-cog"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
-            <li class="divider"></li>
-            <li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
-        </ul>
-    </div>
-    <script src="~/scripts/jquery-3.3.1.min.js"></script>
+	<div><a href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">Pagar</a></div>
+	<div id='detailsContainer'>
+		@Html.Partial("~/Views/Galeria/_ModalDetalleHotel.cshtml")
+	</div>
+	<div class="chat-window anim-slideup" id="chat_window_1">
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+				<div class="panel-heading top-bar" data-toggle="collapse" data-target="#chat-content">
+					<div class="chat-title">
+						<h3 class="panel-title">Chat Assitance</h3>
+					</div>
+					<div class="chat-control">
+						<a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-win-minus"></i></a>
+						@*<a href="javascript:voud(0)"><i id="close_chat_window" data-id="chat_window_1" class="icon icon-win-close"></i></a>*@
+					</div>
+				</div>
+				<input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
+				<input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+				<input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
 
-    <script src="~/Scripts/Galeria/Galeria.js"></script>
-    <script src="~/Scripts/Envio/EnvioMensaje.js"></script>
+				<input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
+				<div class="msg_container_base collapse" id="chat-content">
+					<div class="group">
+						<div class="form-label">Im <b>@Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva)</b> , your Travel Designer, send me a message</div>
+						<div class="form-group">
+							<textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
+						</div>
+						<button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="btn-group dropup">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<span class="glyphicon glyphicon-cog"></span>
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
+		</ul>
+	</div>
+	<script src="~/scripts/jquery-3.3.1.min.js"></script>
+
+	<script src="~/Scripts/Galeria/Galeria.js"></script>
+	<script src="~/Scripts/Envio/EnvioMensaje.js"></script>
 
 

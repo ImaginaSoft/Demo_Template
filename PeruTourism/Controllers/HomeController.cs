@@ -11,6 +11,7 @@ using System.Data;
 using PeruTourism.Models.Galeria;
 
 
+
 namespace PeruTourism.Controllers
 {
     public class HomeController : Controller
@@ -228,6 +229,7 @@ namespace PeruTourism.Controllers
                     objServicio.HoraServicio = itemAgrupado.HoraServicio;
                     objServicio.CodTipoServicio = itemAgrupado.CodTipoServicio;
                     objServicio.NroServicio = itemAgrupado.NroServicio;
+					objServicio.NombreEjecutiva = itemAgrupado.NombreEjecutiva;
                     //objServicio.FchInicio = itemAgrupado.FchInicio;
 
                 }
@@ -243,9 +245,9 @@ namespace PeruTourism.Controllers
                     HoraServicio = item.FirstOrDefault().HoraServicio,
                     FchInicio = item.FirstOrDefault().FchInicio,
                     NroServicio = item.FirstOrDefault().NroServicio,
-                    CodTipoServicio = item.FirstOrDefault().CodTipoServicio
-                    
-                };
+                    CodTipoServicio = item.FirstOrDefault().CodTipoServicio,
+				    NombreEjecutiva = item.FirstOrDefault().NombreEjecutiva
+				};
 
 
                 ListServicios.Add(servicioDetAgrupado);
@@ -303,21 +305,30 @@ namespace PeruTourism.Controllers
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
 
             string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
-            //PersonModel person = new PersonModel
-            //{
-            //    Name = name,
-            //    DateTime = DateTime.Now.ToString()
-            //};
 
-
-
-
-            return Json(gg, JsonRequestBehavior.AllowGet);
+			//jlopez
+			//PeruTourismEmail gg = new PeruTourismEmail();		
+            PeruTourismMail Mensaje = new PeruTourismMail();
+            Mensaje.EnviarCorreo("Mensaje", "jlopez.j87@gmail.com", pDesLog);
+			
+			return Json(gg, JsonRequestBehavior.AllowGet);
         }
 
 
 
-        [HttpPost]
+		//[HttpPost]
+		//public JsonResult EnvioCorreo(string pDesLog)
+		//{
+		//	FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+
+		//	string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
+		
+		//	return Json(gg, JsonRequestBehavior.AllowGet);
+		//}
+
+
+
+		[HttpPost]
         public JsonResult GG(string tableHtml)
         {
             Session["TableStr"] = tableHtml;
@@ -332,9 +343,6 @@ namespace PeruTourism.Controllers
             //    Name = name,
             //    DateTime = DateTime.Now.ToString()
             //};
-
-
-
 
             return Json(name, JsonRequestBehavior.AllowGet);
         }

@@ -79,18 +79,18 @@
                             </div>
                             <div class="form-group">
                                 @*<label for="Valoracion">Estrellas:</label>*@
-                                <label for="Valoracion">@lstGaleria.FirstOrDefault().Valoracion</label>
+                                @*<label for="Valoracion">@lstGaleria.FirstOrDefault().Valoracion</label>*@
 
                                 <div class="stars">
 
 
 
-                                    @for (int i = 1; i <= 5; i++)
+                                    @for (int i = 1; i <= @lstGaleria.FirstOrDefault().Valoracion; i++)
                                     {
 
-                                        if (i <= 1)
+                                        if (i >= 1)
                                         {
-                                            <i class="icon-star">★ </i>
+											<i class="icon-star">&starf; </i>
                                         }
 
 

@@ -79,8 +79,7 @@ namespace PeruTourism.Repository.PeruTourism
         }
 
         public IEnumerable<Servicio> ObtenerListadoServiciosPropuesta(int pNroPedido, int pNroPropuesta, char pFlagIdioma)
-
-
+			
         {
             try
             {
@@ -88,7 +87,6 @@ namespace PeruTourism.Repository.PeruTourism
 
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
-
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
                     SqlCommand cmd = new SqlCommand("P4I_PropuestaServ_S", con);
 
@@ -115,10 +113,11 @@ namespace PeruTourism.Repository.PeruTourism
                             DesServicioDet = rdr["DesServicioDet"].ToString(),
                             Ciudad = rdr["Ciudad"].ToString(),
                             HoraServicio = rdr["HoraServicio"].ToString(),
-                            FchInicio = Convert.ToDateTime(rdr["FchInicio"].ToString())
-                            //FchInicio = (rdr["FchInicio"] =null)? string.Empty : Convert.ToDateTime(rdr["FchInicio"].ToString())
+                            FchInicio = Convert.ToDateTime(rdr["FchInicio"].ToString()),
+							NombreEjecutiva = rdr["CodUsuario"].ToString()
+							//FchInicio = (rdr["FchInicio"] =null)? string.Empty : Convert.ToDateTime(rdr["FchInicio"].ToString())
 
-                        };
+						};
 
                         lstfservicio.Add(item: fservicio);
                     }
@@ -311,16 +310,13 @@ namespace PeruTourism.Repository.PeruTourism
         {
             try
             {
-                //List<Propuesta> lstpropuestadet = new List<Propuesta>();
 
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
                     SqlCommand cmd = new SqlCommand("HST_cliente_I", con);
-                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    // cmd.CommandType = CommandType.Text;
 
                     cmd.Parameters.Add("@DesLog", SqlDbType.Text).Value = pDesLog;
                     cmd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = Convert.ToInt32(pCodCliente);
@@ -328,31 +324,9 @@ namespace PeruTourism.Repository.PeruTourism
                     cmd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value =Convert.ToInt32( nroPropuesta);
                     cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = Convert.ToInt32(pNroVersion);
 
-                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
-                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
-
+    
                     con.Open();
-                    cmd.ExecuteNonQuery();
-                    SqlDataReader rdr = cmd.ExecuteReader();
-
-                    //while (rdr.Read())
-                    //{
-
-                    //    Propuesta fpropuesta = new Propuesta
-                    //    {
-                    //        NroPedido = Convert.ToInt32(rdr["NroPedido"]),
-                    //        //NroPropuesta = Convert.ToInt32(rdr["NroPropuesta"]),
-                    //        //DesPropuesta = rdr["DesPropuesta"].ToString()
-                    //        NroDia = Convert.ToInt32(rdr["NroDia"]),
-                    //        NroOrden = Convert.ToInt32(rdr["NroOrden"]),
-                    //        NroServicio = Convert.ToInt32(rdr["NroServicio"]),
-                    //        DesServicio = rdr["DesServicio"].ToString(),
-                    //        DesServicioDet = rdr["DesServicioDet"].ToString()
-
-                    //    };
-
-                    //    lstpropuestadet.Add(item: fpropuesta);
-                    //}
+                    cmd.ExecuteNonQuery();  
 
                     con.Close();
                 }

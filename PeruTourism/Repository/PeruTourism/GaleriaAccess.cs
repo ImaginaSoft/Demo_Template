@@ -84,7 +84,7 @@ namespace PeruTourism.Repository.PeruTourism
                             Imagen1 = (byte[]) rdr["Imagen1"],
                             Imagen2 = (byte[]) rdr["Imagen2"],
                             Imagen3 = (byte[]) rdr["Imagen3"],
-                            Valoracion = rdr["valoracion"].ToString(),
+                            Valoracion = Convert.ToInt32(rdr["Valoracion"]),
 							NombreHTL = rdr["NombreHTL"].ToString(),
 							// NroServicio = rdr["nroServicio"].ToString(),
 							DireccionHTL = rdr["DireccionHTL"].ToString(),
