@@ -91,7 +91,7 @@
 
                                             </li>
 
-                                            <div class="fare-detail"  data-toggle="modal" ><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
+                                            <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
 
                                         }
                                         else
@@ -121,11 +121,127 @@
         </section>
     </div>
 
+    <div class="group">
+        <br />
+        <div style="width:70%; margin:0 auto;">
+            <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>DESCRIPTION</th>
+                        <th>PRICE PER PERSON</th>
+                        <th>NUMBER OF TRAVELLERS</th>
+                        <th>TOTAL PRICE</th>
+                       
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 
-    <div><a href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">Pagar</a></div>
+
+
+    <div class="botenesGG">
+
+        <div class="fare-detail" data-toggle="modal" data-target="#condicionPago">
+            <a href="javascript:void(0);" class="pago btn btn-primary">
+                <span onclick=""><i class="icon icon-hotel-detalle"></i> PAYMENT PROCEDURE</span>
+            </a>
+        </div>
+
+        <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">BOOK NOW</aclass="pago>
+
+        <a class="pago btn btn-primary" href="@Url.Action("MostrarSaldo", "Home",new { pCliente = @ViewBag.codCliente, pNroPedido = @ViewBag.nroPedido})">BALANCE</a>
+    </div>
+
+
+
+
     <div id='detailsContainer'>
         @Html.Partial("~/Views/Galeria/_ModalDetalleHotel.cshtml")
     </div>
+
+    @*<div id='CondicionesContainer_GG'>
+            @Html.Partial("~/Views/Visa/_ModalCondicionesPago.cshtml")
+        </div>*@
+
+    <div id="CondicionesContainer">
+        <div class="modal fade" id="condicionPago" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-DetalleHotel" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>PAYMENT PROCEDURE</strong>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span></span></div>
+                                <div class="prop-title">Payment Procedure</div>
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span></span></div>
+                                <div class="prop-title">Our Cancellation Policy</div>
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+                                        <li>Condicion 1</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+                        @*<figure>
+                                <div class="galleryDetalleHotel" id="owl-detailPhotos">
+                                    <div class="item"><img src="resources/images/demo1.jpg"></div>
+                                    <div class="item"><img src="resources/images/demo2.jpg"></div>
+                                    <div class="item"><img src="resources/images/demo3.jpg"></div>
+                                </div>
+                            </figure>
+                            <div class="info-hotel">
+                                <div class="form-group">
+                                    <label for="DireccionHTL">Direccion:</label>
+                                    <span>Jr. Jorge Chavez 154. Miraflores.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Telefono">Telefono:</label>
+                                    <span>072 9895 21657</span>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="chat-window anim-slideup" id="chat_window_1">
         <div class="col-sm-12">
             <div class="panel panel-default">
@@ -158,21 +274,10 @@
     </div>
 
 
-    <div class="btn-group dropup">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-cog"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
-            <li class="divider"></li>
-            <li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
-        </ul>
-    </div>
-    <script src="~/scripts/jquery-3.3.1.min.js"></script>
 
+
+
+    <script src="~/scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/Galeria/Galeria.js"></script>
     <script src="~/Scripts/Envio/EnvioMensaje.js"></script>
 

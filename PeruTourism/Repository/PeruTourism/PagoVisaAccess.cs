@@ -204,13 +204,15 @@ namespace PeruTourism.Repository.PeruTourism
                 throw;
             }
 
-
             return lblMsg;
         }
 
 
 
         public string GeneraTicket(int pNumOrden, int pMonto,string pIdPedido) {
+
+
+            WSEticket _wsGeneraEticketVisaGG = new WSEticket();
 
             string Eticket = string.Empty;
             string numPedido = pNumOrden.ToString();
@@ -222,6 +224,16 @@ namespace PeruTourism.Repository.PeruTourism
             StringBuilder cData = new StringBuilder();
             string xmlReq = string.Empty;
 
+            cData.Append("<nuevo_eticket>");
+            cData.Append("<parametros>");
+            cData.AppendFormat("<parametro id=\"CANAL\">{0}</parametro>", 3);
+            cData.AppendFormat("<parametro id=\"PRODUCTO\">{0}</parametro>", 1);
+            cData.AppendFormat("<parametro id=\"CODTIENDA\">{0}</parametro>", codTienda);
+            cData.AppendFormat("<parametro id=\"NUMORDEN\">{0}</parametro>", numPedido);
+            cData.AppendFormat("<parametro id=\"MOUNT\">{0}</parametro>", mount);
+            cData.AppendFormat("<parametro id=\"DATO_COMERCIO\">{0}</parametro>", modulo);
+            cData.Append("</parametros>");
+            cData.Append("</nuevo_eticket>");
 
             //cData.Append("<nuevo_eticket>");
             //cData.Append("<nuevo_eticket>");
@@ -231,14 +243,10 @@ namespace PeruTourism.Repository.PeruTourism
             xmlReq = (xmlReq + "     <parametro id=\"CANAL\">3</parametro>");
             xmlReq = (xmlReq + "     <parametro id=\"PRODUCTO\">1</parametro>");
             xmlReq = (xmlReq + "     ");
-            xmlReq = (xmlReq + ("		<parametro id=\"CODTIENDA\">"
-                        + (codTienda + "</parametro>")));
-            xmlReq = (xmlReq + ("		<parametro id=\"NUMORDEN\">"
-                        + (numPedido + "</parametro>")));
-            xmlReq = (xmlReq + ("		<parametro id=\"MOUNT\">"
-                        + (mount + "</parametro>")));
-            xmlReq = (xmlReq + ("		<parametro id=\"DATO_COMERCIO\">"
-                        + (modulo + "</parametro>")));
+            xmlReq = (xmlReq + ("		<parametro id=\"CODTIENDA\">"+ (codTienda + "</parametro>")));
+            xmlReq = (xmlReq + ("		<parametro id=\"NUMORDEN\">"+ (numPedido + "</parametro>")));
+            xmlReq = (xmlReq + ("		<parametro id=\"MOUNT\">"+ (mount + "</parametro>")));
+            xmlReq = (xmlReq + ("		<parametro id=\"DATO_COMERCIO\">"+ (modulo + "</parametro>")));
             xmlReq = (xmlReq + " </parametros>");
             xmlReq = (xmlReq + "</nuevo_eticket>");
 
@@ -260,10 +268,11 @@ namespace PeruTourism.Repository.PeruTourism
             try
             {
 
-                //string servicioUrl = ((NameValueCollection)WebConfigurationManager.GetSection(ConstantesWeb.strSecureAppSettings))[("URL_WSGENERAETICKET_VISA")];
-                //_wsGeneraEticketVisa.Url = servicioUrl;
+                string servicioUrl = ((NameValueCollection)WebConfigurationManager.GetSection(ConstantesWeb.strSecureAppSettings))[("URL_WSGENERAETICKET_VISA")];
+                _wsGeneraEticketVisa.Url = servicioUrl;
+                
 
-                string xmlRes = _wsGeneraEticketVisa.GeneraEticket(xmlReq);
+                string xmlRes = _wsGeneraEticketVisaGG.GeneraEticket(cData.ToString());
 
                 XmlDocument xmlDocument = new XmlDocument();
 
@@ -295,9 +304,6 @@ namespace PeruTourism.Repository.PeruTourism
 
                 }
 
-
-
-
             }
             catch (Exception ex) {
                 Eticket = "Error GeneraTicket :" + ex.ToString();
@@ -307,7 +313,6 @@ namespace PeruTourism.Repository.PeruTourism
             }   
 
             return Eticket;
-
 
         }
 
@@ -358,10 +363,8 @@ namespace PeruTourism.Repository.PeruTourism
             XmlNodeList nodeList;
             XmlNode XmlNode;
 
-            nodeList = xmlDoc.SelectNodes("//mensajes");
-
+            nodeList = xmlDoc.SelectNodes("//mensajes");    
             XmlNode = nodeList.Item(0);
-
 
             if (XmlNode != null) {
 
@@ -373,12 +376,8 @@ namespace PeruTourism.Repository.PeruTourism
 
 
             }
-
-
-
+           
             return cantMensajes;
-
-
         }
 
         private string RecuperaMensaje(XmlDocument xmlDoc, int iNumMensaje) {
@@ -387,25 +386,19 @@ namespace PeruTourism.Repository.PeruTourism
             XmlNodeList nodeList;
             XmlNode xmlNode;
 
-           
             nodeList = xmlDoc.SelectNodes(("//mensajes/mensaje[@id=\""
                 + (iNumMensaje + "\"]")));
 
-
             xmlNode = nodeList.Item(0).FirstChild;
-
 
             if (xmlNode != null) {
                 strReturn = string.Empty;
-
             }
             else {
                 strReturn = xmlNode.Value;
             }
 
             return strReturn;
-
-
 
         }
 
@@ -415,7 +408,6 @@ namespace PeruTourism.Repository.PeruTourism
             string strReturn = string.Empty;
             XmlNodeList nodeList;
             XmlNode xmlNode;
-
 
             nodeList = xmlDoc.SelectNodes("/registro/campo[@id='ETICKET']");
 

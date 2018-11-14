@@ -62,10 +62,19 @@ namespace PeruTourism.Controllers
         public ActionResult RealizarPago(PedidoVisa pedido) {
 
 
-            string gg = objPagoVisaAccess.InsertarOrdenpagoVISA(pedido.Monto,pedido.IDPedido);
+            var lstPedidoVisa = new List<PedidoVisa>();
 
-            return View();
+            lstPedidoVisa.Add(item: pedido);
 
+            if (!ModelState.IsValid) {
+
+                objPedidoVisaViewModel.lstPedidoVisa = lstPedidoVisa;
+
+                //string gg = objPagoVisaAccess.InsertarOrdenpagoVISA(pedido.Monto, pedido.IDPedido);
+                return View("~/Views/PagoVisa/Pago.cshtml", objPedidoVisaViewModel);
+            }
+
+            return Content("Success");
         }
 
 

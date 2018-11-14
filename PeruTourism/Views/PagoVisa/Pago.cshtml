@@ -16,50 +16,94 @@
         OnFailure = "e_ajax_error"
     };
 }
-
-<h2>Pago</h2>
+<style type="text/css">
+    .field-validation-error {
+        color: #ff0000;
+        display: block;
+    }
+</style>
 
 <div id="propDet" class="secondary">
 
-    @*<form id="formPagoVisa">*@
+    <div class="container-fluid">
+        <section class="subtitle">
+            <div class="container">
+                <div class="options">
+                    <div class="op-group">
+                        <div class="op op-propuesta">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="title">BOOK NOW</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    @using (Ajax.BeginForm("ConfirmarPago", "PagoVisa", null, lajaxOptionsForm, new { @id = "form-pagoVisa", @class = "well form-horizontal" }))
-    {
 
-        <input type="hidden" id="IDPedido" value="@IDPedido.Trim()" />
+    <div class="group prop-detalle">
+        @using (Ajax.BeginForm("RealizarPago", "PagoVisa", null, lajaxOptionsForm, new { @id = "form-pagoVisa", @class = "group" }))
+        {
+            <div class="group">
+                <input type="hidden" id="IDPedido" value="@IDPedido.Trim()" />
 
-        <div class="form-group">
-            <label for="email">A favor de:</label>
-            <label for="email">VIAJES PENTAGRAMA</label>
+                <div class="form-group">
+                    <label for="form-label">A favor de:</label>
+                    <label for="email">VIAJES PENTAGRAMA</label>
 
+                </div>
+                <div class="form-group">
+                    <label for="form-label">Cliente:</label>
+                    <label for="email">@lstPedidoVisa.FirstOrDefault().NomCliente</label>
+
+                </div>
+                <div class="form-group">
+                    <label for="form-label">Servicio:</label>
+                    <label for="email">@lstPedidoVisa.FirstOrDefault().DesPedido</label>
+
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Monto a pagar:</label>
+                    @*<input type="number" class="form-control" id="monto">*@
+                    @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().Monto, new { @class = "form-control" })
+                    @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().IDPedido, new { @class = "form-control", @Value = IDPedido.Trim(), @type = "hidden" })
+                </div>
+                <div class="form-group">
+                    @*<label><input type="checkbox"> I agree with the payment and booking conditions</label>*@
+
+                    @Html.CheckBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions, new { @class = "" })
+                    <label for="form-label">I agree with the payment and booking conditions</label>
+                </div>
+                @Html.ValidationMessageFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions)
+                <button type="submit" class="pago btn btn-primary">Realizar Pago</button>
+
+            </div>
+        }
+    </div>
+
+    <div class="group prop-detalle">
+        <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+            <div class="prop-num"><span></span></div>
+            <div class="prop-title">Important recomendations before the payment</div>
         </div>
-        <div class="form-group">
-            <label for="email">Cliente:</label>
-            <label for="email">@lstPedidoVisa.FirstOrDefault().NomCliente</label>
+        <div class="prop-content collapse in" id="content1">
+            <div class="group">
 
+                <ul>
+                    <li>Condicion 1</li>
+                    <li>Condicion 1</li>
+                    <li>Condicion 1</li>
+                    <li>Condicion 1</li>
+                    <li>Condicion 1</li>
+                    <li>Condicion 1</li>
+
+                </ul>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="email">Servicio:</label>
-            <label for="email">@lstPedidoVisa.FirstOrDefault().DesPedido</label>
-
-        </div>
-        <div class="form-group">
-            <label for="pwd">Monto a pagar:</label>
-            @*<input type="number" class="form-control" id="monto">*@
-            @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().Monto, new { @class = "form-control" })
-            @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().IDPedido, new { @class = "form-control",@Value=IDPedido.Trim(),@type="hidden" })
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox"> Acepta</label>
-        </div>
-        <button type="submit" class="pago">Realizar Pago</button>
-        <a class="pago">Realizar Pago</a>
-
-    }
+        <div class="prop-icon"></div>
+    </div>
 
 
-
-    @*</form>*@
 
 
 </div>

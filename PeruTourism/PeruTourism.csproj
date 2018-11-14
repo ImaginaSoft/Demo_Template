@@ -155,6 +155,8 @@
     </Compile>
     <Compile Include="Models\Galeria\Galeria.cs" />
     <Compile Include="Models\Galeria\GaleriaViewModel.cs" />
+    <Compile Include="Models\PeruTourism\Balance.cs" />
+    <Compile Include="Models\PeruTourism\BalanceViewModel.cs" />
     <Compile Include="Models\PeruTourism\Cliente.cs" />
     <Compile Include="Models\PeruTourism\EnvioMensaje.cs" />
     <Compile Include="Models\PeruTourism\Galeria.cs" />
@@ -274,6 +276,8 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\PagoVisa\_ModalCondicionesPago.cshtml" />
+    <Content Include="Views\Home\MostrarSaldo.cshtml" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
