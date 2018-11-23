@@ -163,6 +163,7 @@
     <Compile Include="Models\PeruTourism\Pedido.cs" />
     <Compile Include="Models\PeruTourism\Programa.cs" />
     <Compile Include="Models\PeruTourism\Propuesta.cs" />
+    <Compile Include="Models\PeruTourism\PropuestaPrecio.cs" />
     <Compile Include="Models\PeruTourism\PropuestaViewModel.cs" />
     <Compile Include="Models\PeruTourism\Servicio.cs" />
     <Compile Include="Models\PeruTourism\UltimaPublicacion.cs" />
@@ -278,6 +279,7 @@
     </Content>
     <Content Include="Views\PagoVisa\_ModalCondicionesPago.cshtml" />
     <Content Include="Views\Home\MostrarSaldo.cshtml" />
+    <Content Include="Views\Home\_ModalMostrarSaldo.cshtml" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

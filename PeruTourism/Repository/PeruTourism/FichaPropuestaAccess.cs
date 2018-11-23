@@ -402,6 +402,73 @@ namespace PeruTourism.Repository.PeruTourism
         }
 
 
+        public IEnumerable<PropuestaPrecio> CargaPropuestaPrecio(int pNroPedido,int pNroPropuesta)
+        {
+
+
+            try
+            {
+                List<PropuestaPrecio> lstpropuestaprecio = new List<PropuestaPrecio>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_PropuestaPrecio_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        PropuestaPrecio fprograma = new PropuestaPrecio
+                        {
+
+                            DesOrden = rdr["DesOrden"].ToString(),
+                            PrecioxPersona = Convert.ToDecimal(rdr["PrecioxPersona"].ToString()),
+                            CantPersonas = Convert.ToInt32(rdr["CantPersonas"].ToString()),
+                            PrecioTotal = Convert.ToDecimal(rdr["PrecioTotal"].ToString())
+                       
+
+                            //NroPedido = Convert.ToInt32(rdr["NroPedido"]),
+
+                            //NroDia = Convert.ToInt32(rdr["NroDia"]),
+                            //NroOrden = Convert.ToInt32(rdr["NroOrden"]),
+                            //NroServicio = Convert.ToInt32(rdr["NroServicio"]),
+                            //DesServicio = rdr["DesServicio"].ToString(),
+                            //DesServicioDet = rdr["DesServicioDet"].ToString()
+
+                        };
+
+                        lstpropuestaprecio.Add(item: fprograma);
+                    }
+
+                    con.Close();
+                }
+
+                return lstpropuestaprecio;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
 
 
     }

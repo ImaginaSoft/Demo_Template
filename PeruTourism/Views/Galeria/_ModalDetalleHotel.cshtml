@@ -83,18 +83,34 @@
 
                                 <div class="stars">
 
+                                    @{
+                                        if (lstGaleria.FirstOrDefault().Valoracion != 0)
+                                        {
+                                            for (int i = 1; i <= @lstGaleria.FirstOrDefault().Valoracion; i++)
+                                            {
+
+                                                if (i >= 1)
+                                                {
+                                                    <i class="icon-star">&starf; </i>
+                                                }
 
 
-                                    @for (int i = 1; i <= @lstGaleria.FirstOrDefault().Valoracion; i++)
+                                            }
+
+                                        }
+
+                                    }
+
+                                    @*@for (int i = 1; i <= @lstGaleria.FirstOrDefault().Valoracion; i++)
                                     {
 
                                         if (i >= 1)
                                         {
-											<i class="icon-star">&starf; </i>
+                                            <i class="icon-star">&starf; </i>
                                         }
 
 
-                                    }
+                                    }*@
 
                                 </div>
 

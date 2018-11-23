@@ -149,17 +149,12 @@ namespace PeruTourism.Controllers
             string nroVersion = KeyReg.Substring(10, 1);
 
             //var codCliente = Session["CodCliente"];
-
-
-
             ViewBag.nroPedido = nroPedido;
             ViewBag.nroPropuesta = nroPropuesta;
             ViewBag.codCliente = pCodCliente;
             ViewBag.nroVersion = nroVersion;
 
-
             var codCliente = pCodCliente;
-
 
             LoginAccess objLogin = new LoginAccess();
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
@@ -255,7 +250,10 @@ namespace PeruTourism.Controllers
 
             // objPropuestaViewModel.lstServicio = lstPropuestaDetalle.ToList();
 
+            var lstPropuestaPrecio = objPropuesta.CargaPropuestaPrecio(Convert.ToInt32(nroPedido), Convert.ToInt32(NroPrograma));
+
             objPropuestaViewModel.lstServicio = ListServicios;
+            objPropuestaViewModel.lstPropuestaPrecio = lstPropuestaPrecio.ToList();
 
             return View(objPropuestaViewModel);
         }
@@ -288,7 +286,7 @@ namespace PeruTourism.Controllers
                 return PartialView("~/Views/Galeria/_ModalDetalleHotel.cshtml", objPropuestaViewModel);
                 //return PartialView("~/Views/PaqueteCostum/VuelosHoteles/Hoteles/_ModalDetalleRooms.cshtml", objHotelViewModel);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return View("~/Views/Shared/Error.cshtml");
@@ -338,6 +336,47 @@ namespace PeruTourism.Controllers
             objBalance.lstBalance = lstBalance.ToList();
 
             return View(objBalance);
+        }
+
+        [HttpPost]
+        public ActionResult OpenModalBalance(string pCliente, string pNroPedido)
+        {
+            try
+            {
+                DataTable dt = new DataTable("BalanceTable");
+                BalanceViewModel objBalance = new BalanceViewModel();
+
+                dt.Columns.Add(new DataColumn("Col1", typeof(string)));
+                dt.Columns.Add(new DataColumn("Col2", typeof(string)));
+                dt.Columns.Add(new DataColumn("Col3", typeof(string)));
+
+
+                for (int i = 0; i < 3; i++)
+                {
+                    DataRow row = dt.NewRow();
+                    row["Col1"] = "col 1, row " + i;
+                    row["Col2"] = "col 2, row " + i;
+                    row["Col3"] = "col 3, row " + i;
+                    dt.Rows.Add(row);
+                }
+
+
+                var lstBalance = objPropuesta.CargaDocumentos(Convert.ToInt32(pCliente), Convert.ToInt32(pNroPedido));
+
+                objBalance.lstBalance = lstBalance.ToList();
+
+                objPropuestaViewModel.lstBalance = lstBalance.ToList();
+
+                return PartialView("~/Views/Home/_ModalMostrarSaldo.cshtml", objPropuestaViewModel);
+
+                
+            }
+            catch (Exception ex)
+            {
+
+                return View("~/Views/Shared/Error.cshtml");
+                //return Redirect("paquetes");
+            }
         }
 
         public JsonResult MostraBalanceData(string tableHtml)

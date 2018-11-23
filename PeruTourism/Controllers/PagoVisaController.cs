@@ -74,6 +74,7 @@ namespace PeruTourism.Controllers
                 return View("~/Views/PagoVisa/Pago.cshtml", objPedidoVisaViewModel);
             }
 
+            string gg = objPagoVisaAccess.InsertarOrdenpagoVISA(pedido.Monto, pedido.IDPedido);
             return Content("Success");
         }
 

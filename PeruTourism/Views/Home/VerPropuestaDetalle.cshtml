@@ -1,22 +1,24 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
 
 @{
-	ViewBag.Title = "VerPropuestaDetalle";
+    ViewBag.Title = "VerPropuestaDetalle";
 
-	var lstProgramas = Model.lstPrograma;
-		
+    var lstProgramas = Model.lstPrograma;
 
-	var lstServicios = Model.lstServicio;
+    var lstServicios = Model.lstServicio;
+
+    var lstPropuestaPrecio = Model.lstPropuestaPrecio;
 
 
+    var lajaxOptionsForm = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        OnBegin = "e_ajax_iniciando",
+        OnComplete = "e_ajax_finalizando_form_ficha",
+        OnFailure = "e_ajax_error"
+    };
 
-	var lajaxOptionsForm = new AjaxOptions()
-	{
-		HttpMethod = "POST",
-		OnBegin = "e_ajax_iniciando",
-		OnComplete = "e_ajax_finalizando_form_ficha",
-		OnFailure = "e_ajax_error"
-	};
+    decimal SumPrice = 0;
 
 }
 <div id="propDet" class="secondary">
@@ -131,26 +133,57 @@
                         <th>PRICE PER PERSON</th>
                         <th>NUMBER OF TRAVELLERS</th>
                         <th>TOTAL PRICE</th>
-                       
+
                     </tr>
+
                 </thead>
+
+                @foreach (var d in lstPropuestaPrecio)
+                {
+
+                    SumPrice = SumPrice + d.PrecioTotal;
+
+
+                    <tr>
+                        <td>@d.DesOrden</td>
+                        <td>@d.PrecioxPersona</td>
+                        <td>@d.CantPersonas</td>
+                        <td>@d.PrecioTotal</td>
+                    </tr>
+                }
+
+                @{decimal totalSumPrice = SumPrice; }
             </table>
+            <div>Total @totalSumPrice</div>
+
         </div>
     </div>
 
+    <div class="container">
+        <section class="group prop-group">
+            <div class=" col-sm-12 text-center fare-detail" >
+                <a href="javascript:void(0);" class="pago btn btn-primary" data-toggle="modal" data-target="#condicionPago">
+                    <span onclick=""><i class="icon icon-hotel-detalle"></i> PAYMENT PROCEDURE</span>
+                </a>
+                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+                    BOOK NOW
+                </a>
+
+                @*<a class="pago btn btn-primary" href="@Url.Action("MostrarSaldo", "Home",new { pCliente = @ViewBag.codCliente, pNroPedido = @ViewBag.nroPedido})">BALANCE</a>*@
+
+                @*<a class="pago btn btn-primary" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
+
+                @*<div class="fare-detail" data-toggle="modal"><a class="pago btn btn-primary" href="javascript:void(0);" class="shorttexthref"><span onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</span></a></div>*@
+
+               <a class="pago btn btn-primary" href="javascript:void(0);" class="shorttexthref" data-toggle="modal"><span onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</span></a>
 
 
-    <div class="botenesGG">
+                @*<div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>*@
 
-        <div class="fare-detail" data-toggle="modal" data-target="#condicionPago">
-            <a href="javascript:void(0);" class="pago btn btn-primary">
-                <span onclick=""><i class="icon icon-hotel-detalle"></i> PAYMENT PROCEDURE</span>
-            </a>
-        </div>
+            </div>
 
-        <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">BOOK NOW</aclass="pago>
 
-        <a class="pago btn btn-primary" href="@Url.Action("MostrarSaldo", "Home",new { pCliente = @ViewBag.codCliente, pNroPedido = @ViewBag.nroPedido})">BALANCE</a>
+        </section>
     </div>
 
 
@@ -158,6 +191,10 @@
 
     <div id='detailsContainer'>
         @Html.Partial("~/Views/Galeria/_ModalDetalleHotel.cshtml")
+    </div>
+
+    <div id='balanceContainer'>
+        @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
     </div>
 
     @*<div id='CondicionesContainer_GG'>
@@ -247,7 +284,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading top-bar" data-toggle="collapse" data-target="#chat-content">
                     <div class="chat-title">
-                        <h3 class="panel-title">Chat Assitance</h3>
+                        <h3 class="panel-title">Im @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), message me</h3>
                     </div>
                     <div class="chat-control">
                         <a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-win-minus"></i></a>
@@ -261,7 +298,8 @@
                 <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
                 <div class="msg_container_base collapse" id="chat-content">
                     <div class="group">
-                        <div class="form-label">Im <b>@Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva)</b> , your Travel Designer, send me a message</div>
+                        @*<div class="form-label">Im <b>@Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva)</b> , your Travel Designer, send me a message</div>*@
+                        <div class="form-label">Im your Travel Designer, send me a message</div>
                         <div class="form-group">
                             <textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
                         </div>
@@ -272,10 +310,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
     <script src="~/scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/Galeria/Galeria.js"></script>

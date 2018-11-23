@@ -84,7 +84,7 @@ function openDetailHotel(detailName) {
         //contentType: "application/json; charset=utf-8",
         //dataType: "json",
         success: function (result) {
-            
+        
             $("#detailsContainer").html(result);
             //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
             //alert("Hello: ");
@@ -102,6 +102,42 @@ function openDetailHotel(detailName) {
         complete: function () {
             
             $('#detalleHotel-1').modal('show');
+        }
+    });
+
+}
+
+
+function openBalanceModal(pCliente, pNroPedido) {
+    
+
+    var dataToSend = 'pCliente=' + pCliente + '&pNroPedido=' + pNroPedido;
+    
+    $.ajax({
+        type: "POST",
+        url: "/perutourism-new/Home/OpenModalBalance",
+        data: dataToSend,
+        //contentType: "application/json; charset=utf-8",
+        //dataType: "json",
+        success: function (result) {
+            
+            $("#balanceContainer").html(result);
+            //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
+            //alert("Hello: ");
+        },
+        failure: function (response) {
+
+            alert(response.responseText);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+
+            alert("Req: " + jqXHR);
+            alert("Status: " + textStatus);
+            alert("Error: " + errorThrown);
+        },
+        complete: function () {
+
+            $('#detalleBalance-1').modal('show');
         }
     });
 

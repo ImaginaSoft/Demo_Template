@@ -22,5 +22,15 @@ namespace PeruTourism.Models.PeruTourism
         public string Resumen { get; set; }
 
         public string ResumenComida { get; set; }
+
+
+        //Propuesta Precio
+
+        public string DesOrden { get; set; }
+        public decimal PrecioxPersona { get; set; }
+        public int CantPersonas { get; set; }
+        public decimal PrecioTotal { get; set; }
+        
+
     }
 }

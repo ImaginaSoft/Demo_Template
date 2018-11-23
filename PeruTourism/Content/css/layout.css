@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -7188,13 +7188,14 @@ section,
     margin: 0; }
     .chat-window .msg_container_base .group {
       padding: 10px; }
-  .chat-window .top-bar {
-    background: #7e94a1;
-    color: white;
-    padding: 10px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer; }
+    .chat-window .top-bar {
+        background: #3c763d;
+        color: white;
+        padding: 10px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
   .chat-window .msg_receive {
     padding-left: 0;
     margin-left: 0; }

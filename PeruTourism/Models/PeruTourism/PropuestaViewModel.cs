@@ -11,5 +11,9 @@ namespace PeruTourism.Models.PeruTourism
         public List<Programa> lstPrograma { get; set; }
 
         public List<Servicio> lstServicio { get; set; }
+
+        public List<PropuestaPrecio> lstPropuestaPrecio { get; set; }
+
+        public List<Balance> lstBalance { get; set; }
     }
 }

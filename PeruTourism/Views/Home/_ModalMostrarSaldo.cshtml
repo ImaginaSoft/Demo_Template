@@ -1,0 +1,60 @@
+﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@{
+    ViewBag.Title = "MostrarSaldo";
+
+    var lstBalanceGG = Model.lstBalance;
+
+    decimal totalCargo = 0;
+    decimal totalAbono = 0;
+
+}
+
+ @if (lstBalanceGG != null)
+ {
+<div class="modal fade" id="detalleBalance-1" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-DetalleHotel" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong>Detalle de Hotel</strong>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="info-hotel">
+                    <table class="table table-bordered table-responsive table-hover">
+                        <tr>
+                            <th>Date </th>
+                            <th>Detail</th>
+                            <th>Balance </th>
+                            <th>Payments</th>
+
+                        </tr>
+                        @foreach (var d in lstBalanceGG)
+                        {
+
+
+                            totalAbono = totalAbono + d.Abono;
+                            totalCargo = totalCargo + d.Cargo;
+
+                            <tr>
+                                <td>@d.FchEmision</td>
+                                <td>@d.Referencia</td>
+                                <td>@d.Cargo</td>
+                                <td>@d.Abono</td>
+                            </tr>
+                        }
+
+                        @{decimal totalSaldo = totalCargo - totalAbono; }
+                    </table>
+                    <div>Total @totalSaldo</div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+  }
