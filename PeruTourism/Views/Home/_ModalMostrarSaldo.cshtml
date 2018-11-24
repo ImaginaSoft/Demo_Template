@@ -11,7 +11,7 @@
 
  @if (lstBalanceGG != null)
  {
-<div class="modal fade" id="detalleBalance-1" tabindex="-1" role="dialog">
+@*<div class="modal fade" id="detalleBalance-1" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-DetalleHotel" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -56,5 +56,61 @@
             </div>
         </div>
     </div>
+</div>*@
+
+
+
+
+<div class="modal fade" id="detalleBalance-1" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-DetalleHotel" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong>Balance</strong>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-responsive table-hover table-pt">
+                        <thead>
+                            <tr>
+                                <th>Date </th>
+                                <th>Detail</th>
+                                <th>Balance </th>
+                                <th>Payments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in lstBalanceGG)
+                            {
+
+
+                                totalAbono = totalAbono + d.Abono;
+                                totalCargo = totalCargo + d.Cargo;
+
+                                <tr>
+                                    <td>@d.FchEmision</td>
+                                    <td>@d.Referencia</td>
+                                    <td>@d.Cargo</td>
+                                    <td>@d.Abono</td>
+                                </tr>
+                            }
+                            @{decimal totalSaldo = totalCargo - totalAbono; }
+                            <tr class="table-total hidden-xs">
+                                <td colspan="3">Total</td>
+                                <td>@totalSaldo</td>
+                            </tr>
+                        </tbody>
+                   
+                    </table>
+
+                </div>
+                <div class="div-total visible-xs">
+                    Total: @totalSaldo
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
   }

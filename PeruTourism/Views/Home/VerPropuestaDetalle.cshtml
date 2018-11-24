@@ -21,6 +21,48 @@
     decimal SumPrice = 0;
 
 }
+<style type="text/css">
+    .prop-clear, .prop-clear:hover {
+        background: #fafafa;
+        box-shadow: none;
+    }
+
+        .prop-clear .prop-num::before {
+            display: none;
+        }
+
+        .prop-clear .prop-title::before {
+            display: none;
+        }
+
+        .prop-clear .prop-content .group {
+            border: 0;
+        }
+</style>
+
+<style type="text/css">
+    #CondicionesContainer .prop-detalle,
+    #CondicionesContainer .prop-detalle:hover {
+        background: #fafafa;
+        box-shadow: none;
+    }
+
+        #CondicionesContainer .prop-detalle .prop-content {
+            padding-top: 60px;
+        }
+
+    #CondicionesContainer .prop-detalle .prop-num::before {
+        display: none;
+    }
+
+    #CondicionesContainer .prop-detalle .prop-title::before {
+        display: none;
+    }
+
+    #CondicionesContainer .prop-detalle .prop-content .group {
+        border: 0;
+    }
+</style>
 <div id="propDet" class="secondary">
 
 
@@ -121,47 +163,120 @@
                 </div>
             }
         </section>
-    </div>
-
-    <div class="group">
-        <br />
-        <div style="width:70%; margin:0 auto;">
-            <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>DESCRIPTION</th>
-                        <th>PRICE PER PERSON</th>
-                        <th>NUMBER OF TRAVELLERS</th>
-                        <th>TOTAL PRICE</th>
-
-                    </tr>
-
-                </thead>
-
-                @foreach (var d in lstPropuestaPrecio)
-                {
-
-                    SumPrice = SumPrice + d.PrecioTotal;
 
 
-                    <tr>
-                        <td>@d.DesOrden</td>
-                        <td>@d.PrecioxPersona</td>
-                        <td>@d.CantPersonas</td>
-                        <td>@d.PrecioTotal</td>
-                    </tr>
-                }
+        @*<div class="prop-table">
+            <div class="col-sm-12">
+                <div class="table-responsive">
 
-                @{decimal totalSumPrice = SumPrice; }
-            </table>
-            <div>Total @totalSumPrice</div>
+                    <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>DESCRIPTION</th>
+                                <th>PRICE PER PERSON</th>
+                                <th>NUMBER OF TRAVELLERS</th>
+                                <th>TOTAL PRICE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in lstPropuestaPrecio)
+                            {
 
+                                SumPrice = SumPrice + d.PrecioTotal;
+
+
+                                <tr>
+                                    <td>@d.DesOrden</td>
+                                    <td>@d.PrecioxPersona</td>
+                                    <td>@d.CantPersonas</td>
+                                    <td>@d.PrecioTotal</td>
+                                </tr>
+
+                                <tr class="table-total hidden-xs">
+                                    <td colspan="3">Total</td>
+                                    <td>@d.PrecioTotal</td>
+                                </tr>
+                            }
+                        </tbody>
+                        @{decimal totalSumPrice = SumPrice; }
+                    </table>
+                    <div>Total @totalSumPrice</div>
+
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
+        <div class="prop-table">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+                    <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%"
+                           cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>DESCRIPTION</th>
+                                <th>PRICE PER PERSON</th>
+                                <th>NUMBER OF TRAVELLERS</th>
+                                <th>TOTAL PRICE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in lstPropuestaPrecio)
+                            {
+
+                                SumPrice = SumPrice + d.PrecioTotal;
+
+
+                                <tr>
+                                    <td>@d.DesOrden</td>
+                                    <td>@d.PrecioxPersona</td>
+                                    <td>@d.CantPersonas</td>
+                                    <td>@d.PrecioTotal</td>
+                                </tr>
+
+                                <tr class="table-total hidden-xs">
+                                    <td colspan="3">Total</td>
+                                    <td>@d.PrecioTotal</td>
+                                </tr>
+                            }
+                        </tbody>
+                        @{decimal totalSumPrice = SumPrice; }
+                    </table>
+                </div>
+                <div class="div-total visible-xs">
+                    Total: @totalSumPrice
+                </div>
+            </div>
+
+            <div class=" col-sm-12 text-center fare-detail">
+                <a href="javascript:void(0);" class="pago btn btn-primary" data-toggle="modal" data-target="#condicionPago">
+                    <span onclick="">
+                        <i class="icon icon-hotel-detalle"></i> PAYMENT
+                        PROCEDURE
+                    </span>
+                </a>
+                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+                    BOOK NOW
+                </a>
+                <a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>
+            </div>
         </div>
+
+
+
+
     </div>
 
-    <div class="container">
+
+
+
+
+    @*<div class="container">
         <section class="group prop-group">
-            <div class=" col-sm-12 text-center fare-detail" >
+            <div class=" col-sm-12 text-center fare-detail">
                 <a href="javascript:void(0);" class="pago btn btn-primary" data-toggle="modal" data-target="#condicionPago">
                     <span onclick=""><i class="icon icon-hotel-detalle"></i> PAYMENT PROCEDURE</span>
                 </a>
@@ -169,22 +284,18 @@
                     BOOK NOW
                 </a>
 
-                @*<a class="pago btn btn-primary" href="@Url.Action("MostrarSaldo", "Home",new { pCliente = @ViewBag.codCliente, pNroPedido = @ViewBag.nroPedido})">BALANCE</a>*@
+              
 
-                @*<a class="pago btn btn-primary" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
-
-                @*<div class="fare-detail" data-toggle="modal"><a class="pago btn btn-primary" href="javascript:void(0);" class="shorttexthref"><span onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</span></a></div>*@
-
-               <a class="pago btn btn-primary" href="javascript:void(0);" class="shorttexthref" data-toggle="modal"><span onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</span></a>
+                <a class="pago btn btn-primary" href="javascript:void(0);" class="shorttexthref" data-toggle="modal"><span onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</span></a>
 
 
-                @*<div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>*@
+               
 
             </div>
 
 
         </section>
-    </div>
+    </div>*@
 
 
 
@@ -214,21 +325,21 @@
 
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span></span></div>
-                                <div class="prop-title">Payment Procedure</div>
+                                <div class="prop-num"><span>Payment Procedure</span></div>
+                                
                             </div>
                             <div class="prop-content collapse in" id="content1">
                                 <div class="group">
 
-                                    <ul>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
 
-                                    </ul>
+                                    <p>
+                                        To confirm confirm your trip we just need a deposit of the 30%, this first payment can be done online through your personalized website only if you hava a Visa Card or Master Card
+                                        , if you have American Express card I will send you our services agreement by email.
+                                        <br />
+                                        The balance due (70%) must be paid at your arrival in Lima.
+                                    </p>
+
+
                                 </div>
                             </div>
                             <div class="prop-icon"></div>
@@ -236,21 +347,18 @@
 
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span></span></div>
-                                <div class="prop-title">Our Cancellation Policy</div>
+                                <div class="prop-num"><span>Our Cancellation Policy</span></div>
+                                
                             </div>
                             <div class="prop-content collapse in" id="content1">
                                 <div class="group">
 
-                                    <ul>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
-                                        <li>Condicion 1</li>
 
-                                    </ul>
+                                    <p>
+                                        Fully acquit you of all cost(*) that may be generated by the cancellation of the services already booked by PeruTourism according to the itinerary
+                                        in case you cancel the services up yo 45 days before you arrival.
+                                    </p>
+                               
                                 </div>
                             </div>
                             <div class="prop-icon"></div>
@@ -287,7 +395,7 @@
                         <h3 class="panel-title">Im @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), message me</h3>
                     </div>
                     <div class="chat-control">
-                        <a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-win-minus"></i></a>
+                        <a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-chevron-down"></i></a>
                         @*<a href="javascript:voud(0)"><i id="close_chat_window" data-id="chat_window_1" class="icon icon-win-close"></i></a>*@
                     </div>
                 </div>
@@ -300,6 +408,9 @@
                     <div class="group">
                         @*<div class="form-label">Im <b>@Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva)</b> , your Travel Designer, send me a message</div>*@
                         <div class="form-label">Im your Travel Designer, send me a message</div>
+
+                        <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
+
                         <div class="form-group">
                             <textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
                         </div>

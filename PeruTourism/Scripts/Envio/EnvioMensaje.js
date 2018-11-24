@@ -10,8 +10,13 @@ $(function () {
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function (response) {
-				debugger
-				alert("Enviado");
+				
+                //alert("Enviado");
+                if (response == "ok") {
+                    
+                $("#mensajeConfirmacion").show();
+            }
+        
 			},
 			failure: function (response) {
 				alert(response.responseText);

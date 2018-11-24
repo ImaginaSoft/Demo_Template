@@ -209,6 +209,7 @@
     <Content Include="Content\images\icon-play.png" />
     <Content Include="Content\images\lineas-color.png" />
     <Content Include="Content\images\lineas.png" />
+    <Content Include="Content\images\no-imagen.jpg" />
     <Content Include="Content\images\perutourism-logo.png" />
     <Content Include="Content\images\slider-bg.jpg" />
     <Content Include="Content\images\slider-group.png" />

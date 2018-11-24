@@ -36,11 +36,15 @@ jQuery(function ($) {
   
 //detectar 'media query' activo (mobile/desktop)
   // --------------------------------------------------------
-  var mediaquery = window.matchMedia("(max-width: 767px)");
-  var $galeria = $(".galleryDetalleHotel");
-  var $galeriaHTML = $galeria.html();  
-  $("#detailsContainer figure").append("<div class='owl-carousel owl-theme'></div>");
+    var mediaquery = window.matchMedia("(max-width: 767px)");
+    
   
+    var $galeria = $(".galleryDetalleHotel");
+    
+    var $galeriaHTML = $galeria.html();  
+    
+  $("#detailsContainer figure").append("<div class='owl-carousel owl-theme'></div>");
+    
   var $carrusel = $(".owl-carousel");      
   $carrusel.html($galeriaHTML);
   $carrusel.owlCarousel({

@@ -44,7 +44,7 @@
     <div class="group prop-detalle">
         @using (Ajax.BeginForm("RealizarPago", "PagoVisa", null, lajaxOptionsForm, new { @id = "form-pagoVisa", @class = "group" }))
         {
-            <div class="group">
+            <div class="group-table group">
                 <input type="hidden" id="IDPedido" value="@IDPedido.Trim()" />
 
                 <div class="form-group">
@@ -65,38 +65,49 @@
                 <div class="form-group">
                     <label for="pwd">Monto a pagar:</label>
                     @*<input type="number" class="form-control" id="monto">*@
-                    @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().Monto, new { @class = "form-control" })
+                    <label class="no-pad">
+                        @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().Monto, new { @class = "form-control" })
+                    </label>
                     @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().IDPedido, new { @class = "form-control", @Value = IDPedido.Trim(), @type = "hidden" })
                 </div>
                 <div class="form-group">
                     @*<label><input type="checkbox"> I agree with the payment and booking conditions</label>*@
+                    <label>Agree</label>
+                    <label for="form-label">
 
-                    @Html.CheckBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions, new { @class = "" })
-                    <label for="form-label">I agree with the payment and booking conditions</label>
+                        @Html.CheckBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions, new { @class = "" })
+                        
+                        I agree with the payment and booking conditions
+
+                    </label>
+
+
                 </div>
-                @Html.ValidationMessageFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions)
-                <button type="submit" class="pago btn btn-primary">Realizar Pago</button>
+
+                <div class="form-group-btn">
+                    <span class="field-validation-valid" data-valmsg-for="TermsAndConditions" data-valmsg-replace="true"></span>
+                    @Html.ValidationMessageFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions)
+                    <button type="submit" class="pago btn btn-primary">Realizar Pago</button>
+                </div>
+
+                
 
             </div>
         }
     </div>
 
     <div class="group prop-detalle">
-        <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-            <div class="prop-num"><span></span></div>
-            <div class="prop-title">Important recomendations before the payment</div>
+        <div class="group group-collapse">
+            <div class="prop-num"><span>Important recomendations before the payment</span></div>
         </div>
-        <div class="prop-content collapse in" id="content1">
+        <div class="prop-content prop-general" id="content1">
             <div class="group">
-
-                <ul>
-                    <li>Condicion 1</li>
-                    <li>Condicion 1</li>
-                    <li>Condicion 1</li>
-                    <li>Condicion 1</li>
-                    <li>Condicion 1</li>
-                    <li>Condicion 1</li>
-
+                <ul class="prop-list">
+                    <li>Verify your credit line and available balance.</li>
+                    <li>Make sure your credit card is enabled for online purchases internationally.</li>
+                    <li>Confirm your credit card limit per day.</li>
+                    <li>Check if you bank need your authorization depending on the amount of money to be charged.</li>
+                    <li>Type the info just as it is shown on your credir card.</li>
                 </ul>
             </div>
         </div>
