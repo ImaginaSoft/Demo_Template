@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "MyBookedTrip";
+
+}
+
+
+
+<div class="content">
+    <div class="container">
+        <section class="welcome">
+            @*<h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>*@
+            @*<p> Welcome to the customized travel website for your trip </p>*@
+        </section>
+        <section class="options">
+            <div class="op-group">
+                <div class="op op-propuesta">
+                    <a href="javascript:void(0)">
+                        <div class="icon icon-propuesta"></div>
+                        <div class="description">
+                            Bookin<br>
+                            Status
+                        </div>
+                    </a>
+                </div>
+                <div class="op op-info">
+                    @*<a href="@Url.Action("OpenModalBalance", "Home",new { pCliente = ViewBag.CodCliente , pNroPedido = ViewBag.NroPedido})">*@
+                    <a onclick="openBalanceModal(@ViewBag.CodCliente,@ViewBag.NroPedido)">
+                        <div class="icon icon-info"></div>
+                        <div class="description">Balance Due</div>
+                    </a>
+                </div>
+                <div class="op op-testimonio">
+                    <a href="javascript:void(0)">
+                        <div class="icon icon-testimonio"></div>
+                        <div class="description">Information for my trip</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+<div id='balanceContainer'>
+    @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
+</div>
+
+<script src="~/scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/Galeria/Galeria.js"></script>
+<script src="~/Scripts/Envio/EnvioMensaje.js"></script>

@@ -281,6 +281,7 @@
     <Content Include="Views\PagoVisa\_ModalCondicionesPago.cshtml" />
     <Content Include="Views\Home\MostrarSaldo.cshtml" />
     <Content Include="Views\Home\_ModalMostrarSaldo.cshtml" />
+    <Content Include="Views\Home\MyBookedTrip.cshtml" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

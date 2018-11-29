@@ -102,7 +102,7 @@
                             <div class="prop-info">
                                 <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
                                 <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
-                                <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString()</div>
+                                <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
                             </div>
                             <ul>
                                 @foreach (string servicio in servicios)
@@ -261,7 +261,7 @@
                 <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
                     BOOK NOW
                 </a>
-                <a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>
+                @*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
             </div>
         </div>
 

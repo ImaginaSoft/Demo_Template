@@ -6,6 +6,7 @@
 
     var lstProgramas = Model.lstPrograma;
 
+    string nroPedido = lstProgramas.FirstOrDefault().KeyReg.Substring(0, 6);
     //var NombreCliente = (string)Session["NomCliente"];
     var NombreCliente = ViewBag.NomCliente;
     var CodCliente = ViewBag.CodCliente;
@@ -28,21 +29,21 @@
                         <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
                             <div class="icon icon-propuesta"></div>
                             <div class="description">
-                                Proposals<br>
-                                for my trip
+                                My travel<br>
+                                proposals
                             </div>
                         </a>
                     </div>
                     <div class="op op-info">
-                        <a href="javascript:void(0)">
+                        <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido})">
                             <div class="icon icon-info"></div>
-                            <div class="description">Information before my trip</div>
+                            <div class="description">My Booked trip</div>
                         </a>
                     </div>
                     <div class="op op-testimonio">
                         <a href="javascript:void(0)">
                             <div class="icon icon-testimonio"></div>
-                            <div class="description">Testimonials from our clients</div>
+                            <div class="description">Reviews from our clients</div>
                         </a>
                     </div>
                 </div>
@@ -83,13 +84,13 @@ else
                     <div class="op op-info">
                         <a href="javascript:void(0)">
                             <div class="icon icon-info"></div>
-                            <div class="description">Información antes de mi viaje</div>
+                            <div class="description">Mi viaje reservado</div>
                         </a>
                     </div>
                     <div class="op op-testimonio">
                         <a href="javascript:void(0)">
                             <div class="icon icon-testimonio"></div>
-                            <div class="description">Testimonios de otros clientes</div>
+                            <div class="description">Testimonios de nuestros clientes</div>
                         </a>
                     </div>
                 </div>

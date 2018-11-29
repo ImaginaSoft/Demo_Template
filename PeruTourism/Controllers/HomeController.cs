@@ -298,7 +298,6 @@ namespace PeruTourism.Controllers
         public JsonResult RegistrarHistorialCliente(string pDesLog, string pCodCliente, string pNroPedido, string pNroPropuesta,string pNroVersion)
         {
 
-
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
 
             string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
@@ -337,28 +336,27 @@ namespace PeruTourism.Controllers
 
             return View(objBalance);
         }
-
         [HttpPost]
         public ActionResult OpenModalBalance(string pCliente, string pNroPedido)
         {
             try
             {
-                DataTable dt = new DataTable("BalanceTable");
+                //DataTable dt = new DataTable("BalanceTable");
                 BalanceViewModel objBalance = new BalanceViewModel();
 
-                dt.Columns.Add(new DataColumn("Col1", typeof(string)));
-                dt.Columns.Add(new DataColumn("Col2", typeof(string)));
-                dt.Columns.Add(new DataColumn("Col3", typeof(string)));
+                //dt.Columns.Add(new DataColumn("Col1", typeof(string)));
+                //dt.Columns.Add(new DataColumn("Col2", typeof(string)));
+                //dt.Columns.Add(new DataColumn("Col3", typeof(string)));
 
 
-                for (int i = 0; i < 3; i++)
-                {
-                    DataRow row = dt.NewRow();
-                    row["Col1"] = "col 1, row " + i;
-                    row["Col2"] = "col 2, row " + i;
-                    row["Col3"] = "col 3, row " + i;
-                    dt.Rows.Add(row);
-                }
+                //for (int i = 0; i < 3; i++)
+                //{
+                //    DataRow row = dt.NewRow();
+                //    row["Col1"] = "col 1, row " + i;
+                //    row["Col2"] = "col 2, row " + i;
+                //    row["Col3"] = "col 3, row " + i;
+                //    dt.Rows.Add(row);
+                //}
 
 
                 var lstBalance = objPropuesta.CargaDocumentos(Convert.ToInt32(pCliente), Convert.ToInt32(pNroPedido));
@@ -378,6 +376,20 @@ namespace PeruTourism.Controllers
                 //return Redirect("paquetes");
             }
         }
+
+
+        public ActionResult MyBookedTrip(string pCodCliente, string pNroPedido) {
+
+            ViewBag.CodCliente = pCodCliente;
+            ViewBag.NroPedido = pNroPedido;
+
+
+            return View(objPropuestaViewModel);
+
+        }
+
+
+
 
         public JsonResult MostraBalanceData(string tableHtml)
         {
