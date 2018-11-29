@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?wfz0p');
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?wfz0p#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?wfz0p') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?wfz0p') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?wfz0p##{$icomoon-font-family}') format('svg');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?8xdtb0');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?8xdtb0#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?8xdtb0') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?8xdtb0') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?8xdtb0##{$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -29,16 +29,43 @@
 .icon-credit-card {
   &:before {
     content: $icon-credit-card; 
+    margin-top: 5px;
   }
 }
-.icon-squared-cross {
+
+.icon-calendar {
   &:before {
-    content: $icon-squared-cross; 
+    content: $icon-calendar; 
   }
 }
-.icon-squared-minus {
+.icon-hotel-detalle {
   &:before {
-    content: $icon-squared-minus; 
+    content: $icon-hotel-detalle; 
+  }
+}
+.icon-location {
+  &:before {
+    content: $icon-location; 
+  }
+}
+.icon-time {
+  &:before {
+    content: $icon-time; 
+  }
+}
+.icon-win-close {
+  &:before {
+    content: $icon-win-close; 
+  }
+}
+.icon-win-minus {
+  &:before {
+    content: $icon-win-minus; 
+  }
+}
+.icon-chat-question {
+  &:before {
+    content: $icon-chat-question; 
   }
 }
 .icon-chevron-down {
@@ -61,44 +88,19 @@
     content: $icon-chevron-up; 
   }
 }
-.icon-peru-testimonio {
+.icon-testimonio {
   &:before {
-    content: $icon-peru-testimonio; 
+    content: $icon-testimonio; 
   }
 }
-.icon-chat-question {
+.icon-info {
   &:before {
-    content: $icon-chat-question; 
+    content: $icon-info; 
   }
 }
-.icon-peru-info {
+.icon-propuesta {
   &:before {
-    content: $icon-peru-info; 
-  }
-}
-.icon-peru-propuesta {
-  &:before {
-    content: $icon-peru-propuesta; 
-  }
-}
-.icon-calendar {
-  &:before {
-    content: $icon-calendar; 
-  }
-}
-.icon-location-pin {
-  &:before {
-    content: $icon-location-pin; 
-  }
-}
-.icon-stopwatch {
-  &:before {
-    content: $icon-stopwatch; 
-  }
-}
-.icon-info-with-circle {
-  &:before {
-    content: $icon-info-with-circle; 
+    content: $icon-propuesta; 
   }
 }
 
