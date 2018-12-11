@@ -40,6 +40,7 @@
         }
 </style>
 
+
 <style type="text/css">
     #CondicionesContainer .prop-detalle,
     #CondicionesContainer .prop-detalle:hover {
@@ -101,7 +102,14 @@
                         <div class="group">
                             <div class="prop-info">
                                 <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
-                                <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+
+                                @if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
+                                {
+                                    <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                                }
+
+
+
                                 <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
                             </div>
                             <ul>
@@ -166,45 +174,45 @@
 
 
         @*<div class="prop-table">
-            <div class="col-sm-12">
-                <div class="table-responsive">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
 
-                    <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>DESCRIPTION</th>
-                                <th>PRICE PER PERSON</th>
-                                <th>NUMBER OF TRAVELLERS</th>
-                                <th>TOTAL PRICE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var d in lstPropuestaPrecio)
-                            {
-
-                                SumPrice = SumPrice + d.PrecioTotal;
-
-
+                        <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%" cellspacing="0">
+                            <thead>
                                 <tr>
-                                    <td>@d.DesOrden</td>
-                                    <td>@d.PrecioxPersona</td>
-                                    <td>@d.CantPersonas</td>
-                                    <td>@d.PrecioTotal</td>
+                                    <th>DESCRIPTION</th>
+                                    <th>PRICE PER PERSON</th>
+                                    <th>NUMBER OF TRAVELLERS</th>
+                                    <th>TOTAL PRICE</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstPropuestaPrecio)
+                                {
 
-                                <tr class="table-total hidden-xs">
-                                    <td colspan="3">Total</td>
-                                    <td>@d.PrecioTotal</td>
-                                </tr>
-                            }
-                        </tbody>
-                        @{decimal totalSumPrice = SumPrice; }
-                    </table>
-                    <div>Total @totalSumPrice</div>
+                                    SumPrice = SumPrice + d.PrecioTotal;
 
+
+                                    <tr>
+                                        <td>@d.DesOrden</td>
+                                        <td>@d.PrecioxPersona</td>
+                                        <td>@d.CantPersonas</td>
+                                        <td>@d.PrecioTotal</td>
+                                    </tr>
+
+                                    <tr class="table-total hidden-xs">
+                                        <td colspan="3">Total</td>
+                                        <td>@d.PrecioTotal</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            @{decimal totalSumPrice = SumPrice; }
+                        </table>
+                        <div>Total @totalSumPrice</div>
+
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
 
 
 
@@ -275,27 +283,27 @@
 
 
     @*<div class="container">
-        <section class="group prop-group">
-            <div class=" col-sm-12 text-center fare-detail">
-                <a href="javascript:void(0);" class="pago btn btn-primary" data-toggle="modal" data-target="#condicionPago">
-                    <span onclick=""><i class="icon icon-hotel-detalle"></i> PAYMENT PROCEDURE</span>
-                </a>
-                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
-                    BOOK NOW
-                </a>
-
-              
-
-                <a class="pago btn btn-primary" href="javascript:void(0);" class="shorttexthref" data-toggle="modal"><span onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</span></a>
+            <section class="group prop-group">
+                <div class=" col-sm-12 text-center fare-detail">
+                    <a href="javascript:void(0);" class="pago btn btn-primary" data-toggle="modal" data-target="#condicionPago">
+                        <span onclick=""><i class="icon icon-hotel-detalle"></i> PAYMENT PROCEDURE</span>
+                    </a>
+                    <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+                        BOOK NOW
+                    </a>
 
 
-               
 
-            </div>
+                    <a class="pago btn btn-primary" href="javascript:void(0);" class="shorttexthref" data-toggle="modal"><span onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</span></a>
 
 
-        </section>
-    </div>*@
+
+
+                </div>
+
+
+            </section>
+        </div>*@
 
 
 
@@ -326,7 +334,7 @@
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
                                 <div class="prop-num"><span>Payment Procedure</span></div>
-                                
+
                             </div>
                             <div class="prop-content collapse in" id="content1">
                                 <div class="group">
@@ -348,7 +356,7 @@
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
                                 <div class="prop-num"><span>Our Cancellation Policy</span></div>
-                                
+
                             </div>
                             <div class="prop-content collapse in" id="content1">
                                 <div class="group">
@@ -358,7 +366,7 @@
                                         Fully acquit you of all cost(*) that may be generated by the cancellation of the services already booked by PeruTourism according to the itinerary
                                         in case you cancel the services up yo 45 days before you arrival.
                                     </p>
-                               
+
                                 </div>
                             </div>
                             <div class="prop-icon"></div>
@@ -388,38 +396,42 @@
 
 
     <div class="chat-window anim-slideup" id="chat_window_1">
-        <div class="col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-heading top-bar" data-toggle="collapse" data-target="#chat-content">
-                    <div class="chat-title">
-                        <h3 class="panel-title">Im @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), message me</h3>
-                    </div>
-                    <div class="chat-control">
-                        <a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-chevron-down"></i></a>
-                    </div>
-                </div>
-                <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
-                <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
-                <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
-
-                <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
-                <div class="msg_container_base collapse" id="chat-content">
-                    <div class="group">
-                        
-                        <div class="form-label">Im your Travel Designer, send me a message</div>
-
-                        <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
-
-                        <div class="form-group">
-                            <textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading top-bar" data-toggle="collapse" data-target="#chat-content">
+                        <div class="chat-title">
+                            <h3 class="panel-title">Im @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), message me</h3>
                         </div>
-                        <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
+                        <div class="chat-control">
+                            <a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-chevron-down"></i></a>
+                        </div>
                     </div>
+                    <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
+                    <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+                    <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
 
+                    <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
+                    <div class="msg_container_base collapse" id="chat-content">
+                        <div class="group">
+
+                            <div class="form-label">Im your Travel Designer, send me a message</div>
+
+                            <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
+
+                            <div class="form-group">
+                                <textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
+                            </div>
+                            <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+
+
+ 
 
     <script src="~/scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/Galeria/Galeria.js"></script>

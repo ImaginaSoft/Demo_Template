@@ -17,86 +17,104 @@
 @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
 
 {
-    <div class="content">
-        <div class="container">
-            <section class="welcome">
-                <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
-                <p> Welcome to the customized travel website for your trip </p>
-            </section>
-            <section class="options">
-                <div class="op-group">
-                    <div class="op op-propuesta">
-                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
-                            <div class="icon icon-propuesta"></div>
-                            <div class="description">
-                                My travel<br>
-                                proposals
-                            </div>
-                        </a>
-                    </div>
-                    <div class="op op-info">
-                        <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido})">
-                            <div class="icon icon-info"></div>
-                            <div class="description">My Booked trip</div>
-                        </a>
-                    </div>
-                    <div class="op op-testimonio">
-                        <a href="javascript:void(0)">
-                            <div class="icon icon-testimonio"></div>
-                            <div class="description">Reviews from our clients</div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <div class="container-fluid">
-            <section class="slider" id="scene">
-                <div class="container" data-depth="0.2">
-                    <span class="description">Go Beyond Ordinary Travel</span>
-                    <img src="~/Content/images/slider-group.png" class="img-group">
-                </div>
-                <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-            </section>
-        </div>
+
+      <div class="container-fluid">
+        <section class="slider" id="scene">
+            <div class="container" data-depth="0.2">
+                <span class="description">Here is where the trip of your lifetime starts...</span>
+                <img src="~/Content/images/slider-group.png" class="img-group">
+            </div>
+            <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+        </section>
     </div>
+
+    <div class="container">
+        @*<section class="welcome">
+            <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
+            <p> Welcome to the customized travel website for your trip </p>
+        </section>*@
+        <section class="options">
+            <div class="op-group">
+                <div class="op op-propuesta">
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
+                        <div class="icon icon-propuesta"></div>
+                        <div class="description">
+                            My travel<br>
+                            proposals
+                        </div>
+                    </a>
+                </div>
+                <div class="op op-info">
+                    <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido})">
+                        <div class="icon icon-info"></div>
+                        <div class="description">My Booked trip</div>
+                    </a>
+                </div>
+                <div class="op op-testimonio">
+                    <a href="javascript:void(0)">
+                        <div class="icon icon-testimonio"></div>
+                        <div class="description">Reviews from our clients</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    @*<div class="container-fluid">
+        <section class="slider" id="scene">
+            <div class="container" data-depth="0.2">
+                <span class="description">Go Beyond Ordinary Travel</span>
+                <img src="~/Content/images/slider-group.png" class="img-group">
+            </div>
+            <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+        </section>
+    </div>*@
+
 
 }
 else
 {
+    <div class="container-fluid">
+        <section class="slider" id="scene">
+            <div class="container" data-depth="0.2">
+                <span class="description">Go Beyond Ordinary Travel</span>
+                <img src="~/Content/images/slider-group.png" class="img-group">
+            </div>
+            <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+        </section>
+    </div>
 
-    <div class="content">
-        <div class="container">
-            <section class="welcome">
-                <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
-                <p>Bienvenido a la página personalizada para tu viaje</p>
-            </section>
-            <section class="options">
-                <div class="op-group">
-                    <div class="op op-propuesta">
-                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
-                            <div class="icon icon-propuesta"></div>
-                            <div class="description">
-                                Propuestas<br>
-                                para mi viaje
-                            </div>
-                        </a>
-                    </div>
-                    <div class="op op-info">
-                        <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido})">
-                            <div class="icon icon-info"></div>
-                            <div class="description">Mi viaje reservado</div>
-                        </a>
-                    </div>
-                    <div class="op op-testimonio">
-                        <a href="javascript:void(0)">
-                            <div class="icon icon-testimonio"></div>
-                            <div class="description">Testimonios de nuestros clientes</div>
-                        </a>
-                    </div>
+    <div class="container">
+        @*<section class="welcome">
+            <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
+            <p>Bienvenido a la página personalizada para tu viaje</p>
+        </section>*@
+        <section class="options">
+            <div class="op-group">
+                <div class="op op-propuesta">
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
+                        <div class="icon icon-propuesta"></div>
+                        <div class="description">
+                            Propuestas<br>
+                            para mi viaje
+                        </div>
+                    </a>
                 </div>
-            </section>
-        </div>
-        <div class="container-fluid">
+                <div class="op op-info">
+                    <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido})">
+                        <div class="icon icon-info"></div>
+                        <div class="description">Mi viaje reservado</div>
+                    </a>
+                </div>
+                <div class="op op-testimonio">
+                    <a href="javascript:void(0)">
+                        <div class="icon icon-testimonio"></div>
+                        <div class="description">Testimonios de nuestros clientes</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    @*<div class="container-fluid">
             <section class="slider" id="scene">
                 <div class="container" data-depth="0.2">
                     <span class="description">Go Beyond Ordinary Travel</span>
@@ -104,8 +122,8 @@ else
                 </div>
                 <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
             </section>
-        </div>
-    </div>
+        </div>*@
+
 
 
 }

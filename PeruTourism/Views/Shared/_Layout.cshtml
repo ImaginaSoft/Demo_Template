@@ -20,92 +20,108 @@
     <link rel="stylesheet" href="~/Content/css/home.min.css" media="all">
     <link rel="stylesheet" href="~/Content/css/propuestas.min.css" media="all">
     <link rel="stylesheet" href="~/Content/css/chat.css" media="all">
-
+    <link rel="stylesheet" href="~/Content/css/ChatGG.css" media="all">
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 
 
 <body>
 
-    @if (Session["Idioma"].Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+
+    @if (Session["Idioma"] != null || Session["IdCliente"] != null || Session["NomCliente"] != null || Session["CodCliente"] != null)
     {
 
-        <header id="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- navegacion -->
-                    <nav class="navbar navbar-default">
-                        <div class="container">
-                            <div class="row">
-                                <div class="navbar-header">
-                                    <!-- brand -->
-                                    <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
-                                    <div class="slogan">
-                                        Your customized travel website
-                                    </div>
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="collapse navbar-collapse in" id="siteNav">
+        if (Session["Idioma"].Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+        {
+
+            <header id="header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- navegacion -->
+                        <nav class="navbar navbar-default">
                             <div class="container">
                                 <div class="row">
-                                    <ul class="nav navbar-nav">
-                                        <li class="active"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Welcome</a></li>
-                                        <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] })">Proposals</a></li>
-                                        <li><a href="javascript:void(0)">Information</a></li>
-                                        <li><a href="javascript:void(0)">Testimonials</a></li>
-
-                                    </ul>
+                                    <div class="navbar-header">
+                                        <!-- brand -->
+                                        <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
+                                        <div class="slogan">
+                                            Customized travel website for:<BR>
+                                            @Session["NomCliente"]
+                                        </div>
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </nav>
+                            <div class="collapse navbar-collapse in" id="siteNav">
+                                <div class="container">
+                                    <div class="row">
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Welcome</a></li>
+                                            <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] })">Proposals</a></li>
+                                            <li><a href="javascript:void(0)">Information</a></li>
+                                            <li><a href="javascript:void(0)">Testimonials</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
                 </div>
-            </div>
-            <!-- navegacion -->
-        </header>
+                <!-- navegacion -->
+            </header>
+
+        }
+        else
+        {
+
+
+            <header id="header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- navegacion -->
+                        <nav class="navbar navbar-default">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="navbar-header">
+                                        <!-- brand -->
+                                        <div class="brand"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></div>
+                                        <div class="slogan">Sitio web personalizado de viajes para @Session["NomCliente"]</div>
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapse navbar-collapse in" id="siteNav">
+                                <div class="container">
+                                    <div class="row">
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Bienvenida</a></li>
+                                            <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] })">Propuestas</a></li>
+                                            <li><a href="javascript:void(0)">Información</a></li>
+                                            <li><a href="javascript:void(0)">Testimonios</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <!-- navegacion -->
+            </header>
+
+        }
+
+
 
     }
     else
     {
 
-
-        <header id="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- navegacion -->
-                    <nav class="navbar navbar-default">
-                        <div class="container">
-                            <div class="row">
-                                <div class="navbar-header">
-                                    <!-- brand -->
-                                    <div class="brand"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></div>
-                                    <div class="slogan">Tu sitio web personalizado de viajes</div>
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="collapse navbar-collapse in" id="siteNav">
-                            <div class="container">
-                                <div class="row">
-                                    <ul class="nav navbar-nav">
-                                        <li class="active"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Bienvenida</a></li>
-                                        <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] })">Propuestas</a></li>
-                                        <li><a href="javascript:void(0)">Información</a></li>
-                                        <li><a href="javascript:void(0)">Testimonios</a></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-            <!-- navegacion -->
-        </header>
-
+        Response.Redirect("~/Views/Shared/SessionExpired.cshtml");
     }
+
+
 
 
 
@@ -122,7 +138,9 @@
     <script src="~/Content/scripts/views/home.js"></script>
     <script src="~/Content/scripts/views/propuestas.js"></script>
     <script src="~/Content/scripts/views/chat.js"></script>
-    
+
+
+    @*<div id="floating_alert" class="alert-danger fade in countdown">Tu sesion expira en : 04:45</div>*@
 
 
     @RenderSection("scripts", required: false)

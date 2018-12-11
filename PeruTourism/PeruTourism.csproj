@@ -159,6 +159,7 @@
     <Compile Include="Models\PeruTourism\BalanceViewModel.cs" />
     <Compile Include="Models\PeruTourism\Cliente.cs" />
     <Compile Include="Models\PeruTourism\EnvioMensaje.cs" />
+    <Compile Include="Models\PeruTourism\Error.cs" />
     <Compile Include="Models\PeruTourism\Galeria.cs" />
     <Compile Include="Models\PeruTourism\Pedido.cs" />
     <Compile Include="Models\PeruTourism\Programa.cs" />
@@ -255,6 +256,10 @@
     <Content Include="Content\sass\_variables.scss" />
     <Content Include="Content\css\chat.css.map" />
     <Content Include="Content\sass\chat.scss" />
+    <Content Include="Content\fonts\handlee-regular.ttf" />
+    <Content Include="Content\fonts\Montserrat-Bold.otf" />
+    <Content Include="Content\fonts\Montserrat-Light.otf" />
+    <Content Include="Content\fonts\Montserrat-Regular.otf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -282,6 +287,8 @@
     <Content Include="Views\Home\MostrarSaldo.cshtml" />
     <Content Include="Views\Home\_ModalMostrarSaldo.cshtml" />
     <Content Include="Views\Home\MyBookedTrip.cshtml" />
+    <Content Include="Views\Shared\SessionExpired.cshtml" />
+    <Content Include="Views\Shared\MyBookTripMessage.cshtml" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

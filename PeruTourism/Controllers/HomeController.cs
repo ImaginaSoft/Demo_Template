@@ -43,7 +43,7 @@ namespace PeruTourism.Controllers
 
             LoginAccess objLogin = new LoginAccess();
             
-            PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+            //PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
 
             try
             {
@@ -56,8 +56,6 @@ namespace PeruTourism.Controllers
 
                     var lstCliente = objLogin.LeerCliente(idCliente, codCLiente);
 
-
-
                     _IdCliente = idCliente.Trim();
                     _CodCliente = lstCliente.FirstOrDefault().CodCliente;
                     _NomCliente = lstCliente.FirstOrDefault().NomCliente;
@@ -65,7 +63,7 @@ namespace PeruTourism.Controllers
 
                     Session["IdCliente"] = idCliente.Trim();
                     Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
-                    //Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
+                    Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
                     //Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
 
                 }
@@ -80,8 +78,6 @@ namespace PeruTourism.Controllers
                     Session["Idioma"] = lstPublicacion.FirstOrDefault().FlagIdioma;
 
                     ViewBag.Idioma = lstPublicacion.FirstOrDefault().FlagIdioma;
-
-
                     ViewBag.IdCliente = _IdCliente;
                     ViewBag.CodCliente = _CodCliente;
                     ViewBag.NomCliente = _NomCliente;
@@ -107,7 +103,7 @@ namespace PeruTourism.Controllers
         public ActionResult VerPropuesta(string pCodCliente)
         {
 
-            PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+            //PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
             try
             {
                 LoginAccess objLogin = new LoginAccess();
@@ -158,7 +154,7 @@ namespace PeruTourism.Controllers
 
             LoginAccess objLogin = new LoginAccess();
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
-            PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+            //PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
 
             List<Servicio> ListServicios = new List<Servicio>();
             Servicio objServicio = new Servicio();
@@ -380,11 +376,42 @@ namespace PeruTourism.Controllers
 
         public ActionResult MyBookedTrip(string pCodCliente, string pNroPedido) {
 
+
+            Error objError = new Error();
+
+
             ViewBag.CodCliente = pCodCliente;
             ViewBag.NroPedido = pNroPedido;
 
+            string mensajeError = string.Empty;
+            BalanceViewModel objBalance = new BalanceViewModel();
 
-            return View(objPropuestaViewModel);
+            var lstBalance = objPropuesta.CargaDocumentos(Convert.ToInt32(pCodCliente), Convert.ToInt32(pNroPedido));
+
+            objBalance.lstBalance = lstBalance.ToList();
+
+            objPropuestaViewModel.lstBalance = lstBalance.ToList();
+
+
+            if (objPropuestaViewModel.lstBalance !=null) {
+
+                return View(objPropuestaViewModel);
+
+            }
+            else
+            {
+                mensajeError = "These options will be available after you book a trip with us.";
+                objError.MsjError = mensajeError;
+                return View("~/Views/Shared/MyBookTripMessage.cshtml");
+
+
+
+            }
+
+            
+
+
+
 
         }
 

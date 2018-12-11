@@ -41,11 +41,28 @@
             @for (int i = 0; i < lstProgramas.Count; i++)
             {
 
-                <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente})" class="group prop">
-                    <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
-                    <div class="prop-title">@lstProgramas[i].DesPrograma</div>
-                    <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
-                </a>
+            <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente})" class="group prop">
+                <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
+                <div class="prop-title">@lstProgramas[i].DesPrograma</div>
+
+
+
+                @if (lstProgramas[i].StsPrograma.Equals("Sold"))
+                {
+                    <div class="prop-status"><span class="status status-sold">@lstProgramas[i].StsPrograma</span></div>
+                }
+                else if (lstProgramas[i].StsPrograma.Equals("Quote"))
+                {
+                    <div class="prop-status"><span class="status status-quote">@lstProgramas[i].StsPrograma</span></div>
+                }
+                else
+                {
+                    <div class="prop-status"><span class="status status-void">@lstProgramas[i].StsPrograma</span></div>
+                }
+
+
+                @*<div class="prop-status"><span class="status status-quote">@lstProgramas[i].StsPrograma</span></div>*@
+            </a>
 
             }
 
