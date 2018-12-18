@@ -1,142 +1,697 @@
 ﻿
 @model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@using PeruTourism.Utility
 @{
     ViewBag.Title = "Info Before your trip";
-
-
-
 
     var lstReservaHotel = Model.lstReservaHotel;
     var lstVideoGG = Model.lstVideo;
     var lstClimaGG = Model.lstClima;
     var lstStaffGG = Model.lstStaff;
     string info = Model.info;
-
-
+    char idioma = ViewBag.FlagIdioma;
 
 }
 
 @if (lstReservaHotel != null || lstVideoGG != null || lstClimaGG != null || lstStaffGG != null || info != null)
 {
 
-    <div class="modal fade" id="detalleInforBeforeTrip-1" tabindex="-1" role="dialog" style="display: none;">
-        <div class="modal-dialog modal-DetalleHotel" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <strong>Booking Status</strong>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <div class="prop-title">SELECTED HOTELS</div>
-                        <table class="table table-bordered table-responsive table-hover table-pt">
-                            <thead>
-                                <tr>
-                                    <th>City</th>
-                                    <th>Hotel</th>
-                                    <th>Telephone</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var d in lstReservaHotel)
-                                {
+    if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+    {
 
-                                <tr>
-                                    @*<td>@d.</td>*@
-                                    <td>@d.NomCiudad</td>
-                                    <td>@d.NombreHotel</td>
-                                    <td>@d.Telefono</td>
-
-                                </tr>
-                                }
-                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
-
-                            </tbody>
-
-                        </table>
-
-
-                        <div class="prop-title">PERUTOURIS'M 24 HOURS TELEPHONE NUMBER</div>
-                        <table class="table table-bordered table-responsive table-hover table-pt">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Responsability</th>
-                                    <th>Telephone</th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var d in lstStaffGG)
-                                {
-
-
-                                    //totalAbono = totalAbono + d.Abono;
-                                    //totalCargo = totalCargo + d.Cargo;
-
-                                    <tr>
-                                    
-                                        <td>@d.NomVendedor</td>
-                                        <td>@d.Cargo</td>
-                                        <td>@d.TelefonoEmergencia</td>
-                                    </tr>
-                                }
-                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
-
-                            </tbody>
-
-                        </table>
-
-
-                        <div>@lstVideoGG.FirstOrDefault().VideoUrl</div>
-
-
-                        <div class="prop-title">WEATHER</div>
-                        <table class="table table-bordered table-responsive table-hover table-pt">
-                            <thead>
-                                <tr>
-                                    @*<th>PASSENGERS </th>*@
-                                    <th>City</th>
-                                    <th>Mont-Year</th>
-                                    <th>Temperature low</th>
-                                    <th>Temperature high</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var d in lstClimaGG)
-                                {
-
-
-                                    //totalAbono = totalAbono + d.Abono;
-                                    //totalCargo = totalCargo + d.Cargo;
-
-                                <tr>
-                                    @*<td>@d.</td>*@
-                                    <td>@d.NomCiudad</td>
-                                    <td>@d.MesAño</td>
-                                    <td>@d.TempMinima</td>
-                                    <td>@d.TempMaxima</td>
-                                    
-         
-                                </tr>
-                                }
-                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
-
-                            </tbody>
-
-                        </table>
-
-                        <div class="prop-title">REQUIREMENTS TO VISIT PERU</div>
-                        <div>@info</div>
-
+        <div class="modal fade" id="detalleInforBeforeTrip-1" tabindex="-1" role="dialog" style="display: none;">
+            <div class="modal-dialog modal-DetalleHotel" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>Booking Status</strong>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <div class="prop-title">SELECTED HOTELS</div>
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        <th>City</th>
+                                        <th>Hotel</th>
+                                        <th>Telephone</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in lstReservaHotel)
+                                    {
 
+                                        <tr>
+                                            @*<td>@d.</td>*@
+                                            <td>@d.NomCiudad</td>
+                                            <td>@d.NombreHotel</td>
+                                            <td>@d.Telefono</td>
+
+                                        </tr>
+                                    }
+                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                                </tbody>
+
+                            </table>
+
+
+                            <div class="prop-title">PERUTOURIS'M 24 HOURS TELEPHONE NUMBER</div>
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Responsability</th>
+                                        <th>Telephone</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in lstStaffGG)
+                                    {
+
+
+                                        //totalAbono = totalAbono + d.Abono;
+                                        //totalCargo = totalCargo + d.Cargo;
+
+                                        <tr>
+
+                                            <td>@d.NomVendedor</td>
+                                            <td>@d.Cargo</td>
+                                            <td>@d.TelefonoEmergencia</td>
+                                        </tr>
+                                    }
+                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                                </tbody>
+
+                            </table>
+
+
+                            <div>@lstVideoGG.FirstOrDefault().VideoUrl</div>
+
+
+                            <div class="prop-title">WEATHER</div>
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        @*<th>PASSENGERS </th>*@
+                                        <th>City</th>
+                                        <th>Mont-Year</th>
+                                        <th>Temperature low</th>
+                                        <th>Temperature high</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in lstClimaGG)
+                                    {
+
+
+                                        //totalAbono = totalAbono + d.Abono;
+                                        //totalCargo = totalCargo + d.Cargo;
+
+                                        <tr>
+                                            @*<td>@d.</td>*@
+                                            <td>@d.NomCiudad</td>
+                                            <td>@d.MesAño</td>
+                                            <td>@d.TempMinima</td>
+                                            <td>@d.TempMaxima</td>
+
+
+                                        </tr>
+                                    }
+                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                                </tbody>
+
+                            </table>
+
+                            <div class="prop-title">REQUIREMENTS TO VISIT PERU</div>
+                            <div>@info</div>
+
+                        </div>
+
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Clothes</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+
+                                    <p>
+                                        To confirm confirm your trip we just need a deposit of the 30%, this first payment can be done online through your personalized website only if you hava a Visa Card or Master Card
+                                        , if you have American Express card I will send you our services agreement by email.
+                                        <br />
+                                        The balance due (70%) must be paid at your arrival in Lima.
+                                    </p>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Luggage</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>Binoculars.</li>
+                                        <li>Hotels in Cusco can store suitcases of travelers that spend nights in the Sacred Valley and/or Machu Picchu so you can take just a small bag or backpack with you.</li>
+                                        <li>Self-sealing bags for electronic equipment.</li>
+                                        <li>Windbreaker.</li>
+                                        <li>One small day pack.</li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Currency & Exchange Rate</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            Our ofﬁcial currency is Nuevo Sol. We have bills of 10, 20, 50, 100 and 200 Nuevos Soles. We also have
+                                            coins of 5, 10, 20 and 50 cents as well as coins of 1, 2 and 5 Nuevos Soles.
+                                        </li>
+                                        <li>One American Dolar is around 3 Nuevos Soles.</li>
+                                        <li>One Euro is around 3.88 Nuevos Soles approximately.</li>
+                                        <li>ATM's are very easy to ﬁnd across the country. They are in English and Spanish.</li>
+                                        <li>Credit Cards are welcomed in hotels, restaurants, shops, etc. Visa, American Express and Master Card are the most used.</li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Tips</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            It's always recommendable to give a tip to the Inca trail staff. An average per traveler is US$40 – US$60
+                                            (this money goes for the guide, cookers and porters).
+
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Travel Documents & Vaccines</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            To visit Peru is necessary to bring your valid passport. Only citizens from Colombia, Ecuador, Bolivia, Brazil, Chile and Argentina need their ID to come.
+
+                                        </li>
+                                        <li>
+                                            Upon your arrival at Lima's airport you will receive your immigration card (TAM) which exempts from paying 10% of hotels taxes. In case you lose this card, for law hotels will have to charge the additional cost.
+
+                                        </li>
+                                        <li>
+                                            In case you would have some stop-overs in other countries during your ﬂights to or from Lima, we rec
+                                            ommend you to check what kind of documentation those countries require (visas, shots, etc).
+
+
+                                        </li>
+                                        <li>
+                                            A valid passport is required to enter Ecuador, at least 6 months valid.
+
+                                        </li>
+                                        <li>
+                                            No inoculations are required to entry to Ecuador.
+
+                                        </li>
+
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Foods & Drinks</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            In Peru you can ﬁnd restaurants that offer dishes from US$3.00.
+
+                                        </li>
+                                        <li>
+                                            Drink only bottled water, which is widely available. Do not drink tap water, even in major hotels. Agua con gas is carbonated; agua sin gas is plain.
+
+                                        </li>
+                                        <li>
+                                            Avoid eating from street vendors.
+
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Altitude Sickness</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            During your visits to cities located over the 8200 feet above sea level, like Cusco (11,000 ft) or Lake Titi caca (13,000 ft), shortness of breath and heart pounding are normal, given the scarcity of oxygen. Some people may experience headache, loss of appetite, extreme fatigue and nausea.
+                                            Most symptoms de velop the ﬁrst day at high altitude, though, occasionally, travelers have delayed reactions.
+                                            The best advice is to rest on your ﬁrst day in the highlands. Drink plenty of liquids, including the local remedy: mate de coca or coca - leaf tea (It’s perfectly legal). Avoid alcohol, sodas and heavy food.
+                                            You can avoid altitude sickness taking 500 mg a day of acetazolamide (Diamox or Soroche Pills) taken 24 hours before departure and continued up to 48 hours after arrival to these cities. Acetazolamide should not be given to persons allergic to sulfa drugs.
+
+                                        </li>
+
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Gastronomy</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            Peruvian gastronomy is unique and unbeatable. Its ﬂavours and textures are the result of a fusion of the many cultures that were brought to Peru in the centuries after the Spanish conquest. Peru's enormous biodiversity -plus this cultural amalgam- is also an important part of its gastronomy, since it provides ingredients that are impossible to come across in other parts of the world. When you taste Peruvian food for the ﬁrst time you will understand why it is considered one of the world's best. 
+                                            Click here to check our Restaurant Guide.
+                                        </li>
+
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+    }
+    else
+    {
+
+        <div class="modal fade" id="detalleInforBeforeTrip-1" tabindex="-1" role="dialog" style="display: none;">
+            <div class="modal-dialog modal-DetalleHotel" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>Booking Status</strong>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <div class="prop-title">SELECTED HOTELS</div>
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        <th>City</th>
+                                        <th>Hotel</th>
+                                        <th>Telephone</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in lstReservaHotel)
+                                    {
+
+                                        <tr>
+                                            @*<td>@d.</td>*@
+                                            <td>@d.NomCiudad</td>
+                                            <td>@d.NombreHotel</td>
+                                            <td>@d.Telefono</td>
+
+                                        </tr>
+                                    }
+                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                                </tbody>
+
+                            </table>
+
+
+                            <div class="prop-title">PERUTOURIS'M 24 HOURS TELEPHONE NUMBER</div>
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Responsability</th>
+                                        <th>Telephone</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in lstStaffGG)
+                                    {
+
+
+                                        //totalAbono = totalAbono + d.Abono;
+                                        //totalCargo = totalCargo + d.Cargo;
+
+                                        <tr>
+
+                                            <td>@d.NomVendedor</td>
+                                            <td>@d.Cargo</td>
+                                            <td>@d.TelefonoEmergencia</td>
+                                        </tr>
+                                    }
+                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                                </tbody>
+
+                            </table>
+
+
+                            <div>@lstVideoGG.FirstOrDefault().VideoUrl</div>
+
+
+                            <div class="prop-title">WEATHER</div>
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        @*<th>PASSENGERS </th>*@
+                                        <th>City</th>
+                                        <th>Mont-Year</th>
+                                        <th>Temperature low</th>
+                                        <th>Temperature high</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in lstClimaGG)
+                                    {
+
+
+                                        //totalAbono = totalAbono + d.Abono;
+                                        //totalCargo = totalCargo + d.Cargo;
+
+                                        <tr>
+                                            @*<td>@d.</td>*@
+                                            <td>@d.NomCiudad</td>
+                                            <td>@d.MesAño</td>
+                                            <td>@d.TempMinima</td>
+                                            <td>@d.TempMaxima</td>
+
+
+                                        </tr>
+                                    }
+                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                                </tbody>
+
+                            </table>
+
+                            <div class="prop-title">REQUIREMENTS TO VISIT PERU</div>
+                            <div>@info</div>
+
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Clothes</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+
+                                    <p>
+                                        To confirm confirm your trip we just need a deposit of the 30%, this first payment can be done online through your personalized website only if you hava a Visa Card or Master Card
+                                        , if you have American Express card I will send you our services agreement by email.
+                                        <br />
+                                        The balance due (70%) must be paid at your arrival in Lima.
+                                    </p>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Luggage</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>Binoculars.</li>
+                                        <li>Hotels in Cusco can store suitcases of travelers that spend nights in the Sacred Valley and/or Machu Picchu so you can take just a small bag or backpack with you.</li>
+                                        <li>Self-sealing bags for electronic equipment.</li>
+                                        <li>Windbreaker.</li>
+                                        <li>One small day pack.</li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Currency & Exchange Rate</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            Our ofﬁcial currency is Nuevo Sol. We have bills of 10, 20, 50, 100 and 200 Nuevos Soles. We also have
+                                            coins of 5, 10, 20 and 50 cents as well as coins of 1, 2 and 5 Nuevos Soles.
+                                        </li>
+                                        <li>One American Dolar is around 3 Nuevos Soles.</li>
+                                        <li>One Euro is around 3.88 Nuevos Soles approximately.</li>
+                                        <li>ATM's are very easy to ﬁnd across the country. They are in English and Spanish.</li>
+                                        <li>Credit Cards are welcomed in hotels, restaurants, shops, etc. Visa, American Express and Master Card are the most used.</li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Tips</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            It's always recommendable to give a tip to the Inca trail staff. An average per traveler is US$40 – US$60
+                                            (this money goes for the guide, cookers and porters).
+
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Travel Documents & Vaccines</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            To visit Peru is necessary to bring your valid passport. Only citizens from Colombia, Ecuador, Bolivia, Brazil, Chile and Argentina need their ID to come.
+
+                                        </li>
+                                        <li>
+                                            Upon your arrival at Lima's airport you will receive your immigration card (TAM) which exempts from paying 10% of hotels taxes. In case you lose this card, for law hotels will have to charge the additional cost.
+
+                                        </li>
+                                        <li>
+                                            In case you would have some stop-overs in other countries during your ﬂights to or from Lima, we rec
+                                            ommend you to check what kind of documentation those countries require (visas, shots, etc).
+
+
+                                        </li>
+                                        <li>
+                                            A valid passport is required to enter Ecuador, at least 6 months valid.
+
+                                        </li>
+                                        <li>
+                                            No inoculations are required to entry to Ecuador.
+
+                                        </li>
+
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Foods & Drinks</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            In Peru you can ﬁnd restaurants that offer dishes from US$3.00.
+
+                                        </li>
+                                        <li>
+                                            Drink only bottled water, which is widely available. Do not drink tap water, even in major hotels. Agua con gas is carbonated; agua sin gas is plain.
+
+                                        </li>
+                                        <li>
+                                            Avoid eating from street vendors.
+
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Altitude Sickness</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            During your visits to cities located over the 8200 feet above sea level, like Cusco (11,000 ft) or Lake Titi caca (13,000 ft), shortness of breath and heart pounding are normal, given the scarcity of oxygen. Some people may experience headache, loss of appetite, extreme fatigue and nausea.
+                                            Most symptoms de velop the ﬁrst day at high altitude, though, occasionally, travelers have delayed reactions.
+                                            The best advice is to rest on your ﬁrst day in the highlands. Drink plenty of liquids, including the local remedy: mate de coca or coca - leaf tea (It’s perfectly legal). Avoid alcohol, sodas and heavy food.
+                                            You can avoid altitude sickness taking 500 mg a day of acetazolamide (Diamox or Soroche Pills) taken 24 hours before departure and continued up to 48 hours after arrival to these cities. Acetazolamide should not be given to persons allergic to sulfa drugs.
+
+                                        </li>
+
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                        <div class="group prop-detalle">
+                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                <div class="prop-num"><span>Gastronomy</span></div>
+
+                            </div>
+                            <div class="prop-content collapse in" id="content1">
+                                <div class="group">
+
+                                    <ul>
+                                        <li>
+                                            Peruvian gastronomy is unique and unbeatable. Its ﬂavours and textures are the result of a fusion of the many cultures that were brought to Peru in the centuries after the Spanish conquest. Peru's enormous biodiversity -plus this cultural amalgam- is also an important part of its gastronomy, since it provides ingredients that are impossible to come across in other parts of the world. When you taste Peruvian food for the ﬁrst time you will understand why it is considered one of the world's best.
+                                            Click here to check our Restaurant Guide.
+                                        </li>
+
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                            <div class="prop-icon"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
 
 
 }

@@ -398,6 +398,7 @@ namespace PeruTourism.Controllers
 
             objPropuestaViewModel.lstBalance = lstBalance.ToList();
 
+            ViewBag.FlagIdioma = lstVersionFacturada.FirstOrDefault().FlagIdioma;
 
             if (lstVersionFacturada.FirstOrDefault().NroVersion != 0) {
 
@@ -415,7 +416,7 @@ namespace PeruTourism.Controllers
         }
 
         [HttpPost]
-        public ActionResult OpenBookingStatusModal(int pNroPedido, int pNroPropuesta, int pNroVersion)
+        public ActionResult OpenBookingStatusModal(int pNroPedido, int pNroPropuesta, int pNroVersion,char pFlagIdioma)
         {
             try
             {
@@ -431,7 +432,9 @@ namespace PeruTourism.Controllers
                 objPropuestaViewModel.lstReservaTerrestre = lstReservaTerrestre.ToList();
                 objPropuestaViewModel.lstReservaAerero = lstReservaAereo.ToList();
                 objPropuestaViewModel.lstReservaHotel = lstReservaHotel.ToList();
-                
+
+
+                ViewBag.FlagIdioma = pFlagIdioma;
 
                 return PartialView("~/Views/Home/_ModalBookingStatus.cshtml", objPropuestaViewModel);
 
@@ -448,42 +451,26 @@ namespace PeruTourism.Controllers
 
 
         [HttpPost]
-        public ActionResult OpenInfoBeforeTripModal(int pNroPedido, int pNroPropuesta, int pNroVersion)
+        public ActionResult OpenInfoBeforeTripModal(int pNroPedido, int pNroPropuesta, int pNroVersion,char pFlagIdioma)
         {
             try
             {
-
-
                 var lstHotelInfo = objPropuesta.CargaHotelInfoAntes(pNroPedido, pNroPropuesta, pNroVersion);
-                var lstStaffInfo = objPropuesta.CargaStaffInfoAntes(pNroPedido,'I');
-                var lstVideoInfo = objPropuesta.CargaVideoInfoAntes(pNroPedido, 'I');
+                var lstStaffInfo = objPropuesta.CargaStaffInfoAntes(pNroPedido, pFlagIdioma);
+                var lstVideoInfo = objPropuesta.CargaVideoInfoAntes(pNroPedido, pFlagIdioma);
                 var lstClimaInfo = objPropuesta.CargaClimaInfoAntes(pNroPedido, pNroPropuesta, pNroVersion);
-                string nomInfo = objPropuesta.CargaDocReqInfoAntes(pNroPedido, 'I');
-
-
-
-                //var lstPasajero = objPropuesta.CargaPasajero(pNroPedido);
-                //var lstReservaTerrestre = objPropuesta.CargaTerrestre(pNroPedido, pNroPropuesta, pNroVersion);
-                //var lstReservaAereo = objPropuesta.CargaAereo(pNroPedido, pNroPropuesta, pNroVersion);
-                //var lstReservaHotel = objPropuesta.CargaHotel(pNroPedido, pNroPropuesta, pNroVersion);
-
-                //objPropuestaViewModel.lstBalance = lstBalance.ToList();
+                string nomInfo = objPropuesta.CargaDocReqInfoAntes(pNroPedido, pFlagIdioma);
 
                 objPropuestaViewModel.lstReservaHotel = lstHotelInfo.ToList();
                 objPropuestaViewModel.lstStaff = lstStaffInfo.ToList();
 
                 objPropuestaViewModel.lstVideo = lstVideoInfo.ToList();
                 objPropuestaViewModel.lstClima = lstClimaInfo.ToList();
-
                 objPropuestaViewModel.info = nomInfo;
 
-                //objPropuestaViewModel.lstReservaTerrestre = lstReservaTerrestre.ToList();
-                //objPropuestaViewModel.lstReservaAerero = lstReservaAereo.ToList();
-                //objPropuestaViewModel.lstReservaHotel = lstReservaHotel.ToList();
-
-
+                ViewBag.FlagIdioma = pFlagIdioma;
+    
                 return PartialView("~/Views/Home/_ModalInfoBeforeTrip.cshtml", objPropuestaViewModel);
-
 
             }
             catch (Exception ex)

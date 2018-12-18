@@ -144,10 +144,10 @@ function openBalanceModal(pCliente, pNroPedido) {
 }
 
 
-function openBookingStatusModal(pNroPedido, pNroPropuesta, pNroVersion) {
+function openBookingStatusModal(pNroPedido, pNroPropuesta, pNroVersion, pFlagIdioma) {
 
 
-    var dataToSend = 'pNroPedido=' + pNroPedido + '&pNroPropuesta=' + pNroPropuesta + '&pNroVersion=' + pNroVersion;
+    var dataToSend = 'pNroPedido=' + pNroPedido + '&pNroPropuesta=' + pNroPropuesta + '&pNroVersion=' + pNroVersion + '&pFlagIdioma=' + pFlagIdioma;
 
     $.ajax({
         type: "POST",
@@ -180,10 +180,10 @@ function openBookingStatusModal(pNroPedido, pNroPropuesta, pNroVersion) {
 }
 
 
-function openInformationBeforeTripModal(pNroPedido, pNroPropuesta, pNroVersion) {
+function openInformationBeforeTripModal(pNroPedido, pNroPropuesta, pNroVersion,pFlagIdioma) {
 
 
-    var dataToSend = 'pNroPedido=' + pNroPedido + '&pNroPropuesta=' + pNroPropuesta + '&pNroVersion=' + pNroVersion;
+    var dataToSend = 'pNroPedido=' + pNroPedido + '&pNroPropuesta=' + pNroPropuesta + '&pNroVersion=' + pNroVersion + '&pFlagIdioma=' + pFlagIdioma;
 
     $.ajax({
         type: "POST",

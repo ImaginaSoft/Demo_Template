@@ -1,46 +1,89 @@
-﻿
+﻿@using PeruTourism.Utility
 @{
     ViewBag.Title = "MyBookedTrip";
+    char flagIdioma = ViewBag.FlagIdioma;
 
 }
 
+@if (flagIdioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+{
+    <div class="content">
+        <div class="container">
+            <section class="welcome">
+                @*<h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>*@
+                @*<p> Welcome to the customized travel website for your trip </p>*@
+            </section>
+            <section class="options">
+                <div class="op-group">
+                    <div class="op op-propuesta">
+                        <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,@ViewBag.FlagIdioma)">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="description">
+                                Bookin<br>
+                                Status
+                            </div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        @*<a href="@Url.Action("OpenModalBalance", "Home",new { pCliente = ViewBag.CodCliente , pNroPedido = ViewBag.NroPedido})">*@
+                        <a onclick="openBalanceModal(@ViewBag.CodCliente,@ViewBag.NroPedido)">
+                            <div class="icon icon-info"></div>
+                            <div class="description">Balance Due</div>
+                        </a>
+                    </div>
+                    <div class="op op-testimonio">
+                        <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,@ViewBag.FlagIdioma)">
+                            <div class="icon icon-testimonio"></div>
+                            <div class="description">Information for my trip</div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
 
-
-<div class="content">
-    <div class="container">
-        <section class="welcome">
-            @*<h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>*@
-            @*<p> Welcome to the customized travel website for your trip </p>*@
-        </section>
-        <section class="options">
-            <div class="op-group">
-                <div class="op op-propuesta">
-                    <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion)">
-                        <div class="icon icon-propuesta"></div>
-                        <div class="description">
-                            Bookin<br>
-                            Status
-                        </div>
-                    </a>
-                </div>
-                <div class="op op-info">
-                    @*<a href="@Url.Action("OpenModalBalance", "Home",new { pCliente = ViewBag.CodCliente , pNroPedido = ViewBag.NroPedido})">*@
-                    <a onclick="openBalanceModal(@ViewBag.CodCliente,@ViewBag.NroPedido)">
-                        <div class="icon icon-info"></div>
-                        <div class="description">Balance Due</div>
-                    </a>
-                </div>
-                <div class="op op-testimonio">
-                    <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion)">
-                        <div class="icon icon-testimonio"></div>
-                        <div class="description">Information for my trip</div>
-                    </a>
-                </div>
-            </div>
-        </section>
     </div>
+}
+else
+{
 
-</div>
+    <div class="content">
+        <div class="container">
+            <section class="welcome">
+                @*<h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>*@
+                @*<p> Welcome to the customized travel website for your trip </p>*@
+            </section>
+            <section class="options">
+                <div class="op-group">
+                    <div class="op op-propuesta">
+                        <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,@ViewBag.FlagIdioma)">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="description">
+                                Estado<br>
+                                de su reserva
+                            </div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        @*<a href="@Url.Action("OpenModalBalance", "Home",new { pCliente = ViewBag.CodCliente , pNroPedido = ViewBag.NroPedido})">*@
+                        <a onclick="openBalanceModal(@ViewBag.CodCliente,@ViewBag.NroPedido)">
+                            <div class="icon icon-info"></div>
+                            <div class="description">Cuenta Corriente</div>
+                        </a>
+                    </div>
+                    <div class="op op-testimonio">
+                        <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,@ViewBag.FlagIdioma)">
+                            <div class="icon icon-testimonio"></div>
+                            <div class="description">Información para mi viaje</div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+}
+
+
 
 <div id='balanceContainer'>
     @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
