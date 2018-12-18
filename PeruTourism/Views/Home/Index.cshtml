@@ -5,10 +5,25 @@
     ViewBag.Title = "Home Page";
 
     var lstProgramas = Model.lstPrograma;
+    string nroPedido = string.Empty;
+    string nroPropuesta = string.Empty;
+    string nroVersion = string.Empty;
 
-    string nroPedido = lstProgramas.FirstOrDefault().KeyReg.Substring(0, 6);
-    string nroPropuesta = lstProgramas.FirstOrDefault().KeyReg.Substring(8, 1);
-    string nroVersion = lstProgramas.FirstOrDefault().KeyReg.Substring(10, 1);
+    foreach (var gg in lstProgramas) {
+
+        if (gg.StsPrograma =="Vendido") {
+
+     
+             nroPedido = gg.KeyReg.Substring(0, 6);
+             nroPropuesta = gg.KeyReg.Substring(8, 1);
+             nroVersion = gg.KeyReg.Substring(10, 1);
+
+        }
+
+
+    }
+
+
     //var NombreCliente = (string)Session["NomCliente"];
     var NombreCliente = ViewBag.NomCliente;
     var CodCliente = ViewBag.CodCliente;
@@ -102,7 +117,7 @@ else
                     </a>
                 </div>
                 <div class="op op-info">
-                    <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido})">
+                    <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido,pNroPropuesta = nroPropuesta,pNroVersion = nroVersion})">
                         <div class="icon icon-info"></div>
                         <div class="description">Mi viaje reservado</div>
                     </a>

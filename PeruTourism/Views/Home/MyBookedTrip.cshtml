@@ -16,7 +16,7 @@
             <section class="options">
                 <div class="op-group">
                     <div class="op op-propuesta">
-                        <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,@ViewBag.FlagIdioma)">
+                        <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,'I')">
                             <div class="icon icon-propuesta"></div>
                             <div class="description">
                                 Bookin<br>
@@ -32,7 +32,7 @@
                         </a>
                     </div>
                     <div class="op op-testimonio">
-                        <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,@ViewBag.FlagIdioma)">
+                        <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,'I')">
                             <div class="icon icon-testimonio"></div>
                             <div class="description">Information for my trip</div>
                         </a>
@@ -55,7 +55,7 @@ else
             <section class="options">
                 <div class="op-group">
                     <div class="op op-propuesta">
-                        <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,@ViewBag.FlagIdioma)">
+                        <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,'E')">
                             <div class="icon icon-propuesta"></div>
                             <div class="description">
                                 Estado<br>
@@ -71,7 +71,7 @@ else
                         </a>
                     </div>
                     <div class="op op-testimonio">
-                        <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,@ViewBag.FlagIdioma)">
+                        <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,'E')">
                             <div class="icon icon-testimonio"></div>
                             <div class="description">Información para mi viaje</div>
                         </a>
