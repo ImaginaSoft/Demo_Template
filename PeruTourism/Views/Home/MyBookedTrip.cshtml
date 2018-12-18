@@ -15,7 +15,7 @@
         <section class="options">
             <div class="op-group">
                 <div class="op op-propuesta">
-                    <a href="javascript:void(0)">
+                    <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion)">
                         <div class="icon icon-propuesta"></div>
                         <div class="description">
                             Bookin<br>
@@ -31,7 +31,7 @@
                     </a>
                 </div>
                 <div class="op op-testimonio">
-                    <a href="javascript:void(0)">
+                    <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion)">
                         <div class="icon icon-testimonio"></div>
                         <div class="description">Information for my trip</div>
                     </a>
@@ -44,6 +44,14 @@
 
 <div id='balanceContainer'>
     @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
+</div>
+
+<div id='BookingStatusContainer'>
+    @Html.Partial("~/Views/Home/_ModalBookingStatus.cshtml")
+</div>
+
+<div id='InforBeforeTripContainer'>
+    @Html.Partial("~/Views/Home/_ModalInfoBeforeTrip.cshtml")
 </div>
 
 <script src="~/scripts/jquery-3.3.1.min.js"></script>

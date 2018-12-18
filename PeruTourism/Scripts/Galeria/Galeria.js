@@ -142,3 +142,75 @@ function openBalanceModal(pCliente, pNroPedido) {
     });
 
 }
+
+
+function openBookingStatusModal(pNroPedido, pNroPropuesta, pNroVersion) {
+
+
+    var dataToSend = 'pNroPedido=' + pNroPedido + '&pNroPropuesta=' + pNroPropuesta + '&pNroVersion=' + pNroVersion;
+
+    $.ajax({
+        type: "POST",
+        url: "/perutourism-new/Home/OpenBookingStatusModal",
+        data: dataToSend,
+        //contentType: "application/json; charset=utf-8",
+        //dataType: "json",
+        success: function (result) {
+
+            $("#BookingStatusContainer").html(result);
+            //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
+            //alert("Hello: ");
+        },
+        failure: function (response) {
+
+            alert(response.responseText);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+
+            alert("Req: " + jqXHR);
+            alert("Status: " + textStatus);
+            alert("Error: " + errorThrown);
+        },
+        complete: function () {
+
+            $('#detalleBookingStatus-1').modal('show');
+        }
+    });
+
+}
+
+
+function openInformationBeforeTripModal(pNroPedido, pNroPropuesta, pNroVersion) {
+
+
+    var dataToSend = 'pNroPedido=' + pNroPedido + '&pNroPropuesta=' + pNroPropuesta + '&pNroVersion=' + pNroVersion;
+
+    $.ajax({
+        type: "POST",
+        url: "/perutourism-new/Home/OpenInfoBeforeTripModal",
+        data: dataToSend,
+        //contentType: "application/json; charset=utf-8",
+        //dataType: "json",
+        success: function (result) {
+
+            $("#InforBeforeTripContainer").html(result);
+            //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
+            //alert("Hello: ");
+        },
+        failure: function (response) {
+
+            alert(response.responseText);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+
+            alert("Req: " + jqXHR);
+            alert("Status: " + textStatus);
+            alert("Error: " + errorThrown);
+        },
+        complete: function () {
+
+            $('#detalleInforBeforeTrip-1').modal('show');
+        }
+    });
+
+}

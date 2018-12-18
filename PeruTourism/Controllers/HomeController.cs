@@ -374,26 +374,32 @@ namespace PeruTourism.Controllers
         }
 
 
-        public ActionResult MyBookedTrip(string pCodCliente, string pNroPedido) {
+
+        public ActionResult MyBookedTrip(string pCodCliente, string pNroPedido, string pNroPropuesta, string pNroVersion) {
 
 
             Error objError = new Error();
 
 
             ViewBag.CodCliente = pCodCliente;
+
             ViewBag.NroPedido = pNroPedido;
+            ViewBag.NroPropuesta = pNroPropuesta;
+            ViewBag.NroVersion = pNroVersion;
 
             string mensajeError = string.Empty;
             BalanceViewModel objBalance = new BalanceViewModel();
 
             var lstBalance = objPropuesta.CargaDocumentos(Convert.ToInt32(pCodCliente), Convert.ToInt32(pNroPedido));
 
+            var lstVersionFacturada = objPropuesta.VersionFacturada(Convert.ToInt32(pNroPedido));
+
             objBalance.lstBalance = lstBalance.ToList();
 
             objPropuestaViewModel.lstBalance = lstBalance.ToList();
 
 
-            if (objPropuestaViewModel.lstBalance !=null) {
+            if (lstVersionFacturada.FirstOrDefault().NroVersion != 0) {
 
                 return View(objPropuestaViewModel);
 
@@ -404,17 +410,89 @@ namespace PeruTourism.Controllers
                 objError.MsjError = mensajeError;
                 return View("~/Views/Shared/MyBookTripMessage.cshtml");
 
-
-
             }
-
-            
-
-
-
 
         }
 
+        [HttpPost]
+        public ActionResult OpenBookingStatusModal(int pNroPedido, int pNroPropuesta, int pNroVersion)
+        {
+            try
+            {
+                
+                var lstPasajero = objPropuesta.CargaPasajero(pNroPedido);
+                var lstReservaTerrestre = objPropuesta.CargaTerrestre(pNroPedido, pNroPropuesta, pNroVersion);
+                var lstReservaAereo = objPropuesta.CargaAereo(pNroPedido, pNroPropuesta, pNroVersion);
+                var lstReservaHotel = objPropuesta.CargaHotel(pNroPedido, pNroPropuesta, pNroVersion);
+
+                //objPropuestaViewModel.lstBalance = lstBalance.ToList();
+
+                objPropuestaViewModel.lstPasajero = lstPasajero.ToList();
+                objPropuestaViewModel.lstReservaTerrestre = lstReservaTerrestre.ToList();
+                objPropuestaViewModel.lstReservaAerero = lstReservaAereo.ToList();
+                objPropuestaViewModel.lstReservaHotel = lstReservaHotel.ToList();
+                
+
+                return PartialView("~/Views/Home/_ModalBookingStatus.cshtml", objPropuestaViewModel);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return View("~/Views/Shared/Error.cshtml");
+                //return Redirect("paquetes");
+            }
+        }
+
+
+
+        [HttpPost]
+        public ActionResult OpenInfoBeforeTripModal(int pNroPedido, int pNroPropuesta, int pNroVersion)
+        {
+            try
+            {
+
+
+                var lstHotelInfo = objPropuesta.CargaHotelInfoAntes(pNroPedido, pNroPropuesta, pNroVersion);
+                var lstStaffInfo = objPropuesta.CargaStaffInfoAntes(pNroPedido,'I');
+                var lstVideoInfo = objPropuesta.CargaVideoInfoAntes(pNroPedido, 'I');
+                var lstClimaInfo = objPropuesta.CargaClimaInfoAntes(pNroPedido, pNroPropuesta, pNroVersion);
+                string nomInfo = objPropuesta.CargaDocReqInfoAntes(pNroPedido, 'I');
+
+
+
+                //var lstPasajero = objPropuesta.CargaPasajero(pNroPedido);
+                //var lstReservaTerrestre = objPropuesta.CargaTerrestre(pNroPedido, pNroPropuesta, pNroVersion);
+                //var lstReservaAereo = objPropuesta.CargaAereo(pNroPedido, pNroPropuesta, pNroVersion);
+                //var lstReservaHotel = objPropuesta.CargaHotel(pNroPedido, pNroPropuesta, pNroVersion);
+
+                //objPropuestaViewModel.lstBalance = lstBalance.ToList();
+
+                objPropuestaViewModel.lstReservaHotel = lstHotelInfo.ToList();
+                objPropuestaViewModel.lstStaff = lstStaffInfo.ToList();
+
+                objPropuestaViewModel.lstVideo = lstVideoInfo.ToList();
+                objPropuestaViewModel.lstClima = lstClimaInfo.ToList();
+
+                objPropuestaViewModel.info = nomInfo;
+
+                //objPropuestaViewModel.lstReservaTerrestre = lstReservaTerrestre.ToList();
+                //objPropuestaViewModel.lstReservaAerero = lstReservaAereo.ToList();
+                //objPropuestaViewModel.lstReservaHotel = lstReservaHotel.ToList();
+
+
+                return PartialView("~/Views/Home/_ModalInfoBeforeTrip.cshtml", objPropuestaViewModel);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return View("~/Views/Shared/Error.cshtml");
+                //return Redirect("paquetes");
+            }
+        }
 
 
 

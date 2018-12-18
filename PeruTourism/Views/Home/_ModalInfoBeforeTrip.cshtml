@@ -1,0 +1,142 @@
+﻿
+@model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@{
+    ViewBag.Title = "Info Before your trip";
+
+
+
+
+    var lstReservaHotel = Model.lstReservaHotel;
+    var lstVideoGG = Model.lstVideo;
+    var lstClimaGG = Model.lstClima;
+    var lstStaffGG = Model.lstStaff;
+    string info = Model.info;
+
+
+
+}
+
+@if (lstReservaHotel != null || lstVideoGG != null || lstClimaGG != null || lstStaffGG != null || info != null)
+{
+
+    <div class="modal fade" id="detalleInforBeforeTrip-1" tabindex="-1" role="dialog" style="display: none;">
+        <div class="modal-dialog modal-DetalleHotel" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <strong>Booking Status</strong>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <div class="prop-title">SELECTED HOTELS</div>
+                        <table class="table table-bordered table-responsive table-hover table-pt">
+                            <thead>
+                                <tr>
+                                    <th>City</th>
+                                    <th>Hotel</th>
+                                    <th>Telephone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstReservaHotel)
+                                {
+
+                                <tr>
+                                    @*<td>@d.</td>*@
+                                    <td>@d.NomCiudad</td>
+                                    <td>@d.NombreHotel</td>
+                                    <td>@d.Telefono</td>
+
+                                </tr>
+                                }
+                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                            </tbody>
+
+                        </table>
+
+
+                        <div class="prop-title">PERUTOURIS'M 24 HOURS TELEPHONE NUMBER</div>
+                        <table class="table table-bordered table-responsive table-hover table-pt">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Responsability</th>
+                                    <th>Telephone</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstStaffGG)
+                                {
+
+
+                                    //totalAbono = totalAbono + d.Abono;
+                                    //totalCargo = totalCargo + d.Cargo;
+
+                                    <tr>
+                                    
+                                        <td>@d.NomVendedor</td>
+                                        <td>@d.Cargo</td>
+                                        <td>@d.TelefonoEmergencia</td>
+                                    </tr>
+                                }
+                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                            </tbody>
+
+                        </table>
+
+
+                        <div>@lstVideoGG.FirstOrDefault().VideoUrl</div>
+
+
+                        <div class="prop-title">WEATHER</div>
+                        <table class="table table-bordered table-responsive table-hover table-pt">
+                            <thead>
+                                <tr>
+                                    @*<th>PASSENGERS </th>*@
+                                    <th>City</th>
+                                    <th>Mont-Year</th>
+                                    <th>Temperature low</th>
+                                    <th>Temperature high</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstClimaGG)
+                                {
+
+
+                                    //totalAbono = totalAbono + d.Abono;
+                                    //totalCargo = totalCargo + d.Cargo;
+
+                                <tr>
+                                    @*<td>@d.</td>*@
+                                    <td>@d.NomCiudad</td>
+                                    <td>@d.MesAño</td>
+                                    <td>@d.TempMinima</td>
+                                    <td>@d.TempMaxima</td>
+                                    
+         
+                                </tr>
+                                }
+                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                            </tbody>
+
+                        </table>
+
+                        <div class="prop-title">REQUIREMENTS TO VISIT PERU</div>
+                        <div>@info</div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}

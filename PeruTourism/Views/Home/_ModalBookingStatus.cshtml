@@ -1,0 +1,210 @@
+﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@{
+    ViewBag.Title = "MostrarSaldo";
+
+   
+
+    var lstPasajeroGG = Model.lstPasajero;
+    var lstReservaTerrestreGG = Model.lstReservaTerrestre;
+    var lstReservaAereoGG = Model.lstReservaAerero;
+    var lstReservaHotel = Model.lstReservaHotel;
+
+
+    decimal totalCargo = 0;
+    decimal totalAbono = 0;
+
+}
+
+@if (lstPasajeroGG != null || lstReservaTerrestreGG != null || lstReservaAereoGG != null || lstReservaHotel != null)
+{
+
+    <div class="modal fade" id="detalleBookingStatus-1" tabindex="-1" role="dialog" style="display: none;">
+        <div class="modal-dialog modal-DetalleHotel" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <strong>Booking Status</strong>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <div class="prop-title">PASSENGERS</div>
+                        <table class="table table-bordered table-responsive table-hover table-pt">
+                            <thead>
+                                <tr>
+                                    @*<th>PASSENGERS </th>*@
+                                    <th>First Name</th>
+                                    <th>Last Name </th>
+                                    @*<th>Date of birth</th>
+                    <th>Passport</th>
+                    <th>Country</th>
+                    <th>Passenger type</th>*@
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstPasajeroGG)
+                                {
+
+
+                                    //totalAbono = totalAbono + d.Abono;
+                                    //totalCargo = totalCargo + d.Cargo;
+
+                                    <tr>
+                                        @*<td>@d.</td>*@
+                                        <td>@d.NomPasajero</td>
+                                        <td>@d.ApePasajero</td>
+                                        @*<td>@d.FchNacimiento</td>
+                        <td>@d.Pasaporte</td>
+                        <td></td>
+                        <td></td>*@
+                                    </tr>
+                                }
+                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                            </tbody>
+
+                        </table>
+
+
+                        <div class="prop-title">TRANSPORT TICKET</div>
+                        <table class="table table-bordered table-responsive table-hover table-pt">
+                            <thead>
+                                <tr>
+                                    @*<th>PASSENGERS </th>*@
+                                    <th>Date Flight</th>
+                                    <th>Route</th>
+                                    @*<th>Flight</th>
+                    <th>Airline</th>
+                    <th>Flight No.</th>
+                    <th>Departure</th>
+                    <th>Reservation No</th>
+                    <th>Tickets</th>*@
+                                    <th>Status</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstReservaTerrestreGG)
+                                {
+
+
+                                    //totalAbono = totalAbono + d.Abono;
+                                    //totalCargo = totalCargo + d.Cargo;
+
+                                    <tr>
+                                        @*<td>@d.</td>*@
+                                        <td>@d.FchVuelo</td>
+                                        <td>@d.RutaVuelo</td>
+                                        @*<td>@d.RutaVuelo</td>
+                        <td>@d.AereoLinea</td>
+                        <td>@d.CodReserva</td>
+                        <td>@d.HoraSalida</td>
+                        <td>@d.HoraLlegada</td>*@
+                                        <td>@d.CodStsReserva</td>
+                                    </tr>
+                                }
+                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                            </tbody>
+
+                        </table>
+
+
+                        <div class="prop-title">AIR TICKET</div>
+                        <table class="table table-bordered table-responsive table-hover table-pt">
+                            <thead>
+                                <tr>
+                                    @*<th>PASSENGERS </th>*@
+                                    <th>Date Flight</th>
+                                    <th>Route</th>
+                                    @*<th>Flight</th>
+                    <th>Airline</th>
+                    <th>Flight No.</th>
+                    <th>Departure</th>
+                    <th>Reservation No</th>
+                    <th>Tickets</th>*@
+                                    <th>Status</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstReservaAereoGG)
+                                {
+
+
+                                    //totalAbono = totalAbono + d.Abono;
+                                    //totalCargo = totalCargo + d.Cargo;
+
+                                    <tr>
+                                        @*<td>@d.</td>*@
+                                        <td>@d.FchVuelo</td>
+                                        <td>@d.RutaVuelo</td>
+                                        @*<td>@d.RutaVuelo</td>
+                        <td>@d.AereoLinea</td>
+                        <td>@d.CodReserva</td>
+                        <td>@d.HoraSalida</td>
+                        <td>@d.HoraLlegada</td>*@
+                                        <td>@d.CodStsReserva</td>
+                                    </tr>
+                                }
+                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                            </tbody>
+
+                        </table>
+
+                        <div class="prop-title">HOTEL</div>
+                        <table class="table table-bordered table-responsive table-hover table-pt">
+                            <thead>
+                                <tr>
+                                    @*<th>PASSENGERS </th>*@
+                                    <th>Country</th>
+                                    <th>Hotel</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Alternative</th>
+                                    <th>Updated</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstReservaHotel)
+                                {
+
+
+                                    //totalAbono = totalAbono + d.Abono;
+                                    //totalCargo = totalCargo + d.Cargo;
+
+                                    <tr>
+                                        @*<td>@d.</td>*@
+                                        <td></td>
+                                        <td>@d.NomCiudad</td>
+                                        <td>@d.NombreHotel</td>
+                                        <td>@d.Telefono</td>
+                                        <td>@d.StsReserva</td>
+                                        <td>@d.HotelAlternativo</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                                @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
+                            </tbody>
+
+
+
+                        </table>
+
+                    </div>
+               
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}

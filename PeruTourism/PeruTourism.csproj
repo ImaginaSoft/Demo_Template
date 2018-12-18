@@ -158,16 +158,23 @@
     <Compile Include="Models\PeruTourism\Balance.cs" />
     <Compile Include="Models\PeruTourism\BalanceViewModel.cs" />
     <Compile Include="Models\PeruTourism\Cliente.cs" />
+    <Compile Include="Models\PeruTourism\Clima.cs" />
     <Compile Include="Models\PeruTourism\EnvioMensaje.cs" />
     <Compile Include="Models\PeruTourism\Error.cs" />
     <Compile Include="Models\PeruTourism\Galeria.cs" />
+    <Compile Include="Models\PeruTourism\Pasajero.cs" />
     <Compile Include="Models\PeruTourism\Pedido.cs" />
     <Compile Include="Models\PeruTourism\Programa.cs" />
     <Compile Include="Models\PeruTourism\Propuesta.cs" />
     <Compile Include="Models\PeruTourism\PropuestaPrecio.cs" />
     <Compile Include="Models\PeruTourism\PropuestaViewModel.cs" />
+    <Compile Include="Models\PeruTourism\ReservaAereo.cs" />
+    <Compile Include="Models\PeruTourism\ReservaHotel.cs" />
     <Compile Include="Models\PeruTourism\Servicio.cs" />
+    <Compile Include="Models\PeruTourism\Staff.cs" />
     <Compile Include="Models\PeruTourism\UltimaPublicacion.cs" />
+    <Compile Include="Models\PeruTourism\VersionFacturada.cs" />
+    <Compile Include="Models\PeruTourism\Video.cs" />
     <Compile Include="Models\Visa\PedidoVisa.cs" />
     <Compile Include="Models\Visa\PedidoVisaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -289,6 +296,8 @@
     <Content Include="Views\Home\MyBookedTrip.cshtml" />
     <Content Include="Views\Shared\SessionExpired.cshtml" />
     <Content Include="Views\Shared\MyBookTripMessage.cshtml" />
+    <Content Include="Views\Home\_ModalBookingStatus.cshtml" />
+    <Content Include="Views\Home\_ModalInfoBeforeTrip.cshtml" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

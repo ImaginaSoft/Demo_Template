@@ -7,6 +7,8 @@
     var lstProgramas = Model.lstPrograma;
 
     string nroPedido = lstProgramas.FirstOrDefault().KeyReg.Substring(0, 6);
+    string nroPropuesta = lstProgramas.FirstOrDefault().KeyReg.Substring(8, 1);
+    string nroVersion = lstProgramas.FirstOrDefault().KeyReg.Substring(10, 1);
     //var NombreCliente = (string)Session["NomCliente"];
     var NombreCliente = ViewBag.NomCliente;
     var CodCliente = ViewBag.CodCliente;
@@ -18,7 +20,7 @@
 
 {
 
-      <div class="container-fluid">
+    <div class="container-fluid">
         <section class="slider" id="scene">
             <div class="container" data-depth="0.2">
                 <span class="description">Here is where the trip of your lifetime starts...</span>
@@ -30,9 +32,9 @@
 
     <div class="container">
         @*<section class="welcome">
-            <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
-            <p> Welcome to the customized travel website for your trip </p>
-        </section>*@
+                <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
+                <p> Welcome to the customized travel website for your trip </p>
+            </section>*@
         <section class="options">
             <div class="op-group">
                 <div class="op op-propuesta">
@@ -45,7 +47,7 @@
                     </a>
                 </div>
                 <div class="op op-info">
-                    <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido})">
+                    <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido,pNroPropuesta = nroPropuesta,pNroVersion = nroVersion})">
                         <div class="icon icon-info"></div>
                         <div class="description">My Booked trip</div>
                     </a>
@@ -60,14 +62,14 @@
         </section>
     </div>
     @*<div class="container-fluid">
-        <section class="slider" id="scene">
-            <div class="container" data-depth="0.2">
-                <span class="description">Go Beyond Ordinary Travel</span>
-                <img src="~/Content/images/slider-group.png" class="img-group">
-            </div>
-            <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-        </section>
-    </div>*@
+            <section class="slider" id="scene">
+                <div class="container" data-depth="0.2">
+                    <span class="description">Go Beyond Ordinary Travel</span>
+                    <img src="~/Content/images/slider-group.png" class="img-group">
+                </div>
+                <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+            </section>
+        </div>*@
 
 
 }
@@ -85,9 +87,9 @@ else
 
     <div class="container">
         @*<section class="welcome">
-            <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
-            <p>Bienvenido a la página personalizada para tu viaje</p>
-        </section>*@
+                <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
+                <p>Bienvenido a la página personalizada para tu viaje</p>
+            </section>*@
         <section class="options">
             <div class="op-group">
                 <div class="op op-propuesta">

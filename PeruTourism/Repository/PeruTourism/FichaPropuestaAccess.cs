@@ -469,6 +469,687 @@ namespace PeruTourism.Repository.PeruTourism
         }
 
 
+        //*****OPCION ESTADO DE TU RESERVA******//
+
+        public IEnumerable<Pasajero> CargaPasajero(int pNroPedido)
+        {
+
+
+            try
+            {
+                List<Pasajero> lstPasajero = new List<Pasajero>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_Pasajeros_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        Pasajero fpasajero = new Pasajero
+                        {
+
+                            NomPasajero = rdr["NomPasajero"].ToString(),
+                            ApePasajero = rdr["ApePasajero"].ToString(),
+                            FchNacimiento = Convert.ToDateTime(rdr["FchNacimiento"].ToString()),
+                            Pasaporte = rdr["Pasaporte"].ToString()
+
+
+                        };
+
+                        lstPasajero.Add(item: fpasajero);
+                    }
+
+                    con.Close();
+                }
+
+                return lstPasajero;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
+
+        public IEnumerable<ReservaAereo> CargaTerrestre(int pNroPedido, int pNroPropuesta, int pNroVersion)
+        {
+
+
+            try
+            {
+                List<ReservaAereo> lstReservaTerrestre = new List<ReservaAereo>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_ReservaAereo_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+                    cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
+                    cmd.Parameters.Add("@CodTipoServicio", SqlDbType.Int).Value = 3;
+
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        ReservaAereo fterrestre = new ReservaAereo
+                        {
+
+                            FchVuelo = Convert.ToDateTime(rdr["FchVuelo"].ToString()),
+                            AereoLinea = rdr["Aerolinea"].ToString().Trim(),
+                            RutaVuelo = rdr["RutaVuelo"].ToString().Trim(),
+                            NroVuelo = rdr["NroVuelo"].ToString().Trim(),
+                            HoraSalida = rdr["HoraSalida"].ToString().Trim(),
+                            HoraLlegada = rdr["HoraLlegada"].ToString().Trim(),
+                            CodReserva = rdr["CodReserva"].ToString().Trim(),
+                            DesCantidad = rdr["DesCantidad"].ToString().Trim(),
+                            CodStsReserva = rdr["CodStsReserva"].ToString().Trim(),
+                            NroDia = Convert.ToInt32(rdr["NroDia"].ToString()),
+                            NroOrden = Convert.ToInt32(rdr["NroOrden"].ToString())
+
+
+
+                        };
+
+                        lstReservaTerrestre.Add(item: fterrestre);
+                    }
+
+                    con.Close();
+                }
+
+                return lstReservaTerrestre;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
+        public IEnumerable<ReservaAereo> CargaAereo(int pNroPedido, int pNroPropuesta, int pNroVersion)
+        {
+
+
+            try
+            {
+                List<ReservaAereo> lstReservaAereo = new List<ReservaAereo>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_ReservaAereo_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+                    cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
+                    cmd.Parameters.Add("@CodTipoServicio", SqlDbType.Int).Value = 1;
+
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        ReservaAereo faereo = new ReservaAereo
+                        {
+
+                            FchVuelo = Convert.ToDateTime(rdr["FchVuelo"].ToString()),
+                            AereoLinea = rdr["Aerolinea"].ToString(),
+                            RutaVuelo = rdr["RutaVuelo"].ToString(),
+                            NroVuelo = rdr["NroVuelo"].ToString(),
+                            HoraSalida = rdr["HoraSalida"].ToString(),
+                            HoraLlegada = rdr["HoraLlegada"].ToString(),
+                            CodReserva = rdr["CodReserva"].ToString(),
+                            DesCantidad = rdr["DesCantidad"].ToString(),
+                            CodStsReserva = rdr["CodStsReserva"].ToString(),
+                            NroDia = Convert.ToInt32(rdr["NroDia"].ToString()),
+                            NroOrden = Convert.ToInt32(rdr["NroOrden"].ToString())
+
+
+
+                        };
+
+                        lstReservaAereo.Add(item: faereo);
+                    }
+
+                    con.Close();
+                }
+
+                return lstReservaAereo;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
+
+        public IEnumerable<ReservaHotel> CargaHotel(int pNroPedido, int pNroPropuesta, int pNroVersion)
+        {
+
+
+            try
+            {
+                List<ReservaHotel> lstReservaHotel = new List<ReservaHotel>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_ReservaHotelFact_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+                    cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
+                   
+
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        ReservaHotel fhotel = new ReservaHotel
+                        {
+
+                            NomCiudad = rdr["NomCiudad"].ToString(),
+                            NombreHotel = rdr["Hotel"].ToString(),
+                            Telefono = rdr["Telefono1"].ToString(),
+                            StsReserva = rdr["StsReserva"].ToString(),
+                            HotelAlternativo = rdr["HotelAlternativo"].ToString(),
+                            
+
+
+
+                        };
+
+                        lstReservaHotel.Add(item: fhotel);
+                    }
+
+                    con.Close();
+                }
+
+                return lstReservaHotel;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
+
+
+
+        public IEnumerable<VersionFacturada> VersionFacturada(int pNroPedido)
+        {
+            string lblMsg = string.Empty;
+            try
+            {
+                List<VersionFacturada> lstVersionFacturada = new List<VersionFacturada>();
+                int iNUMORDEN = 0;
+                string sEticket = string.Empty;
+                string sURL_FORMULARIO_VISA = string.Empty;
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    cmd = new SqlCommand("P4I_VersionFact_S", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter pa = new SqlParameter();
+
+                    pa = cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int);
+                    pa.Direction = ParameterDirection.Output;
+                    pa.Value = string.Empty;
+
+                    pa = cmd.Parameters.Add("@NroVersion", SqlDbType.Int);
+
+                    pa.Direction = ParameterDirection.Output;
+                    pa.Value = 0;
+
+                     
+                    pa = cmd.Parameters.Add("@FlagIdioma", SqlDbType.Char, 1);
+
+                    pa.Direction = ParameterDirection.Output;
+                    pa.Value = 0;
+
+
+                    pa = cmd.Parameters.Add("@CantDias", SqlDbType.Int);
+
+                    pa.Direction = ParameterDirection.Output;
+                    pa.Value = 0;
+
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    //cmd.Parameters.Add("@MonOrdenPago", SqlDbType.Money).Value = pMonto;
+                    //cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = nroPedido;
+                    //cmd.Parameters.Add("@CodUsuario", SqlDbType.VarChar, 15).Value = modulo;
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    //lblMsg = cmd.Parameters["@MsgTrans"].Value.ToString();
+                    //iNUMORDEN = Convert.ToInt32(cmd.Parameters["@NroOrdenPagoOut"].Value);
+
+                    //SqlDataReader rdr = cmd.ExecuteReader()
+
+                    VersionFacturada fversionfacturada = new VersionFacturada
+                    {
+
+                        NroPropuesta= Convert.ToInt32(cmd.Parameters["@NroPropuesta"].Value),
+                        NroVersion = Convert.ToInt32(cmd.Parameters["@NroVersion"].Value),
+                        FlagIdioma =Convert.ToChar( cmd.Parameters["@FlagIdioma"].Value),
+                        CantDias = Convert.ToInt32(cmd.Parameters["@CantDias"].Value)
+
+                    };
+
+                    lstVersionFacturada.Add(item: fversionfacturada);
+
+
+                    con.Close();
+
+              
+
+                }
+                return lstVersionFacturada;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+         
+        }
+
+        //*****OPCION ANTES DE TU VIAJE******//
+
+        public IEnumerable<ReservaHotel> CargaHotelInfoAntes(int pNroPedido, int pNroPropuesta, int pNroVersion)
+        {
+
+            try
+            {
+                List<ReservaHotel> lstReservaHotel = new List<ReservaHotel>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_VersionHotel_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+                    cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
+
+
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        ReservaHotel fhotel = new ReservaHotel
+                        {
+
+                            NomCiudad = rdr["NomCiudad"].ToString(),
+                            NombreHotel = rdr["Titulo"].ToString(),
+                            Telefono = rdr["Telefono1"].ToString(),
+                            NomPagina = rdr["NomPagina"].ToString()
+
+
+
+
+                        };
+
+                        lstReservaHotel.Add(item: fhotel);
+                    }
+
+                    con.Close();
+                }
+
+                return lstReservaHotel;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+        public IEnumerable<Staff> CargaStaffInfoAntes(int pNroPedido, char pFlagIdioma)
+        {
+
+
+            try
+            {
+                List<Staff> lstStaff = new List<Staff>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_InformacionStaff_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@FlagIdioma", SqlDbType.Char).Value = pFlagIdioma;
+                    //cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
+
+
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        Staff fstaff = new Staff
+                        {
+
+
+                            NomVendedor = rdr["NomVendedor"].ToString(),
+                            Cargo = rdr["Cargo"].ToString(),
+                            TelefonoEmergencia = rdr["TfEmergencia"].ToString()
+
+
+                        };
+
+                        lstStaff.Add(item: fstaff);
+                    }
+
+                    con.Close();
+                }
+
+                return lstStaff;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
+        public IEnumerable<Video> CargaVideoInfoAntes(int pNroPedido, char pFlagIdioma)
+        {
+
+
+            try
+            {
+                List<Video> lstVideo = new List<Video>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_InformacionVideo_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@FlagIdioma", SqlDbType.Char).Value = pFlagIdioma;
+                    //cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
+
+
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        Video fvideo = new Video
+                        {
+
+
+                            VideoUrl = rdr["VideoURL"].ToString(),
+                            VideoTitulo = rdr["VideoTitulo"].ToString()
+
+
+                        };
+
+                        lstVideo.Add(item: fvideo);
+                    }
+
+                    con.Close();
+                }
+
+                return lstVideo;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
+        public IEnumerable<Clima> CargaClimaInfoAntes(int pNroPedido, int pNroPropuesta,int pNroVersion)
+        {
+
+
+            try
+            {
+                List<Clima> lstClima = new List<Clima>();
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_VersionInformacionClima_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+                    cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
+
+
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        Clima fclima = new Clima
+                        {
+
+                            NomCiudad = rdr["NomCiudad"].ToString(),
+                            MesAño = rdr["MesAno"].ToString(),
+                            TempMinima = rdr["TempMinima"].ToString(),
+                            TempMaxima = rdr["TempMaxima"].ToString()
+                            
+
+
+                        };
+
+                        lstClima.Add(item: fclima);
+                    }
+
+                    con.Close();
+                }
+
+                return lstClima;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
+        public string CargaDocReqInfoAntes(int pNroPedido, char pFlagIdioma)
+        {
+
+
+            try
+            {
+                List<Clima> lstClima = new List<Clima>();
+
+                string nomInfo = string.Empty;
+
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("P4I_InformacionDocReq_S", con);
+                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@FlagIdioma", SqlDbType.Char,1).Value = pFlagIdioma;
+                    //cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
+
+
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+
+                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
+                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        nomInfo = rdr["NomInf"].ToString();
+                    }
+                    //while (rdr.Read())
+                    //{
+
+                    //    Clima fclima = new Clima
+                    //    {
+
+                    //        NomCiudad = rdr["NomCiudad"].ToString(),
+                    //        MesAño = rdr["MesAno"].ToString(),
+                    //        TempMinima = rdr["TempMinima"].ToString(),
+                    //        TempMaxima = rdr["TempMaxima"].ToString()
+
+
+
+                    //    };
+
+                    //    lstClima.Add(item: fclima);
+                    //}
+
+                    con.Close();
+                }
+
+                return nomInfo;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
 
 
     }
