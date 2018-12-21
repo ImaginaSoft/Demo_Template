@@ -14,7 +14,6 @@
 @if (lstPasajeroGG != null || lstReservaTerrestreGG != null || lstReservaAereoGG != null || lstReservaHotel != null)
 {
 
-
     if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
     {
         <div class="modal fade" id="detalleBookingStatus-1" tabindex="-1" role="dialog" style="display: none;">
@@ -25,18 +24,15 @@
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
+
                         <div class="table-responsive">
                             <div class="prop-title">PASSENGERS</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
                                     <tr>
-                                        @*<th>PASSENGERS </th>*@
+
                                         <th>First Name</th>
                                         <th>Last Name </th>
-                                        @*<th>Date of birth</th>
-                                            <th>Passport</th>
-                                            <th>Country</th>
-                                            <th>Passenger type</th>*@
 
                                     </tr>
                                 </thead>
@@ -45,39 +41,56 @@
                                     {
 
 
-                                        //totalAbono = totalAbono + d.Abono;
-                                        //totalCargo = totalCargo + d.Cargo;
 
                                         <tr>
-                                            @*<td>@d.</td>*@
+
                                             <td>@d.NomPasajero</td>
                                             <td>@d.ApePasajero</td>
-                                            @*<td>@d.FchNacimiento</td>
-                                                <td>@d.Pasaporte</td>
-                                                <td></td>
-                                                <td></td>*@
+
                                         </tr>
                                     }
-                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
 
                                 </tbody>
 
                             </table>
+                        </div>
 
+                        <div class="table-responsive">
+                            <div class="prop-title">LAND SERVICES</div>
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Status</th>
+                                        <th>Comments</th>
 
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>All land services</td>
+                                        <td>ok</td>
+                                        <td></td>
+
+                                    </tr>
+                        
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                        <div class="table-responsive">
                             <div class="prop-title">TRANSPORT TICKET</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
                                     <tr>
-                                        @*<th>PASSENGERS </th>*@
+
                                         <th>Date Flight</th>
                                         <th>Route</th>
-                                        @*<th>Flight</th>
-                                            <th>Airline</th>
-                                            <th>Flight No.</th>
-                                            <th>Departure</th>
-                                            <th>Reservation No</th>
-                                            <th>Tickets</th>*@
+
                                         <th>Status</th>
 
                                     </tr>
@@ -87,28 +100,21 @@
                                     {
 
 
-                                        //totalAbono = totalAbono + d.Abono;
-                                        //totalCargo = totalCargo + d.Cargo;
-
                                         <tr>
-                                            @*<td>@d.</td>*@
+
                                             <td>@d.FchVuelo</td>
                                             <td>@d.RutaVuelo</td>
-                                            @*<td>@d.RutaVuelo</td>
-                                                <td>@d.AereoLinea</td>
-                                                <td>@d.CodReserva</td>
-                                                <td>@d.HoraSalida</td>
-                                                <td>@d.HoraLlegada</td>*@
+
                                             <td>@d.CodStsReserva</td>
                                         </tr>
                                     }
-                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
 
                                 </tbody>
 
                             </table>
-
-
+                        </div>
+                        <div class="table-responsive">
                             <div class="prop-title">AIR TICKET</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
@@ -117,11 +123,11 @@
                                         <th>Date Flight</th>
                                         <th>Route</th>
                                         @*<th>Flight</th>
-                                            <th>Airline</th>
-                                            <th>Flight No.</th>
-                                            <th>Departure</th>
-                                            <th>Reservation No</th>
-                                            <th>Tickets</th>*@
+                        <th>Airline</th>
+                        <th>Flight No.</th>
+                        <th>Departure</th>
+                        <th>Reservation No</th>
+                        <th>Tickets</th>*@
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -134,10 +140,10 @@
                                             <td>@d.FchVuelo</td>
                                             <td>@d.RutaVuelo</td>
                                             @*<td>@d.RutaVuelo</td>
-                                                <td>@d.AereoLinea</td>
-                                                <td>@d.CodReserva</td>
-                                                <td>@d.HoraSalida</td>
-                                                <td>@d.HoraLlegada</td>*@
+                            <td>@d.AereoLinea</td>
+                            <td>@d.CodReserva</td>
+                            <td>@d.HoraSalida</td>
+                            <td>@d.HoraLlegada</td>*@
                                             <td>@d.CodStsReserva</td>
                                         </tr>
                                     }
@@ -146,7 +152,8 @@
                                 </tbody>
 
                             </table>
-
+                        </div>
+                        <div class="table-responsive">
                             <div class="prop-title">HOTEL</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
@@ -205,18 +212,16 @@
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
+
                         <div class="table-responsive">
                             <div class="prop-title">PASSENGERS</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
                                     <tr>
-                                        @*<th>PASSENGERS </th>*@
+
                                         <th>First Name</th>
                                         <th>Last Name </th>
-                                        @*<th>Date of birth</th>
-                                            <th>Passport</th>
-                                            <th>Country</th>
-                                            <th>Passenger type</th>*@
+
 
                                     </tr>
                                 </thead>
@@ -225,39 +230,54 @@
                                     {
 
 
-                                        //totalAbono = totalAbono + d.Abono;
-                                        //totalCargo = totalCargo + d.Cargo;
 
                                         <tr>
-                                            @*<td>@d.</td>*@
+
                                             <td>@d.NomPasajero</td>
                                             <td>@d.ApePasajero</td>
-                                            @*<td>@d.FchNacimiento</td>
-                                                <td>@d.Pasaporte</td>
-                                                <td></td>
-                                                <td></td>*@
+
                                         </tr>
                                     }
-                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
 
                                 </tbody>
 
                             </table>
+                        </div>
 
+                        <div class="table-responsive">
+                            <div class="prop-title">LAND SERVICES</div>
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Status</th>
+                                        <th>Comments</th>
 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                            
+                                        <tr>
+                                            <td>All land services</td>
+                                            <td>ok</td>
+                                            <td></td>
+
+                                        </tr>
+                                 
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div class="table-responsive">
                             <div class="prop-title">TRANSPORT TICKET</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
                                     <tr>
-                                        @*<th>PASSENGERS </th>*@
+
                                         <th>Date Flight</th>
                                         <th>Route</th>
-                                        @*<th>Flight</th>
-                                            <th>Airline</th>
-                                            <th>Flight No.</th>
-                                            <th>Departure</th>
-                                            <th>Reservation No</th>
-                                            <th>Tickets</th>*@
+
                                         <th>Status</th>
 
                                     </tr>
@@ -267,41 +287,30 @@
                                     {
 
 
-                                        //totalAbono = totalAbono + d.Abono;
-                                        //totalCargo = totalCargo + d.Cargo;
 
                                         <tr>
-                                            @*<td>@d.</td>*@
+
                                             <td>@d.FchVuelo</td>
                                             <td>@d.RutaVuelo</td>
-                                            @*<td>@d.RutaVuelo</td>
-                                                <td>@d.AereoLinea</td>
-                                                <td>@d.CodReserva</td>
-                                                <td>@d.HoraSalida</td>
-                                                <td>@d.HoraLlegada</td>*@
+
                                             <td>@d.CodStsReserva</td>
                                         </tr>
                                     }
-                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
 
                                 </tbody>
 
                             </table>
-
-
+                        </div>
+                        <div class="table-responsive">
                             <div class="prop-title">AIR TICKET</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
                                     <tr>
-                                        @*<th>PASSENGERS </th>*@
+
                                         <th>Date Flight</th>
                                         <th>Route</th>
-                                        @*<th>Flight</th>
-                                            <th>Airline</th>
-                                            <th>Flight No.</th>
-                                            <th>Departure</th>
-                                            <th>Reservation No</th>
-                                            <th>Tickets</th>*@
+
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -310,14 +319,10 @@
                                     {
 
                                         <tr>
-                                            @*<td>@d.</td>*@
+
                                             <td>@d.FchVuelo</td>
                                             <td>@d.RutaVuelo</td>
-                                            @*<td>@d.RutaVuelo</td>
-                                                <td>@d.AereoLinea</td>
-                                                <td>@d.CodReserva</td>
-                                                <td>@d.HoraSalida</td>
-                                                <td>@d.HoraLlegada</td>*@
+
                                             <td>@d.CodStsReserva</td>
                                         </tr>
                                     }
@@ -326,12 +331,13 @@
                                 </tbody>
 
                             </table>
-
+                        </div>
+                        <div class="table-responsive">
                             <div class="prop-title">HOTEL</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
                                     <tr>
-                                        @*<th>PASSENGERS </th>*@
+
                                         <th>Country</th>
                                         <th>Hotel</th>
                                         <th>Phone</th>
@@ -345,12 +351,8 @@
                                     @foreach (var d in lstReservaHotel)
                                     {
 
-
-                                        //totalAbono = totalAbono + d.Abono;
-                                        //totalCargo = totalCargo + d.Cargo;
-
                                         <tr>
-                                            @*<td>@d.</td>*@
+
                                             <td></td>
                                             <td>@d.NomCiudad</td>
                                             <td>@d.NombreHotel</td>
@@ -360,7 +362,7 @@
                                             <td></td>
                                         </tr>
                                     }
-                                    @*@{decimal totalSaldo = totalCargo - totalAbono; }*@
+
 
                                 </tbody>
 
@@ -375,14 +377,5 @@
             </div>
         </div>
     }
-
-
-
-
-
-
-
-
-
 
 }

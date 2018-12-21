@@ -145,10 +145,10 @@ function openBalanceModal(pCliente, pNroPedido) {
 
 
 function openBookingStatusModal(pNroPedido, pNroPropuesta, pNroVersion, pFlagIdioma) {
-    debugger
+    
 
     var dataToSend = 'pNroPedido=' + pNroPedido + '&pNroPropuesta=' + pNroPropuesta + '&pNroVersion=' + pNroVersion + '&pFlagIdioma=' + pFlagIdioma;
-    debugger
+    
     $.ajax({
         type: "POST",
         url: "/perutourism-new/Home/OpenBookingStatusModal",
@@ -156,13 +156,13 @@ function openBookingStatusModal(pNroPedido, pNroPropuesta, pNroVersion, pFlagIdi
         //contentType: "application/json; charset=utf-8",
         //dataType: "json",
         success: function (result) {
-            debugger
+            
             $("#BookingStatusContainer").html(result);
             //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
             //alert("Hello: ");
         },
         failure: function (response) {
-            debugger
+            
             alert(response.responseText);
         },
         error: function (jqXHR, textStatus, errorThrown) {

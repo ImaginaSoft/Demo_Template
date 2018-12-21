@@ -474,7 +474,6 @@ namespace PeruTourism.Repository.PeruTourism
         public IEnumerable<Pasajero> CargaPasajero(int pNroPedido)
         {
 
-
             try
             {
                 List<Pasajero> lstPasajero = new List<Pasajero>();
@@ -483,16 +482,10 @@ namespace PeruTourism.Repository.PeruTourism
                 {
 
                     SqlCommand cmd = new SqlCommand("P4I_Pasajeros_S", con);
-                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
-
+              
                     cmd.CommandType = CommandType.StoredProcedure;
-                    // cmd.CommandType = CommandType.Text;
 
                     cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
-                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
-
-                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
-                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
 
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -529,11 +522,8 @@ namespace PeruTourism.Repository.PeruTourism
 
         }
 
-
-
         public IEnumerable<ReservaAereo> CargaTerrestre(int pNroPedido, int pNroPropuesta, int pNroVersion)
         {
-
 
             try
             {
@@ -543,20 +533,14 @@ namespace PeruTourism.Repository.PeruTourism
                 {
 
                     SqlCommand cmd = new SqlCommand("P4I_ReservaAereo_S", con);
-                    //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    // cmd.CommandType = CommandType.Text;
 
                     cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
                     cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
                     cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
                     cmd.Parameters.Add("@CodTipoServicio", SqlDbType.Int).Value = 3;
 
-                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
-
-                    //cmd.Parameters.AddWithValue("@NroPedido", 162436);
-                    //cmd.Parameters.AddWithValue("@NroPropuesta", 8);
 
                     con.Open();
                     cmd.ExecuteNonQuery();

@@ -379,39 +379,63 @@ namespace PeruTourism.Controllers
 
 
             Error objError = new Error();
-
-
             ViewBag.CodCliente = pCodCliente;
-
             ViewBag.NroPedido = pNroPedido;
             ViewBag.NroPropuesta = pNroPropuesta;
             ViewBag.NroVersion = pNroVersion;
 
             string mensajeError = string.Empty;
+            char flagIdioma = '\0';
             BalanceViewModel objBalance = new BalanceViewModel();
 
             var lstBalance = objPropuesta.CargaDocumentos(Convert.ToInt32(pCodCliente), Convert.ToInt32(pNroPedido));
-
-            var lstVersionFacturada = objPropuesta.VersionFacturada(Convert.ToInt32(pNroPedido));
 
             objBalance.lstBalance = lstBalance.ToList();
 
             objPropuestaViewModel.lstBalance = lstBalance.ToList();
 
-            ViewBag.FlagIdioma = lstVersionFacturada.FirstOrDefault().FlagIdioma;
-
-            if (lstVersionFacturada.FirstOrDefault().NroVersion != 0) {
-
-                return View(objPropuestaViewModel);
-
-            }
-            else
+            if (pNroVersion != "0")
             {
-                mensajeError = "These options will be available after you book a trip with us.";
-                objError.MsjError = mensajeError;
+
+                var lstVersionFacturada = objPropuesta.VersionFacturada(Convert.ToInt32(pNroPedido));
+                ViewBag.FlagIdioma = lstVersionFacturada.FirstOrDefault().FlagIdioma;
+
+
+                if (lstVersionFacturada.FirstOrDefault().NroVersion != 0)
+                {
+
+                    return View(objPropuestaViewModel);
+
+                }
+                else
+                {
+                    flagIdioma = lstVersionFacturada.FirstOrDefault().FlagIdioma;
+                    if (flagIdioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                    {
+                        mensajeError = "These options will be available after you book a trip with us.";
+                    }
+                    else {
+                        mensajeError = "Estas opciones estarán disponibles después de reservar un viaje con nosotros.";
+
+                    }
+
+                   
+                    objError.MsjError = mensajeError;
+                    return View("~/Views/Shared/MyBookTripMessage.cshtml");
+
+                }
+            }
+            else {
                 return View("~/Views/Shared/MyBookTripMessage.cshtml");
 
             }
+
+
+
+
+
+
+
 
         }
 

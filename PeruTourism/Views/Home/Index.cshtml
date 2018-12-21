@@ -11,14 +11,21 @@
 
     foreach (var gg in lstProgramas) {
 
-        if (gg.StsPrograma =="Vendido") {
+        if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
+        {
 
-     
-             nroPedido = gg.KeyReg.Substring(0, 6);
-             nroPropuesta = gg.KeyReg.Substring(8, 1);
-             nroVersion = gg.KeyReg.Substring(10, 1);
+            nroPedido = gg.KeyReg.Substring(0, 6);
+            nroPropuesta = gg.KeyReg.Substring(8, 1);
+            nroVersion = gg.KeyReg.Substring(10, 1);
 
+            break;
         }
+        else {
+            nroPedido = "0";
+            nroPropuesta = "0";
+            nroVersion = "0";
+        }
+
 
 
     }
