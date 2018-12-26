@@ -49,12 +49,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -150,11 +162,13 @@
     <Compile Include="Controllers\GaleriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PagoVisaController.cs" />
+    <Compile Include="Controllers\PasajeroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Galeria\Galeria.cs" />
     <Compile Include="Models\Galeria\GaleriaViewModel.cs" />
+    <Compile Include="Models\Pasajero\Pasajeros.cs" />
     <Compile Include="Models\PeruTourism\Balance.cs" />
     <Compile Include="Models\PeruTourism\BalanceViewModel.cs" />
     <Compile Include="Models\PeruTourism\Cliente.cs" />
@@ -162,7 +176,8 @@
     <Compile Include="Models\PeruTourism\EnvioMensaje.cs" />
     <Compile Include="Models\PeruTourism\Error.cs" />
     <Compile Include="Models\PeruTourism\Galeria.cs" />
-    <Compile Include="Models\PeruTourism\Pasajero.cs" />
+    <Compile Include="Models\Pasajero\Pasajero.cs" />
+    <Compile Include="Models\PeruTourism\PasajeroViewModel.cs" />
     <Compile Include="Models\PeruTourism\Pedido.cs" />
     <Compile Include="Models\PeruTourism\Programa.cs" />
     <Compile Include="Models\PeruTourism\Propuesta.cs" />
@@ -285,6 +300,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Pasajero\Pasajero.js" />
     <Content Include="Scripts\Visa\PagoVisa.js" />
     <Content Include="Web References\ws_GenereEticket_Visa\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -298,6 +314,7 @@
     <Content Include="Views\Shared\MyBookTripMessage.cshtml" />
     <Content Include="Views\Home\_ModalBookingStatus.cshtml" />
     <Content Include="Views\Home\_ModalInfoBeforeTrip.cshtml" />
+    <Content Include="Views\Pasajero\Pasajero.cshtml" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

@@ -213,18 +213,23 @@
                 </div>
             </div>
 
-            <div class=" col-sm-12 text-center fare-detail">
-                <a href="javascript:void(0);" class="pago btn btn-primary" data-toggle="modal" data-target="#condicionPago">
-                    <span onclick="">
-                        <i class="icon icon-hotel-detalle"></i> PAYMENT
-                        PROCEDURE
-                    </span>
-                </a>
-                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
-                    BOOK NOW
-                </a>
-                @*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
-            </div>
+			<div class=" col-sm-12 text-center fare-detail">
+				<a href="javascript:void(0);" class="pago btn btn-primary" data-toggle="modal" data-target="#condicionPago">
+					<span onclick="">
+						<i class="icon icon-hotel-detalle"></i> PAYMENT
+						PROCEDURE
+					</span>
+				</a>
+				<a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+					BOOK NOW
+				</a>
+
+				<a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+					AGREGAR PASAJERO
+				</a>
+
+				@*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
+			</div>
         </div>
 
     </div>

@@ -9,6 +9,7 @@ using PeruTourism.Models.PeruTourism;
 using System.Data.SqlClient;
 using System.Data;
 using PeruTourism.Models.Galeria;
+using PeruTourism.Models.Pasajero;
 
 
 
@@ -532,5 +533,7 @@ namespace PeruTourism.Controllers
 
             return Json(name, JsonRequestBehavior.AllowGet);
         }
-    }
+		
+
+	}
 }
