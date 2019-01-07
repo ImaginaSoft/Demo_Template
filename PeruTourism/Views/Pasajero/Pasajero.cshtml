@@ -1,0 +1,66 @@
+﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@using PeruTourism.Utility
+@{
+	ViewBag.Title = "Pasajero";
+
+	//var lstPasajero = Model.lstPasajero;
+
+
+	var lajaxOptionsForm = new AjaxOptions()
+	{
+		HttpMethod = "POST",
+		OnBegin = "e_ajax_iniciando",
+		OnComplete = "e_ajax_finalizando_form_ficha",
+		OnFailure = "e_ajax_error"
+	};
+
+}
+
+
+
+<div class="form-group">
+	<label>Nombre</label>
+	<input type="text" id="nomPasajero">
+</div>
+<div class="form-group">
+	<label>Apellido</label>
+	<input type="text" id="apPasajero">
+</div>
+<div class="form-group">
+	<label>Numero de Pasaporte</label>
+	<input type="text"  id="NumPasajero">
+</div>
+
+<div class="form-group">
+	<label>Fecha de Nacimiento</label>
+	<input type="date" id="fecPasajero">
+</div>
+
+<div class="form-group">
+	<label>Nacionalidad</label>
+	<input type="text" id="NacPasajero">
+</div>
+
+<div class="group">
+	<button type="submit" class="pago btn btn-primary" id="btnEnviar">SEND</button>
+</div>
+
+
+
+<div class="col-sm-12">
+	<div class="panel panel-default">
+
+		<input type="text" id="txtCodCliente" value="" hidden />
+		<input type="text" id="txtNroPedido" value="" hidden />
+		<input type="text" id="txtNroPropuesta" value="" hidden />
+
+		<input type="text" id="txtNroVersion" value="" hidden />
+		<div class="msg_container_base collapse" id="chat-content">
+
+
+		</div>
+	</div>
+</div>
+
+
+<script src="~/Scripts/Pasajero/Pasajero.js"></script>
