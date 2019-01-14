@@ -203,6 +203,7 @@
     <Compile Include="Repository\PeruTourism\GaleriaAccess.cs" />
     <Compile Include="Repository\PeruTourism\LoginAccess.cs" />
     <Compile Include="Repository\PeruTourism\PagoVisaAccess.cs" />
+    <Compile Include="Repository\PeruTourism\PasajeroAccess.cs" />
     <Compile Include="Repository\PeruTourism\PedidoAccess.cs" />
     <Compile Include="Utility\ConstantesWeb.cs" />
     <Compile Include="Utility\PeruTourismMail.cs" />

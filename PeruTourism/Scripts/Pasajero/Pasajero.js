@@ -5,11 +5,11 @@ $(function () {
 		$.ajax({
 			type: "POST",
 			url: "/perutourism-new/Home/RegistrarPasajero",
-			//data: '{name: "' + $("#txtName").val() + '" }',
-			data: '{pDesLog: "' + $("#txtMessage").val() + '" , pCodCliente: "' + $("#txtCodCliente").val() + '", pNroPedido: "' + $("#txtNroPedido").val() + '", pNroPropuesta: "' + $("#txtNroPropuesta").val() + '", pNroVersion: "' + $("#txtNroVersion").val() + '" }',
+			data: '{pDesLog: "' + $("#txtNomPasajero").val() + '" , pApe: "' + $("#txtApPasajero").val() + '", pNumP: "' + $("#txtNumPasajero").val() + '", pFecNac: "' + $("#txtFecPasajero").val() + '", pNacionalidad: "' + $("#txtNacPasajero").val() + '" }',
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function (response) {
+				
 
 				//alert("Enviado");
 				if (response == "ok") {

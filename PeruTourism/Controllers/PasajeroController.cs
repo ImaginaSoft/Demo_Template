@@ -27,6 +27,18 @@ namespace PeruTourism.Controllers
 		}
 
 
+		//[HttpPost]
+		//public JsonResult RegistrarPasajero(string NombrePasajero)
+		//{
+
+		//	PasajeroAccess objPasajero = new PasajeroAccess();
+
+		//	string gg = objPasajero.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
+
+		//	return Json(gg, JsonRequestBehavior.AllowGet);
+		//}
+
+
 
 
 	}
