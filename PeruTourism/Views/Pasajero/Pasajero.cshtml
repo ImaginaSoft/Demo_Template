@@ -1,9 +1,12 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
-@using PeruTourism.Utility
+
+
 @{
 	ViewBag.Title = "Pasajero";
 
-	//var lstPasajero = Model.lstPasajero;
+
+	//var lstServicios = Model.lstServicio;
+
 
 
 	var lajaxOptionsForm = new AjaxOptions()
@@ -44,6 +47,8 @@
 	<label>Nacionalidad</label>
 	<input type="text" id="txtNacPasajero">
 </div>
+
+<input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
 
 <div class="group">
 	<button type="submit" class="pago btn btn-primary" id="btnEnviar">SEND</button>

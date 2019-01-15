@@ -12,7 +12,7 @@ namespace PeruTourism.Repository.PeruTourism
 	public class PasajeroAccess
 	{
 
-		public string InsertarPasajero(string pDesLog, string pApe, string pNumP, DateTime pFecNac, string pNacionalidad)
+		public string RegistrarPasajero(string pDesLog, string pApe, string pNumP, string pFecNac, string pNacionalidad, string pNroPedido)
 		{
 			try
 			{

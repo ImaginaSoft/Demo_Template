@@ -1134,7 +1134,64 @@ namespace PeruTourism.Repository.PeruTourism
         }
 
 
+		public IEnumerable<Programa> ObtenerListadoPasajero(int pNroPedido)
+		{
+			try
+			{
+				List<Programa> lstfprograma = new List<Programa>();
+
+				using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+				{
+					SqlCommand cmd = new SqlCommand();
+
+					cmd = new SqlCommand("VTA_PasajeroNroPedido_S", con);
+					
+					cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+				
+					con.Open();
+					cmd.ExecuteNonQuery();
+					SqlDataReader rdr = cmd.ExecuteReader();
+
+					//while (rdr.Read())
+					//{
+					//	Programa fprograma = new Programa
+					//	{
+
+					//		FchSys = Convert.ToDateTime(rdr["FchSys"].ToString()),
+					//		NroPrograma = rdr["NroPrograma"].ToString().Trim(),
+					//		StsPrograma = rdr["StsPrograma"].ToString().Trim(),
+					//		DesPrograma = rdr["DesPrograma"].ToString().Trim(),
+					//		CantDias = Convert.ToInt32(rdr["CantDias"]),
+					//		KeyReg = rdr["KeyReg"].ToString()
+
+					//	};
+
+					//	lstfprograma.Add(item: fprograma);
+					//}
+
+					con.Close();
+				}
+
+				return lstfprograma;
+
+			}
+			catch (Exception ex)
+			{
+				throw;
+			}
+		}
 
 
-    }
+
+
+
+
+
+
+
+
+
+
+
+	}
 }

@@ -535,17 +535,52 @@ namespace PeruTourism.Controllers
         }
 
 		[HttpPost]
-		public JsonResult RegistrarPasajero(string pDesLog, string pApe, string pNumP, DateTime pFecNac, string pNacionalidad)
+		public JsonResult RegistrarPasajero(string pDesLog, string pApe, string pNumP, string pFecNac, string pNacionalidad, string pNroPedido)
 		{
 
 			PasajeroAccess objPasajero = new PasajeroAccess();
 
-			string gg = objPasajero.InsertarPasajero(pDesLog, pApe, pNumP, pFecNac, pNacionalidad);
+			string gg = objPasajero.RegistrarPasajero(pDesLog, pApe, pNumP, pFecNac, pNacionalidad, pNroPedido);
 
 			return Json(gg, JsonRequestBehavior.AllowGet);
 		}
 
+		public ActionResult ObtenerPasajero(string pCodCliente)
+		{
 
+			//PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
+			try
+			{
+				LoginAccess objLogin = new LoginAccess();
+				FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+
+				//var codCliente = Session["CodCliente"];
+
+				var codCliente = pCodCliente;
+
+				if (codCliente != null)
+				{
+
+					var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCliente));
+					var lstProgramaGG = objPropuesta.ObtenerListadoPasajero(lstPublicacion.FirstOrDefault().NroPedido);
+
+					objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
+
+					ViewBag.Idioma = lstPublicacion.FirstOrDefault().FlagIdioma;
+
+					ViewBag.CodCliente = codCliente;
+
+				}
+			}
+			catch (Exception ex)
+			{
+
+				return View("~/Views/Shared/Error.cshtml");
+			}
+
+
+			return View(objPropuestaViewModel);
+		}
 
 
 	}
