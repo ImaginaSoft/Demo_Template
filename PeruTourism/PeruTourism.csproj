@@ -228,6 +228,7 @@
     <Content Include="Content\css\layout.min.css" />
     <Content Include="Content\css\propuestas.css" />
     <Content Include="Content\css\propuestas.min.css" />
+    <Content Include="Content\css\tabla_pasajero.css" />
     <Content Include="Content\fonts\perutourism.svg" />
     <Content Include="Content\images\a.jpg" />
     <Content Include="Content\images\gg.PNG" />
