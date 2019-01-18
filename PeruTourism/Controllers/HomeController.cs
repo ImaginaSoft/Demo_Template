@@ -10,8 +10,8 @@ using System.Data.SqlClient;
 using System.Data;
 using PeruTourism.Models.Galeria;
 using PeruTourism.Models.Pasajero;
-
-
+using System.Transactions;
+using System.Web.Script.Serialization;
 
 namespace PeruTourism.Controllers
 {
@@ -535,17 +535,169 @@ namespace PeruTourism.Controllers
         }
 
 		[HttpPost]
-		public JsonResult RegistrarPasajero(string pDesLog, string pApe, string pNumP, string pFecNac, string pNacionalidad, string pNroPedido)
-		{
+		public JsonResult RegistrarPasajero(string pAccion = "", Int16 pNumPasajero = 0, string pDesLog = "", string pApe = "", string pPasaporte = "", string pFecNac = "",
+                                            string pNacionalidad = "", string pTipo = "", string pGenero = "", string pNroPedido = "")
+        {
+            String mensaje = "";
+            String resultado = "";
+            String valid = "";
+            String fecha = "";
 
-			PasajeroAccess objPasajero = new PasajeroAccess();
+            if (pAccion != "E")
+            {
+                valid = ValidarCampos(pDesLog, pApe, pPasaporte, pFecNac, pNacionalidad, pGenero);
 
-			string gg = objPasajero.RegistrarPasajero(pDesLog, pApe, pNumP, pFecNac, pNacionalidad, pNroPedido);
+                if (pFecNac.Length > 0)
+                    fecha = Convert.ToDateTime(pFecNac).ToString("yyyyMMdd");
+            }
 
-			return Json(gg, JsonRequestBehavior.AllowGet);
-		}
+            if (valid.Length == 0)
+            {
+                using (TransactionScope transaccion = new TransactionScope())
+                {
+                    try
+                    {
+                        PasajeroAccess objPasajero = new PasajeroAccess();
 
-		public ActionResult ObtenerPasajero(string pCodCliente)
+                        switch(pAccion)
+                        {
+                            case "N":
+                                objPasajero.RegistrarPasajero(pNumPasajero, pDesLog, pApe, pPasaporte, fecha, pNacionalidad, pNroPedido, pTipo, pGenero);
+                                mensaje = "Se grabo correctamente la información.";
+                                break;
+
+                            case "M":
+                                objPasajero.RegistrarPasajero(pNumPasajero, pDesLog, pApe, pPasaporte, fecha, pNacionalidad, pNroPedido, pTipo, pGenero);
+                                mensaje = "Se actualizo correctamente la información.";
+                                break;
+
+                            case "E":
+                                objPasajero.EliminarPasajero(pNumPasajero, pNroPedido);
+                                mensaje = "Se elimino correctamente la información.";
+                                break;
+                        }
+
+                        transaccion.Complete();
+
+                        resultado = "OK";
+                    }
+                    catch (Exception ex)
+                    {
+                        transaccion.Dispose();
+
+                        mensaje = ex.Message;
+                        resultado = "ER";
+                    }
+                }
+            }
+            else
+            {
+                mensaje = valid;
+                resultado = "ER";
+            }
+
+            return Json(new { contenido = mensaje, indicador = resultado });
+        }
+
+        [HttpPost]
+        public JsonResult ListarPasajeros(string pNroPedido = "", Int16 pNumPasajero = 0)
+        {
+            JavaScriptSerializer _serializer = new JavaScriptSerializer();
+            String mensaje = "";
+            String resultado = "";
+            List<Pasajero> lista;
+
+            try
+            {
+                PasajeroAccess objPasajero = new PasajeroAccess();
+
+                lista = objPasajero.ListarPasajeros(pNroPedido);
+
+                if (pNumPasajero == 0)
+                {
+                    string tabla = "<table id='tbPasajeros' class='table table-striped table-bordered dt-responsive nowrap table-pt' width='100%' cellspacing='0'>";
+
+                    tabla += @"<thead>
+                            <tr>
+                                <th>NOMBRE</th>
+                                <th>APELLIDO</th>
+                                <th>NUMERO DE PASAPORTE</th>
+                                <th>FECHA DE NACIMIENTO</th>
+                                <th>NACIONALIDAD</th>
+                                <th>GENERO</th>
+                                <th style='width: 180px'></th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+
+                    foreach (Pasajero item in lista)
+                    {
+                        tabla += String.Format(@"<tr>
+                                                <td style='vertical-align: middle'>{0}</td>
+                                                <td style='vertical-align: middle'>{1}</td>
+                                                <td style='vertical-align: middle'>{2}</td>
+                                                <td style='vertical-align: middle'>{3}</td>
+                                                <td style='vertical-align: middle'>{4}</td>
+                                                <td style='vertical-align: middle'>{5}</td>
+                                                <td style='text-align: center; vertical-align: middle'>
+                                                    <button type='button' class='btn btn-primary btn-xs btnAccion' onclick='editarPasajero({6})'>Editar</button>
+                                                    <button type='button' class='btn btn-danger btn-xs btnAccion' onclick='eliminarPasajero({7})'>Eliminar</button>
+                                                </td>
+                                             </tr>",
+                                               item.NomPasajero, item.ApePasajero, item.Pasaporte, item.FormatFchNacimiento, item.Nacionalidad, item.Genero, item.NroPasajero.ToString(), item.NroPasajero.ToString());
+                    }
+
+                    tabla += "</tbody><tfoot>";
+
+                    tabla += String.Format("<tr><td colspan='7'><b>Nro. de pasajeros: {0}</b></td></tr>", lista.Count.ToString());
+
+                    tabla += "</tfoot></table>";
+
+                    mensaje = tabla;
+                }
+                else
+                {
+                    mensaje = _serializer.Serialize(lista.Where(col => col.NroPasajero == pNumPasajero).ToList());
+                }
+
+                resultado = "OK";
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+                resultado = "ER";
+            }
+
+            return Json(new { contenido = mensaje, indicador = resultado });
+        }
+
+        public String ValidarCampos(string pDesLog, string pApe, string pPasaporte, string pFecNac, string pNacionalidad, string pGenero)
+        {
+            String resultado = "";
+
+            if (pDesLog.Trim().Length == 0)
+                resultado += "No ha ingreso el nombre del pasajero\n";
+
+            if (pApe.Trim().Length == 0)
+                resultado += "No ha ingreso el apellido del pasajero\n";
+
+            if (pPasaporte.Trim().Length == 0)
+                resultado += "No ha ingreso el número de pasaporte\n";
+
+            if (pFecNac.Trim().Length == 0)
+                resultado += "No ha ingreso la fecha de nacimiento\n";
+
+            if (pNacionalidad.Trim().Length == 0)
+                resultado += "No ha ingreso la nacionalidad\n";
+
+            if (pGenero.Trim().Length == 0)
+                resultado += "No ha seleccionado el género\n";
+
+            return resultado;
+        }
+
+
+        public ActionResult ObtenerPasajero(string pCodCliente)
 		{
 
 			//PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();

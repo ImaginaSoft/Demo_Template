@@ -53,6 +53,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -168,6 +169,7 @@
     </Compile>
     <Compile Include="Models\Galeria\Galeria.cs" />
     <Compile Include="Models\Galeria\GaleriaViewModel.cs" />
+    <Compile Include="Models\Paises\Pais.cs" />
     <Compile Include="Models\Pasajero\Pasajeros.cs" />
     <Compile Include="Models\PeruTourism\Balance.cs" />
     <Compile Include="Models\PeruTourism\BalanceViewModel.cs" />
@@ -190,6 +192,7 @@
     <Compile Include="Models\PeruTourism\UltimaPublicacion.cs" />
     <Compile Include="Models\PeruTourism\VersionFacturada.cs" />
     <Compile Include="Models\PeruTourism\Video.cs" />
+    <Compile Include="Models\TipoPasajero\TipoPasajero.cs" />
     <Compile Include="Models\Visa\PedidoVisa.cs" />
     <Compile Include="Models\Visa\PedidoVisaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,56 +2,68 @@
 
 
 @{
-	ViewBag.Title = "Pasajero";
+    ViewBag.Title = "Pasajero";
 
+    //var lstServicios = Model.lstServicio;
 
-	//var lstServicios = Model.lstServicio;
-
-
-
-	var lajaxOptionsForm = new AjaxOptions()
-	{
-		HttpMethod = "POST",
-		OnBegin = "e_ajax_iniciando",
-		OnComplete = "e_ajax_finalizando_form_ficha",
-		OnFailure = "e_ajax_error"
-	};
-
+    var lajaxOptionsForm = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        OnBegin = "e_ajax_iniciando",
+        OnComplete = "e_ajax_finalizando_form_ficha",
+        OnFailure = "e_ajax_error"
+    };
 }
 
-
-
-<div class="form-group">
-	<label>Nombre</label>
-	<input type="text" id="txtNomPasajero">
-</div>
-<div class="form-group">
-	<label>Apellido</label>
-	<input type="text" id="txtApPasajero">
-</div>
-<div class="form-group">
-	<label>Numero de Pasaporte</label>
-	<input type="text" id="txtNumPasajero">
-</div>
-
-<div class="form-group">
-	<label>Fecha de Nacimiento</label>
-	<input type="date" id="txtFecPasajero">
-</div>
-
-<div class="form-group">
-	<textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
-</div>
-
-<div class="form-group">
-	<label>Nacionalidad</label>
-	<input type="text" id="txtNacPasajero">
-</div>
-
 <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+<input type="text" id="txtNroPasajero" value="0" hidden />
 
-<div class="group">
-	<button type="submit" class="pago btn btn-primary" id="btnEnviar">SEND</button>
+<div class="col-sm-10 col-sm-offset-1">
+    <div class="form-group col-sm-4">
+        <label>@Html.DisplayNameFor(c => c.Pasajero.NomPasajero)</label>
+        @Html.TextBoxFor(c => c.Pasajero.NomPasajero, new { @placeholder = "Ingrese su nombre", @class = "form-control valid", @id = "txtNomPasajero" })
+    </div>
+    <div class="form-group col-sm-4">
+        <label>@Html.DisplayNameFor(c => c.Pasajero.ApePasajero)</label>
+        @Html.TextBoxFor(c => c.Pasajero.ApePasajero, new { @placeholder = "Ingrese sus apellidos", @class = "form-control valid", @id = "txtApPasajero" })
+    </div>
+    <div class="form-group col-sm-4">
+        <label>@Html.DisplayNameFor(c => c.Pasajero.Pasaporte)</label>
+        @Html.TextBoxFor(c => c.Pasajero.Pasaporte, new { @placeholder = "Ingrese su número de pasaporte", @class = "form-control valid", @id = "txtPasaporte" })
+    </div>
+</div>
+<div class="col-sm-10 col-sm-offset-1">
+    <div class="form-group col-sm-4">
+        <label>@Html.DisplayNameFor(c => c.Pasajero.FchNacimiento)</label>
+        @Html.TextBoxFor(c => c.Pasajero.FchNacimiento, new { @type = "date", @class = "form-control", @id = "txtFecPasajero" })
+    </div>
+    <div class="form-group col-sm-4">
+        <label>@Html.DisplayNameFor(c => c.Pasajero.Nacionalidad)</label>
+        @Html.DropDownListFor(c => c.Pasajero.Nacionalidad, ((IEnumerable<SelectListItem>)ViewBag.Paises), new { @class = "form-control", @id = "cboNacPasajero" })
+    </div>
+    <div class="form-group col-sm-4">
+        <label>@Html.DisplayNameFor(c => c.Pasajero.Genero)</label>
+        @Html.DropDownListFor(c => c.Pasajero.Genero, ((IEnumerable<SelectListItem>)ViewBag.Genero), new { @class = "form-control", @id = "cboGenPasajero" })
+    </div>
+</div>
+<div class="col-sm-10 col-sm-offset-1">
+    <div class="form-group col-sm-4">
+        <label>@Html.DisplayNameFor(c => c.Pasajero.TipoPasajero)</label>
+        @Html.DropDownListFor(c => c.Pasajero.TipoPasajero, ((IEnumerable<SelectListItem>)ViewBag.Tipos), new { @class = "form-control", @id = "cboTipoPasajero" })
+    </div>
+</div>
+<div class="col-sm-10 col-sm-offset-1">
+    <div class="form-group col-sm-12">
+        <button type="submit" class="pago btn btn-primary" id="btnEnviar">SEND</button>
+        <button type="button" class="btn btn-warning" id="btnCancelar">CANCEL</button>
+    </div>
+</div>
+<div class="col-sm-10 col-sm-offset-1">
+    <div class="form-group col-sm-12">
+        <div class="table-responsive">
+            <div id="tablaPasajeros"></div>
+        </div>
+    </div>
 </div>
 
 <script src="~/scripts/jquery-3.3.1.min.js"></script>

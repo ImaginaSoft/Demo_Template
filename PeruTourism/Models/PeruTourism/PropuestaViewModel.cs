@@ -13,6 +13,7 @@ namespace PeruTourism.Models.PeruTourism
         public List<Balance> lstBalance { get; set; }
 
         //*****AAAAAAAAAA***//
+        public Pasajero Pasajero { get; set; }
         public List<Pasajero> lstPasajero { get; set; }
         public List<ReservaAereo> lstReservaAerero { get; set; }
         public List<ReservaAereo> lstReservaTerrestre { get; set; }

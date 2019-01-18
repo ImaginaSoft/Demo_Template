@@ -80,6 +80,11 @@
                         </a>
                     </div>
                 </div>
+                <div class="op-group text-center" style="margin-top: 20px">
+                    <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = @ViewBag.NroPedido })">
+                        ADD PASSENGER
+                    </a>
+                </div>
             </section>
         </div>
 
@@ -118,6 +123,11 @@ else
                             <div class="description">Información para mi viaje</div>
                         </a>
                     </div>
+                </div>
+                <div class="op-group text-center" style="margin-top: 20px">
+                    <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = @ViewBag.NroPedido })">
+                        AGREGAR PASAJERO
+                    </a>
                 </div>
             </section>
         </div>
