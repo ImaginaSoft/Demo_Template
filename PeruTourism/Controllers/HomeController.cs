@@ -629,43 +629,45 @@ namespace PeruTourism.Controllers
 
                 if (pNumPasajero == 0)
                 {
-                    string tabla = "<table id='tbPasajeros' class='table table-striped table-bordered dt-responsive nowrap table-pt' width='100%' cellspacing='0'>";
+                    string tabla = "<table role='table' id='tbPasajeros' class='table table-striped table-bordered dt-responsive nowrap table-pt' width='100%' cellspacing='0' cellpadding='0'>";
 
-                    tabla += @"<thead>
-                            <tr>
-                                <th>NOMBRE</th>
-                                <th>APELLIDO</th>
-                                <th>NUMERO DE PASAPORTE</th>
-                                <th>FECHA DE NACIMIENTO</th>
-                                <th>NACIONALIDAD</th>
-                                <th>GENERO</th>
-                                <th style='width: 180px'></th>
+                    tabla += @"<thead role='rowgroup'>
+                            <tr role='row'>
+                                <th role='columnheader'>NOMBRE</th>
+                                <th role='columnheader'>APELLIDO</th>
+                                <th role='columnheader'>NUMERO DE PASAPORTE</th>
+                                <th role='columnheader'>FECHA DE NACIMIENTO</th>
+                                <th role='columnheader'>NACIONALIDAD</th>
+                                <th role='columnheader'>GENERO</th>
+                                <th role='columnheader' style='width: 110px'></th>
                             </tr>
                         </thead>
-                        <tbody>";
+                        <tbody role='rowgroup'>";
 
                     foreach (Pasajero item in lista)
                     {
-                        tabla += String.Format(@"<tr>
-                                                <td style='vertical-align: middle'>{0}</td>
-                                                <td style='vertical-align: middle'>{1}</td>
-                                                <td style='vertical-align: middle'>{2}</td>
-                                                <td style='vertical-align: middle'>{3}</td>
-                                                <td style='vertical-align: middle'>{4}</td>
-                                                <td style='vertical-align: middle'>{5}</td>
-                                                <td style='text-align: center; vertical-align: middle'>
-                                                    <button type='button' class='btn btn-primary btn-xs btnAccion' onclick='editarPasajero({6})'>Editar</button>
-                                                    <button type='button' class='btn btn-danger btn-xs btnAccion' onclick='eliminarPasajero({7})'>Eliminar</button>
+                        tabla += String.Format(@"<tr role='row'>
+                                                <td role='cell' style='vertical-align: middle'>{0}</td>
+                                                <td role='cell' style='vertical-align: middle'>{1}</td>
+                                                <td role='cell' style='vertical-align: middle'>{2}</td>
+                                                <td role='cell' style='vertical-align: middle'>{3}</td>
+                                                <td role='cell' style='vertical-align: middle'>{4}</td>
+                                                <td role='cell' style='vertical-align: middle'>{5}</td>
+                                                <td role='cell' style='text-align: center; vertical-align: middle'>
+                                                    <button type='button' class='btn btn-primary btnAccion' onclick='editarPasajero({6})'><span class='fa fa-pencil'></span></button>
+                                                    <button type='button' class='btn btn-danger btnAccion' onclick='eliminarPasajero({7})'><span class='fa fa-trash'></span></button>
                                                 </td>
                                              </tr>",
                                                item.NomPasajero, item.ApePasajero, item.Pasaporte, item.FormatFchNacimiento, item.Nacionalidad, item.Genero, item.NroPasajero.ToString(), item.NroPasajero.ToString());
                     }
 
-                    tabla += "</tbody><tfoot>";
+                    tabla += "</tbody></table>";
 
-                    tabla += String.Format("<tr><td colspan='7'><b>Nro. de pasajeros: {0}</b></td></tr>", lista.Count.ToString());
+                    //tabla += "</tbody><tfoot>";
 
-                    tabla += "</tfoot></table>";
+                    //tabla += String.Format("<tr><td colspan='7'><b>Nro. de pasajeros: {0}</b></td></tr>", lista.Count.ToString());
+
+                    //tabla += "</tfoot></table>";
 
                     mensaje = tabla;
                 }
