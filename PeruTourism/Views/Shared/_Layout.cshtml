@@ -20,7 +20,9 @@
     <link rel="stylesheet" href="~/Content/css/home.min.css" media="all">
     <link rel="stylesheet" href="~/Content/css/propuestas.min.css" media="all">
     <link rel="stylesheet" href="~/Content/css/chat.css" media="all">
-    <link rel="stylesheet" href="~/Content/css/ChatGG.css" media="all">
+    <link rel="stylesheet" href="~/Content/css/flotante.css" media="all">
+    @*<link rel="stylesheet" href="~/Content/css/chat.css" media="all">
+        <link rel="stylesheet" href="~/Content/css/ChatGG.css" media="all">*@
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 
@@ -45,8 +47,7 @@
                                         <!-- brand -->
                                         <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
                                         <div class="slogan">
-                                            Customized travel website for:<BR>
-                                            @Session["NomCliente"]
+                                            <span class="hidden-xs">Your customized travel website for:</span> <p class="nombrePax"><i class="icon icon-user"></i> @Session["NomCliente"]</p>
                                         </div>
                                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                                     </div>
@@ -75,7 +76,6 @@
         else
         {
 
-
             <header id="header">
                 <div class="container-fluid">
                     <div class="row">
@@ -85,22 +85,24 @@
                                 <div class="row">
                                     <div class="navbar-header">
                                         <!-- brand -->
-                                        <div class="brand"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></div>
-                                        <div class="slogan">Sitio web personalizado de viajes para @Session["NomCliente"]</div>
+                                        <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
+                                        <div class="slogan">
+                                            <span class="hidden-xs">Tu página personalizada:</span> <p class="nombrePax"><i class="icon icon-user"></i> @Session["NomCliente"]</p>
+                                        </div>
                                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="collapse navbar-collapse in" id="siteNav">
-                                <div class="container">
-                                    <div class="row">
-                                        <ul class="nav navbar-nav">
-                                            <li class="active"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Bienvenida</a></li>
-                                            <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] })">Propuestas</a></li>
-                                            <li><a href="javascript:void(0)">Información</a></li>
-                                            <li><a href="javascript:void(0)">Testimonios</a></li>
+                                <div class="collapse navbar-collapse in" id="siteNav">
+                                    <div class="container">
+                                        <div class="row">
+                                            <ul class="nav navbar-nav">
+                                                <li class="active"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Bienvenida</a></li>
+                                                <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] })">Propuestas</a></li>
+                                                <li><a href="javascript:void(0)">Información</a></li>
+                                                <li><a href="javascript:void(0)">Testimonios</a></li>
 
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

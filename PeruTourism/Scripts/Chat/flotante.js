@@ -1,19 +1,3 @@
-// JavaScript Document
-
-jQuery(function ($) {
-  "use strict";
-  
-  var 
-    $chatWin = $(".chat-window"),
-    $btnClose = $("#close_chat_window");
-
-  $btnClose.on('click', function() {
-      $chatWin.hide();
-  });
-  
-});
-
-
 var element = $('.floating-chat');
 var myStorage = localStorage;
 
@@ -21,7 +5,7 @@ if (!myStorage.getItem('chatID')) {
     myStorage.setItem('chatID', createUUID());
 }
 
-setTimeout(function () {
+setTimeout(function() {
     element.addClass('enter');
 }, 1000);
 
@@ -29,12 +13,12 @@ element.click(openElement);
 
 function openElement() {
     var messages = element.find('.messages');
-    var textInput = element.find('.text-box');
+    //var textInput = element.find('.text-box');
     element.find('>i').hide();
     element.addClass('expand');
     element.find('.chat').addClass('enter');
-    var strLength = textInput.val().length * 2;
-    textInput.keydown(onMetaAndEnter).prop("disabled", false).focus();
+    //var strLength = textInput.val().length * 2;
+    //textInput.keydown(onMetaAndEnter).prop("disabled", false).focus();
     element.off('click', openElement);
     element.find('.header button').click(closeElement);
     element.find('#sendMessage').click(sendNewMessage);
@@ -48,7 +32,7 @@ function closeElement() {
     element.find('.header button').off('click', closeElement);
     element.find('#sendMessage').off('click', sendNewMessage);
     element.find('.text-box').off('keydown', onMetaAndEnter).prop("disabled", true).blur();
-    setTimeout(function () {
+    setTimeout(function() {
         element.find('.chat').removeClass('enter').show()
         element.click(openElement);
     }, 500);
@@ -72,6 +56,7 @@ function createUUID() {
 function sendNewMessage() {
     var userInput = $('.text-box');
     var newMessage = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
+    var robotMessage = "We will send you an Email, thanks!"
 
     if (!newMessage) return;
 
@@ -80,6 +65,9 @@ function sendNewMessage() {
     messagesContainer.append([
         '<li class="self">',
         newMessage,
+        '</li>',
+        '<li class="other">',
+        robotMessage,
         '</li>'
     ].join(''));
 

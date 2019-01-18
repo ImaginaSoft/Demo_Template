@@ -72,6 +72,17 @@ jQuery(function ($) {
   $.checkCarousel(mediaquery);
 
   
+  // detectar resolucion para mostrar menu
+  // --------------------------------------------------------  
+//  $.checkMainMenu = function(m) {
+//    if (m.matches) {      
+//      $("#siteNav").addClass("in");
+//    } else {
+//      $("#siteNav").removeClass("in");
+//    }
+//  };  
+//  $.checkMainMenu(mediaquery); 
+  
   
   //detectar redimension de la ventana (debounce)
   // --------------------------------------------------------
@@ -79,7 +90,7 @@ jQuery(function ($) {
   
   $(window).on('resize', function(e) {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
+      resizeTimer = setTimeout(function() {
       $.checkCarousel(mediaquery);
     }, 250);
   });    

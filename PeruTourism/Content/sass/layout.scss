@@ -27,7 +27,11 @@ body {
 *************************************************************************************************/
 
 #header {
-    margin-bottom: 10px;
+    margin-bottom: 0;
+  
+    .navbar {
+        margin-bottom: 0;
+    }  
 
     .navbar-default {
         border: 0;
@@ -38,7 +42,7 @@ body {
     }
 
     .navbar-header {
-        border-bottom: 1px solid $color-verde;
+        //border-bottom: 1px solid $color-verde;
         padding-top: 65px;
         transition: border $trans linear;
     }
@@ -48,13 +52,34 @@ body {
     }
 
     .slogan {
-        margin: 40px 15px;
+        //float: right;
+        //text-align: right;
+        float: left;
+        margin: 25px 15px;
         color: #0e6f39;
-        font-weight: 600
-    }
+        font-weight: 600;
+        font-size: 12px;        
+      } 
+      .nombrePax  {
+          color: $color-rosa;
+          font-size: 18px;
+          .icon-user {     
+            border-radius: 20px;
+            overflow: hidden;
+            line-height: 21px;
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            vertical-align: sub;
+            color: $color-rosa;
+            font-size: 16px;            
+            //background: #e31875;            
+            //color: #fff;            
+            //font-size: 11px;                 
+          }
+    }    
 
-    .brand,
-    .slogan {
+    .brand {
         float: left
     }
 
@@ -79,7 +104,7 @@ body {
 
         .slogan {
             font-size: 12px;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
     }
 
@@ -93,6 +118,10 @@ body {
         .brand img {
             max-width: 215px;
         }
+      
+        .slogan {
+            border-bottom: 1px solid #e8e8e8;
+        }
     }
 
     // media max 480   
@@ -101,7 +130,8 @@ body {
 
         .brand,
         .slogan {
-            width: 80%;
+            //width: 80%;
+            width: 100%
         }
 
         .brand img {
@@ -109,7 +139,7 @@ body {
         }
 
         .slogan {
-            font-size: 8px;
+            font-size: 8px;            
         }
     }
 }
@@ -150,12 +180,15 @@ body {
     // media min 768   
     // ---------------------------------
     @media (min-width: 768px) {
+        #siteNav {
+          display: block !important
+        }
         .navbar-header {
             float: none
         }
 
         .navbar-toggle {
-            display: block !important;
+            //display: block !important;
             margin: 40px 20px 20px;
             transition: background $trans linear;
 
@@ -213,20 +246,35 @@ body {
         }
     }
 
-    // media max 991   
+    // media max 767   
     // ---------------------------------  
-    @media (max-width:991px) {
+    @media (max-width:767px) {
+        .brand {
+          padding-bottom: 10px;
+          border-bottom: 1px solid #e8e8e8;
+        }
         .navbar-toggle {
             position: absolute;
             margin: 0;
-            bottom: 40px;
-            right: 10%;
+            bottom: 10px;
+            right: 5%;
             transition: all $trans linear;
 
             .icon-bar {
                 transition: all $trans linear;
             }
         }
+      .slogan {
+        margin-bottom: 0;
+      }
+      .nombrePax {
+          color: $color-rosa;
+          font-size: 18px;
+          text-align: left;
+          padding: 15px;
+          margin: 0;
+          width: 80%;
+      }
 
     }
 }
@@ -290,6 +338,14 @@ section,
     @extend %handlee;
     max-width: 700px;
     margin: 0 auto;
+  
+    &.options-antes {
+      padding-top: 50px;
+      .icon {
+         font-size: 85px;
+         position: relative;
+      }
+    }
 
     .op-group {
         float: left;
@@ -314,7 +370,8 @@ section,
 
     }
 
-    .op-propuesta {
+    .op-propuesta,
+    .op-booking {
         text-align: left;
 
         a {
@@ -322,7 +379,8 @@ section,
         }
     }
 
-    .op-info {
+    .op-info,
+    .op-balance {
         text-align: center;
 
         a {
@@ -330,7 +388,8 @@ section,
         }
     }
 
-    .op-testimonio {
+    .op-testimonio,
+    .op-information {
         text-align: right;
 
         a {
@@ -357,17 +416,35 @@ section,
         }
     }
 
-    .icon-propuesta {
+    .icon-booking {
+        background: #808284;
+        border-color: #fff;
+    }
+  
+    .icon-information {
+        &::before {
+          display: inline-block;
+          top: -10px;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+    }
+  
+    .icon-propuesta,
+    .icon-information {
         background: $color-rosa;
         border-color: #fff;
     }
 
-    .icon-info {
+    .icon-info,
+    .icon-balance {
         background: $color-naranja;
         border-color: #fff;
     }
 
-    .icon-testimonio {
+    .icon-testimonio     {
         background: $color-verde;
         border-color: #fff;
     }
@@ -469,6 +546,12 @@ section,
             font-size: 75px;
             line-height: 115px;
         }
+      
+      &.options-antes {
+        .icon {
+          font-size: 65px
+        }
+      }
     }
 
 }
@@ -519,17 +602,16 @@ section,
         z-index: 2;
         font-weight: 800;
         color: #fff;
-        font-size: 60px;
-        width: 400px;
         padding-left: 4px;
-        border-top: 8px solid #fff;
-        border-bottom: 8px solid #fff;
         line-height: 65px;
         height: 215px;
         bottom: 0;
         margin: auto;
-        text-transform: uppercase;
-        right: 10%;
+        width: 520px;      
+        right: 5%;
+        font-family: Handlee;
+        font-size: 50px;
+        font-weight: normal;
     }
   
     // media max 1199
@@ -767,7 +849,7 @@ section,
         padding-right: 15px;
         font-size: 35px;
         font-weight: bold;
-        background: #fcc82b;
+        background: $color-amarillo;
         width: 10%;
         text-align: center;
         position: absolute;
@@ -807,7 +889,7 @@ section,
         font-weight: bold;
         letter-spacing: -0.25px;
         color: #fff;
-        background: #333333;
+        background: $color-rosa;
         border-radius: 10px 25px 25px 10px;
         text-transform: uppercase;
         line-height: 24px;
@@ -820,9 +902,9 @@ section,
             position: absolute;
             top: 0;
             left: 0;
-            background: #FCC82B;
+            background: $color-amarillo;
             height: 100%;
-            content: "\e902";
+            content: "\e905";
             line-height: 25px;
             color: #333333;
             font-family: perutourism;
@@ -832,6 +914,12 @@ section,
         &.status-new {
             background: $color-rosa;
         }
+        &.status-sold {
+            background: #333333;
+        }      
+        &.status-cancel {
+            background: #7e94a1;
+        }      
     }
   
     // media max 991
@@ -1018,7 +1106,7 @@ section,
         position: relative;
 
         &::before {
-            content: "\e902";
+            content: "\e905";
             position: absolute;
             right: 50px;
             font-family: "perutourism";
@@ -1262,154 +1350,159 @@ section,
 }
 
 
-/* CHAT
-*************************************************************************************************/
-
-.chat-window {
-    bottom: 0;
-    position: fixed;
-    margin-right: 10px;
-    width: 250px;
-    right: 0;
-
-    .panel {
-        border-radius: 5px 5px 0 0;
-        border: 0;
-        box-shadow: 2px 3px 5px rgba(181, 193, 202, 1)
-    }
-
-    .icon_minim {
-        padding: 2px 10px;
-    }
-
-    .msg_container_base {
-        background: #f2f2f2;
-        margin: 0;
-      .group {
-        padding: 10px
-      }
-    }  
-
-    .top-bar {
-        //background: #7e94a1;
-		background: #117036;
-        color: white;
-        padding: 10px;
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-    }
-
-    .msg_receive {
-        padding-left: 0;
-        margin-left: 0;
-    }
-
-    .msg_sent {
-        padding-bottom: 20px !important;
-        margin-right: 0;
-    }
-
-    .messages {
-        background: white;
-        padding: 10px;
-        border-radius: 2px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        max-width: 100%;
-    }
-
-    .messages>p {
-        font-size: 13px;
-        margin: 0 0 0.2rem 0;
-    }
-
-    .messages>time {
-        font-size: 11px;
-        color: #ccc;
-    }
-
-    .msg_container {
-        padding: 10px;
-        overflow: hidden;
-        display: flex;
-    }
-
-    .avatar {
-        position: relative;
-    }
-
-    .base_receive>.avatar:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 0;
-        height: 0;
-        border: 5px solid #FFF;
-        border-left-color: rgba(0, 0, 0, 0);
-        border-bottom-color: rgba(0, 0, 0, 0);
-    }
-
-    .base_sent {
-        justify-content: flex-end;
-        align-items: flex-end;
-    }
-
-    .base_sent>.avatar:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 0;
-        border: 5px solid white;
-        border-right-color: transparent;
-        border-top-color: transparent;
-        box-shadow: 1px 1px 2px rgba(black, 0.2);
-    }
-
-    .msg_sent>time {
-        float: right;
-    }
-    .msg_container_base::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        background-color: #F5F5F5;
-    }
-
-    .msg_container_base::-webkit-scrollbar {
-        width: 12px;
-        background-color: #F5F5F5;
-    }
-
-    .msg_container_base::-webkit-scrollbar-thumb {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-        background-color: #555;
-    }
-
-    .btn-group.dropup {
-        position: fixed;
-        left: 0px;
-        bottom: 0;
-    }
-  /*****/
-  .chat-control a {color: #fff}
-  .chat-control a:focus, .chat-control a:hover {text-decoration: none}
-  .chat-title {float: left}
-  .chat-control {float: right}  
-  .form-label {font-size: 12px; padding: 0 5px 15px;}
+///* CHAT
+//*************************************************************************************************/
+//
+//.chat-window {
+//    bottom: 0;
+//    position: fixed;
+//    margin-right: 10px;
+//    width: 250px;
+//    right: 0;
+//
+//    .panel {
+//        border-radius: 5px 5px 0 0;
+//        border: 0;
+//        box-shadow: 2px 3px 5px rgba(181, 193, 202, 1)
+//    }
+//
+//    .icon_minim {
+//        padding: 2px 10px;
+//    }
+//
+//    .msg_container_base {
+//        background: #f2f2f2;
+//        margin: 0;
+//      .group {
+//        padding: 10px
+//      }
+//    }  
+//
+//    .top-bar {
+//        //background: #7e94a1;
+//		background: #117036;
+//        color: white;
+//        padding: 10px;
+//        position: relative;
+//        overflow: hidden;
+//        cursor: pointer;
+//    }
+//
+//    .msg_receive {
+//        padding-left: 0;
+//        margin-left: 0;
+//    }
+//
+//    .msg_sent {
+//        padding-bottom: 20px !important;
+//        margin-right: 0;
+//    }
+//
+//    .messages {
+//        background: white;
+//        padding: 10px;
+//        border-radius: 2px;
+//        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+//        max-width: 100%;
+//    }
+//
+//    .messages>p {
+//        font-size: 13px;
+//        margin: 0 0 0.2rem 0;
+//    }
+//
+//    .messages>time {
+//        font-size: 11px;
+//        color: #ccc;
+//    }
+//
+//    .msg_container {
+//        padding: 10px;
+//        overflow: hidden;
+//        display: flex;
+//    }
+//
+//    .avatar {
+//        position: relative;
+//    }
+//
+//    .base_receive>.avatar:after {
+//        content: "";
+//        position: absolute;
+//        top: 0;
+//        right: 0;
+//        width: 0;
+//        height: 0;
+//        border: 5px solid #FFF;
+//        border-left-color: rgba(0, 0, 0, 0);
+//        border-bottom-color: rgba(0, 0, 0, 0);
+//    }
+//
+//    .base_sent {
+//        justify-content: flex-end;
+//        align-items: flex-end;
+//    }
+//
+//    .base_sent>.avatar:after {
+//        content: "";
+//        position: absolute;
+//        bottom: 0;
+//        left: 0;
+//        width: 0;
+//        height: 0;
+//        border: 5px solid white;
+//        border-right-color: transparent;
+//        border-top-color: transparent;
+//        box-shadow: 1px 1px 2px rgba(black, 0.2);
+//    }
+//
+//    .msg_sent>time {
+//        float: right;
+//    }
+//    .msg_container_base::-webkit-scrollbar-track {
+//        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+//        background-color: #F5F5F5;
+//    }
+//
+//    .msg_container_base::-webkit-scrollbar {
+//        width: 12px;
+//        background-color: #F5F5F5;
+//    }
+//
+//    .msg_container_base::-webkit-scrollbar-thumb {
+//        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+//        background-color: #555;
+//    }
+//
+//    .btn-group.dropup {
+//        position: fixed;
+//        left: 0px;
+//        bottom: 0;
+//    }
+//  /*****/
+//  .chat-control a {color: #fff}
+//  .chat-control a:focus, .chat-control a:hover {text-decoration: none}
+//  .chat-title {float: left}
+//  .chat-control {float: right}  
+//  .form-label {font-size: 12px; padding: 0 5px 15px;}
   .btn.pago {
     background: #e41973;
     width: 100%;
-    border: 1px solid #e41973;
-  }  
-  
-  @keyframes slideup {
-    from {bottom: -50px;}
-    to {bottom: 0;}
-  }
-  .anim-slideup {animation: slideup 5s}
-  
+    border: 1px solid #e41973;    
+  } 
+
+#txtMessage {
+  height: 320px;
+  margin: 10px 0
 }
+//  
+//  @keyframes slideup {
+//    from {bottom: -50px;}
+//    to {bottom: 0;}
+//  }
+//  .anim-slideup {animation: slideup 5s}
+//  
+//}
 
 
 // MODAL DETALLE HOTEL
@@ -1670,4 +1763,40 @@ label.no-pad input {
     width: 100%;
     text-align: center;
     padding: 10px;
+}
+
+/***** Modal Tablas *****/
+.modal-content {  
+  .table th {
+    font-weight: 400;
+  }  
+  .table-responsive {
+    margin-bottom: 20px;
+  }
+  .table-hover>tbody>tr:hover {
+    background-color: inherit;
+  }
+  .prop-title {
+    height: 100%;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: $color-rosa;
+    font-size: 16px;
+    small {
+      display: block;
+      color: #8b9aa5;
+      
+    }
+  }
+  
+  .prop-detalle {
+    width: 99%;
+    .prop-content {
+      margin-top: 55px;
+    }
+    .group {border:0}
+    ul {
+      padding-left: 15px;
+    }
+  }
 }

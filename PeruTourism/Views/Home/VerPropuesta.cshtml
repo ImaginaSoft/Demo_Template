@@ -47,17 +47,17 @@
 
 
 
-                @if (lstProgramas[i].StsPrograma.Equals("Sold"))
+                @if (lstProgramas[i].StsPrograma.Equals("Sold") || lstProgramas[i].StsPrograma.Equals("Vendido"))
                 {
                     <div class="prop-status"><span class="status status-sold">@lstProgramas[i].StsPrograma</span></div>
                 }
-                else if (lstProgramas[i].StsPrograma.Equals("Quote"))
+                else if (lstProgramas[i].StsPrograma.Equals("Quote") || lstProgramas[i].StsPrograma.Equals("Cotizado"))
                 {
-                    <div class="prop-status"><span class="status status-quote">@lstProgramas[i].StsPrograma</span></div>
+                    <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
                 }
                 else
                 {
-                    <div class="prop-status"><span class="status status-void">@lstProgramas[i].StsPrograma</span></div>
+                    <div class="prop-status"><span class="status status-cancel">@lstProgramas[i].StsPrograma</span></div>
                 }
 
 

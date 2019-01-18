@@ -26,31 +26,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-credit-card {
+.icon-balance {
   &:before {
-    content: $icon-credit-card; 
-    margin-top: 5px;
+    content: $icon-balance; 
   }
 }
-
-.icon-calendar {
+.icon-booking {
   &:before {
-    content: $icon-calendar; 
+    content: $icon-booking; 
   }
 }
-.icon-hotel-detalle {
+.icon-information {
   &:before {
-    content: $icon-hotel-detalle; 
+    content: $icon-information; 
   }
 }
-.icon-location {
+.icon-user {
   &:before {
-    content: $icon-location; 
-  }
-}
-.icon-time {
-  &:before {
-    content: $icon-time; 
+    content: $icon-user; 
   }
 }
 .icon-win-close {
@@ -61,11 +54,6 @@
 .icon-win-minus {
   &:before {
     content: $icon-win-minus; 
-  }
-}
-.icon-chat-question {
-  &:before {
-    content: $icon-chat-question; 
   }
 }
 .icon-chevron-down {
@@ -93,6 +81,11 @@
     content: $icon-testimonio; 
   }
 }
+.icon-chat-question {
+  &:before {
+    content: $icon-chat-question; 
+  }
+}
 .icon-info {
   &:before {
     content: $icon-info; 
@@ -101,6 +94,31 @@
 .icon-propuesta {
   &:before {
     content: $icon-propuesta; 
+  }
+}
+.icon-calendar {
+  &:before {
+    content: $icon-calendar; 
+  }
+}
+.icon-location {
+  &:before {
+    content: $icon-location; 
+  }
+}
+.icon-time {
+  &:before {
+    content: $icon-time; 
+  }
+}
+.icon-hotel-detalle {
+  &:before {
+    content: $icon-hotel-detalle; 
+  }
+}
+.icon-credit-card {
+  &:before {
+    content: $icon-credit-card; 
   }
 }
 

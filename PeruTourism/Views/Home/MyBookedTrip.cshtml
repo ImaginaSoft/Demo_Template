@@ -49,33 +49,31 @@
 </style>
 @if (flagIdioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
 {
+    
     <div class="content">
         <div class="container">
-            <section class="welcome">
-                @*<h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>*@
-                @*<p> Welcome to the customized travel website for your trip </p>*@
-            </section>
-            <section class="options">
+        
+            <section class="options options-antes">
                 <div class="op-group">
-                    <div class="op op-propuesta">
+                    <div class="op op-booking">
                         <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,'I')">
-                            <div class="icon icon-propuesta"></div>
+                            <div class="icon icon-booking "></div>
                             <div class="description">
                                 Bookin<br>
                                 Status
                             </div>
                         </a>
                     </div>
-                    <div class="op op-info">
+                    <div class="op op-balance">
                         @*<a href="@Url.Action("OpenModalBalance", "Home",new { pCliente = ViewBag.CodCliente , pNroPedido = ViewBag.NroPedido})">*@
                         <a onclick="openBalanceModal(@ViewBag.CodCliente,@ViewBag.NroPedido)">
-                            <div class="icon icon-info"></div>
+                            <div class="icon icon-balance"></div>
                             <div class="description">Balance Due</div>
                         </a>
                     </div>
-                    <div class="op op-testimonio">
+                    <div class="op op-information">
                         <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,'I')">
-                            <div class="icon icon-testimonio"></div>
+                            <div class="icon icon-information"></div>
                             <div class="description">Information for my trip</div>
                         </a>
                     </div>
@@ -89,37 +87,36 @@
         </div>
 
     </div>
+
+  
 }
 else
 {
 
     <div class="content">
         <div class="container">
-            <section class="welcome">
-                @*<h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>*@
-                @*<p> Welcome to the customized travel website for your trip </p>*@
-            </section>
-            <section class="options">
+         
+            <section class="options options-antes">
                 <div class="op-group">
-                    <div class="op op-propuesta">
+                    <div class="op op-booking">
                         <a onclick="openBookingStatusModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,'E')">
-                            <div class="icon icon-propuesta"></div>
+                            <div class="icon icon-booking "></div>
                             <div class="description">
                                 Estado<br>
                                 de su reserva
                             </div>
                         </a>
                     </div>
-                    <div class="op op-info">
+                    <div class="op op-balance">
                         @*<a href="@Url.Action("OpenModalBalance", "Home",new { pCliente = ViewBag.CodCliente , pNroPedido = ViewBag.NroPedido})">*@
                         <a onclick="openBalanceModal(@ViewBag.CodCliente,@ViewBag.NroPedido)">
-                            <div class="icon icon-info"></div>
+                            <div class="icon icon-balance"></div>
                             <div class="description">Cuenta Corriente</div>
                         </a>
                     </div>
-                    <div class="op op-testimonio">
+                    <div class="op op-information">
                         <a onclick="openInformationBeforeTripModal(@ViewBag.NroPedido,@ViewBag.NroPropuesta,@ViewBag.NroVersion,'E')">
-                            <div class="icon icon-testimonio"></div>
+                            <div class="icon icon-information"></div>
                             <div class="description">Información para mi viaje</div>
                         </a>
                     </div>

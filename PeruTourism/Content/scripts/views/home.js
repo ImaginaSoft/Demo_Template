@@ -34,6 +34,17 @@ jQuery(function ($) {
   };
   $.checkParallax(mediaquery);
   
+  // detectar resolucion para mostrar menu
+  // --------------------------------------------------------  
+//  $.checkMainMenu = function(m) {
+//    if (m.matches) {      
+//      $("#siteNav").addClass("in");
+//    } else {
+//      $("#siteNav").removeClass("in");
+//    }
+//  };  
+//  $.checkMainMenu(mediaquery);
+  
   
   //detectar redimension de la ventana (debounce)
   // --------------------------------------------------------
@@ -43,6 +54,7 @@ jQuery(function ($) {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
       $.checkParallax(mediaquery);
+      //$.checkMainMenu(mediaquery);
     }, 250);
   });    
   
@@ -54,5 +66,7 @@ jQuery(function ($) {
   $("#siteNav").on('hidden.bs.collapse', function () {
     $("#header").removeClass("active");
   });  
+  
+
   
 });
