@@ -152,6 +152,9 @@ namespace PeruTourism.Controllers
             ViewBag.nroVersion = nroVersion;
 
             var codCliente = pCodCliente;
+           // var lstPropuestaDetalle=null;
+
+            List<Servicio> lstPropuestaDetalle = new List<Servicio>();
 
             LoginAccess objLogin = new LoginAccess();
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
@@ -172,7 +175,18 @@ namespace PeruTourism.Controllers
 
             }
 
-            var lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuesta(Convert.ToInt32(nroPedido), Convert.ToInt32(NroPrograma), FlagIdioma);
+
+            if (nroVersion == "0") {
+
+                 lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuesta(Convert.ToInt32(nroPedido), Convert.ToInt32(NroPrograma), FlagIdioma).ToList();
+            }
+            else {
+                 lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuestaVersion(Convert.ToInt32(nroPedido), Convert.ToInt32(NroPrograma),Convert.ToInt32(nroVersion), FlagIdioma).ToList();
+
+            }
+
+
+            //var lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuesta(Convert.ToInt32(nroPedido), Convert.ToInt32(NroPrograma), FlagIdioma);
 
             var agrupacion = from p in lstPropuestaDetalle group p by p.NroDia into grupo select grupo;
 
@@ -202,7 +216,7 @@ namespace PeruTourism.Controllers
                         servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + "↕" + itemAgrupado.NroServicio + "|";
                     }
                     else {
-                        servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet+ "|";
+                        servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + itemAgrupado.HoraServicio + "|";
                     }
 
                     
