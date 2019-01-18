@@ -213,23 +213,23 @@
                 </div>
             </div>
 
-			<div class=" col-sm-12 text-center fare-detail">
-				<a href="javascript:void(0);" class="pago btn btn-primary" data-toggle="modal" data-target="#condicionPago">
-					<span onclick="">
-						<i class="icon icon-hotel-detalle"></i> PAYMENT
-						PROCEDURE
-					</span>
-				</a>
-				<a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
-					BOOK NOW
-				</a>
+            <div class=" col-sm-12 text-center fare-detail">
+                <a href="javascript:void(0);" class="pago btn btn-primary" data-toggle="modal" data-target="#condicionPago">
+                    <span onclick="">
+                        <i class="icon icon-hotel-detalle"></i> PAYMENT
+                        PROCEDURE
+                    </span>
+                </a>
+                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+                    BOOK NOW
+                </a>
 
-				@*<a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
-					AGREGAR PASAJERO
-				</a>*@
+                @*<a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+                        AGREGAR PASAJERO
+                    </a>*@
 
-				@*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
-			</div>
+                @*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
+            </div>
         </div>
 
     </div>
@@ -297,7 +297,7 @@
                             </div>
                             <div class="prop-icon"></div>
                         </div>
-                 
+
                     </div>
                 </div>
             </div>
@@ -305,7 +305,7 @@
     </div>
 
 
-    <div class="chat-window anim-slideup" id="chat_window_1">
+    @*<div class="chat-window anim-slideup" id="chat_window_1">
             <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading top-bar" data-toggle="collapse" data-target="#chat-content">
@@ -337,12 +337,40 @@
                     </div>
                 </div>
             </div>
+        </div>*@
+
+
+    <div class="floating-chat">
+        <i class="fa fa-comments" aria-hidden="true"></i>
+        <div class="chat">
+
+            <div class="header">
+                <span class="title">
+                    Travel Designer
+                </span>
+                <button>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
+            <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+            <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
+            <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
+
+            <div>Hi I'm @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), send me a message</div>
+            <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
+            <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>
+            <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
+
         </div>
+    </div>
 
 
     <script src="~/scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/Galeria/Galeria.js"></script>
     <script src="~/Scripts/Envio/EnvioMensaje.js"></script>
+    <script src="~/Scripts/Chat/flotante.js"></script>
+
 
 
 
