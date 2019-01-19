@@ -19,10 +19,10 @@
 
 
 
-    string path = Server.MapPath("~/Content/images/a.jpg");
-    byte[] imageByteData = System.IO.File.ReadAllBytes(path);
-    string imageBase64Data = Convert.ToBase64String(imageByteData);
-    string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
+    //string path = Server.MapPath("~/Content/images/a.jpg");
+    //byte[] imageByteData = System.IO.File.ReadAllBytes(path);
+    //string imageBase64Data = Convert.ToBase64String(imageByteData);
+    //string imageDataURL = string.Format("data:image/jpg;base64,{0}", imageBase64Data);
 
 
 
@@ -45,25 +45,25 @@
 
 <div id="propDet" class="secondary">
 
-	@*<form id="formPagoVisa">*@
+    @*<form id="formPagoVisa">*@
 
-	<input type="hidden" id="NroServicio" value="@NroServicio.Trim()" />
-	<div class="form-group">
-		<label for="NombreHTL">Nombre:</label>
-		<label for="NombreHTL">@lstGaleria.FirstOrDefault().NombreHTL</label>
+    <input type="hidden" id="NroServicio" value="@NroServicio.Trim()" />
+    <div class="form-group">
+        <label for="NombreHTL">Nombre:</label>
+        <label for="NombreHTL">@lstGaleria.FirstOrDefault().NombreHTL</label>
 
-	</div>
-	<div class="form-group">
-		<label for="Valoracion">Estrellas:</label>
-		<label for="Valoracion">@lstGaleria.FirstOrDefault().Valoracion</label>
+    </div>
+    <div class="form-group">
+        <label for="Valoracion">Estrellas:</label>
+        <label for="Valoracion">@lstGaleria.FirstOrDefault().Valoracion</label>
 
-	</div>
+    </div>
 
-	<div class="form-group">
-		<label for="DireccionHTL">Direccion:</label>
-		<label for="DireccionHTL">@lstGaleria.FirstOrDefault().DireccionHTL</label>
+    <div class="form-group">
+        <label for="DireccionHTL">Direccion:</label>
+        <label for="DireccionHTL">@lstGaleria.FirstOrDefault().DireccionHTL</label>
 
-	</div>
+    </div>
 
 </div>
 
@@ -82,8 +82,8 @@
 
 <div class="form-group">
     <label for="Imagen2">Imagen 02:</label>
-    
-    <img src="@imgSrc_2"  style="max-width:100px; max-height:100px;"/>
+
+    <img src="@imgSrc_2" style="max-width:100px; max-height:100px;" />
     @*<label for="FlagImg01">@lstGaleria.FirstOrDefault().FlagImg01</label>*@
 
 </div>
@@ -96,17 +96,17 @@
 
 </div>
 
-<div class="form-group">
-    <label for="Imagen3">Imagen GG:</label>
-    @*<label for="FlagImg01">@lstGaleria.FirstOrDefault().FlagImg01</label>*@
-    <img src="@imageDataURL" style="max-width:100px; max-height:100px;" />
-</div>
+@*<div class="form-group">
+        <label for="Imagen3">Imagen GG:</label>
+
+        <img src="@imageDataURL" style="max-width:100px; max-height:100px;" />
+    </div>*@
 
 
 @*</form>*@
 
 
-</div>
+
 
 
 <script src="~/scripts/Galeria/Galeria.js"></script>

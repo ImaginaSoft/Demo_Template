@@ -560,7 +560,7 @@ namespace PeruTourism.Repository.PeruTourism
 
                             NomPasajero = rdr["NomPasajero"].ToString(),
                             ApePasajero = rdr["ApePasajero"].ToString(),
-                            FchNacimiento = Convert.ToDateTime(rdr["FchNacimiento"].ToString()),
+                            FchNacimiento = (DateTime)rdr["FchNacimiento"],
                             Pasaporte = rdr["Pasaporte"].ToString()
 
 

@@ -216,7 +216,7 @@ namespace PeruTourism.Controllers
                         servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + "↕" + itemAgrupado.NroServicio + "|";
                     }
                     else {
-                        servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + itemAgrupado.HoraServicio + "|";
+                        servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + " | " + itemAgrupado.HoraServicio + "|";
                     }
 
                     
