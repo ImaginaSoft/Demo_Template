@@ -44,5 +44,6 @@ namespace PeruTourism.Models.PeruTourism
         public Int16 NroPasajero { get; set; }
         public string CodNacionalidad { get; set; }
         public string CodGenero { get; set; }
+        public string Observacion { get; set; }
     }
 }

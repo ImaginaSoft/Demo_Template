@@ -14,6 +14,7 @@
         parametros["pTipo"] = $("#cboTipoPasajero").val();
         parametros["pNroPedido"] = $("#txtNroPedido").val();
         parametros["pNumPasajero"] = $("#txtNroPasajero").val();
+        parametros["pObservacion"] = $("#txtObservacion").val();
 
         if ($("#txtNroPasajero").val() == "0")
             parametros["pAccion"] = "N";
@@ -35,6 +36,7 @@ function limpiar() {
     $("#txtNomPasajero").val("");
     $("#txtApPasajero").val("");
     $("#txtPasaporte").val("");
+    $("#txtObservacion").val("");
     $("#txtFecPasajero").val("");
     $("#cboNacPasajero").val("999");
     $("#cboGenPasajero").val("");
@@ -107,6 +109,7 @@ function listarPasajeros(numero) {
                         $("#cboNacPasajero").val(fila.CodNacionalidad);
                         $("#cboGenPasajero").val(fila.CodGenero);
                         $("#cboTipoPasajero").val(fila.TipoPasajero);
+                        $("#txtObservacion").val(fila.Observacion);
                     }
                 }
             }
@@ -129,6 +132,7 @@ function editarPasajero(numero) {
 }
 
 function eliminarPasajero(numero) {
+    debugger
     var pregunta = confirm("¿Desea eliminar el pasajero?");
 
     if (pregunta) {

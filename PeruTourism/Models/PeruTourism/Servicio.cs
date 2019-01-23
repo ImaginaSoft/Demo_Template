@@ -48,6 +48,8 @@ namespace PeruTourism.Models.PeruTourism
         public string NombreHTL { get; set; }
         public string Telefono { get; set; }
         public int Valoracion { get; set; }
+        public string DescripcionHTL { get; set; }
+
 
     }
 }
