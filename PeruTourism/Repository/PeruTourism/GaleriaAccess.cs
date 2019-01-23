@@ -88,7 +88,8 @@ namespace PeruTourism.Repository.PeruTourism
 							NombreHTL = rdr["NombreHTL"].ToString(),
 							// NroServicio = rdr["nroServicio"].ToString(),
 							DireccionHTL = rdr["DireccionHTL"].ToString(),
-                            Telefono = rdr["Telefono"].ToString()
+                            Telefono = rdr["Telefono"].ToString(),
+                            DescripcionHTL = rdr["DesHTL"].ToString(),
                         };
                         //pedido.CodVendedor = Convert.ToChar(GetValue(reader, "CodVendedor"));
 

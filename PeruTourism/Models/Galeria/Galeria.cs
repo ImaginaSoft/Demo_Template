@@ -22,5 +22,6 @@ namespace PeruTourism.Models.Galeria
 		public string DireccionHTL { get; set; }
         public string Telefono { get; set; }
 		public string Valoracion { get; set; }
-	}
+        public string DescripcionHTL { get; set; }
+    }
 }

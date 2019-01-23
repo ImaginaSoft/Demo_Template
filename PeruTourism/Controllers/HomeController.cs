@@ -550,7 +550,7 @@ namespace PeruTourism.Controllers
 
 		[HttpPost]
 		public JsonResult RegistrarPasajero(string pAccion = "", Int16 pNumPasajero = 0, string pDesLog = "", string pApe = "", string pPasaporte = "", string pFecNac = "",
-                                            string pNacionalidad = "", string pTipo = "", string pGenero = "", string pNroPedido = "")
+                                            string pNacionalidad = "", string pTipo = "", string pGenero = "", string pNroPedido = "", string pObservacion = "")
         {
             String mensaje = "";
             String resultado = "";
@@ -576,12 +576,12 @@ namespace PeruTourism.Controllers
                         switch(pAccion)
                         {
                             case "N":
-                                objPasajero.RegistrarPasajero(pNumPasajero, pDesLog, pApe, pPasaporte, fecha, pNacionalidad, pNroPedido, pTipo, pGenero);
+                                objPasajero.RegistrarPasajero(pNumPasajero, pDesLog, pApe, pPasaporte, fecha, pNacionalidad, pNroPedido, pTipo, pGenero, pObservacion);
                                 mensaje = "Se grabo correctamente la información.";
                                 break;
 
                             case "M":
-                                objPasajero.RegistrarPasajero(pNumPasajero, pDesLog, pApe, pPasaporte, fecha, pNacionalidad, pNroPedido, pTipo, pGenero);
+                                objPasajero.RegistrarPasajero(pNumPasajero, pDesLog, pApe, pPasaporte, fecha, pNacionalidad, pNroPedido, pTipo, pGenero, pObservacion);
                                 mensaje = "Se actualizo correctamente la información.";
                                 break;
 
@@ -639,6 +639,7 @@ namespace PeruTourism.Controllers
                                 <th role='columnheader'>FECHA DE NACIMIENTO</th>
                                 <th role='columnheader'>NACIONALIDAD</th>
                                 <th role='columnheader'>GENERO</th>
+                                <th role='columnheader'>OBSERVACION</th>
                                 <th role='columnheader' style='width: 110px'></th>
                             </tr>
                         </thead>
@@ -653,12 +654,13 @@ namespace PeruTourism.Controllers
                                                 <td role='cell' style='vertical-align: middle'>{3}</td>
                                                 <td role='cell' style='vertical-align: middle'>{4}</td>
                                                 <td role='cell' style='vertical-align: middle'>{5}</td>
+                                                <td role='cell' style='vertical-align: middle'>{6}</td>
                                                 <td role='cell' style='text-align: center; vertical-align: middle'>
-                                                    <button type='button' class='btn btn-primary btnAccion' onclick='editarPasajero({6})'><span class='fa fa-pencil'></span></button>
-                                                    <button type='button' class='btn btn-danger btnAccion' onclick='eliminarPasajero({7})'><span class='fa fa-trash'></span></button>
+                                                    <button type='button' class='btn btn-primary btnAccion' onclick='editarPasajero({7})'><span class='fa fa-pencil'></span></button>
+                                                    <button type='button' class='btn btn-danger btnAccion' onclick='eliminarPasajero({8})'><span class='fa fa-trash'></span></button>
                                                 </td>
                                              </tr>",
-                                               item.NomPasajero, item.ApePasajero, item.Pasaporte, item.FormatFchNacimiento, item.Nacionalidad, item.Genero, item.NroPasajero.ToString(), item.NroPasajero.ToString());
+                                               item.NomPasajero, item.ApePasajero, item.Pasaporte, item.FormatFchNacimiento, item.Nacionalidad, item.Genero, item.Observacion.ToString(), item.NroPasajero.ToString(), item.NroPasajero.ToString());
                     }
 
                     tabla += "</tbody></table>";

@@ -66,4 +66,8 @@
         td:nth-of-type(6):before {
             content: "GENERO";
         }
+
+        td:nth-of-type(7):before {
+            content: "OBSERVACION";
+        }
 }

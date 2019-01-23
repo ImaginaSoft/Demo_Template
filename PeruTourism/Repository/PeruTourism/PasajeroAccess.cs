@@ -13,7 +13,7 @@ namespace PeruTourism.Repository.PeruTourism
 {
 	public class PasajeroAccess
 	{
-		public void RegistrarPasajero(Int16 pNumPasajero, string pDesLog, string pApe, string pPasajero, string pFecNac, string pNacionalidad, string pNroPedido, string pTipo, string pGenero)
+		public void RegistrarPasajero(Int16 pNumPasajero, string pDesLog, string pApe, string pPasajero, string pFecNac, string pNacionalidad, string pNroPedido, string pTipo, string pGenero, string pObservacion)
 		{
             string codigo = "";
 
@@ -34,6 +34,7 @@ namespace PeruTourism.Repository.PeruTourism
 					cmd.Parameters.AddWithValue("@FchNacimiento", pFecNac);
 					cmd.Parameters.AddWithValue("@CodGenero", pGenero);
                     cmd.Parameters.AddWithValue("@TipoPasajero", pTipo);
+                    cmd.Parameters.AddWithValue("@Observacion", pObservacion);
 
                     con.Open();
 					codigo = (String)cmd.ExecuteScalar();
@@ -101,7 +102,8 @@ namespace PeruTourism.Repository.PeruTourism
                         Genero = x.Field<string>("NomGenero"),
                         NroPasajero = x.Field<Int16>("NroPasajero"),
                         TipoPasajero = x.Field<string>("CodTipoPasajero"),
-                        CodGenero = x.Field<string>("CodGenero")
+                        CodGenero = x.Field<string>("CodGenero"),
+                        Observacion = x.Field<string>("Observacion")
                     })
                     .ToList();
                 }
