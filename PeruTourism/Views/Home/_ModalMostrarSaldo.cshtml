@@ -4,8 +4,8 @@
 
     var lstBalanceGG = Model.lstBalance;
 
-    decimal totalCargo = 0;
-    decimal totalAbono = 0;
+    int totalCargo = 0;
+    int totalAbono = 0;
 
 }
 
@@ -84,17 +84,17 @@
                             {
 
 
-                                totalAbono = totalAbono + d.Abono;
-                                totalCargo = totalCargo + d.Cargo;
+                                totalAbono = totalAbono + Convert.ToInt32(d.Abono);
+                                totalCargo = totalCargo + Convert.ToInt32(d.Cargo);
 
                                 <tr>
                                     <td>@d.FchEmision</td>
                                     <td>@d.Referencia</td>
-                                    <td>@d.Cargo</td>
-                                    <td>@d.Abono</td>
+                                    <td>@Convert.ToInt32(d.Cargo)</td>
+                                    <td>@Convert.ToInt32(d.Abono)</td>
                                 </tr>
                             }
-                            @{decimal totalSaldo = totalCargo - totalAbono; }
+                            @{int totalSaldo = totalCargo - totalAbono; }
                             <tr class="table-total hidden-xs">
                                 <td colspan="3">Total</td>
                                 <td>@totalSaldo</td>

@@ -1,6 +1,4 @@
-﻿
-
-$(function () {
+﻿$(function () {
 	$("#btnSend").click(function () {
 		$.ajax({
 			type: "POST",
@@ -13,9 +11,12 @@ $(function () {
 				
                 //alert("Enviado");
                 if (response == "ok") {
-                    
-                $("#mensajeConfirmacion").show();
-            }
+                    $("#mensajeConfirmacionGG").hide();
+                    $("#mensajeConfirmacion").show();
+                } else {
+                    $("#mensajeConfirmacion").hide();
+                    $("#mensajeConfirmacionGG").show();
+                }
         
 			},
 			failure: function (response) {

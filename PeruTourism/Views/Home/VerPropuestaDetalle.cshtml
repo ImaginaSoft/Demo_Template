@@ -18,7 +18,7 @@
         OnFailure = "e_ajax_error"
     };
 
-    decimal SumPrice = 0;
+    int SumPrice = 0;
 
 }
 <style type="text/css">
@@ -52,17 +52,17 @@
             padding-top: 60px;
         }
 
-    #CondicionesContainer .prop-detalle .prop-num::before {
-        display: none;
-    }
+        #CondicionesContainer .prop-detalle .prop-num::before {
+            display: none;
+        }
 
-    #CondicionesContainer .prop-detalle .prop-title::before {
-        display: none;
-    }
+        #CondicionesContainer .prop-detalle .prop-title::before {
+            display: none;
+        }
 
-    #CondicionesContainer .prop-detalle .prop-content .group {
-        border: 0;
-    }
+        #CondicionesContainer .prop-detalle .prop-content .group {
+            border: 0;
+        }
 </style>
 <div id="propDet" class="secondary">
 
@@ -103,10 +103,10 @@
                             <div class="prop-info">
                                 <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
 
-                                @if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
-                                {
-                                    <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
-                                }
+                                @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
+                                    {
+                                        <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                                    }*@
 
 
 
@@ -139,7 +139,7 @@
                                         {
 
                                             <li>
-                                                @Html.Raw(servicio)
+                                                @Html.Raw(servicio.Substring(0,posicionBuscado))
 
                                             </li>
 
@@ -189,23 +189,25 @@
                             @foreach (var d in lstPropuestaPrecio)
                             {
 
-                                SumPrice = SumPrice + d.PrecioTotal;
+                                SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
 
 
                                 <tr>
                                     <td>@d.DesOrden</td>
-                                    <td>@d.PrecioxPersona</td>
+                                    <td>USD @Convert.ToInt32(d.PrecioxPersona)</td>
                                     <td>@d.CantPersonas</td>
-                                    <td>@d.PrecioTotal</td>
+                                    <td>USD @Convert.ToInt32(d.PrecioTotal)</td>
                                 </tr>
 
-                                <tr class="table-total hidden-xs">
-                                    <td colspan="3">Total</td>
-                                    <td>@d.PrecioTotal</td>
-                                </tr>
+
                             }
+
+                            <tr class="table-total hidden-xs">
+                                <td colspan="3">Total</td>
+                                <td>USD @Convert.ToInt32(SumPrice)</td>
+                            </tr>
                         </tbody>
-                        @{decimal totalSumPrice = SumPrice; }
+                        @{int totalSumPrice = SumPrice; }
                     </table>
                 </div>
                 <div class="div-total visible-xs">
@@ -340,9 +342,9 @@
         </div>*@
 
 
-    <div class="floating-chat">
-        <i class="fa fa-comments" aria-hidden="true"></i>
-        <div class="chat">
+    <div class="floating-chat enter expand">
+        <i class="fa fa-comments" aria-hidden="true" style="display: none;"></i>
+        <div class="chat enter">
 
             <div class="header">
                 <span class="title">
@@ -359,6 +361,7 @@
 
             <div>Hi I'm @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), send me a message</div>
             <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
+            <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Please enter your message</div>
             <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>
             <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
 

@@ -213,10 +213,21 @@ namespace PeruTourism.Controllers
 
                     if (itemAgrupado.CodTipoServicio == 2) {
 
-                        servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + "↕" + itemAgrupado.NroServicio + "|";
+                        servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet.Trim() + "↕" + itemAgrupado.NroServicio + "|";
                     }
                     else {
-                        servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + " | " + itemAgrupado.HoraServicio + "|";
+
+                        if (itemAgrupado.HoraServicio.Trim().Equals(string.Empty) || itemAgrupado.HoraServicio==null) {
+
+                            servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + "<div class=\"prop-info\"><div class=\"info\"><i class=\"icon icon-time\"></i>" + "N/A" + "</div></div>" + "|";
+
+                        }
+                        else {
+                            //servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + "<div class=\"prop-info\"><div class=\"info\"><i class=\"icon icon-time\"></i>" + itemAgrupado.HoraServicio + "</div></div>" + "|";
+                            servDetAgrupado = servDetAgrupado + "<div class=\"prop-info\"><div class=\"info\"><i class=\"icon icon-time\"></i>" + itemAgrupado.HoraServicio + "</div></div>" +itemAgrupado.DesServicioDet + "|";
+                        }
+
+                        
                     }
 
                     
@@ -310,8 +321,17 @@ namespace PeruTourism.Controllers
         {
 
             FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+            string gg = string.Empty;
 
-            string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
+            if (pDesLog.Equals(string.Empty))
+            {
+                gg = "gg";
+            }
+            else {
+                gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
+            }
+
+            //string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
 
 			//jlopez
 			//PeruTourismEmail gg = new PeruTourismEmail();		
