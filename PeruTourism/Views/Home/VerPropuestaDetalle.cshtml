@@ -21,6 +21,7 @@
     int SumPrice = 0;
 
 }
+
 <style type="text/css">
     .prop-clear, .prop-clear:hover {
         background: #fafafa;
@@ -39,7 +40,6 @@
             border: 0;
         }
 </style>
-
 
 <style type="text/css">
     #CondicionesContainer .prop-detalle,
@@ -64,9 +64,8 @@
             border: 0;
         }
 </style>
+
 <div id="propDet" class="secondary">
-
-
     <div class="container-fluid">
         <section class="subtitle">
             <div class="container">
@@ -139,7 +138,7 @@
                                         {
 
                                             <li>
-                                                @Html.Raw(servicio.Substring(0,posicionBuscado))
+                                                @Html.Raw(servicio.Substring(0, posicionBuscado))
 
                                             </li>
 
@@ -340,40 +339,31 @@
                 </div>
             </div>
         </div>*@
+</div>
 
-
-    <div class="floating-chat enter expand">
-        <i class="fa fa-comments" aria-hidden="true" style="display: none;"></i>
-        <div class="chat enter">
-
-            <div class="header">
-                <span class="title">
-                    Travel Designer
-                </span>
-                <button>
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </button>
-            </div>
-            <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
-            <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
-            <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
-            <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
-
-            <div>Hi I'm @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), send me a message</div>
-            <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
-            <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Please enter your message</div>
-            <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>
-            <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
-
+<div class="floating-chat enter expand">
+    <i class="cerrarFlotante" aria-hidden="true" style="display: none; font-style: normal; font-size: 15px">Chat</i>
+    <div class="chat enter">
+        <div class="header">
+            <span class="title">
+                Travel Designer
+            </span>
+            <button>
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
         </div>
+        <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
+        <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+        <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
+        <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
+
+        <div>Hi I'm @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), send me a message</div>
+        <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
+        <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Please enter your message</div>
+        <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>
+        <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
     </div>
+</div>
 
-
-    <script src="~/scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/Galeria/Galeria.js"></script>
-    <script src="~/Scripts/Envio/EnvioMensaje.js"></script>
-    <script src="~/Scripts/Chat/flotante.js"></script>
-
-
-
-
+<script src="~/Scripts/Galeria/Galeria.js"></script>
+<script src="~/Scripts/Envio/EnvioMensaje.js"></script>

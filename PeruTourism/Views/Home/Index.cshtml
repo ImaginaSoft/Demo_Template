@@ -9,7 +9,8 @@
     string nroPropuesta = string.Empty;
     string nroVersion = string.Empty;
 
-    foreach (var gg in lstProgramas) {
+    foreach (var gg in lstProgramas)
+    {
 
         if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
         {
@@ -20,7 +21,8 @@
 
             break;
         }
-        else {
+        else
+        {
             nroPedido = "0";
             nroPropuesta = "0";
             nroVersion = "0";
@@ -30,7 +32,6 @@
 
     }
 
-
     //var NombreCliente = (string)Session["NomCliente"];
     var NombreCliente = ViewBag.NomCliente;
     var CodCliente = ViewBag.CodCliente;
@@ -39,9 +40,7 @@
 }
 
 @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
-
 {
-
     <div class="container-fluid">
         <section class="slider" id="scene">
             <div class="container" data-depth="0.2">
@@ -54,9 +53,9 @@
 
     <div class="container">
         @*<section class="welcome">
-                <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
-                <p> Welcome to the customized travel website for your trip </p>
-            </section>*@
+            <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
+            <p> Welcome to the customized travel website for your trip </p>
+        </section>*@
         <section class="options">
             <div class="op-group">
                 <div class="op op-propuesta">
@@ -69,7 +68,7 @@
                     </a>
                 </div>
                 <div class="op op-info">
-                    <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido,pNroPropuesta = nroPropuesta,pNroVersion = nroVersion})">
+                    <a href="#">
                         <div class="icon icon-info"></div>
                         <div class="description">My Booked trip</div>
                     </a>
@@ -82,6 +81,33 @@
                 </div>
             </div>
         </section>
+        <section class="options submenu" hidden>
+            <div class="op-group">
+                <div class="op op-estado">
+                    <a href="#">
+                        <div class="icon icon-booking" style="background: #ff8820"></div>
+                        <div class="description">Estado de su reserva</div>
+                    </a>
+                </div>
+                <div class="op op-cuenta">
+                    <a href="#">
+                        <div class="icon icon-balance" style="background: #ff8820"></div>
+                        <div class="description">Cuenta Corriente</div>
+                    </a>
+                </div>
+                <div class="op op-info">
+                    <a href="#">
+                        <div class="icon icon-info" style="background: #ff8820"></div>
+                        <div class="description">Información para mi viaje</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <div class="options op-group text-center submenu" style="margin-top: 20px;" hidden>
+            <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
+                Add passenger
+            </a>
+        </div>
     </div>
     @*<div class="container-fluid">
             <section class="slider" id="scene">
@@ -109,9 +135,9 @@ else
 
     <div class="container">
         @*<section class="welcome">
-                <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
-                <p>Bienvenido a la página personalizada para tu viaje</p>
-            </section>*@
+            <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
+            <p>Bienvenido a la página personalizada para tu viaje</p>
+        </section>*@
         <section class="options">
             <div class="op-group">
                 <div class="op op-propuesta">
@@ -124,7 +150,7 @@ else
                     </a>
                 </div>
                 <div class="op op-info">
-                    <a href="@Url.Action("MyBookedTrip", "Home",new { pCodCliente = CodCliente , pNroPedido = nroPedido,pNroPropuesta = nroPropuesta,pNroVersion = nroVersion})">
+                    <a href="#">
                         <div class="icon icon-info"></div>
                         <div class="description">Mi viaje reservado</div>
                     </a>
@@ -137,6 +163,33 @@ else
                 </div>
             </div>
         </section>
+        <section class="options">
+            <div class="op-group">
+                <div class="op op-estado">
+                    <a href="#">
+                        <div class="icon icon-booking" style="background: #ff8820"></div>
+                        <div class="description">Estado de su reserva</div>
+                    </a>
+                </div>
+                <div class="op op-cuenta">
+                    <a href="#">
+                        <div class="icon icon-balance" style="background: #ff8820"></div>
+                        <div class="description">Cuenta Corriente</div>
+                    </a>
+                </div>
+                <div class="op op-info">
+                    <a href="#">
+                        <div class="icon icon-info" style="background: #ff8820"></div>
+                        <div class="description">Información para mi viaje</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <div class="options op-group text-center" style="margin-top: 20px;">
+            <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
+                Agregar pasajero
+            </a>
+        </div>
     </div>
     @*<div class="container-fluid">
             <section class="slider" id="scene">
@@ -147,11 +200,7 @@ else
                 <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
             </section>
         </div>*@
-
-
-
 }
 
-
-
-
+<script src="~/Scripts/third/parallax.min.js"></script>
+<script src="~/Scripts/views/home.js"></script>

@@ -14,26 +14,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#0f703a">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee|Montserrat:400,600,700,800">
-    @*@Styles.Render("~/Content/css")*@
 
-    <link rel="stylesheet" href="~/Content/css/layout.css" media="all">
-    <link rel="stylesheet" href="~/Content/css/home.min.css" media="all">
-    <link rel="stylesheet" href="~/Content/css/propuestas.min.css" media="all">
-    <link rel="stylesheet" href="~/Content/css/chat.css" media="all">
-    <link rel="stylesheet" href="~/Content/css/flotante.css" media="all">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    @*<link rel="stylesheet" href="~/Content/css/chat.css" media="all">
-        <link rel="stylesheet" href="~/Content/css/ChatGG.css" media="all">*@
-    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/jquery")
 </head>
 
-
 <body>
-
-
     @if (Session["Idioma"] != null || Session["IdCliente"] != null || Session["NomCliente"] != null || Session["CodCliente"] != null)
     {
-
         if (Session["Idioma"].Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
         {
 
@@ -72,11 +61,9 @@
                 </div>
                 <!-- navegacion -->
             </header>
-
         }
         else
         {
-
             <header id="header">
                 <div class="container-fluid">
                     <div class="row">
@@ -112,41 +99,20 @@
                 </div>
                 <!-- navegacion -->
             </header>
-
         }
-
-
-
     }
     else
     {
-
         Response.Redirect("~/Views/Shared/SessionExpired.cshtml");
     }
 
-
-
-
-
     <div class="content">
-
         @RenderBody()
-
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="~/scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Content/scripts/third/bootstrap.min.js"></script>
-    <script src="~/Content/scripts/third/owl.carousel.min.js"></script>
-    <script src="~/Content/scripts/third/parallax.min.js"></script>
-    <script src="~/Content/scripts/views/home.js"></script>
-    <script src="~/Content/scripts/views/propuestas.js"></script>
-    <script src="~/Content/scripts/views/chat.js"></script>
-
 
     @*<div id="floating_alert" class="alert-danger fade in countdown">Tu sesion expira en : 04:45</div>*@
 
-
+    @Scripts.Render("~/bundles/scripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -6317,7 +6317,7 @@ body {
     font-size: 12px; }
   #header .nombrePax {
     color: #e41973;
-    font-size: 22px; }
+    font-size: 18px; }
     #header .nombrePax .icon-user {
       border-radius: 20px;
       overflow: hidden;
@@ -6327,7 +6327,7 @@ body {
       text-align: center;
       vertical-align: sub;
       color: #e41973;
-      font-size: 22px; }
+      font-size: 16px; }
   #header .brand {
     float: left; }
   @media (max-width: 991px) {
@@ -7246,6 +7246,7 @@ section,
 
 .btn.pago {
   background: #e41973;
+  width: 100%;
   border: 1px solid #e41973; }
 
 #txtMessage {
