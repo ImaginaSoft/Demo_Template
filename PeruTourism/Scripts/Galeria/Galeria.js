@@ -145,8 +145,7 @@ function openBalanceModal(pCliente, pNroPedido) {
 
 
 function openBookingStatusModal(pNroPedido, pNroPropuesta, pNroVersion, pFlagIdioma) {
-    
-
+  
     var dataToSend = 'pNroPedido=' + pNroPedido + '&pNroPropuesta=' + pNroPropuesta + '&pNroVersion=' + pNroVersion + '&pFlagIdioma=' + pFlagIdioma;
     
     $.ajax({

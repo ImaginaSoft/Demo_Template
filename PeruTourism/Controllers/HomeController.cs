@@ -79,6 +79,7 @@ namespace PeruTourism.Controllers
                     Session["Idioma"] = lstPublicacion.FirstOrDefault().FlagIdioma;
 
                     ViewBag.Idioma = lstPublicacion.FirstOrDefault().FlagIdioma;
+                    ViewBag.FlagIdioma = lstPublicacion.FirstOrDefault().FlagIdioma;
                     ViewBag.IdCliente = _IdCliente;
                     ViewBag.CodCliente = _CodCliente;
                     ViewBag.NomCliente = _NomCliente;
@@ -123,6 +124,7 @@ namespace PeruTourism.Controllers
                     objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
 
                     ViewBag.Idioma = lstPublicacion.FirstOrDefault().FlagIdioma;
+                    ViewBag.FlagIdioma = lstPublicacion.FirstOrDefault().FlagIdioma;
 
                     ViewBag.CodCliente = codCliente;
 
