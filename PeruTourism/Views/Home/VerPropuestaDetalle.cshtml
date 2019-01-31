@@ -221,7 +221,7 @@
                         PROCEDURE
                     </span>
                 </a>
-                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente =ViewBag.codCliente})">
                     BOOK NOW
                 </a>
 
@@ -346,7 +346,7 @@
     <div class="chat enter">
         <div class="header">
             <span class="title">
-                Travel Designer
+                Chat
             </span>
             <button>
                 <i class="fa fa-times" aria-hidden="true"></i>
@@ -357,7 +357,7 @@
         <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
         <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
 
-        <div>Hi I'm @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), send me a message</div>
+        <div>Hi I'm @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva) you Travel Designer, please send me a message</div>
         <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
         <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Please enter your message</div>
         <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>

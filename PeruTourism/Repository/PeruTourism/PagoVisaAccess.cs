@@ -448,5 +448,72 @@ namespace PeruTourism.Repository.PeruTourism
 
         }
 
+
+
+        public string CargaUrlVisanetLink()
+        {
+
+            try
+            {
+                List<ReservaAereo> lstReservaTerrestre = new List<ReservaAereo>();
+                string urlPago = string.Empty;
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+
+                    SqlCommand cmd = new SqlCommand("TAB_Tabla_VisaNetLink_S", con);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    //cmd.Parameters.Add("@NroPropuesta", SqlDbType.Int).Value = pNroPropuesta;
+                    //cmd.Parameters.Add("@NroVersion", SqlDbType.Int).Value = pNroVersion;
+                    //cmd.Parameters.Add("@CodTipoServicio", SqlDbType.Int).Value = 3;
+
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        urlPago = rdr["NomTabla"].ToString().Trim();
+
+                        //ReservaAereo fterrestre = new ReservaAereo
+                        //{
+
+                        //    FchVuelo = Convert.ToDateTime(rdr["FchVuelo"].ToString()),
+                        //    AereoLinea = rdr["Aerolinea"].ToString().Trim(),
+                        //    RutaVuelo = rdr["RutaVuelo"].ToString().Trim(),
+                        //    NroVuelo = rdr["NroVuelo"].ToString().Trim(),
+                        //    HoraSalida = rdr["HoraSalida"].ToString().Trim(),
+                        //    HoraLlegada = rdr["HoraLlegada"].ToString().Trim(),
+                        //    CodReserva = rdr["CodReserva"].ToString().Trim(),
+                        //    DesCantidad = rdr["DesCantidad"].ToString().Trim(),
+                        //    CodStsReserva = rdr["CodStsReserva"].ToString().Trim(),
+                        //    NroDia = Convert.ToInt32(rdr["NroDia"].ToString()),
+                        //    NroOrden = Convert.ToInt32(rdr["NroOrden"].ToString())
+
+
+
+                        //};
+
+                        //lstReservaTerrestre.Add(item: fterrestre);
+                    }
+
+                    con.Close();
+                }
+
+                return urlPago;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
     }
 }

@@ -219,7 +219,9 @@ namespace PeruTourism.Controllers
 
                         if (itemAgrupado.HoraServicio.Trim().Equals(string.Empty) || itemAgrupado.HoraServicio==null) {
 
-                            servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + "<div class=\"prop-info\"><div class=\"info\"><i class=\"icon icon-time\"></i>" + "N/A" + "</div></div>" + "|";
+                            //servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet + "<div class=\"prop-info\"><div class=\"info\"><i class=\"icon icon-time\"></i>" + "N/A" + "</div></div>" + "|";
+
+                            servDetAgrupado = servDetAgrupado + itemAgrupado.DesServicioDet  + "|";
 
                         }
                         else {
