@@ -40,9 +40,22 @@
 }
 
 <style type="text/css">
-    .options {
+    .optionsMini {
         max-width: 500px;
     }
+
+        .optionsMini .description {
+            font-size: 18px;
+        }
+
+        .optionsMini .icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            line-height: 98px;
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
 </style>
 
 <script src="~/Scripts/Galeria/Galeria.js"></script>
@@ -89,29 +102,29 @@
                 </div>
             </div>
         </section>
-        <section class="options optionsMini submenu" hidden>
+        <section class="options optionsMini submenu" style="margin-bottom: 25px !important" hidden>
             <div class="op-group">
                 <div class="op op-info">
                     <a onclick="javascript:openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
                         <div class="icon icon-booking" style="background: #ff8820"></div>
-                        <div class="description">Booking Status</div>
+                        <div class="description">Booking<br />Status</div>
                     </a>
                 </div>
                 <div class="op op-info">
                     <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
                         <div class="icon icon-balance" style="background: #ff8820"></div>
-                        <div class="description">Balance Due</div>
+                        <div class="description">Balance<br />Due</div>
                     </a>
                 </div>
                 <div class="op op-info">
                     <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
                         <div class="icon icon-info" style="background: #ff8820"></div>
-                        <div class="description">Information for my trip</div>
+                        <div class="description">Information<br />for my trip</div>
                     </a>
                 </div>
             </div>
         </section>
-        <div class="options op-group text-center submenu" style="margin-top: 20px;" hidden>
+        <div class="options optionsMini op-group text-center submenu" hidden>
             <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
                 Add passenger
             </a>
@@ -171,29 +184,29 @@ else
                 </div>
             </div>
         </section>
-        <section class="options optionsMini submenu" hidden>
+        <section class="options optionsMini submenu" style="margin-bottom: 25px !important" hidden>
             <div class="op-group">
                 <div class="op op-info">
                     <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
                         <div class="icon icon-booking" style="background: #ff8820"></div>
-                        <div class="description">Estado de su reserva</div>
+                        <div class="description">Estado de<br />su reserva</div>
                     </a>
                 </div>
                 <div class="op op-info">
                     <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
                         <div class="icon icon-balance" style="background: #ff8820"></div>
-                        <div class="description">Cuenta Corriente</div>
+                        <div class="description">Cuenta<br />Corriente</div>
                     </a>
                 </div>
                 <div class="op op-info">
                     <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
                         <div class="icon icon-info" style="background: #ff8820"></div>
-                        <div class="description">Información para mi viaje</div>
+                        <div class="description">Información<br />para mi viaje</div>
                     </a>
                 </div>
             </div>
         </section>
-        <div class="options op-group text-center submenu" style="margin-top: 20px;" hidden>
+        <div class="optionsMini op-group text-center submenu" hidden>
             <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
                 Agregar pasajero
             </a>

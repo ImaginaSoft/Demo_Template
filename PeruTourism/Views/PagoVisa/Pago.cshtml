@@ -46,61 +46,57 @@
 
 
     <div class="group prop-detalle">
-        @using (Ajax.BeginForm("RealizarPago", "PagoVisa", null, lajaxOptionsForm, new { @id = "form-pagoVisa", @class = "group" }))
-        {
-        <div class="group-table group">
-
-            <a href="@urlPagoGG">Link de pago</a>
-            <label>Su codigo de cliente es :</label><label>@codCliente</label>
+        <div class="group text-center" style="padding-top: 17px;">
+            <a class="group text-center" href="@urlPagoGG">Link de pago</a>
+            <label>Su código de cliente es:</label>&nbsp;&nbsp;<label style="color: #e41973">@codCliente</label>
             @*<input type="hidden" id="IDPedido" value="@IDPedido.Trim()" />*@
 
             @*<div class="form-group">
-                <label for="form-label">A favor de:</label>
-                <label for="email">VIAJES PENTAGRAMA</label>
+            <label for="form-label">A favor de:</label>
+            <label for="email">VIAJES PENTAGRAMA</label>
 
-            </div>
-            <div class="form-group">
-                <label for="form-label">Cliente:</label>
-                <label for="email">@lstPedidoVisa.FirstOrDefault().NomCliente</label>
+        </div>
+        <div class="form-group">
+            <label for="form-label">Cliente:</label>
+            <label for="email">@lstPedidoVisa.FirstOrDefault().NomCliente</label>
 
-            </div>
-            <div class="form-group">
-                <label for="form-label">Servicio:</label>
-                <label for="email">@lstPedidoVisa.FirstOrDefault().DesPedido</label>
+        </div>
+        <div class="form-group">
+            <label for="form-label">Servicio:</label>
+            <label for="email">@lstPedidoVisa.FirstOrDefault().DesPedido</label>
 
-            </div>
-            <div class="form-group">
-                <label for="pwd">Monto a pagar:</label>
-     
-                <label class="no-pad">
-                    @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().Monto, new { @class = "form-control" })
-                </label>
-                @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().IDPedido, new { @class = "form-control", @Value = IDPedido.Trim(), @type = "hidden" })
-            </div>
-            <div class="form-group">
-       
-                <label>Agree</label>
-                <label for="form-label">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Monto a pagar:</label>
 
-                    @Html.CheckBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions, new { @class = "" })
+            <label class="no-pad">
+                @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().Monto, new { @class = "form-control" })
+            </label>
+            @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().IDPedido, new { @class = "form-control", @Value = IDPedido.Trim(), @type = "hidden" })
+        </div>
+        <div class="form-group">
 
-                    I agree with the payment and booking conditions
+            <label>Agree</label>
+            <label for="form-label">
 
-                </label>
+                @Html.CheckBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions, new { @class = "" })
+
+                I agree with the payment and booking conditions
+
+            </label>
 
 
-            </div>*@
+        </div>*@
 
             @*<div class="form-group-btn">
-                <span class="field-validation-valid" data-valmsg-for="TermsAndConditions" data-valmsg-replace="true"></span>
-                @Html.ValidationMessageFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions)
-                <button type="submit" class="pago btn btn-primary">Realizar Pago</button>
-            </div>*@
+            <span class="field-validation-valid" data-valmsg-for="TermsAndConditions" data-valmsg-replace="true"></span>
+            @Html.ValidationMessageFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions)
+            <button type="submit" class="pago btn btn-primary">Realizar Pago</button>
+        </div>*@
 
 
 
         </div>
-        }
     </div>
 
     <div class="group prop-detalle">
