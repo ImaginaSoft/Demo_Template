@@ -107,7 +107,7 @@
                 </div>
             </section>
             <div class="options optionsMini op-group text-center">
-                <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
+                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
                     Add passenger
                 </a>
             </div>
@@ -191,7 +191,7 @@ else
                 </div>
             </section>
             <div class="optionsMini op-group text-center">
-                <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
+                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
                     Agregar pasajero
                 </a>
             </div>
@@ -224,12 +224,18 @@ else
 <script src="~/Scripts/views/home.js"></script>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        $(".marcaMenu").removeClass("active");
+        $(".marcaMenu01").addClass("active");
+    });
+
     function mostrarSubMenu() {
         if ($(".popup").is(":visible")) {
             $(".popup").hide();
         }
         else {
             $(".popup").show();
+            $(".btnSeleccion").focus();
         }
     }
 </script>

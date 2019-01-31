@@ -41,28 +41,28 @@
             @for (int i = 0; i < lstProgramas.Count; i++)
             {
 
-            <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente})" class="group prop">
-                <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
-                <div class="prop-title">@lstProgramas[i].DesPrograma</div>
+                <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente})" class="group prop">
+                    <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
+                    <div class="prop-title">@lstProgramas[i].DesPrograma</div>
 
 
 
-                @if (lstProgramas[i].StsPrograma.Equals("Sold") || lstProgramas[i].StsPrograma.Equals("Vendido"))
-                {
-                    <div class="prop-status"><span class="status status-sold">@lstProgramas[i].StsPrograma</span></div>
-                }
-                else if (lstProgramas[i].StsPrograma.Equals("Quote") || lstProgramas[i].StsPrograma.Equals("Cotizado"))
-                {
-                    <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
-                }
-                else
-                {
-                    <div class="prop-status"><span class="status status-cancel">@lstProgramas[i].StsPrograma</span></div>
-                }
+                    @if (lstProgramas[i].StsPrograma.Equals("Sold") || lstProgramas[i].StsPrograma.Equals("Vendido"))
+                    {
+                        <div class="prop-status"><span class="status status-sold">@lstProgramas[i].StsPrograma</span></div>
+                    }
+                    else if (lstProgramas[i].StsPrograma.Equals("Quote") || lstProgramas[i].StsPrograma.Equals("Cotizado"))
+                    {
+                        <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
+                    }
+                    else
+                    {
+                        <div class="prop-status"><span class="status status-cancel">@lstProgramas[i].StsPrograma</span></div>
+                    }
 
 
-                @*<div class="prop-status"><span class="status status-quote">@lstProgramas[i].StsPrograma</span></div>*@
-            </a>
+                    @*<div class="prop-status"><span class="status status-quote">@lstProgramas[i].StsPrograma</span></div>*@
+                </a>
 
             }
 
@@ -70,3 +70,10 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".marcaMenu").removeClass("active");
+        $(".marcaMenu02").addClass("active");
+    });
+</script>
