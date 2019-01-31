@@ -11,7 +11,7 @@ namespace PeruTourism
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap/bootstrap.min.css",
                       "~/Content/css/font-awesome.min.css",
-                      "~/Content/css/layout.min.css",
+                      "~/Content/css/layout.css",
                       "~/Content/css/home.min.css",
                       "~/Content/css/propuestas.min.css",
                       "~/Content/css/chat.css",

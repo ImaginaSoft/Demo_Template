@@ -39,25 +39,6 @@
     char idioma = ViewBag.Idioma;
 }
 
-<style type="text/css">
-    .optionsMini {
-        max-width: 500px;
-    }
-
-        .optionsMini .description {
-            font-size: 18px;
-        }
-
-        .optionsMini .icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 50px;
-            line-height: 98px;
-            font-size: 60px;
-            margin-bottom: 10px;
-        }
-</style>
-
 <script src="~/Scripts/Galeria/Galeria.js"></script>
 
 @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
@@ -77,7 +58,7 @@
                 <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
                 <p> Welcome to the customized travel website for your trip </p>
             </section>*@
-        <section class="options">
+        <section class="options popupBase">
             <div class="op-group">
                 <div class="op op-propuesta">
                     <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
@@ -102,32 +83,34 @@
                 </div>
             </div>
         </section>
-        <section class="options optionsMini submenu" style="margin-bottom: 25px !important" hidden>
-            <div class="op-group">
-                <div class="op op-info">
-                    <a onclick="javascript:openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
-                        <div class="icon icon-booking" style="background: #ff8820"></div>
-                        <div class="description">Booking<br />Status</div>
-                    </a>
+        <div class="popup" hidden>
+            <section class="options optionsMini" style="margin-bottom: 25px !important">
+                <div class="op-group">
+                    <div class="op op-info">
+                        <a onclick="javascript:openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
+                            <div class="icon icon-booking" style="background: #ff8820"></div>
+                            <div class="description">Booking<br />Status</div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                            <div class="icon icon-balance" style="background: #ff8820"></div>
+                            <div class="description">Balance<br />Due</div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
+                            <div class="icon icon-info" style="background: #ff8820"></div>
+                            <div class="description">Information<br />for my trip</div>
+                        </a>
+                    </div>
                 </div>
-                <div class="op op-info">
-                    <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
-                        <div class="icon icon-balance" style="background: #ff8820"></div>
-                        <div class="description">Balance<br />Due</div>
-                    </a>
-                </div>
-                <div class="op op-info">
-                    <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
-                        <div class="icon icon-info" style="background: #ff8820"></div>
-                        <div class="description">Information<br />for my trip</div>
-                    </a>
-                </div>
+            </section>
+            <div class="options optionsMini op-group text-center">
+                <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
+                    Add passenger
+                </a>
             </div>
-        </section>
-        <div class="options optionsMini op-group text-center submenu" hidden>
-            <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
-                Add passenger
-            </a>
         </div>
     </div>
     @*<div class="container-fluid">
@@ -159,7 +142,7 @@ else
                 <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
                 <p>Bienvenido a la página personalizada para tu viaje</p>
             </section>*@
-        <section class="options">
+        <section class="options popupBase">
             <div class="op-group">
                 <div class="op op-propuesta">
                     <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
@@ -184,32 +167,34 @@ else
                 </div>
             </div>
         </section>
-        <section class="options optionsMini submenu" style="margin-bottom: 25px !important" hidden>
-            <div class="op-group">
-                <div class="op op-info">
-                    <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                        <div class="icon icon-booking" style="background: #ff8820"></div>
-                        <div class="description">Estado de<br />su reserva</div>
-                    </a>
+        <div class="popup" hidden>
+            <section class="options optionsMini" style="margin-bottom: 25px !important">
+                <div class="op-group">
+                    <div class="op op-info">
+                        <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                            <div class="icon icon-booking" style="background: #ff8820"></div>
+                            <div class="description">Estado de<br />su reserva</div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                            <div class="icon icon-balance" style="background: #ff8820"></div>
+                            <div class="description">Cuenta<br />Corriente</div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                            <div class="icon icon-info" style="background: #ff8820"></div>
+                            <div class="description">Información<br />para mi viaje</div>
+                        </a>
+                    </div>
                 </div>
-                <div class="op op-info">
-                    <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
-                        <div class="icon icon-balance" style="background: #ff8820"></div>
-                        <div class="description">Cuenta<br />Corriente</div>
-                    </a>
-                </div>
-                <div class="op op-info">
-                    <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                        <div class="icon icon-info" style="background: #ff8820"></div>
-                        <div class="description">Información<br />para mi viaje</div>
-                    </a>
-                </div>
+            </section>
+            <div class="optionsMini op-group text-center">
+                <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
+                    Agregar pasajero
+                </a>
             </div>
-        </section>
-        <div class="optionsMini op-group text-center submenu" hidden>
-            <a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
-                Agregar pasajero
-            </a>
         </div>
     </div>
     @*<div class="container-fluid">
@@ -239,13 +224,12 @@ else
 <script src="~/Scripts/views/home.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-    });
-
     function mostrarSubMenu() {
-        if ($(".submenu").is(":visible"))
-            $(".submenu").hide();
-        else
-            $(".submenu").show();
+        if ($(".popup").is(":visible")) {
+            $(".popup").hide();
+        }
+        else {
+            $(".popup").show();
+        }
     }
 </script>
