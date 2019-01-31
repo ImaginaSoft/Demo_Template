@@ -9,5 +9,9 @@ namespace PeruTourism.Models.Visa
     {
 
         public List<PedidoVisa> lstPedidoVisa { get; set; }
+
+        public string urlPago { get; set; }
+
+        public string codCliente { get; set; }
     }
 }

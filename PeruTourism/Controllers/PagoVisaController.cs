@@ -21,30 +21,36 @@ namespace PeruTourism.Controllers
         {
             return View();
         }
-        public ActionResult Pago(string pIdPedido) {
+        public ActionResult Pago(string pIdPedido, string pcodCliente) {
 
             string sIdPedido = string.Empty;
 
+            string urlPago = string.Empty;
+
+            urlPago = objPagoVisaAccess.CargaUrlVisanetLink();
             //sIdPedido = objPagoVisaAccess.ObtenerListadoPedidoVISA(Convert.ToInt32(pIdPedido.Substring(0,6)));
 
-            var lstPedidoVisa = objPagoVisaAccess.CargarPedidoVisa(Convert.ToInt32(pIdPedido.Substring(0,6)));
+           // var lstPedidoVisa = objPagoVisaAccess.CargarPedidoVisa(Convert.ToInt32(pIdPedido.Substring(0,6)));
 
-            objPedidoVisaViewModel.lstPedidoVisa = lstPedidoVisa.ToList();
+           // objPedidoVisaViewModel.lstPedidoVisa = lstPedidoVisa.ToList();
+            objPedidoVisaViewModel.urlPago = urlPago;
+            objPedidoVisaViewModel.codCliente = pcodCliente;
 
-            sIdPedido = lstPedidoVisa.FirstOrDefault().IDPedido.Trim();
+           // sIdPedido = lstPedidoVisa.FirstOrDefault().IDPedido.Trim();
 
             int sIdPedido_length = sIdPedido.Length;
 
-            if (sIdPedido.Substring(13, 6) == pIdPedido.Substring(0, 6)) {
+            return View(objPedidoVisaViewModel);
+            //if (sIdPedido.Substring(13, 6) == pIdPedido.Substring(0, 6)) {
 
-                return View(objPedidoVisaViewModel);
+            //    return View(objPedidoVisaViewModel);
 
-            }
-            else {
+            //}
+            //else {
 
-                return View("PagoVisa/Info");
+            //    return View("PagoVisa/Info");
 
-            }
+            //}
 
         }
         public ActionResult ConfirmarPago(PedidoVisa pedido) {
