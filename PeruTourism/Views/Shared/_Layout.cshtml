@@ -15,9 +15,15 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee|Montserrat:400,600,700,800">
 
-    @Styles.Render("~/Content/css")
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/layout.css" rel="stylesheet" />
+    <link href="~/Content/css/home.min.css" rel="stylesheet" />
+    <link href="~/Content/css/propuestas.min.css" rel="stylesheet" />
+    <link href="~/Content/css/chat.css" rel="stylesheet" />
+    <link href="~/Content/css/flotante.css" rel="stylesheet" />
 
-    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
@@ -112,7 +118,11 @@
 
     @*<div id="floating_alert" class="alert-danger fade in countdown">Tu sesion expira en : 04:45</div>*@
 
-    @Scripts.Render("~/bundles/scripts")
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/third/bootstrap.min.js"></script>
+    <script src="~/Scripts/shared/chat.js"></script>
+    <script src="~/Scripts/shared/flotante.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
