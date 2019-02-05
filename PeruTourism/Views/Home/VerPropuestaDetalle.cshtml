@@ -225,14 +225,23 @@
                 </div>
                 <div class="col-sm-6">
                     <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente =ViewBag.codCliente})">
-                        BOOK NOW
+                        PAY NOW
                     </a>
                 </div>
                 @*<a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
-                        AGREGAR PASAJERO
-                    </a>*@
+                AGREGAR PASAJERO
+            </a>*@
 
                 @*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
+            </div>
+
+            <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
+                <div class="col-sm-6">
+                    
+                </div>
+                <div class="col-sm-6">
+                    <img src="~/Content/images/logos.jpg" width="100%" />
+                </div>
             </div>
         </div>
 
