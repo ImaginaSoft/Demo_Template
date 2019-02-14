@@ -7733,13 +7733,13 @@ label.no-pad input {
 .groupCircle {
     position: absolute;
     float: right;
-    top: 0;
+    top: 5px;
     right: 0;
     margin: 10px;
-    background: #e41973;
+    background: #E0357C;
     border-radius: 75px;
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
 }
 
 .groupTexto {

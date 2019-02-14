@@ -25,6 +25,26 @@
         color: #ff0000;
         display: block;
     }
+
+    #iconIntermitente {
+        opacity: 1;
+        transition: opacity .5s;
+    }
+
+        #iconIntermitente.fade {
+            opacity: 0.2;
+        }
+
+        #iconIntermitente:hover {
+            opacity: 1;
+        }
+
+    .groupCircle:hover {
+        top: 0px;
+        width: 150px;
+        height: 150px;
+        border: #e41973 5px solid;
+    }
 </style>
 
 <div id="propDet" class="secondary">
@@ -117,8 +137,8 @@
         </div>
         <div class="prop-icon">
            <div class="groupCircle">
-                <div class="groupTexto">
-                    <a class="group text-center" href="https://www.visanetlink.pe/pagoseguro/PERUTOURISM/26688">
+                <div class="groupTexto" id="iconIntermitente">
+                    <a class="group text-center" href="https://www.visanetlink.pe/pagoseguro/PERUTOURISM/26688" title="Click aqui para pagar!">
                         <div class="icon icon-propuesta"></div>
                         <div class="title">PAY NOW</div>
                     </a>
@@ -157,5 +177,11 @@
     $(document).ready(function () {
         $(".marcaMenu").removeClass("active");
         $(".marcaMenu02").addClass("active");
+
+        var animacion = function () {
+            document.getElementById('iconIntermitente').classList.toggle('fade');
+        }
+
+        setInterval(animacion, 500);
     });
 </script>
