@@ -11,6 +11,9 @@
     var urlPagoGG = Model.urlPago;
 
     var codCliente = Model.codCliente;
+    var idPedido = Model.idPedido;
+    var nroPrograma = Model.nroPrograma;
+    var idioma = Model.idioma;
 
     var lajaxOptionsForm = new AjaxOptions()
     {
@@ -39,18 +42,21 @@
             opacity: 1;
         }
 
-    .groupCircle:hover {
-        top: 0px;
-        width: 150px;
-        height: 150px;
-        border: #e41973 5px solid;
+    .groupCircle {
+        background: #ff8820 !important;
     }
+        .groupCircle:hover {
+            top: 0px;
+            width: 150px;
+            height: 150px;
+            border: #FF7200 5px solid;
+        }
 </style>
 
 <div id="propDet" class="secondary">
 
     <div class="container-fluid">
-        <section class="subtitle">
+        <section class="subtitle" style="margin-bottom: 0px;">
             <div class="container">
                 <div class="text-center bloqueCode">
                     <label class="titulo">Your customer code:</label>
@@ -58,15 +64,23 @@
                     <label class="codigo">@codCliente</label>
                 </div>
                 @*<div class="options">
-                        <div class="op-group">
-                            <div class="op op-propuesta">
-                                <div class="icon icon-propuesta"></div>
-                                <div class="title">PAY NOW</div>
-                            </div>
+                    <div class="op-group">
+                        <div class="op op-propuesta">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="title">PAY NOW</div>
                         </div>
-                    </div>*@
+                    </div>
+                </div>*@
             </div>
         </section>
+        <div style="margin-bottom: 50px;">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
+                <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = codCliente })">Proposals for my trip</a></li>
+                <li><a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente})">Details</a></li>
+                <li>Pay now</li>
+            </ul>
+        </div>
     </div>
 
 

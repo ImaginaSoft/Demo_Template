@@ -6472,7 +6472,7 @@ section,
   .content .container-fluid {
     padding: 0; }
   .content section {
-    margin-bottom: 50px; }
+    /*margin-bottom: 50px;*/ }
 
 /* HOME: Bienvenida + Opciones
 *************************************************************************************************/
@@ -7736,7 +7736,7 @@ label.no-pad input {
     top: 5px;
     right: 0;
     margin: 10px;
-    background: #E0357C;
+    background: #ff8820;
     border-radius: 75px;
     width: 140px;
     height: 140px;

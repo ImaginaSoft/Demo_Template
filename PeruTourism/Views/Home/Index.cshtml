@@ -43,15 +43,20 @@
 
 @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
 {
-    <div class="container-fluid">
-        <section class="slider" id="scene">
-            <div class="container" data-depth="0.2">
-                <span class="description">Here is where the trip of your lifetime starts...</span>
-                <img src="~/Content/images/slider-group.png" class="img-group">
-            </div>
-            <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-        </section>
+<div class="container-fluid">
+    <section class="slider" id="scene" style="margin-bottom: 0px !important;">
+        <div class="container" data-depth="0.2">
+            <span class="description">Here is where the trip of your lifetime starts...</span>
+            <img src="~/Content/images/slider-group.png" class="img-group">
+        </div>
+        <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+    </section>
+    <div style="margin-bottom: 50px;">
+        <ul class="breadcrumb">
+            <li>Home</li>
+        </ul>
     </div>
+</div>
 
     <div class="container">
         @*<section class="welcome">
@@ -128,13 +133,18 @@
 else
 {
     <div class="container-fluid">
-        <section class="slider" id="scene">
+        <section class="slider" id="scene" style="margin-bottom: 0px !important;">
             <div class="container" data-depth="0.2">
                 <span class="description">Aquí es donde comienza el viaje de tu vida...</span>
                 <img src="~/Content/images/slider-group.png" class="img-group">
             </div>
             <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
         </section>
+        <div style="margin-bottom: 50px;">
+            <ul class="breadcrumb">
+                <li>Inicio</li>
+            </ul>
+        </div>
     </div>
 
     <div class="container">
@@ -232,10 +242,29 @@ else
     function mostrarSubMenu() {
         if ($(".popup").is(":visible")) {
             $(".popup").hide();
+
+            $(".op-propuesta").css("opacity", "1");
+            $(".op-propuesta").css("pointer-events", "auto");
+            $(".op-propuesta").css("cursor", "auto");
+
+            $(".op-testimonio").css("opacity", "1");
+            $(".op-testimonio").css("pointer-events", "auto");
+            $(".op-testimonio").css("cursor", "auto");
+
         }
         else {
             $(".popup").show();
             $(".btnSeleccion").focus();
+
+            $(".op-propuesta").css("transition", "opacity .30s ease-in-out");
+            $(".op-propuesta").css("opacity", "0.1");
+            $(".op-propuesta").css("pointer-events", "none");
+            $(".op-propuesta").css("cursor", "default");
+
+            $(".op-testimonio").css("transition", "opacity .30s ease-in-out");
+            $(".op-testimonio").css("opacity", "0.1");
+            $(".op-testimonio").css("pointer-events", "none");
+            $(".op-testimonio").css("cursor", "default");
         }
     }
 </script>

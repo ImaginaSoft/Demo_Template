@@ -152,6 +152,8 @@ namespace PeruTourism.Controllers
             ViewBag.nroPropuesta = nroPropuesta;
             ViewBag.codCliente = pCodCliente;
             ViewBag.nroVersion = nroVersion;
+            ViewBag.NroPrograma = NroPrograma;
+            ViewBag.FlagIdioma = FlagIdioma;
 
             var codCliente = pCodCliente;
            // var lstPropuestaDetalle=null;

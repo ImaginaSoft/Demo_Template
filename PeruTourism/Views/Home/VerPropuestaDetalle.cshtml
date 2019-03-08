@@ -67,7 +67,7 @@
 
 <div id="propDet" class="secondary">
     <div class="container-fluid">
-        <section class="subtitle">
+        <section class="subtitle" style="margin-bottom: 0px;">
             <div class="container">
                 <div class="options">
                     <div class="op-group">
@@ -79,6 +79,13 @@
                 </div>
             </div>
         </section>
+        <div style="margin-bottom: 50px;">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
+                <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">Propuestas para mi viaje</a></li>
+                <li>Detalle</li>
+            </ul>
+        </div>
     </div>
     <!-- contenido -->
     <div class="container">
@@ -224,7 +231,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6">
-                    <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente =ViewBag.codCliente})">
+                    <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma})">
                         PAY NOW
                     </a>
                 </div>

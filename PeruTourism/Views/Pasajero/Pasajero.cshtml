@@ -21,6 +21,13 @@
     }
 </style>
 
+<div style="margin-bottom: 50px;">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
+        <li>Add passenger</li>
+    </ul>
+</div>
+
 <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
 <input type="text" id="txtNroPasajero" value="0" hidden />
 

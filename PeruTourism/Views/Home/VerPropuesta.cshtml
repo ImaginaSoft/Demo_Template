@@ -12,7 +12,7 @@
 
 <div id="prop" class="secondary">
     <div class="container-fluid">
-        <section class="slider" id="scenex">
+        <section class="slider" id="scenex" style="margin-bottom: 0px;">
             <div class="container">
                 <div class="options">
                     <div class="op-group">
@@ -33,6 +33,20 @@
             </div>
             <img src="~/Content/images/slider-prop.jpg" class="img-bg" data-depth="0.1">
         </section>
+        <div style="margin-bottom: 50px;">
+            <ul class="breadcrumb">
+                @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                {
+                    <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
+                    <li>Proposals for my trip</li>
+                }
+                else
+                {
+                    <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
+                    <li>Propuestas para mi viaje</li>
+                }
+            </ul>
+        </div>
     </div>
 
     <div class="container">

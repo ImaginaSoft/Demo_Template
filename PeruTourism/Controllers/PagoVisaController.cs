@@ -21,7 +21,7 @@ namespace PeruTourism.Controllers
         {
             return View();
         }
-        public ActionResult Pago(string pIdPedido, string pcodCliente) {
+        public ActionResult Pago(string pIdPedido, string pcodCliente, string pNroPrograma, string pFlagIdioma) {
 
             string sIdPedido = string.Empty;
 
@@ -35,8 +35,11 @@ namespace PeruTourism.Controllers
            // objPedidoVisaViewModel.lstPedidoVisa = lstPedidoVisa.ToList();
             objPedidoVisaViewModel.urlPago = urlPago;
             objPedidoVisaViewModel.codCliente = pcodCliente;
+            objPedidoVisaViewModel.idPedido = pIdPedido;
+            objPedidoVisaViewModel.nroPrograma = pNroPrograma;
+            objPedidoVisaViewModel.idioma = pFlagIdioma;
 
-           // sIdPedido = lstPedidoVisa.FirstOrDefault().IDPedido.Trim();
+            // sIdPedido = lstPedidoVisa.FirstOrDefault().IDPedido.Trim();
 
             int sIdPedido_length = sIdPedido.Length;
 

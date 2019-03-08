@@ -246,6 +246,7 @@
     <Content Include="Content\images\slider-bg.jpg" />
     <Content Include="Content\images\slider-group.png" />
     <Content Include="Content\images\slider-prop.jpg" />
+    <Content Include="Content\menu.css" />
     <Content Include="Content\sass\framework\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\sass\framework\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\sass\framework\bootstrap\bootstrap.css" />
@@ -425,7 +426,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7801</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:7801/perutourism-new</IISUrl>
+          <IISUrl>http://localhost:7802/perutourism-new</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
