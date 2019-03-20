@@ -538,6 +538,7 @@ namespace PeruTourism.Repository.PeruTourism
             try
             {
                 List<Pasajero> lstPasajero = new List<Pasajero>();
+                var dt = new DataTable();
 
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
@@ -549,27 +550,17 @@ namespace PeruTourism.Repository.PeruTourism
                     cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
 
                     con.Open();
-                    cmd.ExecuteNonQuery();
-                    SqlDataReader rdr = cmd.ExecuteReader();
-
-                    while (rdr.Read())
-                    {
-
-                        Pasajero fpasajero = new Pasajero
-                        {
-
-                            NomPasajero = rdr["NomPasajero"].ToString(),
-                            ApePasajero = rdr["ApePasajero"].ToString(),
-                            FchNacimiento = (DateTime)rdr["FchNacimiento"],
-                            Pasaporte = rdr["Pasaporte"].ToString()
-
-
-                        };
-
-                        lstPasajero.Add(item: fpasajero);
-                    }
-
+                    dt.Load(cmd.ExecuteReader());
                     con.Close();
+
+                    lstPasajero = dt.AsEnumerable().Select(x => new Pasajero
+                    {
+                        NomPasajero = x.Field<string>("NomPasajero"),
+                        ApePasajero = x.Field<string>("ApePasajero"),
+                        FchNacimiento = Convert.ToDateTime(x.Field<string>("FchNacimiento")),
+                        Pasaporte = x.Field<string>("Pasaporte")
+                    })
+                    .ToList();
                 }
 
                 return lstPasajero;
