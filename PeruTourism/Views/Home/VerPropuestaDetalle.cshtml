@@ -200,9 +200,9 @@
 
                                 <tr>
                                     <td>@d.DesOrden</td>
-                                    <td>USD @Convert.ToInt32(d.PrecioxPersona)</td>
+                                    <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
                                     <td>@d.CantPersonas</td>
-                                    <td>USD @Convert.ToInt32(d.PrecioTotal)</td>
+                                    <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
                                 </tr>
 
 
@@ -210,14 +210,14 @@
 
                             <tr class="table-total hidden-xs">
                                 <td colspan="3">Total</td>
-                                <td>USD @Convert.ToInt32(SumPrice)</td>
+                                <td>USD @Convert.ToDecimal(SumPrice).ToString("#,##0")</td>
                             </tr>
                         </tbody>
                         @{int totalSumPrice = SumPrice; }
                     </table>
                 </div>
                 <div class="div-total visible-xs">
-                    Total: @totalSumPrice
+                    Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
                 </div>
             </div>
 

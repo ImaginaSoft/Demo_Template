@@ -90,14 +90,14 @@
                                 <tr>
                                     <td>@d.FchEmision</td>
                                     <td>@d.Referencia</td>
-                                    <td>@Convert.ToInt32(d.Cargo)</td>
-                                    <td>@Convert.ToInt32(d.Abono)</td>
+                                    <td>@Convert.ToDecimal(d.Cargo).ToString("#,##0")</td>
+                                    <td>@Convert.ToDecimal(d.Abono).ToString("#,##0")</td>
                                 </tr>
                             }
                             @{int totalSaldo = totalCargo - totalAbono; }
                             <tr class="table-total hidden-xs">
                                 <td colspan="3">Total</td>
-                                <td>@totalSaldo</td>
+                                <td>@Convert.ToDecimal(totalSaldo).ToString("#,##0")</td>
                             </tr>
                         </tbody>
                    

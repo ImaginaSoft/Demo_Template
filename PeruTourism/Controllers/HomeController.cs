@@ -57,19 +57,27 @@ namespace PeruTourism.Controllers
 
                     var lstCliente = objLogin.LeerCliente(idCliente, codCLiente);
 
-                    _IdCliente = idCliente.Trim();
-                    _CodCliente = lstCliente.FirstOrDefault().CodCliente;
-                    _NomCliente = lstCliente.FirstOrDefault().NomCliente;
-                    _EmailCliente = lstCliente.FirstOrDefault().EmailCliente;
+                    if (lstCliente.Count() > 0)
+                    {
+                        _IdCliente = idCliente.Trim();
+                        _CodCliente = lstCliente.FirstOrDefault().CodCliente;
+                        _NomCliente = lstCliente.FirstOrDefault().NomCliente;
+                        _EmailCliente = lstCliente.FirstOrDefault().EmailCliente;
 
-                    Session["IdCliente"] = idCliente.Trim();
-                    Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
-                    Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
-                    //Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
-
+                        Session["IdCliente"] = idCliente.Trim();
+                        Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
+                        Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
+                        //Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
+                    }
+                    else
+                    {
+                        Session["IdCliente"] = null;
+                        Session["CodCliente"] = null;
+                        Session["NomCliente"] = null;
+                    }
                 }
 
-                if (_CodCliente != null)
+                if (!string.IsNullOrEmpty(_CodCliente))
                 {
 
                     var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCLiente));
@@ -88,7 +96,10 @@ namespace PeruTourism.Controllers
                     objPropuestaViewModel.lstPrograma = lstProgramaGG.ToList();
 
                 }
-
+                else
+                {
+                    Session["Idioma"] = null;
+                }
             }
             catch (Exception ex)
             {

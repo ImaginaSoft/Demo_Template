@@ -9,262 +9,281 @@
     string nroPropuesta = string.Empty;
     string nroVersion = string.Empty;
 
-    foreach (var gg in lstProgramas)
+    if (lstProgramas != null)
     {
-
-        if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
+        foreach (var gg in lstProgramas)
         {
 
-            nroPedido = gg.KeyReg.Substring(0, 6);
-            nroPropuesta = gg.KeyReg.Substring(8, 1);
-            nroVersion = gg.KeyReg.Substring(10, 1);
+            if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
+            {
 
-            break;
+                nroPedido = gg.KeyReg.Substring(0, 6);
+                nroPropuesta = gg.KeyReg.Substring(8, 1);
+                nroVersion = gg.KeyReg.Substring(10, 1);
+
+                break;
+            }
+            else
+            {
+                nroPedido = "0";
+                nroPropuesta = "0";
+                nroVersion = "0";
+            }
+
+
+
         }
-        else
-        {
-            nroPedido = "0";
-            nroPropuesta = "0";
-            nroVersion = "0";
-        }
-
-
-
     }
 
     //var NombreCliente = (string)Session["NomCliente"];
-    var NombreCliente = ViewBag.NomCliente;
-    var CodCliente = ViewBag.CodCliente;
+    var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
+    var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
 
-    char idioma = ViewBag.Idioma;
+    var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
 }
 
 <script src="~/Scripts/Galeria/Galeria.js"></script>
 
-@if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+@if (Session["Idioma"] != null || Session["IdCliente"] != null || Session["NomCliente"] != null || Session["CodCliente"] != null)
 {
-<div class="container-fluid">
-    <section class="slider" id="scene" style="margin-bottom: 0px !important;">
-        <div class="container" data-depth="0.2">
-            <span class="description">Here is where the trip of your lifetime starts...</span>
-            <img src="~/Content/images/slider-group.png" class="img-group">
-        </div>
-        <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-    </section>
-    <div style="margin-bottom: 50px;">
-        <ul class="breadcrumb">
-            <li>Home</li>
-        </ul>
-    </div>
-</div>
-
-    <div class="container">
-        @*<section class="welcome">
-                <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
-                <p> Welcome to the customized travel website for your trip </p>
-            </section>*@
-        <section class="options popupBase">
-            <div class="op-group">
-                <div class="op op-propuesta">
-                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
-                        <div class="icon icon-propuesta"></div>
-                        <div class="description">
-                            My travel<br>
-                            proposals
-                        </div>
-                    </a>
-                </div>
-                <div class="op op-info">
-                    <a href="javascript:mostrarSubMenu()">
-                        <div class="icon icon-info"></div>
-                        <div class="description">My Booked trip</div>
-                    </a>
-                </div>
-                <div class="op op-testimonio">
-                    <a href="https://www.perutourism.com/travel-experiences/comments1">
-                        <div class="icon icon-testimonio"></div>
-                        <div class="description">Reviews from our clients</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <div class="popup" hidden>
-            <section class="options optionsMini" style="margin-bottom: 25px !important">
-                <div class="op-group">
-                    <div class="op op-info">
-                        <a onclick="javascript:openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
-                            <div class="icon icon-booking" style="background: #ff8820"></div>
-                            <div class="description">Booking<br />Status</div>
-                        </a>
-                    </div>
-                    <div class="op op-info">
-                        <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
-                            <div class="icon icon-balance" style="background: #ff8820"></div>
-                            <div class="description">Balance<br />Due</div>
-                        </a>
-                    </div>
-                    <div class="op op-info">
-                        <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
-                            <div class="icon icon-info" style="background: #ff8820"></div>
-                            <div class="description">Information<br />for my trip</div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-            <div class="options optionsMini op-group text-center">
-                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
-                    Add passenger
-                </a>
-            </div>
-        </div>
-    </div>
-    @*<div class="container-fluid">
-            <section class="slider" id="scene">
+    if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+    {
+        <div class="container-fluid">
+            <section class="slider" id="scene" style="margin-bottom: 0px !important;">
                 <div class="container" data-depth="0.2">
-                    <span class="description">Go Beyond Ordinary Travel</span>
+                    <span class="description">Here is where the trip of your lifetime starts...</span>
                     <img src="~/Content/images/slider-group.png" class="img-group">
                 </div>
                 <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
             </section>
-        </div>*@
+            <div style="margin-bottom: 50px;">
+                <ul class="breadcrumb">
+                    <li>Home</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            @*<section class="welcome">
+                    <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
+                    <p> Welcome to the customized travel website for your trip </p>
+                </section>*@
+            <section class="options popupBase">
+                <div class="op-group">
+                    <div class="op op-propuesta">
+                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="description">
+                                My travel<br>
+                                proposals
+                            </div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        <a href="javascript:mostrarSubMenu()">
+                            <div class="icon icon-info"></div>
+                            <div class="description">My Booked trip</div>
+                        </a>
+                    </div>
+                    <div class="op op-testimonio">
+                        <a href="https://www.perutourism.com/travel-experiences/comments1">
+                            <div class="icon icon-testimonio"></div>
+                            <div class="description">Reviews from our clients</div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <div class="popup" hidden>
+                <section class="options optionsMini" style="margin-bottom: 25px !important">
+                    <div class="op-group">
+                        <div class="op op-info">
+                            <a onclick="javascript:openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
+                                <div class="icon icon-booking" style="background: #ff8820"></div>
+                                <div class="description">Booking<br />Status</div>
+                            </a>
+                        </div>
+                        <div class="op op-info">
+                            <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                                <div class="icon icon-balance" style="background: #ff8820"></div>
+                                <div class="description">Balance<br />Due</div>
+                            </a>
+                        </div>
+                        <div class="op op-info">
+                            <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
+                                <div class="icon icon-info" style="background: #ff8820"></div>
+                                <div class="description">Information<br />for my trip</div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <div class="options optionsMini op-group text-center">
+                    <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
+                        Add passenger
+                    </a>
+                </div>
+            </div>
+        </div>
+        @*<div class="container-fluid">
+                <section class="slider" id="scene">
+                    <div class="container" data-depth="0.2">
+                        <span class="description">Go Beyond Ordinary Travel</span>
+                        <img src="~/Content/images/slider-group.png" class="img-group">
+                    </div>
+                    <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+                </section>
+            </div>*@
 
 
+    }
+    else
+    {
+        <div class="container-fluid">
+            <section class="slider" id="scene" style="margin-bottom: 0px !important;">
+                <div class="container" data-depth="0.2">
+                    <span class="description">Aquí es donde comienza el viaje de tu vida...</span>
+                    <img src="~/Content/images/slider-group.png" class="img-group">
+                </div>
+                <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+            </section>
+            <div style="margin-bottom: 50px;">
+                <ul class="breadcrumb">
+                    <li>Inicio</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            @*<section class="welcome">
+                    <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
+                    <p>Bienvenido a la página personalizada para tu viaje</p>
+                </section>*@
+            <section class="options popupBase">
+                <div class="op-group">
+                    <div class="op op-propuesta">
+                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="description">
+                                Propuestas<br>
+                                para mi viaje
+                            </div>
+                        </a>
+                    </div>
+                    <div class="op op-info">
+                        <a href="javascript:mostrarSubMenu()">
+                            <div class="icon icon-info"></div>
+                            <div class="description">Mi viaje reservado</div>
+                        </a>
+                    </div>
+                    <div class="op op-testimonio">
+                        <a href="https://www.perutourism.com/travel-experiences/comments1">
+                            <div class="icon icon-testimonio"></div>
+                            <div class="description">Testimonios de nuestros clientes</div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <div class="popup" hidden>
+                <section class="options optionsMini" style="margin-bottom: 25px !important">
+                    <div class="op-group">
+                        <div class="op op-info">
+                            <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                <div class="icon icon-booking" style="background: #ff8820"></div>
+                                <div class="description">Estado de<br />su reserva</div>
+                            </a>
+                        </div>
+                        <div class="op op-info">
+                            <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                                <div class="icon icon-balance" style="background: #ff8820"></div>
+                                <div class="description">Cuenta<br />Corriente</div>
+                            </a>
+                        </div>
+                        <div class="op op-info">
+                            <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                <div class="icon icon-info" style="background: #ff8820"></div>
+                                <div class="description">Información<br />para mi viaje</div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <div class="optionsMini op-group text-center">
+                    <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
+                        Agregar pasajero
+                    </a>
+                </div>
+            </div>
+        </div>
+        @*<div class="container-fluid">
+                <section class="slider" id="scene">
+                    <div class="container" data-depth="0.2">
+                        <span class="description">Go Beyond Ordinary Travel</span>
+                        <img src="~/Content/images/slider-group.png" class="img-group">
+                    </div>
+                    <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+                </section>
+            </div>*@
+    }
+
+    <div id='balanceContainer'>
+        @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
+    </div>
+
+    <div id='BookingStatusContainer'>
+        @Html.Partial("~/Views/Home/_ModalBookingStatus.cshtml")
+    </div>
+
+    <div id='InforBeforeTripContainer'>
+        @Html.Partial("~/Views/Home/_ModalInfoBeforeTrip.cshtml")
+    </div>
+
+    <script src="~/Scripts/third/parallax.min.js"></script>
+    <script src="~/Scripts/views/home.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".marcaMenu").removeClass("active");
+            $(".marcaMenu01").addClass("active");
+        });
+
+        function mostrarSubMenu() {
+            if ($(".popup").is(":visible")) {
+                $(".popup").hide();
+
+                $(".op-propuesta").css("opacity", "1");
+                $(".op-propuesta").css("pointer-events", "auto");
+                $(".op-propuesta").css("cursor", "auto");
+
+                $(".op-testimonio").css("opacity", "1");
+                $(".op-testimonio").css("pointer-events", "auto");
+                $(".op-testimonio").css("cursor", "auto");
+
+            }
+            else {
+                $(".popup").show();
+                $(".btnSeleccion").focus();
+
+                $(".op-propuesta").css("transition", "opacity .30s ease-in-out");
+                $(".op-propuesta").css("opacity", "0.1");
+                $(".op-propuesta").css("pointer-events", "none");
+                $(".op-propuesta").css("cursor", "default");
+
+                $(".op-testimonio").css("transition", "opacity .30s ease-in-out");
+                $(".op-testimonio").css("opacity", "0.1");
+                $(".op-testimonio").css("pointer-events", "none");
+                $(".op-testimonio").css("cursor", "default");
+            }
+        }
+    </script>
 }
 else
 {
     <div class="container-fluid">
-        <section class="slider" id="scene" style="margin-bottom: 0px !important;">
+        <section class="slider" id="scene">
             <div class="container" data-depth="0.2">
-                <span class="description">Aquí es donde comienza el viaje de tu vida...</span>
+                <span class="description">Tu sesion ha expirado, haga <a href="http://www.pentagrama.com/mozart/" style="color: white">click aquí</a> para volver a ingresar</span>
                 <img src="~/Content/images/slider-group.png" class="img-group">
             </div>
             <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
         </section>
-        <div style="margin-bottom: 50px;">
-            <ul class="breadcrumb">
-                <li>Inicio</li>
-            </ul>
-        </div>
     </div>
-
-    <div class="container">
-        @*<section class="welcome">
-                <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
-                <p>Bienvenido a la página personalizada para tu viaje</p>
-            </section>*@
-        <section class="options popupBase">
-            <div class="op-group">
-                <div class="op op-propuesta">
-                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
-                        <div class="icon icon-propuesta"></div>
-                        <div class="description">
-                            Propuestas<br>
-                            para mi viaje
-                        </div>
-                    </a>
-                </div>
-                <div class="op op-info">
-                    <a href="javascript:mostrarSubMenu()">
-                        <div class="icon icon-info"></div>
-                        <div class="description">Mi viaje reservado</div>
-                    </a>
-                </div>
-                <div class="op op-testimonio">
-                    <a href="https://www.perutourism.com/travel-experiences/comments1">
-                        <div class="icon icon-testimonio"></div>
-                        <div class="description">Testimonios de nuestros clientes</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <div class="popup" hidden>
-            <section class="options optionsMini" style="margin-bottom: 25px !important">
-                <div class="op-group">
-                    <div class="op op-info">
-                        <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                            <div class="icon icon-booking" style="background: #ff8820"></div>
-                            <div class="description">Estado de<br />su reserva</div>
-                        </a>
-                    </div>
-                    <div class="op op-info">
-                        <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
-                            <div class="icon icon-balance" style="background: #ff8820"></div>
-                            <div class="description">Cuenta<br />Corriente</div>
-                        </a>
-                    </div>
-                    <div class="op op-info">
-                        <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                            <div class="icon icon-info" style="background: #ff8820"></div>
-                            <div class="description">Información<br />para mi viaje</div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-            <div class="optionsMini op-group text-center">
-                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
-                    Agregar pasajero
-                </a>
-            </div>
-        </div>
-    </div>
-    @*<div class="container-fluid">
-            <section class="slider" id="scene">
-                <div class="container" data-depth="0.2">
-                    <span class="description">Go Beyond Ordinary Travel</span>
-                    <img src="~/Content/images/slider-group.png" class="img-group">
-                </div>
-                <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-            </section>
-        </div>*@
 }
 
-<div id='balanceContainer'>
-    @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
-</div>
-
-<div id='BookingStatusContainer'>
-    @Html.Partial("~/Views/Home/_ModalBookingStatus.cshtml")
-</div>
-
-<div id='InforBeforeTripContainer'>
-    @Html.Partial("~/Views/Home/_ModalInfoBeforeTrip.cshtml")
-</div>
-
-<script src="~/Scripts/third/parallax.min.js"></script>
-<script src="~/Scripts/views/home.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".marcaMenu").removeClass("active");
-        $(".marcaMenu01").addClass("active");
-    });
-
-    function mostrarSubMenu() {
-        if ($(".popup").is(":visible")) {
-            $(".popup").hide();
-
-            $(".op-propuesta").css("opacity", "1");
-            $(".op-propuesta").css("pointer-events", "auto");
-            $(".op-propuesta").css("cursor", "auto");
-
-            $(".op-testimonio").css("opacity", "1");
-            $(".op-testimonio").css("pointer-events", "auto");
-            $(".op-testimonio").css("cursor", "auto");
-
-        }
-        else {
-            $(".popup").show();
-            $(".btnSeleccion").focus();
-
-            $(".op-propuesta").css("transition", "opacity .30s ease-in-out");
-            $(".op-propuesta").css("opacity", "0.1");
-            $(".op-propuesta").css("pointer-events", "none");
-            $(".op-propuesta").css("cursor", "default");
-
-            $(".op-testimonio").css("transition", "opacity .30s ease-in-out");
-            $(".op-testimonio").css("opacity", "0.1");
-            $(".op-testimonio").css("pointer-events", "none");
-            $(".op-testimonio").css("cursor", "default");
-        }
-    }
-</script>

@@ -109,7 +109,7 @@
     }
     else
     {
-        Response.Redirect("~/Views/Shared/SessionExpired.cshtml");
+        @Html.Partial("~/Views/Shared/SessionExpired.cshtml")
     }
 
     <div class="content">

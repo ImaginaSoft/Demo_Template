@@ -9,7 +9,7 @@
     var lstClimaGG = Model.lstClima;
     var lstStaffGG = Model.lstStaff;
     string info = Model.info;
-    char idioma = ViewBag.FlagIdioma;
+    var idioma = ViewBag.FlagIdioma == null ? "E" : ViewBag.Idioma;
 
 }
 <style type="text/css">

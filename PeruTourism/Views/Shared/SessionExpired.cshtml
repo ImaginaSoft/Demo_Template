@@ -1,7 +1,29 @@
 ﻿
-@{
+@*@{
     ViewBag.Title = "View";
 }
 
-<h2>Tu sesion ha expirado, ingresa al siguiene link para volver a ingresar :</h2> 
+<h2>Tu sesion ha expirado, ingresa al siguiene link para volver a ingresar :</h2>*@
 
+
+<header id="header">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- navegacion -->
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="row">
+                        <div class="navbar-header">
+                            <!-- brand -->
+                            <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
+                            
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse in" id="siteNav">&nbsp;</div>
+            </nav>
+        </div>
+    </div>
+    <!-- navegacion -->
+</header>
