@@ -1,24 +1,60 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
 
 @{
-    ViewBag.Title = "VerPropuestaDetalle";
+	ViewBag.Title = "VerPropuestaDetalle";
 
-    var lstProgramas = Model.lstPrograma;
+	var lstProgramas = Model.lstPrograma;
 
-    var lstServicios = Model.lstServicio;
+	var lstServicios = Model.lstServicio;
 
-    var lstPropuestaPrecio = Model.lstPropuestaPrecio;
+	var lstPropuestaPrecio = Model.lstPropuestaPrecio;
+
+	string nroPedido = string.Empty;
+	string nroPropuesta = string.Empty;
+	string nroVersion = string.Empty;
 
 
-    var lajaxOptionsForm = new AjaxOptions()
-    {
-        HttpMethod = "POST",
-        OnBegin = "e_ajax_iniciando",
-        OnComplete = "e_ajax_finalizando_form_ficha",
-        OnFailure = "e_ajax_error"
-    };
 
-    int SumPrice = 0;
+	if (lstProgramas != null)
+	{
+		foreach (var gg in lstProgramas)
+		{
+
+			if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
+			{
+
+				nroPedido = gg.KeyReg.Substring(0, 6);
+				nroPropuesta = gg.KeyReg.Substring(8, 1);
+				nroVersion = gg.KeyReg.Substring(10, 1);
+
+				break;
+			}
+			else
+			{
+				nroPedido = "0";
+				nroPropuesta = "0";
+				nroVersion = "0";
+			}
+
+
+
+		}
+	}
+
+	var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
+	var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
+
+	//var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
+
+	var lajaxOptionsForm = new AjaxOptions()
+	{
+		HttpMethod = "POST",
+		OnBegin = "e_ajax_iniciando",
+		OnComplete = "e_ajax_finalizando_form_ficha",
+		OnFailure = "e_ajax_error"
+	};
+
+	int SumPrice = 0;
 
 }
 
@@ -64,7 +100,7 @@
             border: 0;
         }
 </style>
-
+<script src="~/Scripts/Galeria/Galeria.js"></script>
 <div id="propDet" class="secondary">
     <div class="container-fluid">
         <section class="subtitle" style="margin-bottom: 0px;">
@@ -90,11 +126,41 @@
     <!-- contenido -->
     <div class="container">
         <section class="group prop-group">
-            <div class="group prop">
-                <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
-                <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
-                <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
-            </div>
+			<div class="group prop">
+				<div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
+				<div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
+				<div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
+
+
+
+
+				<section class="options optionsMini" style="margin-bottom: 25px !important">
+					<div class="op-group">
+						<div class="op op-info">
+							<a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+								<div class="icon icon-booking" style="background: #ff8820"></div>
+								<div class="description">Estado de<br />su reserva</div>
+							</a>
+						</div>
+						<div class="op op-info">
+							<a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+								<div class="icon icon-balance" style="background: #ff8820"></div>
+								<div class="description">Cuenta<br />Corriente</div>
+							</a>
+						</div>
+						<div class="op op-info">
+							<a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+								<div class="icon icon-info" style="background: #ff8820"></div>
+								<div class="description">Información<br />para mi viaje</div>
+							</a>
+						</div>
+					</div>
+				</section>
+
+
+
+
+			</div>
 
             @for (int i = 0; i < lstServicios.Count; i++)
             {
