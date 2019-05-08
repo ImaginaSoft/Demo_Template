@@ -48,20 +48,42 @@
 {
     if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
     {
-        <div class="container-fluid">
-            <section class="slider" id="scene" style="margin-bottom: 0px !important;">
-                <div class="container" data-depth="0.2">
-                    <span class="description">Here is where the trip of your lifetime starts...</span>
-                    <img src="~/Content/images/slider-group.png" class="img-group">
-                </div>
-                <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-            </section>
-            <div style="margin-bottom: 50px;">
-                <ul class="breadcrumb">
-                    <li>Home</li>
-                </ul>
-            </div>
+<div class="container-fluid">
+    <section class="slider" id="scene" style="margin-bottom: 0px !important;">
+        <div class="container" data-depth="0.2">
+            <span class="description">Here is where the trip of your lifetime starts...</span>
+            <img src="~/Content/images/slider-group.png" class="img-group">
         </div>
+        <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+    </section>
+
+
+    @*<div style="margin-bottom: 50px;">
+        <ul class="breadcrumb">
+            <li>Home</li>
+        </ul>
+    </div>*@
+
+    <div class="breadcrumb">
+        @*<a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__desc">Inicio</span>
+            </span>
+        </a>
+        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__desc">Propuestas para mi viaje</span>
+            </span>
+        </a>*@
+        <div class="no_enlace">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__title">Home</span>
+            </span>
+        </div>
+    </div>
+
+
+</div>
 
         <div class="container">
             @*<section class="welcome">

@@ -1,60 +1,62 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
 
 @{
-	ViewBag.Title = "VerPropuestaDetalle";
+    ViewBag.Title = "VerPropuestaDetalle";
 
-	var lstProgramas = Model.lstPrograma;
+    var lstProgramas = Model.lstPrograma;
 
-	var lstServicios = Model.lstServicio;
+    var lstServicios = Model.lstServicio;
 
-	var lstPropuestaPrecio = Model.lstPropuestaPrecio;
+    var lstPropuestaPrecio = Model.lstPropuestaPrecio;
 
-	string nroPedido = string.Empty;
-	string nroPropuesta = string.Empty;
-	string nroVersion = string.Empty;
-
-
-
-	if (lstProgramas != null)
-	{
-		foreach (var gg in lstProgramas)
-		{
-
-			if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
-			{
-
-				nroPedido = gg.KeyReg.Substring(0, 6);
-				nroPropuesta = gg.KeyReg.Substring(8, 1);
-				nroVersion = gg.KeyReg.Substring(10, 1);
-
-				break;
-			}
-			else
-			{
-				nroPedido = "0";
-				nroPropuesta = "0";
-				nroVersion = "0";
-			}
+    string nroPedido = string.Empty;
+    string nroPropuesta = string.Empty;
+    string nroVersion = string.Empty;
+    bool flagMostrarBolitas = true;
 
 
 
-		}
-	}
+    if (lstProgramas != null)
+    {
+        foreach (var gg in lstProgramas)
+        {
 
-	var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
-	var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
+            if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
+            {
 
-	//var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
+                nroPedido = gg.KeyReg.Substring(0, 6);
+                nroPropuesta = gg.KeyReg.Substring(8, 1);
+                nroVersion = gg.KeyReg.Substring(10, 1);
+                flagMostrarBolitas = true;
+                break;
+            }
+            else
+            {
+                nroPedido = "0";
+                nroPropuesta = "0";
+                nroVersion = "0";
+                flagMostrarBolitas = false;
+            }
 
-	var lajaxOptionsForm = new AjaxOptions()
-	{
-		HttpMethod = "POST",
-		OnBegin = "e_ajax_iniciando",
-		OnComplete = "e_ajax_finalizando_form_ficha",
-		OnFailure = "e_ajax_error"
-	};
 
-	int SumPrice = 0;
+
+        }
+    }
+
+    var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
+    var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
+
+    //var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
+
+    var lajaxOptionsForm = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        OnBegin = "e_ajax_iniciando",
+        OnComplete = "e_ajax_finalizando_form_ficha",
+        OnFailure = "e_ajax_error"
+    };
+
+    int SumPrice = 0;
 
 }
 
@@ -115,52 +117,77 @@
                 </div>
             </div>
         </section>
-        <div style="margin-bottom: 50px;">
+
+
+        @*<div style="margin-bottom: 50px;">
             <ul class="breadcrumb">
                 <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
                 <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">Propuestas para mi viaje</a></li>
                 <li>Detalle</li>
             </ul>
+        </div>*@
+
+        <div class="breadcrumb">
+            <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__desc">Inicio</span>
+                </span>
+            </a>
+            <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__desc">Propuestas para mi viaje</span>
+                </span>
+            </a>
+            <div class="no_enlace">
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__title">Detalle</span>
+                </span>
+            </div>
         </div>
+
     </div>
     <!-- contenido -->
     <div class="container">
         <section class="group prop-group">
-			<div class="group prop">
-				<div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
-				<div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
-				<div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
+
+            <div class="group prop">
+                <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
+                <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
+                <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
+            </div>
 
 
+            @if (flagMostrarBolitas == true)
+            {
+                <div class="container">
 
+                    <section class="options-interna">
+                        <div class="op-group">
+                            <div class="op op-info">
+                                <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                    <div class="icon icon-booking"></div>
+                                    <div class="description">
+                                        Estado de<br />su reserva
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="op op-info">
+                                <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                                    <div class="icon icon-balance"></div>
+                                    <div class="description">Cuenta<br />Corriente</div>
+                                </a>
+                            </div>
+                            <div class="op op-info">
+                                <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                    <div class="icon icon-info"></div>
+                                    <div class="description">Información<br />para mi viaje</div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            }
 
-				<section class="options optionsMini" style="margin-bottom: 25px !important">
-					<div class="op-group">
-						<div class="op op-info">
-							<a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-								<div class="icon icon-booking" style="background: #ff8820"></div>
-								<div class="description">Estado de<br />su reserva</div>
-							</a>
-						</div>
-						<div class="op op-info">
-							<a onclick="openBalanceModal(@CodCliente, @nroPedido)">
-								<div class="icon icon-balance" style="background: #ff8820"></div>
-								<div class="description">Cuenta<br />Corriente</div>
-							</a>
-						</div>
-						<div class="op op-info">
-							<a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-								<div class="icon icon-info" style="background: #ff8820"></div>
-								<div class="description">Información<br />para mi viaje</div>
-							</a>
-						</div>
-					</div>
-				</section>
-
-
-
-
-			</div>
 
             @for (int i = 0; i < lstServicios.Count; i++)
             {
@@ -176,9 +203,9 @@
                                 <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
 
                                 @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
-                                    {
-                                        <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
-                                    }*@
+                            {
+                                <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                            }*@
 
 
 
@@ -302,15 +329,15 @@
                     </a>
                 </div>
                 @*<a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
-                AGREGAR PASAJERO
-            </a>*@
+                        AGREGAR PASAJERO
+                    </a>*@
 
                 @*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
             </div>
 
             <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
                 <div class="col-sm-6">
-                    
+
                 </div>
                 <div class="col-sm-6">
                     <img src="~/Content/images/logos.jpg" width="100%" />
@@ -327,7 +354,13 @@
     <div id='balanceContainer'>
         @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
     </div>
+    <div id='BookingStatusContainer'>
+        @Html.Partial("~/Views/Home/_ModalBookingStatus.cshtml")
+    </div>
 
+    <div id='InforBeforeTripContainer'>
+        @Html.Partial("~/Views/Home/_ModalInfoBeforeTrip.cshtml")
+    </div>
     @*<div id='CondicionesContainer_GG'>
             @Html.Partial("~/Views/Visa/_ModalCondicionesPago.cshtml")
         </div>*@

@@ -33,7 +33,9 @@
             </div>
             <img src="~/Content/images/slider-prop.jpg" class="img-bg" data-depth="0.1">
         </section>
-        <div style="margin-bottom: 50px;">
+
+
+        @*<div style="margin-bottom: 50px;">
             <ul class="breadcrumb">
                 @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
                 {
@@ -46,7 +48,50 @@
                     <li>Propuestas para mi viaje</li>
                 }
             </ul>
+        </div>*@
+
+
+        <div class="breadcrumb">
+
+            @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+            {
+
+                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__desc">Inicio</span>
+                    </span>
+                </a>
+
+                <div class="no_enlace">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__title">Proposals for my trip</span>
+                    </span>
+                </div>
+
+            }
+            else
+            {
+                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__desc">Inicio</span>
+                    </span>
+                </a>
+
+                <div class="no_enlace">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__title">Propuestas para mi viaje</span>
+                    </span>
+                </div>
+            }
+
+
+
+
+
+
         </div>
+
+
     </div>
 
     <div class="container">

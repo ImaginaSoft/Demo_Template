@@ -73,14 +73,43 @@
                 </div>*@
             </div>
         </section>
-        <div style="margin-bottom: 50px;">
+
+
+        @*<div style="margin-bottom: 50px;">
             <ul class="breadcrumb">
                 <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
                 <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = codCliente })">Proposals for my trip</a></li>
                 <li><a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente})">Details</a></li>
                 <li>Pay now</li>
             </ul>
+        </div>*@
+
+        <div class="breadcrumb">
+            <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__desc">Home</span>
+                </span>
+            </a>
+            <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__desc">Proposals for my trip</span>
+                </span>
+            </a>
+
+            <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente })">
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__desc">Details</span>
+                </span>
+            </a>
+            <div class="no_enlace">
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__title">Pay now</span>
+                </span>
+            </div>
         </div>
+
+
+
     </div>
 
 
