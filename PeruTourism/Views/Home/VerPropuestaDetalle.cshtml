@@ -1,5 +1,5 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
-
+@using PeruTourism.Utility
 @{
     ViewBag.Title = "VerPropuestaDetalle";
 
@@ -14,7 +14,7 @@
     string nroVersion = string.Empty;
     bool flagMostrarBolitas = true;
 
-
+    char idioma = ViewBag.FlagIdioma;
 
     if (lstProgramas != null)
     {
@@ -103,385 +103,712 @@
         }
 </style>
 <script src="~/Scripts/Galeria/Galeria.js"></script>
-<div id="propDet" class="secondary">
-    <div class="container-fluid">
-        <section class="subtitle" style="margin-bottom: 0px;">
-            <div class="container">
-                <div class="options">
-                    <div class="op-group">
-                        <div class="op op-propuesta">
-                            <div class="icon icon-propuesta"></div>
-                            <div class="title">Propuestas para mi viaje</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
+@if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+{
 
-        @*<div style="margin-bottom: 50px;">
-            <ul class="breadcrumb">
-                <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
-                <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">Propuestas para mi viaje</a></li>
-                <li>Detalle</li>
-            </ul>
-        </div>*@
-
-        <div class="breadcrumb">
-            <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
-                <span class="breadcrumb__inner">
-                    <span class="breadcrumb__desc">Inicio</span>
-                </span>
-            </a>
-            <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
-                <span class="breadcrumb__inner">
-                    <span class="breadcrumb__desc">Propuestas para mi viaje</span>
-                </span>
-            </a>
-            <div class="no_enlace">
-                <span class="breadcrumb__inner">
-                    <span class="breadcrumb__title">Detalle</span>
-                </span>
-            </div>
-        </div>
-
-    </div>
-    <!-- contenido -->
-    <div class="container">
-        <section class="group prop-group">
-
-            <div class="group prop">
-                <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
-                <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
-                <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
-            </div>
-
-
-            @if (flagMostrarBolitas == true)
-            {
+    <div id="propDet" class="secondary">
+        <div class="container-fluid">
+            <section class="subtitle" style="margin-bottom: 0px;">
                 <div class="container">
-
-                    <section class="options-interna">
+                    <div class="options">
                         <div class="op-group">
-                            <div class="op op-info">
-                                <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                                    <div class="icon icon-booking"></div>
-                                    <div class="description">
-                                        Estado de<br />su reserva
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="op op-info">
-                                <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
-                                    <div class="icon icon-balance"></div>
-                                    <div class="description">Cuenta<br />Corriente</div>
-                                </a>
-                            </div>
-                            <div class="op op-info">
-                                <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                                    <div class="icon icon-info"></div>
-                                    <div class="description">Información<br />para mi viaje</div>
-                                </a>
+                            <div class="op op-propuesta">
+                                <div class="icon icon-propuesta"></div>
+                                <div class="title">Proposals for my trip</div>
                             </div>
                         </div>
-                    </section>
-                </div>
-            }
-
-
-            @for (int i = 0; i < lstServicios.Count; i++)
-            {
-                string[] servicios = lstServicios[i].DesServicioDet.Split('|');
-                <div class="group prop-detalle">
-                    <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
-                        <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
-                        <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
                     </div>
-                    <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
-                        <div class="group">
-                            <div class="prop-info">
-                                <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
+                </div>
+            </section>
 
-                                @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
-                            {
-                                <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
-                            }*@
+       
+                <div class="breadcrumb">
+                    <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Home</span>
+                        </span>
+                    </a>
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Proposals for my trip</span>
+                        </span>
+                    </a>
+                    <div class="no_enlace">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Details</span>
+                        </span>
+                    </div>
+                </div>
+
+           
 
 
+        </div>
+        <!-- contenido -->
+        <div class="container">
+            <section class="group prop-group">
 
-                                <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
+                <div class="group prop">
+                    <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
+                    <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
+                    <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
+                </div>
+
+
+                @if (flagMostrarBolitas == true)
+                {
+                    <div class="container">
+
+                        <section class="options-interna">
+                            <div class="op-group">
+                                <div class="op op-info">
+                                    <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                        <div class="icon icon-booking"></div>
+                                        <div class="description">
+                                            Booking<br />status
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="op op-info">
+                                    <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                                        <div class="icon icon-balance"></div>
+                                        <div class="description">Balance<br />due</div>
+                                    </a>
+                                </div>
+                                <div class="op op-info">
+                                    <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                        <div class="icon icon-info"></div>
+                                        <div class="description">Information<br />for my trip</div>
+                                    </a>
+                                </div>
                             </div>
-                            <ul>
-                                @foreach (string servicio in servicios)
-                                {
+                        </section>
+                    </div>
+                }
+
+
+                @for (int i = 0; i < lstServicios.Count; i++)
+                {
+                    string[] servicios = lstServicios[i].DesServicioDet.Split('|');
+                    <div class="group prop-detalle">
+                        <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                            <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
+                            <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
+                        </div>
+                        <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
+                            <div class="group">
+                                <div class="prop-info">
+                                    <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
+
+                                    @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
+                                        {
+                                            <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                                        }*@
 
 
 
-                                    if (servicio != string.Empty)
+                                    <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
+                                </div>
+                                <ul>
+                                    @foreach (string servicio in servicios)
                                     {
 
-                                        var posicionBuscado = servicio.IndexOf("↕");
-                                        var tamañoCadena = servicio.Length;
-
-                                        var starIndex = posicionBuscado + 1;
-                                        var endIndex = tamañoCadena - starIndex;
-                                        var servicioEncontrado = string.Empty;
-
-                                        if (posicionBuscado != -1)
-                                        {
-                                            servicioEncontrado = servicio.Substring(starIndex, endIndex);
-                                        }
 
 
-
-                                        if (servicioEncontrado != string.Empty)
+                                        if (servicio != string.Empty)
                                         {
 
-                                            <li>
-                                                @Html.Raw(servicio.Substring(0, posicionBuscado))
+                                            var posicionBuscado = servicio.IndexOf("↕");
+                                            var tamañoCadena = servicio.Length;
 
-                                            </li>
+                                            var starIndex = posicionBuscado + 1;
+                                            var endIndex = tamañoCadena - starIndex;
+                                            var servicioEncontrado = string.Empty;
 
-                                            <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
+                                            if (posicionBuscado != -1)
+                                            {
+                                                servicioEncontrado = servicio.Substring(starIndex, endIndex);
+                                            }
+
+
+
+                                            if (servicioEncontrado != string.Empty)
+                                            {
+
+                                                <li>
+                                                    @Html.Raw(servicio.Substring(0, posicionBuscado))
+
+                                                </li>
+
+                                                <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Hotel details</span></a></div>
+
+                                            }
+                                            else
+                                            {
+
+                                                <li>
+                                                    @Html.Raw(servicio)
+                                                </li>
+
+                                            }
+
+
+
+
 
                                         }
-                                        else
-                                        {
-
-                                            <li>
-                                                @Html.Raw(servicio)
-                                            </li>
-
-                                        }
-
-
 
 
 
                                     }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="prop-icon"></div>
+                    </div>
+                }
+            </section>
 
+            <div class="prop-table">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%"
+                               cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>DESCRIPTION</th>
+                                    <th>PRICE PER PERSON</th>
+                                    <th>NUMBER OF TRAVELLERS</th>
+                                    <th>TOTAL PRICE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstPropuestaPrecio)
+                                {
+
+                                    SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
+
+
+                                    <tr>
+                                        <td>@d.DesOrden</td>
+                                        <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
+                                        <td>@d.CantPersonas</td>
+                                        <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
+                                    </tr>
 
 
                                 }
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="prop-icon"></div>
-                </div>
-            }
-        </section>
 
-        <div class="prop-table">
-            <div class="col-sm-12">
-                <div class="table-responsive">
-                    <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%"
-                           cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>DESCRIPTION</th>
-                                <th>PRICE PER PERSON</th>
-                                <th>NUMBER OF TRAVELLERS</th>
-                                <th>TOTAL PRICE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var d in lstPropuestaPrecio)
-                            {
-
-                                SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
-
-
-                                <tr>
-                                    <td>@d.DesOrden</td>
-                                    <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
-                                    <td>@d.CantPersonas</td>
-                                    <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
+                                <tr class="table-total hidden-xs">
+                                    <td colspan="3">Total</td>
+                                    <td>USD @Convert.ToDecimal(SumPrice).ToString("#,##0")</td>
                                 </tr>
-
-
-                            }
-
-                            <tr class="table-total hidden-xs">
-                                <td colspan="3">Total</td>
-                                <td>USD @Convert.ToDecimal(SumPrice).ToString("#,##0")</td>
-                            </tr>
-                        </tbody>
-                        @{int totalSumPrice = SumPrice; }
-                    </table>
+                            </tbody>
+                            @{int totalSumPrice = SumPrice; }
+                        </table>
+                    </div>
+                    <div class="div-total visible-xs">
+                        Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
+                    </div>
                 </div>
-                <div class="div-total visible-xs">
-                    Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
+
+                <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
+                    <div class="col-sm-6" style="padding-top: 15px; padding-bottom: 10px">
+                        <a href="javascript:void(0);" class="pago" data-toggle="modal" data-target="#condicionPago">
+                            <span onclick="">
+                                <i class="icon icon-hotel-detalle"></i> PAYMENT
+                                PROCEDURE
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma})">
+                            PAY NOW
+                        </a>
+                    </div>
+                    @*<a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+                            AGREGAR PASAJERO
+                        </a>*@
+
+                    @*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
+                </div>
+
+                <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <div class="col-sm-6">
+                        <img src="~/Content/images/logos.jpg" width="100%" />
+                    </div>
                 </div>
             </div>
 
-            <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
-                <div class="col-sm-6" style="padding-top: 15px; padding-bottom: 10px">
-                    <a href="javascript:void(0);" class="pago" data-toggle="modal" data-target="#condicionPago">
-                        <span onclick="">
-                            <i class="icon icon-hotel-detalle"></i> PAYMENT
-                            PROCEDURE
+        </div>
+
+        <div id='detailsContainer'>
+            @Html.Partial("~/Views/Galeria/_ModalDetalleHotel.cshtml")
+        </div>
+
+        <div id='balanceContainer'>
+            @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
+        </div>
+        <div id='BookingStatusContainer'>
+            @Html.Partial("~/Views/Home/_ModalBookingStatus.cshtml")
+        </div>
+
+        <div id='InforBeforeTripContainer'>
+            @Html.Partial("~/Views/Home/_ModalInfoBeforeTrip.cshtml")
+        </div>
+        @*<div id='CondicionesContainer_GG'>
+                @Html.Partial("~/Views/Visa/_ModalCondicionesPago.cshtml")
+            </div>*@
+
+        <div id="CondicionesContainer">
+            <div class="modal fade" id="condicionPago" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-DetalleHotel" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong>PAYMENT PROCEDURE</strong>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="group prop-detalle">
+                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                    <div class="prop-num"><span>Payment Procedure</span></div>
+
+                                </div>
+                                <div class="prop-content collapse in" id="content1">
+                                    <div class="group">
+
+
+                                        <p>
+                                            To confirm confirm your trip we just need a deposit of the 30%, this first payment can be done online through your personalized website only if you hava a Visa Card or Master Card
+                                            , if you have American Express card I will send you our services agreement by email.
+                                            <br />
+                                            The balance due (70%) must be paid at your arrival in Lima.
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                                <div class="prop-icon"></div>
+                            </div>
+
+                            <div class="group prop-detalle">
+                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                    <div class="prop-num"><span>Our Cancellation Policy</span></div>
+
+                                </div>
+                                <div class="prop-content collapse in" id="content1">
+                                    <div class="group">
+
+
+                                        <p>
+                                            Fully acquit you of all cost(*) that may be generated by the cancellation of the services already booked by PeruTourism according to the itinerary
+                                            in case you cancel the services up yo 45 days before you arrival.
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <div class="prop-icon"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="floating-chat enter expand">
+        <i class="cerrarFlotante" aria-hidden="true" style="display: none; font-style: normal; font-size: 15px">Chat</i>
+        <div class="chat enter">
+            <div class="header">
+                <span class="title">
+                    Chat
+                </span>
+                <button>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
+            <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+            <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
+            <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
+
+            <div>Hi I'm @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva) you Travel Designer, please send me a message</div>
+            <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
+            <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Please enter your message</div>
+            <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>
+            <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
+        </div>
+    </div>
+
+
+}
+else
+{
+
+    <div id="propDet" class="secondary">
+        <div class="container-fluid">
+            <section class="subtitle" style="margin-bottom: 0px;">
+                <div class="container">
+                    <div class="options">
+                        <div class="op-group">
+                            <div class="op op-propuesta">
+                                <div class="icon icon-propuesta"></div>
+                                <div class="title">Propuestas para mi viaje</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+ 
+                <div class="breadcrumb">
+                    <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Inicio</span>
                         </span>
                     </a>
-                </div>
-                <div class="col-sm-6">
-                    <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma})">
-                        PAY NOW
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Propuestas para mi viaje</span>
+                        </span>
                     </a>
-                </div>
-                @*<a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
-                        AGREGAR PASAJERO
-                    </a>*@
-
-                @*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
-            </div>
-
-            <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
-                <div class="col-sm-6">
-
-                </div>
-                <div class="col-sm-6">
-                    <img src="~/Content/images/logos.jpg" width="100%" />
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div id='detailsContainer'>
-        @Html.Partial("~/Views/Galeria/_ModalDetalleHotel.cshtml")
-    </div>
-
-    <div id='balanceContainer'>
-        @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
-    </div>
-    <div id='BookingStatusContainer'>
-        @Html.Partial("~/Views/Home/_ModalBookingStatus.cshtml")
-    </div>
-
-    <div id='InforBeforeTripContainer'>
-        @Html.Partial("~/Views/Home/_ModalInfoBeforeTrip.cshtml")
-    </div>
-    @*<div id='CondicionesContainer_GG'>
-            @Html.Partial("~/Views/Visa/_ModalCondicionesPago.cshtml")
-        </div>*@
-
-    <div id="CondicionesContainer">
-        <div class="modal fade" id="condicionPago" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-DetalleHotel" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <strong>PAYMENT PROCEDURE</strong>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <div class="no_enlace">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Detalle</span>
+                        </span>
                     </div>
-                    <div class="modal-body">
+                </div>
+         
 
 
-                        <div class="group prop-detalle">
-                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span>Payment Procedure</span></div>
-
-                            </div>
-                            <div class="prop-content collapse in" id="content1">
-                                <div class="group">
 
 
-                                    <p>
-                                        To confirm confirm your trip we just need a deposit of the 30%, this first payment can be done online through your personalized website only if you hava a Visa Card or Master Card
-                                        , if you have American Express card I will send you our services agreement by email.
-                                        <br />
-                                        The balance due (70%) must be paid at your arrival in Lima.
-                                    </p>
+
+        </div>
+        <!-- contenido -->
+        <div class="container">
+            <section class="group prop-group">
+
+                <div class="group prop">
+                    <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
+                    <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
+                    <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
+                </div>
 
 
+                @if (flagMostrarBolitas == true)
+                {
+                    <div class="container">
+
+                        <section class="options-interna">
+                            <div class="op-group">
+                                <div class="op op-info">
+                                    <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                        <div class="icon icon-booking"></div>
+                                        <div class="description">
+                                            Estado de<br />su reserva
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="op op-info">
+                                    <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                                        <div class="icon icon-balance"></div>
+                                        <div class="description">Cuenta<br />Corriente</div>
+                                    </a>
+                                </div>
+                                <div class="op op-info">
+                                    <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                        <div class="icon icon-info"></div>
+                                        <div class="description">Información<br />para mi viaje</div>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="prop-icon"></div>
+                        </section>
+                    </div>
+                }
+
+
+                @for (int i = 0; i < lstServicios.Count; i++)
+                {
+                    string[] servicios = lstServicios[i].DesServicioDet.Split('|');
+                    <div class="group prop-detalle">
+                        <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                            <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
+                            <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
                         </div>
+                        <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
+                            <div class="group">
+                                <div class="prop-info">
+                                    <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
 
-                        <div class="group prop-detalle">
-                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span>Our Cancellation Policy</span></div>
+                                    @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
+                                        {
+                                            <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                                        }*@
 
+
+
+                                    <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
+                                </div>
+                                <ul>
+                                    @foreach (string servicio in servicios)
+                                    {
+
+
+
+                                        if (servicio != string.Empty)
+                                        {
+
+                                            var posicionBuscado = servicio.IndexOf("↕");
+                                            var tamañoCadena = servicio.Length;
+
+                                            var starIndex = posicionBuscado + 1;
+                                            var endIndex = tamañoCadena - starIndex;
+                                            var servicioEncontrado = string.Empty;
+
+                                            if (posicionBuscado != -1)
+                                            {
+                                                servicioEncontrado = servicio.Substring(starIndex, endIndex);
+                                            }
+
+
+
+                                            if (servicioEncontrado != string.Empty)
+                                            {
+
+                                                <li>
+                                                    @Html.Raw(servicio.Substring(0, posicionBuscado))
+
+                                                </li>
+
+                                                <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
+
+                                            }
+                                            else
+                                            {
+
+                                                <li>
+                                                    @Html.Raw(servicio)
+                                                </li>
+
+                                            }
+
+
+
+
+
+                                        }
+
+
+
+                                    }
+                                </ul>
                             </div>
-                            <div class="prop-content collapse in" id="content1">
-                                <div class="group">
+                        </div>
+                        <div class="prop-icon"></div>
+                    </div>
+                }
+            </section>
+
+            <div class="prop-table">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%"
+                               cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>PRECIO POR PERSONA</th>
+                                    <th>NUMERO DE VIAJEROS</th>
+                                    <th>PRECIO TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in lstPropuestaPrecio)
+                                {
+
+                                    SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
 
 
-                                    <p>
-                                        Fully acquit you of all cost(*) that may be generated by the cancellation of the services already booked by PeruTourism according to the itinerary
-                                        in case you cancel the services up yo 45 days before you arrival.
-                                    </p>
+                                    <tr>
+                                        <td>@d.DesOrden</td>
+                                        <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
+                                        <td>@d.CantPersonas</td>
+                                        <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
+                                    </tr>
+
+
+                                }
+
+                                <tr class="table-total hidden-xs">
+                                    <td colspan="3">Total</td>
+                                    <td>USD @Convert.ToDecimal(SumPrice).ToString("#,##0")</td>
+                                </tr>
+                            </tbody>
+                            @{int totalSumPrice = SumPrice; }
+                        </table>
+                    </div>
+                    <div class="div-total visible-xs">
+                        Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
+                    </div>
+                </div>
+
+                <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
+                    <div class="col-sm-6" style="padding-top: 15px; padding-bottom: 10px">
+                        <a href="javascript:void(0);" class="pago" data-toggle="modal" data-target="#condicionPago">
+                            <span onclick="">
+                                <i class="icon icon-hotel-detalle"></i> PROCEDIMIENTO
+                                DE PAGO
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma})">
+                            PAGA AHORA
+                        </a>
+                    </div>
+                    @*<a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
+                            AGREGAR PASAJERO
+                        </a>*@
+
+                    @*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
+                </div>
+
+                <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <div class="col-sm-6">
+                        <img src="~/Content/images/logos.jpg" width="100%" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id='detailsContainer'>
+            @Html.Partial("~/Views/Galeria/_ModalDetalleHotel.cshtml")
+        </div>
+
+        <div id='balanceContainer'>
+            @Html.Partial("~/Views/Home/_ModalMostrarSaldo.cshtml")
+        </div>
+        <div id='BookingStatusContainer'>
+            @Html.Partial("~/Views/Home/_ModalBookingStatus.cshtml")
+        </div>
+
+        <div id='InforBeforeTripContainer'>
+            @Html.Partial("~/Views/Home/_ModalInfoBeforeTrip.cshtml")
+        </div>
+        @*<div id='CondicionesContainer_GG'>
+                @Html.Partial("~/Views/Visa/_ModalCondicionesPago.cshtml")
+            </div>*@
+
+        <div id="CondicionesContainer">
+            <div class="modal fade" id="condicionPago" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-DetalleHotel" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong>PAYMENT PROCEDURE</strong>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="group prop-detalle">
+                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                    <div class="prop-num"><span>Payment Procedure</span></div>
 
                                 </div>
-                            </div>
-                            <div class="prop-icon"></div>
-                        </div>
+                                <div class="prop-content collapse in" id="content1">
+                                    <div class="group">
 
+
+                                        <p>
+                                            To confirm confirm your trip we just need a deposit of the 30%, this first payment can be done online through your personalized website only if you hava a Visa Card or Master Card
+                                            , if you have American Express card I will send you our services agreement by email.
+                                            <br />
+                                            The balance due (70%) must be paid at your arrival in Lima.
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                                <div class="prop-icon"></div>
+                            </div>
+
+                            <div class="group prop-detalle">
+                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
+                                    <div class="prop-num"><span>Our Cancellation Policy</span></div>
+
+                                </div>
+                                <div class="prop-content collapse in" id="content1">
+                                    <div class="group">
+
+
+                                        <p>
+                                            Fully acquit you of all cost(*) that may be generated by the cancellation of the services already booked by PeruTourism according to the itinerary
+                                            in case you cancel the services up yo 45 days before you arrival.
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <div class="prop-icon"></div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
 
-
-    @*<div class="chat-window anim-slideup" id="chat_window_1">
-            <div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading top-bar" data-toggle="collapse" data-target="#chat-content">
-                        <div class="chat-title">
-                            <h3 class="panel-title">Im @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), message me</h3>
-                        </div>
-                        <div class="chat-control">
-                            <a href="javascript:void(0)"><i id="minim_chat_window" class="icon icon-chevron-down"></i></a>
-                        </div>
-                    </div>
-                    <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
-                    <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
-                    <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
-
-                    <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
-                    <div class="msg_container_base collapse" id="chat-content">
-                        <div class="group">
-
-                            <div class="form-label">Im your Travel Designer, send me a message</div>
-
-                            <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
-
-                            <div class="form-group">
-                                <textarea placeholder="Write your message here" id="txtMessage" class="form-control"></textarea>
-                            </div>
-                            <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
-                        </div>
-
-                    </div>
-                </div>
+    <div class="floating-chat enter expand">
+        <i class="cerrarFlotante" aria-hidden="true" style="display: none; font-style: normal; font-size: 15px">Chat</i>
+        <div class="chat enter">
+            <div class="header">
+                <span class="title">
+                    Chat
+                </span>
+                <button>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
             </div>
-        </div>*@
-</div>
+            <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
+            <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+            <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
+            <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
 
-<div class="floating-chat enter expand">
-    <i class="cerrarFlotante" aria-hidden="true" style="display: none; font-style: normal; font-size: 15px">Chat</i>
-    <div class="chat enter">
-        <div class="header">
-            <span class="title">
-                Chat
-            </span>
-            <button>
-                <i class="fa fa-times" aria-hidden="true"></i>
-            </button>
+            <div>Hola soy @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva) you Travel Designer, por favor envianos tu mensaje</div>
+            <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Tu mensaje ha sido enviado</div>
+            <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Por favor ingresa tu mensaje</div>
+            <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>
+            <button type="submit" class="pago btn btn-primary" id="btnSend">ENVIAR</button>
         </div>
-        <input type="text" id="txtCodCliente" value="@ViewBag.codCliente" hidden />
-        <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
-        <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
-        <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
-
-        <div>Hi I'm @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva) you Travel Designer, please send me a message</div>
-        <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
-        <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Please enter your message</div>
-        <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>
-        <button type="submit" class="pago btn btn-primary" id="btnSend">SEND</button>
     </div>
-</div>
+
+
+
+}
+
+
+
+
+
+
+
 
 <script src="~/Scripts/Galeria/Galeria.js"></script>
 <script src="~/Scripts/Envio/EnvioMensaje.js"></script>

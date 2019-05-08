@@ -241,11 +241,13 @@
     <Content Include="Content\images\icon-play.png" />
     <Content Include="Content\images\lineas-color.png" />
     <Content Include="Content\images\lineas.png" />
+    <Content Include="Content\images\logos.jpg" />
     <Content Include="Content\images\no-imagen.jpg" />
     <Content Include="Content\images\perutourism-logo.png" />
     <Content Include="Content\images\slider-bg.jpg" />
     <Content Include="Content\images\slider-group.png" />
     <Content Include="Content\images\slider-prop.jpg" />
+    <Content Include="Content\images\VisaMasterCard.jpg" />
     <Content Include="Content\menu.css" />
     <Content Include="Content\sass\framework\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\sass\framework\bootstrap\bootstrap-theme.min.css" />

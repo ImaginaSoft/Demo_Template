@@ -7073,8 +7073,8 @@ section,
   margin-bottom: 25px;
   overflow: visible;
   position: relative;
-  -webkit-box-shadow: 3px 3px #B5C1CA;
-  box-shadow: 3px 3px #B5C1CA;
+  -webkit-box-shadow: 3px 3px #B5C1CA !important;
+  box-shadow: 3px 3px #B5C1CA !important;
   -webkit-transition: all 0.15s linear;
   -o-transition: all 0.15s linear;
   transition: all 0.15s linear;
@@ -7802,8 +7802,8 @@ label.no-pad input {
         cursor: pointer;
     }
 
-    .options-interna .icon-propuesta, .options-interna .icon-information {
-        background: #e41973;
+    .options-interna .icon-propuesta, .options-interna .icon-information, .options-interna .icon-booking {
+        background: #ff8820;
         border-color: #fff;
     }
 

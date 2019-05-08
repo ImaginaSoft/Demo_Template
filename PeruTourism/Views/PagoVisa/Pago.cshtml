@@ -13,7 +13,7 @@
     var codCliente = Model.codCliente;
     var idPedido = Model.idPedido;
     var nroPrograma = Model.nroPrograma;
-    var idioma = Model.idioma;
+    char idioma = Convert.ToChar(Model.idioma);
 
     var lajaxOptionsForm = new AjaxOptions()
     {
@@ -45,6 +45,7 @@
     .groupCircle {
         background: #ff8820 !important;
     }
+
         .groupCircle:hover {
             top: 0px;
             width: 150px;
@@ -53,165 +54,314 @@
         }
 </style>
 
-<div id="propDet" class="secondary">
+@if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+{
+    <div id="propDet" class="secondary">
 
-    <div class="container-fluid">
-        <section class="subtitle" style="margin-bottom: 0px;">
-            <div class="container">
-                <div class="text-center bloqueCode">
-                    <label class="titulo">Your customer code:</label>
-                    <br />
-                    <label class="codigo">@codCliente</label>
+        <div class="container-fluid">
+            <section class="subtitle" style="margin-bottom: 0px;">
+                <div class="container">
+                    <div class="text-center bloqueCode">
+                        <label class="titulo">Your customer code:</label>
+                        <br />
+                        <label class="codigo">@codCliente</label>
+                    </div>
+         
                 </div>
-                @*<div class="options">
-                    <div class="op-group">
-                        <div class="op op-propuesta">
+            </section>
+
+
+
+                <div class="breadcrumb">
+                    <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Home</span>
+                        </span>
+                    </a>
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Proposals for my trip</span>
+                        </span>
+                    </a>
+
+                    <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Details</span>
+                        </span>
+                    </a>
+                    <div class="no_enlace">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Pay now</span>
+                        </span>
+                    </div>
+                </div>
+
+         
+
+
+
+
+        </div>
+
+
+        @*<div class="group prop-detalle">
+                <div class="group text-center" style="padding-top: 17px;">
+                    <a class="group text-center" href="https://www.visanetlink.pe/pagoseguro/PERUTOURISM/26688">Link de pago</a>
+                    <label>Su código de cliente es:</label>&nbsp;&nbsp;<label style="color: #e41973">@codCliente</label>
+                </div>
+            </div>*@
+
+        @*<input type="hidden" id="IDPedido" value="@IDPedido.Trim()" />*@
+
+        @*<div class="form-group">
+                <label for="form-label">A favor de:</label>
+                <label for="email">VIAJES PENTAGRAMA</label>
+
+            </div>
+            <div class="form-group">
+                <label for="form-label">Cliente:</label>
+                <label for="email">@lstPedidoVisa.FirstOrDefault().NomCliente</label>
+
+            </div>
+            <div class="form-group">
+                <label for="form-label">Servicio:</label>
+                <label for="email">@lstPedidoVisa.FirstOrDefault().DesPedido</label>
+
+            </div>
+            <div class="form-group">
+                <label for="pwd">Monto a pagar:</label>
+
+                <label class="no-pad">
+                    @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().Monto, new { @class = "form-control" })
+                </label>
+                @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().IDPedido, new { @class = "form-control", @Value = IDPedido.Trim(), @type = "hidden" })
+            </div>
+            <div class="form-group">
+
+                <label>Agree</label>
+                <label for="form-label">
+
+                    @Html.CheckBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions, new { @class = "" })
+
+                    I agree with the payment and booking conditions
+
+                </label>
+
+
+            </div>*@
+
+        @*<div class="form-group-btn">
+                <span class="field-validation-valid" data-valmsg-for="TermsAndConditions" data-valmsg-replace="true"></span>
+                @Html.ValidationMessageFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions)
+                <button type="submit" class="pago btn btn-primary">Realizar Pago</button>
+            </div>*@
+
+        <div class="group prop-detalle">
+            <div class="group group-collapse">
+                <div class="prop-num"><span>03 Simple steps to pay</span></div>
+            </div>
+            <div class="prop-content prop-general" id="content1">
+                <div class="">
+                    <ul class="prop-list">
+                        <li>Register your personal data.</li>
+                        <li>Register your customer code.</li>
+                        <li>Register the amount to pay.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="prop-icon">
+                <div class="groupCircle">
+                    <div class="groupTexto" id="iconIntermitente">
+                        <a class="group text-center" href="https://www.visanetlink.pe/pagoseguro/PERUTOURISM/26688" title="Click aqui para pagar!" target="_blank">
                             <div class="icon icon-propuesta"></div>
                             <div class="title">PAY NOW</div>
-                        </div>
+                        </a>
                     </div>
-                </div>*@
-            </div>
-        </section>
-
-
-        @*<div style="margin-bottom: 50px;">
-            <ul class="breadcrumb">
-                <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
-                <li><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = codCliente })">Proposals for my trip</a></li>
-                <li><a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente})">Details</a></li>
-                <li>Pay now</li>
-            </ul>
-        </div>*@
-
-        <div class="breadcrumb">
-            <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
-                <span class="breadcrumb__inner">
-                    <span class="breadcrumb__desc">Home</span>
-                </span>
-            </a>
-            <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
-                <span class="breadcrumb__inner">
-                    <span class="breadcrumb__desc">Proposals for my trip</span>
-                </span>
-            </a>
-
-            <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente })">
-                <span class="breadcrumb__inner">
-                    <span class="breadcrumb__desc">Details</span>
-                </span>
-            </a>
-            <div class="no_enlace">
-                <span class="breadcrumb__inner">
-                    <span class="breadcrumb__title">Pay now</span>
-                </span>
-            </div>
-        </div>
-
-
-
-    </div>
-
-
-    @*<div class="group prop-detalle">
-        <div class="group text-center" style="padding-top: 17px;">
-            <a class="group text-center" href="https://www.visanetlink.pe/pagoseguro/PERUTOURISM/26688">Link de pago</a>
-            <label>Su código de cliente es:</label>&nbsp;&nbsp;<label style="color: #e41973">@codCliente</label>
-        </div>
-    </div>*@
-
-    @*<input type="hidden" id="IDPedido" value="@IDPedido.Trim()" />*@
-
-    @*<div class="form-group">
-            <label for="form-label">A favor de:</label>
-            <label for="email">VIAJES PENTAGRAMA</label>
-
-        </div>
-        <div class="form-group">
-            <label for="form-label">Cliente:</label>
-            <label for="email">@lstPedidoVisa.FirstOrDefault().NomCliente</label>
-
-        </div>
-        <div class="form-group">
-            <label for="form-label">Servicio:</label>
-            <label for="email">@lstPedidoVisa.FirstOrDefault().DesPedido</label>
-
-        </div>
-        <div class="form-group">
-            <label for="pwd">Monto a pagar:</label>
-
-            <label class="no-pad">
-                @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().Monto, new { @class = "form-control" })
-            </label>
-            @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().IDPedido, new { @class = "form-control", @Value = IDPedido.Trim(), @type = "hidden" })
-        </div>
-        <div class="form-group">
-
-            <label>Agree</label>
-            <label for="form-label">
-
-                @Html.CheckBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions, new { @class = "" })
-
-                I agree with the payment and booking conditions
-
-            </label>
-
-
-        </div>*@
-
-    @*<div class="form-group-btn">
-            <span class="field-validation-valid" data-valmsg-for="TermsAndConditions" data-valmsg-replace="true"></span>
-            @Html.ValidationMessageFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions)
-            <button type="submit" class="pago btn btn-primary">Realizar Pago</button>
-        </div>*@
-
-    <div class="group prop-detalle">
-        <div class="group group-collapse">
-            <div class="prop-num"><span>03 Simple steps to pay</span></div>
-        </div>
-        <div class="prop-content prop-general" id="content1">
-            <div class="">
-                <ul class="prop-list">
-                    <li>Register your personal data.</li>
-                    <li>Register your customer code.</li>
-                    <li>Register the amount to pay.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="prop-icon">
-           <div class="groupCircle">
-                <div class="groupTexto" id="iconIntermitente">
-                    <a class="group text-center" href="https://www.visanetlink.pe/pagoseguro/PERUTOURISM/26688" title="Click aqui para pagar!">
-                        <div class="icon icon-propuesta"></div>
-                        <div class="title">PAY NOW</div>
-                    </a>
                 </div>
             </div>
         </div>
+
+        <div class="group prop-detalle">
+            <div class="group group-collapse">
+                <div class="prop-num"><span>Important recomendations before the payment</span></div>
+            </div>
+            <div class="prop-content prop-general" id="content1">
+                <div class="group">
+                    <ul class="prop-list">
+                        <li>Verify your credit line and available balance.</li>
+                        <li>Make sure your credit card is enabled for online purchases internationally.</li>
+                        <li>Confirm your credit card limit per day.</li>
+                        <li>Check if you bank need your authorization depending on the amount of money to be charged.</li>
+                        <li>Type the info just as it is shown on your credir card.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="prop-icon"></div>
+        </div>
+
+
+
+
     </div>
 
-    <div class="group prop-detalle">
-        <div class="group group-collapse">
-            <div class="prop-num"><span>Important recomendations before the payment</span></div>
+
+}
+else
+{
+    <div id="propDet" class="secondary">
+
+        <div class="container-fluid">
+            <section class="subtitle" style="margin-bottom: 0px;">
+                <div class="container">
+                    <div class="text-center bloqueCode">
+                        <label class="titulo">Your customer code:</label>
+                        <br />
+                        <label class="codigo">@codCliente</label>
+                    </div>
+                    @*<div class="options">
+                            <div class="op-group">
+                                <div class="op op-propuesta">
+                                    <div class="icon icon-propuesta"></div>
+                                    <div class="title">PAY NOW</div>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+            </section>
+
+
+                <div class="breadcrumb">
+                    <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Inicio</span>
+                        </span>
+                    </a>
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Propuestas para mi viaje</span>
+                        </span>
+                    </a>
+
+                    <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Detalle</span>
+                        </span>
+                    </a>
+                    <div class="no_enlace">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Paga ahora</span>
+                        </span>
+                    </div>
+                </div>
+
         </div>
-        <div class="prop-content prop-general" id="content1">
-            <div class="group">
-                <ul class="prop-list">
-                    <li>Verify your credit line and available balance.</li>
-                    <li>Make sure your credit card is enabled for online purchases internationally.</li>
-                    <li>Confirm your credit card limit per day.</li>
-                    <li>Check if you bank need your authorization depending on the amount of money to be charged.</li>
-                    <li>Type the info just as it is shown on your credir card.</li>
-                </ul>
+
+
+        @*<div class="group prop-detalle">
+                <div class="group text-center" style="padding-top: 17px;">
+                    <a class="group text-center" href="https://www.visanetlink.pe/pagoseguro/PERUTOURISM/26688">Link de pago</a>
+                    <label>Su código de cliente es:</label>&nbsp;&nbsp;<label style="color: #e41973">@codCliente</label>
+                </div>
+            </div>*@
+
+        @*<input type="hidden" id="IDPedido" value="@IDPedido.Trim()" />*@
+
+        @*<div class="form-group">
+                <label for="form-label">A favor de:</label>
+                <label for="email">VIAJES PENTAGRAMA</label>
+
+            </div>
+            <div class="form-group">
+                <label for="form-label">Cliente:</label>
+                <label for="email">@lstPedidoVisa.FirstOrDefault().NomCliente</label>
+
+            </div>
+            <div class="form-group">
+                <label for="form-label">Servicio:</label>
+                <label for="email">@lstPedidoVisa.FirstOrDefault().DesPedido</label>
+
+            </div>
+            <div class="form-group">
+                <label for="pwd">Monto a pagar:</label>
+
+                <label class="no-pad">
+                    @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().Monto, new { @class = "form-control" })
+                </label>
+                @Html.TextBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().IDPedido, new { @class = "form-control", @Value = IDPedido.Trim(), @type = "hidden" })
+            </div>
+            <div class="form-group">
+
+                <label>Agree</label>
+                <label for="form-label">
+
+                    @Html.CheckBoxFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions, new { @class = "" })
+
+                    I agree with the payment and booking conditions
+
+                </label>
+
+
+            </div>*@
+
+        @*<div class="form-group-btn">
+                <span class="field-validation-valid" data-valmsg-for="TermsAndConditions" data-valmsg-replace="true"></span>
+                @Html.ValidationMessageFor(c => Model.lstPedidoVisa.FirstOrDefault().TermsAndConditions)
+                <button type="submit" class="pago btn btn-primary">Realizar Pago</button>
+            </div>*@
+
+        <div class="group prop-detalle">
+            <div class="group group-collapse">
+                <div class="prop-num"><span>03 Simples pasos para pagar</span></div>
+            </div>
+            <div class="prop-content prop-general" id="content1">
+                <div class="">
+                    <ul class="prop-list">
+                        <li>Register your personal data.</li>
+                        <li>Register your customer code.</li>
+                        <li>Register the amount to pay.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="prop-icon">
+                <div class="groupCircle">
+                    <div class="groupTexto" id="iconIntermitente">
+                        <a class="group text-center" href="https://www.visanetlink.pe/pagoseguro/PERUTOURISM/26688" title="Click aqui para pagar!" target="_blank">
+                            <div class="icon icon-propuesta"></div>
+                            <div class="title">PAGA AHORA</div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="prop-icon"></div>
+
+        <div class="group prop-detalle">
+            <div class="group group-collapse">
+                <div class="prop-num"><span>Important recomendations before the payment</span></div>
+            </div>
+            <div class="prop-content prop-general" id="content1">
+                <div class="group">
+                    <ul class="prop-list">
+                        <li>Verify your credit line and available balance.</li>
+                        <li>Make sure your credit card is enabled for online purchases internationally.</li>
+                        <li>Confirm your credit card limit per day.</li>
+                        <li>Check if you bank need your authorization depending on the amount of money to be charged.</li>
+                        <li>Type the info just as it is shown on your credir card.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="prop-icon"></div>
+        </div>
+
+
+
+
     </div>
 
+}
 
 
 
-</div>
+
 
 
 <script src="~/scripts/Visa/PagoVisa.js"></script>

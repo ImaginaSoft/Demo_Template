@@ -36,19 +36,19 @@
 
 
         @*<div style="margin-bottom: 50px;">
-            <ul class="breadcrumb">
-                @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
-                {
-                    <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
-                    <li>Proposals for my trip</li>
-                }
-                else
-                {
-                    <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
-                    <li>Propuestas para mi viaje</li>
-                }
-            </ul>
-        </div>*@
+                <ul class="breadcrumb">
+                    @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                    {
+                        <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
+                        <li>Proposals for my trip</li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
+                        <li>Propuestas para mi viaje</li>
+                    }
+                </ul>
+            </div>*@
 
 
         <div class="breadcrumb">
@@ -58,7 +58,7 @@
 
                 <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
                     <span class="breadcrumb__inner">
-                        <span class="breadcrumb__desc">Inicio</span>
+                        <span class="breadcrumb__desc">Home</span>
                     </span>
                 </a>
 
