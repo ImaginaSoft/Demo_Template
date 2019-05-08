@@ -2,44 +2,46 @@
 @using PeruTourism.Utility
 
 @{
-    ViewBag.Title = "Home Page";
+                /**/
 
-    var lstProgramas = Model.lstPrograma;
-    string nroPedido = string.Empty;
-    string nroPropuesta = string.Empty;
-    string nroVersion = string.Empty;
+                ViewBag.Title = "Home Page";
 
-    if (lstProgramas != null)
-    {
-        foreach (var gg in lstProgramas)
-        {
+                var lstProgramas = Model.lstPrograma;
+                string nroPedido = string.Empty;
+                string nroPropuesta = string.Empty;
+                string nroVersion = string.Empty;
 
-            if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
-            {
+                if (lstProgramas != null)
+                {
+                    foreach (var gg in lstProgramas)
+                    {
 
-                nroPedido = gg.KeyReg.Substring(0, 6);
-                nroPropuesta = gg.KeyReg.Substring(8, 1);
-                nroVersion = gg.KeyReg.Substring(10, 1);
+                        if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
+                        {
 
-                break;
-            }
-            else
-            {
-                nroPedido = "0";
-                nroPropuesta = "0";
-                nroVersion = "0";
-            }
+                            nroPedido = gg.KeyReg.Substring(0, 6);
+                            nroPropuesta = gg.KeyReg.Substring(8, 1);
+                            nroVersion = gg.KeyReg.Substring(10, 1);
+
+                            break;
+                        }
+                        else
+                        {
+                            nroPedido = "0";
+                            nroPropuesta = "0";
+                            nroVersion = "0";
+                        }
 
 
 
-        }
-    }
+                    }
+                }
 
-    //var NombreCliente = (string)Session["NomCliente"];
-    var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
-    var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
+                //var NombreCliente = (string)Session["NomCliente"];
+                var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
+                var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
 
-    var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
+                var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
 }
 
 <script src="~/Scripts/Galeria/Galeria.js"></script>
@@ -48,59 +50,30 @@
 {
     if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
     {
-<div class="container-fluid">
-    <section class="slider" id="scene" style="margin-bottom: 0px !important;">
-        <div class="container" data-depth="0.2">
-            <span class="description">Here is where the trip of your lifetime starts...</span>
-            <img src="~/Content/images/slider-group.png" class="img-group">
+        <div class="container-fluid">
+            <section class="slider" id="scene" style="margin-bottom: 0px !important;">
+                <div class="container" data-depth="0.2">
+                    <span class="description">Here is where the trip of your lifetime starts...</span>
+                    <img src="~/Content/images/slider-group.png" class="img-group">
+                </div>
+                <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
+            </section>
+
+
+            <div class="breadcrumb">
+
+                <div class="no_enlace">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__desc">Home</span>
+                    </span>
+                </div>
+
+
+
+            </div>
+
+
         </div>
-        <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-    </section>
-
-
-    @*<div style="margin-bottom: 50px;">
-        <ul class="breadcrumb">
-            <li>Home</li>
-        </ul>
-    </div>*@
-
-    <div class="breadcrumb">
-        @*<a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
-            <span class="breadcrumb__inner">
-                <span class="breadcrumb__desc">Inicio</span>
-            </span>
-        </a>
-        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
-            <span class="breadcrumb__inner">
-                <span class="breadcrumb__desc">Propuestas para mi viaje</span>
-            </span>
-        </a>*@
-
-        @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
-        {
-            <div class="no_enlace">
-                <span class="breadcrumb__inner">
-                    <span class="breadcrumb__title">Home</span>
-                </span>
-            </div>
-
-        }
-        else
-        {
-            <div class="no_enlace">
-                <span class="breadcrumb__inner">
-                    <span class="breadcrumb__title">Inicio</span>
-                </span>
-            </div>
-
-        }
-
-
-
-    </div>
-
-
-</div>
 
         <div class="container">
             @*<section class="welcome">
@@ -125,7 +98,7 @@
                         </a>
                     </div>
                     <div class="op op-testimonio">
-                        <a href="https://www.perutourism.com/travel-experiences/comments1">
+                        <a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">
                             <div class="icon icon-testimonio"></div>
                             <div class="description">Reviews from our clients</div>
                         </a>
@@ -162,15 +135,7 @@
                 </div>
             </div>
         </div>
-        @*<div class="container-fluid">
-                <section class="slider" id="scene">
-                    <div class="container" data-depth="0.2">
-                        <span class="description">Go Beyond Ordinary Travel</span>
-                        <img src="~/Content/images/slider-group.png" class="img-group">
-                    </div>
-                    <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-                </section>
-            </div>*@
+
 
 
     }
@@ -184,10 +149,16 @@
                 </div>
                 <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
             </section>
-            <div style="margin-bottom: 50px;">
-                <ul class="breadcrumb">
-                    <li>Inicio</li>
-                </ul>
+            <div class="breadcrumb">
+
+                <div class="no_enlace">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__desc">Inicio</span>
+                    </span>
+                </div>
+
+
+
             </div>
         </div>
 
@@ -214,7 +185,7 @@
                         </a>
                     </div>
                     <div class="op op-testimonio">
-                        <a href="https://www.perutourism.com/travel-experiences/comments1">
+                        <a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">
                             <div class="icon icon-testimonio"></div>
                             <div class="description">Testimonios de nuestros clientes</div>
                         </a>
@@ -251,15 +222,7 @@
                 </div>
             </div>
         </div>
-        @*<div class="container-fluid">
-                <section class="slider" id="scene">
-                    <div class="container" data-depth="0.2">
-                        <span class="description">Go Beyond Ordinary Travel</span>
-                        <img src="~/Content/images/slider-group.png" class="img-group">
-                    </div>
-                    <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">
-                </section>
-            </div>*@
+
     }
 
     <div id='balanceContainer'>
