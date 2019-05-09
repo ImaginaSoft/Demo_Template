@@ -1,9 +1,9 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
-
+@using PeruTourism.Utility
 
 @{
     ViewBag.Title = "Pasajero";
-
+    char idioma = ViewBag.Idioma;
     var lajaxOptionsForm = new AjaxOptions()
     {
         HttpMethod = "POST",
@@ -21,64 +21,171 @@
     }
 </style>
 
-<div style="margin-bottom: 50px;">
-    <ul class="breadcrumb">
-        <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
-        <li>Add passenger</li>
-    </ul>
-</div>
+@*<div style="margin-bottom: 50px;">
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
+            <li>Add passenger</li>
+        </ul>
+    </div>*@
 
-<input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
-<input type="text" id="txtNroPasajero" value="0" hidden />
+@if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+{
+    <div class="breadcrumb">
+        <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__desc">Home</span>
+            </span>
+        </a>
 
-<div class="form-group">
+        <div class="no_enlace">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__title">Add passenger</span>
+            </span>
+        </div>
+    </div>
+
+
+
+    <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+    <input type="text" id="txtNroPasajero" value="0" hidden />
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="form-group col-sm-4">
+                @*<label>@Html.DisplayNameFor(c => c.Pasajero.NomPasajero)</label>*@
+                <label>Name</label>
+                @Html.TextBoxFor(c => c.Pasajero.NomPasajero, new { @placeholder = "Enter your name", @class = "form-control valid", @id = "txtNomPasajero" })
+            </div>
+            <div class="form-group col-sm-4">
+                @*<label>@Html.DisplayNameFor(c => c.Pasajero.ApePasajero)</label>*@
+                <label>Last Name</label>
+                @Html.TextBoxFor(c => c.Pasajero.ApePasajero, new { @placeholder = "Enter you last name", @class = "form-control valid", @id = "txtApPasajero" })
+            </div>
+            <div class="form-group col-sm-4">
+                @*<label>@Html.DisplayNameFor(c => c.Pasajero.Pasaporte)</label>*@
+                <label>Passport Number</label>
+                @Html.TextBoxFor(c => c.Pasajero.Pasaporte, new { @placeholder = "Enter your passport number", @class = "form-control valid", @id = "txtPasaporte" })
+            </div>
+            <div class="form-group col-sm-3">
+                @*<label>@Html.DisplayNameFor(c => c.Pasajero.FchNacimiento)</label>*@
+                <label>Birth Date</label>
+                @Html.TextBoxFor(c => c.Pasajero.FchNacimiento, new { @type = "date", @class = "form-control", @id = "txtFecPasajero" })
+            </div>
+            <div class="form-group col-sm-3">
+                @*<label>@Html.DisplayNameFor(c => c.Pasajero.Nacionalidad)</label>*@
+                <label>Country</label>
+                @Html.DropDownListFor(c => c.Pasajero.Nacionalidad, ((IEnumerable<SelectListItem>)ViewBag.Paises), new { @class = "form-control", @id = "cboNacPasajero" })
+            </div>
+            <div class="form-group col-sm-3">
+                @*<label>@Html.DisplayNameFor(c => c.Pasajero.Genero)</label>*@
+                <label>Gender</label>
+                @Html.DropDownListFor(c => c.Pasajero.Genero, ((IEnumerable<SelectListItem>)ViewBag.Genero), new { @class = "form-control", @id = "cboGenPasajero" })
+            </div>
+            <div class="form-group col-sm-3">
+                @*<label>@Html.DisplayNameFor(c => c.Pasajero.TipoPasajero)</label>*@
+                <label>Pax</label>
+                @Html.DropDownListFor(c => c.Pasajero.TipoPasajero, ((IEnumerable<SelectListItem>)ViewBag.Tipos), new { @class = "form-control", @id = "cboTipoPasajero" })
+            </div>
+            <div class="form-group col-sm-12">
+                @*<label>@Html.DisplayNameFor(c => c.Pasajero.Observacion)</label>*@
+                <label>Note</label>
+                @Html.TextAreaFor(c => c.Pasajero.Observacion, new { @class = "form-control", @placeholder = "Enter a note", @id = "txtObservacion" })
+            </div>
+        </div>
+    </div>
     <div class="col-sm-10 col-sm-offset-1">
-        <div class="form-group col-sm-4">
-            <label>@Html.DisplayNameFor(c => c.Pasajero.NomPasajero)</label>
-            @Html.TextBoxFor(c => c.Pasajero.NomPasajero, new { @placeholder = "Ingrese su nombre", @class = "form-control valid", @id = "txtNomPasajero" })
-        </div>
-        <div class="form-group col-sm-4">
-            <label>@Html.DisplayNameFor(c => c.Pasajero.ApePasajero)</label>
-            @Html.TextBoxFor(c => c.Pasajero.ApePasajero, new { @placeholder = "Ingrese sus apellidos", @class = "form-control valid", @id = "txtApPasajero" })
-        </div>
-        <div class="form-group col-sm-4">
-            <label>@Html.DisplayNameFor(c => c.Pasajero.Pasaporte)</label>
-            @Html.TextBoxFor(c => c.Pasajero.Pasaporte, new { @placeholder = "Ingrese su número de pasaporte", @class = "form-control valid", @id = "txtPasaporte" })
-        </div>
-        <div class="form-group col-sm-3">
-            <label>@Html.DisplayNameFor(c => c.Pasajero.FchNacimiento)</label>
-            @Html.TextBoxFor(c => c.Pasajero.FchNacimiento, new { @type = "date", @class = "form-control", @id = "txtFecPasajero" })
-        </div>
-        <div class="form-group col-sm-3">
-            <label>@Html.DisplayNameFor(c => c.Pasajero.Nacionalidad)</label>
-            @Html.DropDownListFor(c => c.Pasajero.Nacionalidad, ((IEnumerable<SelectListItem>)ViewBag.Paises), new { @class = "form-control", @id = "cboNacPasajero" })
-        </div>
-        <div class="form-group col-sm-3">
-            <label>@Html.DisplayNameFor(c => c.Pasajero.Genero)</label>
-            @Html.DropDownListFor(c => c.Pasajero.Genero, ((IEnumerable<SelectListItem>)ViewBag.Genero), new { @class = "form-control", @id = "cboGenPasajero" })
-        </div>
-        <div class="form-group col-sm-3">
-            <label>@Html.DisplayNameFor(c => c.Pasajero.TipoPasajero)</label>
-            @Html.DropDownListFor(c => c.Pasajero.TipoPasajero, ((IEnumerable<SelectListItem>)ViewBag.Tipos), new { @class = "form-control", @id = "cboTipoPasajero" })
-        </div>
         <div class="form-group col-sm-12">
-            <label>@Html.DisplayNameFor(c => c.Pasajero.Observacion)</label>
-            @Html.TextAreaFor(c => c.Pasajero.Observacion, new { @class = "form-control", @placeholder = "Ingrese observación", @id = "txtObservacion" })
+            <button type="submit" class="pago btn btn-primary" id="btnEnviar">SEND</button>
+            <button type="button" class="btn btn-warning" id="btnCancelar">CANCEL</button>
         </div>
     </div>
-</div>
-<div class="col-sm-10 col-sm-offset-1">
-    <div class="form-group col-sm-12">
-        <button type="submit" class="pago btn btn-primary" id="btnEnviar">SEND</button>
-        <button type="button" class="btn btn-warning" id="btnCancelar">CANCEL</button>
-    </div>
-</div>
-<div class="col-sm-10 col-sm-offset-1">
-    <div class="form-group col-sm-12">
-        <div class="table-responsive">
-            <div id="tablaPasajeros"></div>
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="form-group col-sm-12">
+            <div class="table-responsive">
+                <div id="tablaPasajeros"></div>
+            </div>
         </div>
     </div>
-</div>
+
+}
+else
+{
+    <div class="breadcrumb">
+        <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__desc">Home</span>
+            </span>
+        </a>
+
+        <div class="no_enlace">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__title">Add passenger</span>
+            </span>
+        </div>
+    </div>
+
+
+
+    <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
+    <input type="text" id="txtNroPasajero" value="0" hidden />
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="form-group col-sm-4">
+                <label>@Html.DisplayNameFor(c => c.Pasajero.NomPasajero)</label>
+                @Html.TextBoxFor(c => c.Pasajero.NomPasajero, new { @placeholder = "Ingrese su nombre", @class = "form-control valid", @id = "txtNomPasajero" })
+            </div>
+            <div class="form-group col-sm-4">
+                <label>@Html.DisplayNameFor(c => c.Pasajero.ApePasajero)</label>
+                @Html.TextBoxFor(c => c.Pasajero.ApePasajero, new { @placeholder = "Ingrese su apellido", @class = "form-control valid", @id = "txtApPasajero" })
+            </div>
+            <div class="form-group col-sm-4">
+                <label>@Html.DisplayNameFor(c => c.Pasajero.Pasaporte)</label>
+                @Html.TextBoxFor(c => c.Pasajero.Pasaporte, new { @placeholder = "Ingrese su pasaporte", @class = "form-control valid", @id = "txtPasaporte" })
+            </div>
+            <div class="form-group col-sm-3">
+                <label>@Html.DisplayNameFor(c => c.Pasajero.FchNacimiento)</label>
+                @Html.TextBoxFor(c => c.Pasajero.FchNacimiento, new { @type = "date", @class = "form-control", @id = "txtFecPasajero" })
+            </div>
+            <div class="form-group col-sm-3">
+                <label>@Html.DisplayNameFor(c => c.Pasajero.Nacionalidad)</label>
+                @Html.DropDownListFor(c => c.Pasajero.Nacionalidad, ((IEnumerable<SelectListItem>)ViewBag.Paises), new { @class = "form-control", @id = "cboNacPasajero" })
+            </div>
+            <div class="form-group col-sm-3">
+                <label>@Html.DisplayNameFor(c => c.Pasajero.Genero)</label>
+                @Html.DropDownListFor(c => c.Pasajero.Genero, ((IEnumerable<SelectListItem>)ViewBag.Genero), new { @class = "form-control", @id = "cboGenPasajero" })
+            </div>
+            <div class="form-group col-sm-3">
+                <label>@Html.DisplayNameFor(c => c.Pasajero.TipoPasajero)</label>
+                @Html.DropDownListFor(c => c.Pasajero.TipoPasajero, ((IEnumerable<SelectListItem>)ViewBag.Tipos), new { @class = "form-control", @id = "cboTipoPasajero" })
+            </div>
+            <div class="form-group col-sm-12">
+                <label>@Html.DisplayNameFor(c => c.Pasajero.Observacion)</label>
+                @Html.TextAreaFor(c => c.Pasajero.Observacion, new { @class = "form-control", @placeholder = "Ingrese una observación", @id = "txtObservacion" })
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="form-group col-sm-12">
+            <button type="submit" class="pago btn btn-primary" id="btnEnviar">ENVIAR</button>
+            <button type="button" class="btn btn-warning" id="btnCancelar">CANCEL</button>
+        </div>
+    </div>
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="form-group col-sm-12">
+            <div class="table-responsive">
+                <div id="tablaPasajeros"></div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
 
 <script src="~/Scripts/Pasajero/Pasajero.js"></script>

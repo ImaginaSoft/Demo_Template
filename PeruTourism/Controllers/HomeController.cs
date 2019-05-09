@@ -596,7 +596,8 @@ namespace PeruTourism.Controllers
 
             if (pAccion != "E")
             {
-                valid = ValidarCampos(pDesLog, pApe, pPasaporte, pFecNac, pNacionalidad, pGenero);
+                valid = ValidarCampos(pDesLog, pApe, pPasaporte, pFecNac, 
+                    pNacionalidad, pGenero);
 
                 if (pFecNac.Length > 0)
                     fecha = Convert.ToDateTime(pFecNac).ToString("yyyyMMdd");

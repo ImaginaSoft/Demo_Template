@@ -21,30 +21,47 @@ namespace PeruTourism.Controllers
 		}
 
 
-		public ActionResult Pasajero(string pIdPedido)
+		public ActionResult Pasajero(string pIdPedido, char pIdioma)
 		{
             if (pIdPedido.Contains(" "))
                 ViewBag.nroPedido = pIdPedido.Substring(0, pIdPedido.IndexOf(" "));
             else
                 ViewBag.nroPedido = pIdPedido;
 
-            ViewBag.Genero = ObtenerGeneros();
-            ViewBag.Paises = ObtenerPaises();
+            ViewBag.Genero = ObtenerGeneros(pIdioma);
+            ViewBag.Paises = ObtenerPaises(pIdioma);
             ViewBag.Tipos = ObtenerTipos();
-
+            ViewBag.Idioma = pIdioma;
             return View("Pasajero");
         }
 
-        public static IList<SelectListItem> ObtenerGeneros()
+        public static IList<SelectListItem> ObtenerGeneros(char pIdioma)
         {
-            var lresultado = new List<SelectListItem>
+
+
+            if (pIdioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES)) {
+                var lresultado = new List<SelectListItem>
+            {
+                new SelectListItem { Value = string.Empty, Text = "(Select)" },
+                new SelectListItem { Value = "M", Text = "Male"},
+                new SelectListItem { Value = "F", Text = "Female" }
+            };
+
+                return lresultado;
+
+            }
+            else {
+                var lresultado = new List<SelectListItem>
             {
                 new SelectListItem { Value = string.Empty, Text = "(Seleccione)" },
-                new SelectListItem { Value = "M", Text = "Masculino" },
+                new SelectListItem { Value = "M", Text = "Masculino"},
                 new SelectListItem { Value = "F", Text = "Femenino" }
             };
 
-            return lresultado;
+                return lresultado;
+            }
+
+         
         }
 
         public static IList<SelectListItem> ObtenerTipos()
@@ -72,14 +89,14 @@ namespace PeruTourism.Controllers
         }
 
         [NonAction]
-        public static IList<SelectListItem> ObtenerPaises()
+        public static IList<SelectListItem> ObtenerPaises(char pIdioma)
         {
             List<Pais> lista;
             var lresultado = new List<SelectListItem>();
 
             try
             {
-                lista = (new PasajeroAccess()).ListarPaises();
+                lista = (new PasajeroAccess()).ListarPaises(pIdioma);
 
                 foreach (var item in lista)
                 {

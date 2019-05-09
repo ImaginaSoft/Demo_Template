@@ -9,6 +9,7 @@ using PeruTourism.Utility;
 using PeruTourism.Models.Paises;
 using PeruTourism.Models.TipoPasajero;
 
+
 namespace PeruTourism.Repository.PeruTourism
 {
 	public class PasajeroAccess
@@ -116,7 +117,7 @@ namespace PeruTourism.Repository.PeruTourism
             return lista;
         }
 
-        public List<Pais> ListarPaises()
+        public List<Pais> ListarPaises(char pIdioma)
         {
             var lista = new List<Pais>();
             var dt = new DataTable();
@@ -125,7 +126,20 @@ namespace PeruTourism.Repository.PeruTourism
             {
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
-                    SqlCommand cmd = new SqlCommand("TAB_Pais_S", con);
+
+                    SqlCommand cmd = new SqlCommand();
+
+                    if (pIdioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES)) {
+
+
+                         cmd = new SqlCommand("TAB_PaisIngles_S", con);
+                    }
+                    else
+                    {
+
+                         cmd = new SqlCommand("TAB_Pais_S", con);
+                    }
+
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
