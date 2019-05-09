@@ -6641,6 +6641,7 @@ section,
 
 .optionsMini {
     max-width: 500px;
+    margin: 30px auto 50px;
 }
     .optionsMini .description {
         font-size: 18px;
@@ -7104,7 +7105,9 @@ section,
       position: absolute;
       bottom: -10px;
       content: "";
-      left: 0; }
+      left: 0; 
+      display:block !important;
+    }
     .prop-detalle .prop-num::after {
       width: 0;
       height: 0;
@@ -7206,7 +7209,7 @@ section,
     line-height: 130px;
     border: 5px solid #fff; }
   .secondary .options .title {
-    margin-top: 200px;
+    margin-top: 189px;
     font-size: 24px; }
   #prop .slider {
     height: 260px; } }
@@ -7217,7 +7220,8 @@ section,
   font-size: 28px; }
 
 #propDet .subtitle {
-  height: 145px; }
+    height: 145px;
+}
 
 #propDet .prop-detalle .prop-title:before {
   right: 0; }
@@ -7244,7 +7248,7 @@ section,
     margin: 80px 0 0;
     font-size: 28px; }
   #propDet .subtitle {
-    height: 145px; }
+    height: 185px; }
   .prop-detalle {
     padding-right: 15px; }
   .prop-detalle .prop-title:before {

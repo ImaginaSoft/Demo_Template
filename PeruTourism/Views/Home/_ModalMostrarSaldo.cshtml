@@ -11,54 +11,6 @@
 
  @if (lstBalanceGG != null)
  {
-@*<div class="modal fade" id="detalleBalance-1" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-DetalleHotel" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <strong>Detalle de Hotel</strong>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-
-
-                <div class="info-hotel">
-                    <table class="table table-bordered table-responsive table-hover">
-                        <tr>
-                            <th>Date </th>
-                            <th>Detail</th>
-                            <th>Balance </th>
-                            <th>Payments</th>
-
-                        </tr>
-                        @foreach (var d in lstBalanceGG)
-                        {
-
-
-                            totalAbono = totalAbono + d.Abono;
-                            totalCargo = totalCargo + d.Cargo;
-
-                            <tr>
-                                <td>@d.FchEmision</td>
-                                <td>@d.Referencia</td>
-                                <td>@d.Cargo</td>
-                                <td>@d.Abono</td>
-                            </tr>
-                        }
-
-                        @{decimal totalSaldo = totalCargo - totalAbono; }
-                    </table>
-                    <div>Total @totalSaldo</div>
-
-
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-</div>*@
-
-
 
 
 <div class="modal fade" id="detalleBalance-1" tabindex="-1" role="dialog" style="display: none;">
@@ -75,8 +27,8 @@
                             <tr>
                                 <th>Date </th>
                                 <th>Detail</th>
-                                <th>Balance </th>
-                                <th>Payments</th>
+                                <th>Balance (USD) </th>
+                                <th>Payments (USD) </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,7 +48,7 @@
                             }
                             @{int totalSaldo = totalCargo - totalAbono; }
                             <tr class="table-total hidden-xs">
-                                <td colspan="3">Total</td>
+                                <td colspan="3">USD Total :</td>
                                 <td>@Convert.ToDecimal(totalSaldo).ToString("#,##0")</td>
                             </tr>
                         </tbody>
@@ -105,7 +57,7 @@
 
                 </div>
                 <div class="div-total visible-xs">
-                    Total: @totalSaldo
+                    USD Total : @totalSaldo
                 </div>
             </div>
         </div>
