@@ -2,46 +2,49 @@
 @using PeruTourism.Utility
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 
-                var lstProgramas = Model.lstPrograma;
-                string nroPedido = string.Empty;
-                string nroPropuesta = string.Empty;
-                string nroVersion = string.Empty;
+    var lstProgramas = Model.lstPrograma;
+    string nroPedido = string.Empty;
+    string nroPropuesta = string.Empty;
+    string nroVersion = string.Empty;
 
-                if (lstProgramas != null)
-                {
-                    foreach (var gg in lstProgramas)
-                    {
+    if (lstProgramas != null)
+    {
+        foreach (var gg in lstProgramas)
+        {
 
-                        if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
-                        {
+            if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
+            {
 
-                            nroPedido = gg.KeyReg.Substring(0, 6);
-                            nroPropuesta = gg.KeyReg.Substring(8, 1);
-                            nroVersion = gg.KeyReg.Substring(10, 1);
+                nroPedido = gg.KeyReg.Substring(0, 6);
+                nroPropuesta = gg.KeyReg.Substring(8, 1);
+                nroVersion = gg.KeyReg.Substring(10, 1);
 
-                            break;
-                        }
-                        else
-                        {
-                            nroPedido = "0";
-                            nroPropuesta = "0";
-                            nroVersion = "0";
-                        }
+                break;
+            }
+            else
+            {
+                nroPedido = "0";
+                nroPropuesta = "0";
+                nroVersion = "0";
+            }
 
 
 
-                    }
-                }
+        }
+    }
 
-                //var NombreCliente = (string)Session["NomCliente"];
-                var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
-                var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
+    //var NombreCliente = (string)Session["NomCliente"];
+    var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
+    var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
 
-                var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
+    var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
+    bool flagVendido = true;
+    bool flagNoVendido = false;
+    
 }
 
 <script src="~/Scripts/Galeria/Galeria.js"></script>
@@ -83,8 +86,8 @@
             <section class="options popupBase">
                 <div class="op-group">
                     <div class="op op-propuesta">
-                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
-                            <div class="icon icon-propuesta"></div>
+                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente , pFlagVendido = flagNoVendido})">
+                            <div class="icon icon-propuesta"></div> 
                             <div class="description">
                                 My travel<br>
                                 proposals
@@ -92,7 +95,8 @@
                         </a>
                     </div>
                     <div class="op op-info">
-                        <a href="javascript:mostrarSubMenu()">
+                        @*<a href="javascript:mostrarSubMenu()">*@
+                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente ,pFlagVendido = flagVendido})">
                             <div class="icon icon-info"></div>
                             <div class="description">My Booked trip</div>
                         </a>

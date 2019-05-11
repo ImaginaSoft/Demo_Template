@@ -113,7 +113,7 @@ namespace PeruTourism.Controllers
 
         }
 
-        public ActionResult VerPropuesta(string pCodCliente)
+        public ActionResult VerPropuesta(string pCodCliente, bool pFlagVendido)
         {
 
             //PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
@@ -138,6 +138,8 @@ namespace PeruTourism.Controllers
                     ViewBag.FlagIdioma = lstPublicacion.FirstOrDefault().FlagIdioma;
 
                     ViewBag.CodCliente = codCliente;
+
+                    ViewBag.FlagVendido = pFlagVendido;
 
                 }
             }
