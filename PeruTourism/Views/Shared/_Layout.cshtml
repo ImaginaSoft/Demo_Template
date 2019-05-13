@@ -1,136 +1,141 @@
 ﻿@using PeruTourism.Utility
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>PeruTourism</title>
-    <!-- ingresar descripcion del sitio -->
-    <meta name="description" content="Peru Tourism: Your customized travel website. Go beyond ordinary travel!">
-    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0f703a">
-    <meta name="msapplication-navbutton-color" content="#0f703a">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#0f703a">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee|Montserrat:400,600,700,800">
+@{
+    bool flagVendido = true;
 
-    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/css/layout.css" rel="stylesheet" />
-    <link href="~/Content/css/home.min.css" rel="stylesheet" />
-    <link href="~/Content/css/propuestas.min.css" rel="stylesheet" />
-    <link href="~/Content/css/chat.css" rel="stylesheet" />
-    <link href="~/Content/css/flotante.css" rel="stylesheet" />
+}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>PeruTourism</title>
+        <!-- ingresar descripcion del sitio -->
+        <meta name="description" content="Peru Tourism: Your customized travel website. Go beyond ordinary travel!">
+        <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="theme-color" content="#0f703a">
+        <meta name="msapplication-navbutton-color" content="#0f703a">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#0f703a">
 
-    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-</head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee|Montserrat:400,600,700,800">
 
-<body>
-    @if (Session["Idioma"] != null || Session["IdCliente"] != null || Session["NomCliente"] != null || Session["CodCliente"] != null)
-    {
-        if (Session["Idioma"].Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+        <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/Content/css/layout.css" rel="stylesheet" />
+        <link href="~/Content/css/home.min.css" rel="stylesheet" />
+        <link href="~/Content/css/propuestas.min.css" rel="stylesheet" />
+        <link href="~/Content/css/chat.css" rel="stylesheet" />
+        <link href="~/Content/css/flotante.css" rel="stylesheet" />
+
+        <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    </head>
+
+    <body>
+        @if (Session["Idioma"] != null || Session["IdCliente"] != null || Session["NomCliente"] != null || Session["CodCliente"] != null)
         {
+            if (Session["Idioma"].Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+            {
 
-            <header id="header">
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- navegacion -->
-                        <nav class="navbar navbar-default">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="navbar-header">
-                                        <!-- brand -->
-                                        <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
-                                        <div class="slogan">
-                                            <span class="hidden-xs">Your customized travel website for:</span> <p class="nombrePax"><i class="icon icon-user"></i> @Session["NomCliente"]</p>
-                                        </div>
-                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="collapse navbar-collapse" id="siteNav">
+                <header id="header">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- navegacion -->
+                            <nav class="navbar navbar-default">
                                 <div class="container">
                                     <div class="row">
-                                        <ul class="nav navbar-nav">
-                                            <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
-                                            <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] })">My travel proposals</a></li>
-                                            @*<li>
-                                                    My booked trip
-                                                    <ul>
-                                                        <li>aa</li>
-                                                        <li>bbb</li>
-                                                        <li>cc</li>
-                                                    </ul>
-
-                                                </li>*@
-                                            <li class="marcaMenu marcaMenu03"><a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">Reviews from our clients</a></li>
-
-                                        </ul>
+                                        <div class="navbar-header">
+                                            <!-- brand -->
+                                            <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
+                                            <div class="slogan">
+                                                <span class="hidden-xs">Your customized travel website for:</span> <p class="nombrePax"><i class="icon icon-user"></i> @Session["NomCliente"]</p>
+                                            </div>
+                                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </nav>
+                                <div class="collapse navbar-collapse" id="siteNav">
+                                    <div class="container">
+                                        <div class="row">
+                                            <ul class="nav navbar-nav">
+                                                <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
+                                                <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido })">My travel proposals</a></li>
+                                                @*<li>
+                                                        My booked trip
+                                                        <ul>
+                                                            <li>aa</li>
+                                                            <li>bbb</li>
+                                                            <li>cc</li>
+                                                        </ul>
+
+                                                    </li>*@
+                                                <li class="marcaMenu marcaMenu03"><a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">Reviews from our clients</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
                     </div>
-                </div>
-                <!-- navegacion -->
-            </header>
+                    <!-- navegacion -->
+                </header>
+            }
+            else
+            {
+                <header id="header">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- navegacion -->
+                            <nav class="navbar navbar-default">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="navbar-header">
+                                            <!-- brand -->
+                                            <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
+                                            <div class="slogan">
+                                                <span class="hidden-xs">Tu pagina personalizada de viajes:</span> <p class="nombrePax"><i class="icon icon-user"></i> @Session["NomCliente"]</p>
+                                            </div>
+                                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapse navbar-collapse in" id="siteNav">
+                                    <div class="container">
+                                        <div class="row">
+                                            <ul class="nav navbar-nav">
+                                                <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
+                                                <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido})">Propuestas para mi viaje</a></li>
+                                                @*<li><a href="javascript:void(0)">Mi viaje reservado</a></li>*@
+                                                <li class="marcaMenu marcaMenu03"><a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">Testimonios de nuestros clientes</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- navegacion -->
+                </header>
+            }
         }
         else
         {
-            <header id="header">
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- navegacion -->
-                        <nav class="navbar navbar-default">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="navbar-header">
-                                        <!-- brand -->
-                                        <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
-                                        <div class="slogan">
-                                            <span class="hidden-xs">Tu pagina personalizada de viajes:</span> <p class="nombrePax"><i class="icon icon-user"></i> @Session["NomCliente"]</p>
-                                        </div>
-                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="collapse navbar-collapse in" id="siteNav">
-                                <div class="container">
-                                    <div class="row">
-                                        <ul class="nav navbar-nav">
-                                            <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
-                                            <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] })">Propuestas para mi viaje</a></li>
-                                            @*<li><a href="javascript:void(0)">Mi viaje reservado</a></li>*@
-                                            <li class="marcaMenu marcaMenu03"><a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">Testimonios de nuestros clientes</a></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-                <!-- navegacion -->
-            </header>
+            @Html.Partial("~/Views/Shared/SessionExpired.cshtml")
         }
-    }
-    else
-    {
-        @Html.Partial("~/Views/Shared/SessionExpired.cshtml")
-    }
 
-    <div class="content">
-        @RenderBody()
-    </div>
+        <div class="content">
+            @RenderBody()
+        </div>
 
-    @*<div id="floating_alert" class="alert-danger fade in countdown">Tu sesion expira en : 04:45</div>*@
+        @*<div id="floating_alert" class="alert-danger fade in countdown">Tu sesion expira en : 04:45</div>*@
 
-    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-    <script src="~/Scripts/third/bootstrap.min.js"></script>
-    <script src="~/Scripts/shared/chat.js"></script>
-    <script src="~/Scripts/shared/flotante.js"></script>
+        <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+        <script src="~/Scripts/third/bootstrap.min.js"></script>
+        <script src="~/Scripts/shared/chat.js"></script>
+        <script src="~/Scripts/shared/flotante.js"></script>
 
-    @RenderSection("scripts", required: false)
-</body>
+        @RenderSection("scripts", required: false)
+    </body>
 </html>
