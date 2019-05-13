@@ -40,7 +40,7 @@
                                 totalCargo = totalCargo + Convert.ToInt32(d.Cargo);
 
                                 <tr>
-                                    <td>@d.FchEmision</td>
+                                    <td>@d.FchEmision.ToString("dd/MM/yyyy")</td>
                                     <td>@d.Referencia</td>
                                     <td>@Convert.ToDecimal(d.Cargo).ToString("#,##0")</td>
                                     <td>@Convert.ToDecimal(d.Abono).ToString("#,##0")</td>

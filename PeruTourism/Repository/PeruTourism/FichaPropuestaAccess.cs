@@ -557,7 +557,7 @@ namespace PeruTourism.Repository.PeruTourism
                     {
                         NomPasajero = x.Field<string>("NomPasajero"),
                         ApePasajero = x.Field<string>("ApePasajero"),
-                        FchNacimiento = Convert.ToDateTime(x.Field<string>("FchNacimiento")),
+                        FchNacimiento = Convert.ToDateTime(x.Field<string>("FchNacimientoStr")),
                         Pasaporte = x.Field<string>("Pasaporte")
                     })
                     .ToList();

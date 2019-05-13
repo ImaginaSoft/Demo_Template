@@ -153,7 +153,7 @@ namespace PeruTourism.Controllers
             return View(objPropuestaViewModel);
         }
 
-        public ActionResult VerPropuestaDetalle(string KeyReg, string NroPrograma, char FlagIdioma,string pCodCliente)
+        public ActionResult VerPropuestaDetalle(string KeyReg, string NroPrograma, char FlagIdioma,string pCodCliente, bool pFlagVendido)
         {
 
             string nroPedido = KeyReg.Substring(0, 6);
@@ -167,6 +167,7 @@ namespace PeruTourism.Controllers
             ViewBag.nroVersion = nroVersion;
             ViewBag.NroPrograma = NroPrograma;
             ViewBag.FlagIdioma = FlagIdioma;
+            ViewBag.FlagVendido = pFlagVendido;
 
             var codCliente = pCodCliente;
            // var lstPropuestaDetalle=null;

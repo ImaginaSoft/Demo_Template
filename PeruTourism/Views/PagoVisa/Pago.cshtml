@@ -13,6 +13,7 @@
     var codCliente = Model.codCliente;
     var idPedido = Model.idPedido;
     var nroPrograma = Model.nroPrograma;
+    bool flagVendido = Model.flagVendido;
     char idioma = Convert.ToChar(Model.idioma);
 
     var lajaxOptionsForm = new AjaxOptions()
@@ -72,29 +73,55 @@
 
 
 
-                <div class="breadcrumb">
-                    <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+            <div class="breadcrumb">
+                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__desc">Home</span>
+                    </span>
+                </a>
+
+                @if (flagVendido == true)
+                {
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente , pFlagVendido = flagVendido })">
                         <span class="breadcrumb__inner">
-                            <span class="breadcrumb__desc">Home</span>
+                            <span class="breadcrumb__desc">My booked trip</span>
                         </span>
                     </a>
-                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
+
+                    <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente, pFlagVendido = flagVendido })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Details</span>
+                        </span>
+                    </a>
+                    <input id="mostrarMenuVendido" value="ok" style="display:none" />
+                    @*<div id="mostrarMenuVendido" style="display:none">ok</div>*@
+                }
+                else
+                {
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente, pFlagVendido = flagVendido })">
                         <span class="breadcrumb__inner">
                             <span class="breadcrumb__desc">Proposals for my trip</span>
                         </span>
                     </a>
 
-                    <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente })">
+                    <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente, pFlagVendido = flagVendido })">
                         <span class="breadcrumb__inner">
                             <span class="breadcrumb__desc">Details</span>
                         </span>
                     </a>
-                    <div class="no_enlace">
-                        <span class="breadcrumb__inner">
-                            <span class="breadcrumb__title">Pay now</span>
-                        </span>
-                    </div>
+                }
+
+
+
+
+
+
+                <div class="no_enlace">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__title">Pay now</span>
+                    </span>
                 </div>
+            </div>
 
          
 
@@ -230,12 +257,32 @@ else
             </section>
 
 
-                <div class="breadcrumb">
-                    <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+            <div class="breadcrumb">
+                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__desc">Inicio</span>
+                    </span>
+                </a>
+
+                @if (flagVendido == true)
+                {
+
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente, pFlagVendido =flagVendido })">
                         <span class="breadcrumb__inner">
-                            <span class="breadcrumb__desc">Inicio</span>
+                            <span class="breadcrumb__desc">Mi viaje reservado</span>
                         </span>
                     </a>
+
+                    <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente, pFlagVendido =flagVendido })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Detalle</span>
+                        </span>
+                    </a>
+                    <input id="mostrarMenuVendido" value="ok" style="display:none" />
+                    @*<div id="mostrarMenuVendido" style="display:none">ok</div>*@
+                }
+                else
+                {
                     <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
                         <span class="breadcrumb__inner">
                             <span class="breadcrumb__desc">Propuestas para mi viaje</span>
@@ -247,12 +294,17 @@ else
                             <span class="breadcrumb__desc">Detalle</span>
                         </span>
                     </a>
-                    <div class="no_enlace">
-                        <span class="breadcrumb__inner">
-                            <span class="breadcrumb__title">Paga ahora</span>
-                        </span>
-                    </div>
+                }
+
+
+
+
+                <div class="no_enlace">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__title">Paga ahora</span>
+                    </span>
                 </div>
+            </div>
 
         </div>
 
@@ -368,8 +420,15 @@ else
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".marcaMenu").removeClass("active");
-        $(".marcaMenu02").addClass("active");
+          var flagGG = $('#mostrarMenuVendido').text();
+
+        if (flagGG="ok") {
+              $(".marcaMenu").removeClass("active");
+              $(".marcaMenu03").addClass("active");
+        } else {
+              $(".marcaMenu").removeClass("active");
+              $(".marcaMenu02").addClass("active");
+        }
 
         var animacion = function () {
             document.getElementById('iconIntermitente').classList.toggle('fade');

@@ -19,5 +19,7 @@ namespace PeruTourism.Models.Visa
         public string nroPrograma { get; set; }
 
         public string idioma { get; set; }
+
+        public bool flagVendido { get; set; }
     }
 }

@@ -37,7 +37,6 @@
         }
     }
 
-    //var NombreCliente = (string)Session["NomCliente"];
     var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
     var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
 
@@ -79,10 +78,7 @@
         </div>
 
         <div class="container">
-            @*<section class="welcome">
-                    <h2 class="title"> Hello <strong>@NombreCliente</strong>!</h2>
-                    <p> Welcome to the customized travel website for your trip </p>
-                </section>*@
+           
             <section class="options popupBase">
                 <div class="op-group">
                     <div class="op op-propuesta">
@@ -167,14 +163,11 @@
         </div>
 
         <div class="container">
-            @*<section class="welcome">
-                    <h2 class="title">¡Hola <strong>@NombreCliente</strong>!</h2>
-                    <p>Bienvenido a la página personalizada para tu viaje</p>
-                </section>*@
+        
             <section class="options popupBase">
                 <div class="op-group">
                     <div class="op op-propuesta">
-                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente})">
+                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente , pFlagVendido = flagNoVendido})">
                             <div class="icon icon-propuesta"></div>
                             <div class="description">
                                 Propuestas<br>
@@ -183,7 +176,7 @@
                         </a>
                     </div>
                     <div class="op op-info">
-                        <a href="javascript:mostrarSubMenu()">
+                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente , pFlagVendido = flagVendido})">
                             <div class="icon icon-info"></div>
                             <div class="description">Mi viaje reservado</div>
                         </a>

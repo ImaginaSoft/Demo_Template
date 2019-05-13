@@ -2,6 +2,7 @@
 
 @{
     bool flagVendido = true;
+    bool flagNoVendido = false;
 
 }
     <!DOCTYPE html>
@@ -59,17 +60,9 @@
                                         <div class="row">
                                             <ul class="nav navbar-nav">
                                                 <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
-                                                <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido })">My travel proposals</a></li>
-                                                @*<li>
-                                                        My booked trip
-                                                        <ul>
-                                                            <li>aa</li>
-                                                            <li>bbb</li>
-                                                            <li>cc</li>
-                                                        </ul>
-
-                                                    </li>*@
-                                                <li class="marcaMenu marcaMenu03"><a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">Reviews from our clients</a></li>
+                                                <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagNoVendido })">My travel proposals</a></li>
+                                                <li class="marcaMenu marcaMenu03"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido })">My booked trip</a></li>
+                                                <li class="marcaMenu marcaMenu04"><a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">Reviews from our clients</a></li>
 
                                             </ul>
                                         </div>
@@ -94,7 +87,7 @@
                                             <!-- brand -->
                                             <div class="brand"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })"><img src="~/Content/images/perutourism-logo.png" title="Peru Tourism" alt="Peru Tourism"></a></div>
                                             <div class="slogan">
-                                                <span class="hidden-xs">Tu pagina personalizada de viajes:</span> <p class="nombrePax"><i class="icon icon-user"></i> @Session["NomCliente"]</p>
+                                                <span class="hidden-xs">Tu página personalizada de viajes:</span> <p class="nombrePax"><i class="icon icon-user"></i> @Session["NomCliente"]</p>
                                             </div>
                                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                                         </div>
@@ -105,9 +98,9 @@
                                         <div class="row">
                                             <ul class="nav navbar-nav">
                                                 <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
-                                                <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido})">Propuestas para mi viaje</a></li>
-                                                @*<li><a href="javascript:void(0)">Mi viaje reservado</a></li>*@
-                                                <li class="marcaMenu marcaMenu03"><a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">Testimonios de nuestros clientes</a></li>
+                                                <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagNoVendido})">Propuestas para mi viaje</a></li>
+                                                <li class="marcaMenu marcaMenu03"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido })">Mi viaje reservado</a></li>
+                                                <li class="marcaMenu marcaMenu04"><a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">Testimonios de nuestros clientes</a></li>
 
                                             </ul>
                                         </div>

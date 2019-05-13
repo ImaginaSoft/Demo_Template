@@ -19,14 +19,32 @@
                     <div class="op-group">
                         <div class="op op-propuesta">
                             <div class="icon icon-propuesta"></div>
-                            @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                            @if (flagVendido == true)
                             {
-                                <div class="title">Proposals for my trip</div>
+
+                                if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                                {
+                                    <div class="title">My booked trip</div>
+                                }
+                                else
+                                {
+                                    <div class="title">Mi viaje reservado</div>
+                                }
+
                             }
                             else
                             {
-                                <div class="title">Propuestas para mi viaje</div>
+                                if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                                {
+                                    <div class="title">Proposals for my trip</div>
+                                }
+                                else
+                                {
+                                    <div class="title">Propuestas para mi viaje</div>
+                                }
+
                             }
+
 
                         </div>
                     </div>
@@ -46,11 +64,29 @@
                     </span>
                 </a>
 
-                <div class="no_enlace">
-                    <span class="breadcrumb__inner">
-                        <span class="breadcrumb__title">Proposals for my trip</span>
-                    </span>
-                </div>
+                if (flagVendido == true)
+                {
+
+                    <div class="no_enlace">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">My booked trip</span>
+                        </span>
+                    </div>
+                    <input id="mostrarMenuVendido" value="ok" style="display:none" />
+                    @*<div id="mostrarMenuVendido" style="display:none">ok</div>*@
+                }
+                else
+                {
+
+                    <div class="no_enlace">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Proposals for my trip</span>
+                        </span>
+                    </div>
+
+                }
+
+
 
             }
             else
@@ -61,11 +97,29 @@
                     </span>
                 </a>
 
-                <div class="no_enlace">
-                    <span class="breadcrumb__inner">
-                        <span class="breadcrumb__title">Propuestas para mi viaje</span>
-                    </span>
-                </div>
+
+
+                if (flagVendido == true)
+                {
+                    <div class="no_enlace">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Mi viaje reservado</span>
+                        </span>
+                    </div>
+                    <input id="mostrarMenuVendido" value="ok" style="display:none" />
+                    @*<div id="mostrarMenuVendido" style="display:none">ok</div>*@
+                }
+                else
+                {
+                    <div class="no_enlace">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Propuestas para mi viaje</span>
+                        </span>
+                    </div>
+                }
+
+
+
             }
 
 
@@ -80,45 +134,51 @@
 
             @if (flagVendido == true)
             {
-                for (int i = 0; i < lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count(); i++)
+
+
+                if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
                 {
-
-                    <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente})" class="group prop">
-                        <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
-                        <div class="prop-title">@lstProgramas[i].DesPrograma</div>
+                    for (int i = 0; i < lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count(); i++)
+                    {
 
 
-
-                        @if (lstProgramas[i].StsPrograma.Equals("Sold") || lstProgramas[i].StsPrograma.Equals("Vendido"))
-                        {
-                            <div class="prop-status"><span class="status status-sold">@lstProgramas[i].StsPrograma</span></div>
-                        }
-                        else if (lstProgramas[i].StsPrograma.Equals("Quote") || lstProgramas[i].StsPrograma.Equals("Cotizado"))
-                        {
-                            <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
-                        }
-                        else
-                        {
-                            <div class="prop-status"><span class="status status-cancel">@lstProgramas[i].StsPrograma</span></div>
-                        }
-
-                    </a>
+                        <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
+                            <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
+                            <div class="prop-title">@lstProgramas[i].DesPrograma</div>
 
 
 
+                            @if (lstProgramas[i].StsPrograma.Equals("Sold") || lstProgramas[i].StsPrograma.Equals("Vendido"))
+                            {
+                                <div class="prop-status"><span class="status status-sold">@lstProgramas[i].StsPrograma</span></div>
+                            }
+                            else if (lstProgramas[i].StsPrograma.Equals("Quote") || lstProgramas[i].StsPrograma.Equals("Cotizado"))
+                            {
+                                <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
+                            }
+                            else
+                            {
+                                <div class="prop-status"><span class="status status-cancel">@lstProgramas[i].StsPrograma</span></div>
+                            }
+
+                        </a>
 
 
 
-
-
+                    }
                 }
+                else
+                {
+                    <div id="mensajeValidacion">No cuenta con viajes reservados</div>
+                }
+
+
+
 
 
             }
             else
             {
-
-
 
                 for (int i = 0; i < lstProgramas.Count; i++)
                 {
@@ -126,7 +186,7 @@
 
 
 
-                    <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente})" class="group prop">
+                    <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
                         <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
                         <div class="prop-title">@lstProgramas[i].DesPrograma</div>
 
@@ -163,7 +223,18 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".marcaMenu").removeClass("active");
-        $(".marcaMenu02").addClass("active");
+        debugger
+        var flagGG = $('#mostrarMenuVendido').val();
+       
+
+        if (flagGG != null) {
+              $(".marcaMenu").removeClass("active");
+              $(".marcaMenu03").addClass("active");
+        } else {
+              $(".marcaMenu").removeClass("active");
+              $(".marcaMenu02").addClass("active");
+        }
+
+      
     });
 </script>

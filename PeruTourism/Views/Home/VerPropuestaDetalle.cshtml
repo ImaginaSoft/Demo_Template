@@ -1,65 +1,65 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
 @using PeruTourism.Utility
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "VerPropuestaDetalle";
+    ViewBag.Title = "VerPropuestaDetalle";
 
-                var lstProgramas = Model.lstPrograma;
+    var lstProgramas = Model.lstPrograma;
 
-                var lstServicios = Model.lstServicio;
+    var lstServicios = Model.lstServicio;
 
-                var lstPropuestaPrecio = Model.lstPropuestaPrecio;
+    var lstPropuestaPrecio = Model.lstPropuestaPrecio;
 
-                string nroPedido = string.Empty;
-                string nroPropuesta = string.Empty;
-                string nroVersion = string.Empty;
-                bool flagMostrarBolitas = true;
+    string nroPedido = string.Empty;
+    string nroPropuesta = string.Empty;
+    string nroVersion = string.Empty;
+    bool flagMostrarBolitas = true;
 
-                char idioma = ViewBag.FlagIdioma;
+    char idioma = ViewBag.FlagIdioma;
 
-                if (lstProgramas != null)
-                {
-                    foreach (var gg in lstProgramas)
-                    {
+    if (lstProgramas != null)
+    {
+        foreach (var gg in lstProgramas)
+        {
 
-                        if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
-                        {
+            if (gg.StsPrograma == "Vendido" || gg.StsPrograma == "Sold")
+            {
 
-                            nroPedido = gg.KeyReg.Substring(0, 6);
-                            nroPropuesta = gg.KeyReg.Substring(8, 1);
-                            nroVersion = gg.KeyReg.Substring(10, 1);
-                            flagMostrarBolitas = true;
-                            break;
-                        }
-                        else
-                        {
-                            nroPedido = "0";
-                            nroPropuesta = "0";
-                            nroVersion = "0";
-                            flagMostrarBolitas = false;
-                        }
+                nroPedido = gg.KeyReg.Substring(0, 6);
+                nroPropuesta = gg.KeyReg.Substring(8, 1);
+                nroVersion = gg.KeyReg.Substring(10, 1);
+                flagMostrarBolitas = true;
+                break;
+            }
+            else
+            {
+                nroPedido = "0";
+                nroPropuesta = "0";
+                nroVersion = "0";
+                flagMostrarBolitas = false;
+            }
 
 
 
-                    }
-                }
+        }
+    }
 
-                var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
-                var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
+    var NombreCliente = ViewBag.NomCliente == null ? "" : ViewBag.NomCliente;
+    var CodCliente = ViewBag.CodCliente == null ? "" : ViewBag.CodCliente;
 
-                //var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
+    //var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
 
-                var lajaxOptionsForm = new AjaxOptions()
-                {
-                    HttpMethod = "POST",
-                    OnBegin = "e_ajax_iniciando",
-                    OnComplete = "e_ajax_finalizando_form_ficha",
-                    OnFailure = "e_ajax_error"
-                };
+    var lajaxOptionsForm = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        OnBegin = "e_ajax_iniciando",
+        OnComplete = "e_ajax_finalizando_form_ficha",
+        OnFailure = "e_ajax_error"
+    };
 
-                int SumPrice = 0;
-
+    int SumPrice = 0;
+    bool flagVendido = ViewBag.FlagVendido;
 }
 
 <style type="text/css">
@@ -117,7 +117,17 @@
                         <div class="op-group">
                             <div class="op op-propuesta">
                                 <div class="icon icon-propuesta"></div>
-                                <div class="title">Proposals for my trip</div>
+
+                                @if (flagVendido == true)
+                                {
+                                    <div class="title">My booked trip</div>
+                                }
+                                else
+                                {
+
+                                    <div class="title">Proposals for my trip</div>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -131,19 +141,36 @@
                         <span class="breadcrumb__desc">Home</span>
                     </span>
                 </a>
-                <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
-                    <span class="breadcrumb__inner">
-                        <span class="breadcrumb__desc">Proposals for my trip</span>
-                    </span>
-                </a>
+
+                @if (flagVendido == true)
+                {
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente , pFlagVendido = flagVendido})">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">My booked trip</span>
+                        </span>
+                    </a>
+                    <input id="mostrarMenuVendido" value="ok" style="display:none" />
+                    @*<div id="mostrarMenuVendido" style="display:none">ok</div>*@
+                }
+                else
+                {
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente , pFlagVendido = false})">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Proposals for my trip</span>
+                        </span>
+                    </a>
+
+                }
+
+
+
+
                 <div class="no_enlace">
                     <span class="breadcrumb__inner">
                         <span class="breadcrumb__title">Details</span>
                     </span>
                 </div>
             </div>
-
-
 
 
         </div>
@@ -160,41 +187,41 @@
 
                 @if (flagMostrarBolitas == true)
                 {
-                <div class="container">
+                    <div class="container">
 
-                    <section class="options-interna">
-                        <div class="op-group">
-                            <div class="op op-info">
-                                <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                                    <div class="icon icon-booking"></div>
-                                    <div class="description">
-                                        Booking<br />status
-                                    </div>
-                                </a>
+                        <section class="options-interna">
+                            <div class="op-group">
+                                <div class="op op-info">
+                                    <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                        <div class="icon icon-booking"></div>
+                                        <div class="description">
+                                            Booking<br />status
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="op op-info">
+                                    <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                                        <div class="icon icon-balance"></div>
+                                        <div class="description">Balance<br />due</div>
+                                    </a>
+                                </div>
+                                <div class="op op-info">
+                                    <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                        <div class="icon icon-info"></div>
+                                        <div class="description">Information<br />for my trip</div>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="op op-info">
-                                <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
-                                    <div class="icon icon-balance"></div>
-                                    <div class="description">Balance<br />due</div>
-                                </a>
-                            </div>
-                            <div class="op op-info">
-                                <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                                    <div class="icon icon-info"></div>
-                                    <div class="description">Information<br />for my trip</div>
-                                </a>
-                            </div>
+                        </section>
+
+                        <div class="optionsMini op-group text-center">
+                            <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido, pIdioma=idioma })">
+                                Add Passagenger
+                            </a>
                         </div>
-                    </section>
-
-                    <div class="optionsMini op-group text-center">
-                        <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido, pIdioma=idioma })">
-                            Add Passagenger
-                        </a>
                     </div>
-                </div>
 
-                  
+
                 }
 
 
@@ -212,9 +239,9 @@
                                     <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
 
                                     @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
-                            {
-                                <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
-                            }*@
+                                        {
+                                            <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                                        }*@
 
 
 
@@ -333,7 +360,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6">
-                        <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma})">
+                        <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
                             PAY NOW
                         </a>
                     </div>
@@ -472,7 +499,18 @@ else
                         <div class="op-group">
                             <div class="op op-propuesta">
                                 <div class="icon icon-propuesta"></div>
-                                <div class="title">Propuestas para mi viaje</div>
+
+                                @if (flagVendido == true)
+                                {
+                                    <div class="title">Mi viaje reservado</div>
+                                }
+                                else
+                                {
+                                    <div class="title">Propuestas para mi viaje</div>
+                                }
+
+
+
                             </div>
                         </div>
                     </div>
@@ -487,11 +525,33 @@ else
                         <span class="breadcrumb__desc">Inicio</span>
                     </span>
                 </a>
-                <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
-                    <span class="breadcrumb__inner">
-                        <span class="breadcrumb__desc">Propuestas para mi viaje</span>
-                    </span>
-                </a>
+
+                @if (flagVendido == true)
+                {
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente,pFlagVendido=flagVendido })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Mi viaje reservado</span>
+                        </span>
+                    </a>
+
+                    <input id="mostrarMenuVendido" value="ok" style="display:none" />
+                    @*<div id="mostrarMenuVendido" style="display:none">ok</div>*@
+                }
+                else
+                {
+
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente,pFlagVendido=false })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Propuestas para mi viaje</span>
+                        </span>
+                    </a>
+                }
+
+
+
+
+
+
                 <div class="no_enlace">
                     <span class="breadcrumb__inner">
                         <span class="breadcrumb__title">Detalle</span>
@@ -518,39 +578,39 @@ else
 
                 @if (flagMostrarBolitas == true)
                 {
-                <div class="container">
+                    <div class="container">
 
-                    <section class="options-interna">
-                        <div class="op-group">
-                            <div class="op op-info">
-                                <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                                    <div class="icon icon-booking"></div>
-                                    <div class="description">
-                                        Estado de<br />su reserva
-                                    </div>
-                                </a>
+                        <section class="options-interna">
+                            <div class="op-group">
+                                <div class="op op-info">
+                                    <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                        <div class="icon icon-booking"></div>
+                                        <div class="description">
+                                            Estado de<br />su reserva
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="op op-info">
+                                    <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                                        <div class="icon icon-balance"></div>
+                                        <div class="description">Cuenta<br />Corriente</div>
+                                    </a>
+                                </div>
+                                <div class="op op-info">
+                                    <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                        <div class="icon icon-info"></div>
+                                        <div class="description">Información<br />para mi viaje</div>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="op op-info">
-                                <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
-                                    <div class="icon icon-balance"></div>
-                                    <div class="description">Cuenta<br />Corriente</div>
-                                </a>
-                            </div>
-                            <div class="op op-info">
-                                <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
-                                    <div class="icon icon-info"></div>
-                                    <div class="description">Información<br />para mi viaje</div>
-                                </a>
-                            </div>
+                        </section>
+
+                        <div class="optionsMini op-group text-center">
+                            <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new {  pIdPedido = nroPedido, pIdioma=idioma })">
+                                Agregar pasajero
+                            </a>
                         </div>
-                    </section>
-
-                    <div class="optionsMini op-group text-center">
-                        <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido })">
-                            Agregar pasajero
-                        </a>
                     </div>
-                </div>
                 }
 
 
@@ -689,7 +749,7 @@ else
                         </a>
                     </div>
                     <div class="col-sm-6">
-                        <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma})">
+                        <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
                             PAGA AHORA
                         </a>
                     </div>
@@ -819,19 +879,19 @@ else
 
 }
 
-
-
-
-
-
-
-
 <script src="~/Scripts/Galeria/Galeria.js"></script>
 <script src="~/Scripts/Envio/EnvioMensaje.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".marcaMenu").removeClass("active");
-        $(".marcaMenu02").addClass("active");
+         var flagGG = $('#mostrarMenuVendido').val();
+
+        if (flagGG != null  ) {
+              $(".marcaMenu").removeClass("active");
+              $(".marcaMenu03").addClass("active");
+        } else {
+              $(".marcaMenu").removeClass("active");
+              $(".marcaMenu02").addClass("active");
+        }
     });
 </script>
