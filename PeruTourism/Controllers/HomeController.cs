@@ -12,6 +12,7 @@ using PeruTourism.Models.Galeria;
 using PeruTourism.Models.Pasajero;
 using System.Transactions;
 using System.Web.Script.Serialization;
+using CustomLog;
 
 namespace PeruTourism.Controllers
 {
@@ -48,7 +49,6 @@ namespace PeruTourism.Controllers
 
             try
             {
-
                 if (idCliente.Trim().Length > 0)
                 {
 
@@ -103,8 +103,7 @@ namespace PeruTourism.Controllers
             }
             catch (Exception ex)
             {
-
-                ViewBag.error = ex.ToString() + lineagg;
+                Bitacora.Current.Error<HomeController>(ex, new { lineagg });
                 return View("~/Views/Shared/Error.cshtml");
 
             }
@@ -793,6 +792,11 @@ namespace PeruTourism.Controllers
 			return View(objPropuestaViewModel);
 		}
 
-
-	}
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Error()
+        {
+            return View("Error");
+        }
+    }
 }

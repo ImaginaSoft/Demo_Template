@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeruTourism", "PeruTourism\PeruTourism.csproj", "{2AA25A29-D79D-4435-9AE7-25C5DF70147C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencias", "Dependencias", "{4E4EAD8B-A3F3-4473-AB0A-EBF287F61F6F}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencias\CustomLog.dll = Dependencias\CustomLog.dll
+		Dependencias\log4net.dll = Dependencias\log4net.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

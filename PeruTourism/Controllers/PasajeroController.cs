@@ -10,6 +10,7 @@ using PeruTourism.Utility;
 using PeruTourism.Models.PeruTourism;
 using PeruTourism.Models.Paises;
 using PeruTourism.Models.TipoPasajero;
+using CustomLog;
 
 namespace PeruTourism.Controllers
 {
@@ -82,6 +83,7 @@ namespace PeruTourism.Controllers
             }
             catch (Exception ex)
             {
+                Bitacora.Current.Error<PasajeroController>(ex, new { lresultado });
                 lresultado = new List<SelectListItem>();
             }
 

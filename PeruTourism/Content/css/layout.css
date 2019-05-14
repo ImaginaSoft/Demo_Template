@@ -8014,3 +8014,8 @@ label.no-pad input {
     right: 10px;
     top: -2px;
 }
+
+.txt-center, .t-center {
+    text-align: center !important;
+    padding: 5%;
+}

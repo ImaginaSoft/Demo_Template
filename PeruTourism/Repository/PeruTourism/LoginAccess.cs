@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Data;
 using PeruTourism.Models.PeruTourism;
+using CustomLog;
 
 namespace PeruTourism.Repository.PeruTourism
 {
@@ -63,6 +64,7 @@ namespace PeruTourism.Repository.PeruTourism
             }
             catch (Exception ex)
             {
+                Bitacora.Current.Error<LoginAccess>(ex, new { lineagg });
                 return new List<Cliente> { new Cliente { EmailCliente = lineagg ,NomCliente= ex.Message } };
                 //throw new Exception { Source= lineagg };
 
