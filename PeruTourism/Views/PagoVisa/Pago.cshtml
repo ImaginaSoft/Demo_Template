@@ -241,7 +241,7 @@ else
             <section class="subtitle" style="margin-bottom: 0px;">
                 <div class="container">
                     <div class="text-center bloqueCode">
-                        <label class="titulo">Your customer code:</label>
+                        <label class="titulo">Tu código de reserva:</label>
                         <br />
                         <label class="codigo">@codCliente</label>
                     </div>
@@ -289,15 +289,12 @@ else
                         </span>
                     </a>
 
-                    <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente })">
+                    <a href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = idPedido, NroPrograma = nroPrograma, FlagIdioma = idioma, pCodCliente = codCliente, pFlagVendido =flagVendido })">
                         <span class="breadcrumb__inner">
                             <span class="breadcrumb__desc">Detalle</span>
                         </span>
                     </a>
                 }
-
-
-
 
                 <div class="no_enlace">
                     <span class="breadcrumb__inner">

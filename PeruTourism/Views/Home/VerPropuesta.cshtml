@@ -138,30 +138,45 @@
 
                 if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
                 {
-                    for (int i = 0; i < lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count(); i++)
+                    //for (int i = 0; i < lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count(); i++)
+                    //{
+
+
+
+                    foreach (var lstGG in lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")))
                     {
 
 
-                        <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
-                            <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
-                            <div class="prop-title">@lstProgramas[i].DesPrograma</div>
+
+                            <a nroPrograma="@lstGG.NroPrograma" KeyReg="@lstGG.KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstGG.KeyReg.Trim(), NroPrograma = lstGG.NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
+                                <div class="prop-num"><span>@lstGG.NroPrograma</span></div>
+                                <div class="prop-title">@lstGG.DesPrograma</div>
 
 
 
-                            @if (lstProgramas[i].StsPrograma.Equals("Sold") || lstProgramas[i].StsPrograma.Equals("Vendido"))
-                            {
-                                <div class="prop-status"><span class="status status-sold">@lstProgramas[i].StsPrograma</span></div>
-                            }
-                            else if (lstProgramas[i].StsPrograma.Equals("Quote") || lstProgramas[i].StsPrograma.Equals("Cotizado"))
+                                @if (lstGG.StsPrograma.Equals("Sold") || lstGG.StsPrograma.Equals("Vendido"))
+                                {
+                                    <div class="prop-status"><span class="status status-sold">@lstGG.StsPrograma</span></div>
+                                }
+                                @*else if (lstProgramas[i].StsPrograma.Equals("Quote") || lstProgramas[i].StsPrograma.Equals("Cotizado"))
                             {
                                 <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
                             }
                             else
                             {
                                 <div class="prop-status"><span class="status status-cancel">@lstProgramas[i].StsPrograma</span></div>
-                            }
+                            }*@
 
-                        </a>
+                            </a>
+
+
+
+
+
+
+                        //}
+
+
 
 
 

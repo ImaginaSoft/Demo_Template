@@ -64,12 +64,17 @@
 
             <div class="breadcrumb">
 
-                <div class="no_enlace">
+                @*<div class="no_enlace">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__desc">Home</span>
+            </span>
+        </div>*@
+
+                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
                     <span class="breadcrumb__inner">
                         <span class="breadcrumb__desc">Home</span>
                     </span>
-                </div>
-
+                </a>
 
 
             </div>
@@ -151,11 +156,16 @@
             </section>
             <div class="breadcrumb">
 
-                <div class="no_enlace">
+                @*<div class="no_enlace">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__desc">Inicio</span>
+            </span>
+        </div>*@
+                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
                     <span class="breadcrumb__inner">
                         <span class="breadcrumb__desc">Inicio</span>
                     </span>
-                </div>
+                </a>
 
 
 

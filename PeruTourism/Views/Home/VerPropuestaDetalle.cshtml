@@ -79,6 +79,8 @@
         .prop-clear .prop-content .group {
             border: 0;
         }
+
+    
 </style>
 
 <style type="text/css">
@@ -867,10 +869,10 @@ else
             <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
             <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
 
-            <div>Hola soy @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva) you Travel Designer, por favor envianos tu mensaje</div>
+            <div>Hola soy @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva) tu Diseñador de viajes, por favor envianos tu mensaje</div>
             <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Tu mensaje ha sido enviado</div>
             <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Por favor ingresa tu mensaje</div>
-            <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>
+            <textarea placeholder="Por favor escribe tu mensaje" id="txtMessage" class="form-control"></textarea>
             <button type="submit" class="pago btn btn-primary" id="btnSend">ENVIAR</button>
         </div>
     </div>
