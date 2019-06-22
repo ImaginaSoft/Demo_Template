@@ -267,7 +267,7 @@ else
                 @if (flagVendido == true)
                 {
 
-                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente, pFlagVendido =flagVendido })">
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = codCliente, pFlagVendido =flagVendido })">
                         <span class="breadcrumb__inner">
                             <span class="breadcrumb__desc">Mi viaje reservado</span>
                         </span>
@@ -283,7 +283,7 @@ else
                 }
                 else
                 {
-                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = ViewBag.codCliente })">
+                    <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = codCliente, pFlagVendido =flagVendido  })">
                         <span class="breadcrumb__inner">
                             <span class="breadcrumb__desc">Propuestas para mi viaje</span>
                         </span>

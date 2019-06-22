@@ -6,7 +6,6 @@
         //var idHotel = jQuery(this).attr('idHotel');
 
         //$(".boxInfo").css("display", "none");
-        debugger
         var idPedido = $("#IDPedido");
         var monto = $("monto");
 

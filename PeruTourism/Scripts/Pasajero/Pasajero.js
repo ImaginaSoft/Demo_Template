@@ -132,7 +132,6 @@ function editarPasajero(numero) {
 }
 
 function eliminarPasajero(numero) {
-    debugger
     var pregunta = confirm("¿Desea eliminar el pasajero?");
 
     if (pregunta) {

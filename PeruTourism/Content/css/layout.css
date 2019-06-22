@@ -6492,9 +6492,17 @@ section,
     .welcome {
       padding: 0 15px; } }
 
+.options.popupBase {
+    max-width: 700px;
+    /*margin: 0 auto;*/
+    margin: 40px auto 0;
+}
+
 .options {
-  max-width: 700px;
-  margin: 0 auto; }
+    max-width: 700px;
+    margin: 0 auto;
+    /*margin: 40px auto 0;*/
+}
   .options.options-antes {
     padding-top: 50px; }
     .options.options-antes .icon {
