@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Net.Mail;
+using System.Net;
 
 namespace PeruTourism.Utility
 {
@@ -16,31 +17,40 @@ namespace PeruTourism.Utility
          
               new PeruTourismMail().EnviarCorreo("Error CompraHotel FileAccessDeniedFault", "webmaster@gruponuevomundo.com.pe", "FileAccessDeniedFault: <br>" + ex.Message);*/
 
-        public void EnviarCorreo(String pStrAsunto, String pStrMailTo, String pStrBody)
+        public void EnviarCorreo(string pStrAsunto, string pStrMailTo, string pStrBody)
         {
             try
             {
-                MailAddress objFrom = new MailAddress("jlopez.j87@gmail.com");
-                MailMessage objMailMessage = new MailMessage();
-                if (pStrMailTo == null)
-                {
-                    objMailMessage.To.Add("jlopez.j87@gmail.com");
-                }
-                else
-                {
-                    objMailMessage.To.Add(pStrMailTo);
-                }
-                objMailMessage.From = objFrom;
-                objMailMessage.Subject = pStrAsunto;
-                objMailMessage.Body = pStrBody;
-                objMailMessage.IsBodyHtml = true;
 
-                SmtpClient objSMPTClient = new SmtpClient();
-                objSMPTClient.Host = strServer;
-                objSMPTClient.Send(objMailMessage);
+                var fromAddress = new MailAddress("soporte@imaginasoftware.com", "From Name");
+                var toAddress = new MailAddress(pStrMailTo, "To Name");
+                 string fromPassword = "soporteImagina123";
+                 string subject = pStrAsunto;
+                 string body = pStrBody;
+
+                var smtp = new SmtpClient
+                {
+                    Host = "kem10730.inkahosting.com.pe",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+
+
             }
             catch (Exception ex)
             {
+                throw;
             }
         }
 

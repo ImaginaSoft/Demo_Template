@@ -338,26 +338,43 @@ namespace PeruTourism.Controllers
         [HttpPost]
         public JsonResult RegistrarHistorialCliente(string pDesLog, string pCodCliente, string pNroPedido, string pNroPropuesta,string pNroVersion)
         {
-
-            FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
             string gg = string.Empty;
 
-            if (pDesLog.Equals(string.Empty))
+            try
             {
-                gg = "gg";
-            }
-            else {
-                gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
+
+                FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+               
+
+                if (pDesLog.Equals(string.Empty))
+                {
+                    gg = "gg";
+                }
+                else
+                {
+                    gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
+                }
+
+                //string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
+
+                //jlopez
+                //PeruTourismEmail gg = new PeruTourismEmail();		
+                PeruTourismMail Mensaje = new PeruTourismMail();
+                Mensaje.EnviarCorreo("Mensaje de prueba", "bdavid2290@gmail.com", pDesLog);
+
+                return Json(gg, JsonRequestBehavior.AllowGet);
             }
 
-            //string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
+            catch (Exception ex) {
 
-			//jlopez
-			//PeruTourismEmail gg = new PeruTourismEmail();		
-            PeruTourismMail Mensaje = new PeruTourismMail();
-            Mensaje.EnviarCorreo("Mensaje", "jlopez.j87@gmail.com", pDesLog);
-			
-			return Json(gg, JsonRequestBehavior.AllowGet);
+                Bitacora.Current.Error<HomeController>(ex, new { gg });
+
+                return Json(gg, JsonRequestBehavior.AllowGet);
+            }
+
+
+
+
         }
 
         public ActionResult MostrarSaldo(string pCliente,string pNroPedido) {
