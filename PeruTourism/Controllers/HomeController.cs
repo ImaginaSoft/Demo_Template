@@ -377,11 +377,11 @@ namespace PeruTourism.Controllers
 
         }
 
-        public ActionResult MostrarSaldo(string pCliente,string pNroPedido) {
+        public ActionResult MostrarSaldo(string pCliente,string pNroPedido,char pIdioma) {
 
             DataTable dt = new DataTable("BalanceTable");
             BalanceViewModel objBalance = new BalanceViewModel();
-
+            ViewBag.idioma = pIdioma;
             dt.Columns.Add(new DataColumn("Col1", typeof(string)));
             dt.Columns.Add(new DataColumn("Col2", typeof(string)));
             dt.Columns.Add(new DataColumn("Col3", typeof(string)));
@@ -404,13 +404,13 @@ namespace PeruTourism.Controllers
             return View(objBalance);
         }
         [HttpPost]
-        public ActionResult OpenModalBalance(string pCliente, string pNroPedido)
+        public ActionResult OpenModalBalance(string pCliente, string pNroPedido, char pIdioma)
         {
             try
             {
                 //DataTable dt = new DataTable("BalanceTable");
                 BalanceViewModel objBalance = new BalanceViewModel();
-
+                ViewBag.FlagIdioma = pIdioma;
                 //dt.Columns.Add(new DataColumn("Col1", typeof(string)));
                 //dt.Columns.Add(new DataColumn("Col2", typeof(string)));
                 //dt.Columns.Add(new DataColumn("Col3", typeof(string)));

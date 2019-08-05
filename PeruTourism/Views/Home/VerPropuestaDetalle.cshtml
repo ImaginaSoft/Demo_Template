@@ -194,7 +194,7 @@
                         <section class="options-interna">
                             <div class="op-group">
                                 <div class="op op-info">
-                                    <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                    <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
                                         <div class="icon icon-booking"></div>
                                         <div class="description">
                                             Booking<br />status
@@ -202,13 +202,13 @@
                                     </a>
                                 </div>
                                 <div class="op op-info">
-                                    <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                                    <a onclick="openBalanceModal(@CodCliente, @nroPedido,'I')">
                                         <div class="icon icon-balance"></div>
                                         <div class="description">Balance<br />due</div>
                                     </a>
                                 </div>
                                 <div class="op op-info">
-                                    <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
+                                    <a onclick="openInformationBeforeTripModal(@nroPedido, @nroPropuesta, @nroVersion,'I')">
                                         <div class="icon icon-info"></div>
                                         <div class="description">Information<br />for my trip</div>
                                     </a>
@@ -588,12 +588,12 @@ else
                                     <a onclick="openBookingStatusModal(@nroPedido, @nroPropuesta, @nroVersion,'E')">
                                         <div class="icon icon-booking"></div>
                                         <div class="description">
-                                            Estado de<br />su reserva
+                                            Estado de<br />mi reserva
                                         </div>
                                     </a>
                                 </div>
                                 <div class="op op-info">
-                                    <a onclick="openBalanceModal(@CodCliente, @nroPedido)">
+                                    <a onclick="openBalanceModal(@CodCliente, @nroPedido,'E')">
                                         <div class="icon icon-balance"></div>
                                         <div class="description">Cuenta<br />Corriente</div>
                                     </a>
@@ -797,7 +797,7 @@ else
                 <div class="modal-dialog modal-DetalleHotel" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <strong>PAYMENT PROCEDURE</strong>
+                            <strong>PROCEDIMIENTO DE PAGO</strong>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                         </div>
                         <div class="modal-body">
@@ -805,7 +805,7 @@ else
 
                             <div class="group prop-detalle">
                                 <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                    <div class="prop-num"><span>Payment Procedure</span></div>
+                                    <div class="prop-num"><span>Forma de Pago</span></div>
 
                                 </div>
                                 <div class="prop-content collapse in" id="content1">
@@ -813,10 +813,9 @@ else
 
 
                                         <p>
-                                            To confirm confirm your trip we just need a deposit of the 30%, this first payment can be done online through your personalized website only if you hava a Visa Card or Master Card
-                                            , if you have American Express card I will send you our services agreement by email.
+                                            Para confirmar tu viaje únicamente necesitamos un depósito del 30% del costo total.
                                             <br />
-                                            The balance due (70%) must be paid at your arrival in Lima.
+                                            El saldo restante (70%) será cancelado una semana antes de tu llegada a Peru.
                                         </p>
 
 
@@ -827,7 +826,7 @@ else
 
                             <div class="group prop-detalle">
                                 <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                    <div class="prop-num"><span>Our Cancellation Policy</span></div>
+                                    <div class="prop-num"><span>Política de cancelación</span></div>
 
                                 </div>
                                 <div class="prop-content collapse in" id="content1">
@@ -835,8 +834,21 @@ else
 
 
                                         <p>
-                                            Fully acquit you of all cost(*) that may be generated by the cancellation of the services already booked by PeruTourism according to the itinerary
-                                            in case you cancel the services up yo 45 days before you arrival.
+                                            Está liberado por completo de cualquier penalidad (*) que pueda generarse por la cancelación de los 
+                                            servicios contratados con PeruTourism en el caso que usted cancele los servicios ya reservados hasta 45 días antes de su llegada.
+                                            <br />
+                                            (*) Válido sólo para grupos no mayores de seis (06) personas.<br />
+                                            (*) Válido para todos los destinos en Perú.<br />
+                                            (*) El Camino Inca a Machu Picchu no está incluido en esta política.<br />
+                                            (*) Los cruceros en el Amazonas no están incluidos en esta política.<br />
+                                            (*) Válido para las cancelaciones 45 días antes de su llegada.<br />
+                                            (*) Los boletos aéreos nacionales o Internacional no están incluidos en esta política de cancelación.<br />
+                                            <strong>Para las cancelaciones después de este plazo:</strong><br />
+                                            La penalidad será del 50% del valor de tour para lo cual acepto el débito mi tarjeta de Crédito u otro medio de pago previa coordinación con PeruTurismo.
+                                            <strong>Una vez iniciado su viaje al Perú:</strong><br />
+                                            La penalidad por la anulación por parte del cliente una vez iniciado el viaje a Perú será del 100% del precio total pactado.
+                                            En caso se presentaran situaciones ajenas a nuestro control PERUTURISMO no se hará responsable de los gastos adicionales en que se incurran, pero sí les brindará la asistencia necesaria para resolver el problema.
+
                                         </p>
 
                                     </div>
@@ -854,11 +866,11 @@ else
     </div>
 
     <div class="floating-chat enter expand">
-        <i class="cerrarFlotante" aria-hidden="true" style="display: none; font-style: normal; font-size: 15px">Chat</i>
+        <i class="fa fa-comments" aria-hidden="true"></i>
         <div class="chat enter">
             <div class="header">
                 <span class="title">
-                    Chat
+                    Envianos tu mensaje
                 </span>
                 <button>
                     <i class="fa fa-times" aria-hidden="true"></i>
@@ -869,7 +881,7 @@ else
             <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
             <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
 
-            <div>Hola soy @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva) tu Diseñador de viajes, por favor envianos tu mensaje</div>
+            <div style="font-size:13px; text-align:justify;">Hola soy @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), tu Diseñadora de Viajes. A partir de ahora, por este medio atenderé de inmediato todas tus consultas.</div>
             <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Tu mensaje ha sido enviado</div>
             <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Por favor ingresa tu mensaje</div>
             <textarea placeholder="Por favor escribe tu mensaje" id="txtMessage" class="form-control"></textarea>

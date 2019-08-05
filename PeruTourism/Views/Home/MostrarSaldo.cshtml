@@ -6,54 +6,109 @@
 
     int totalCargo = 0;
     int totalAbono = 0;
-
+    char idioma = ViewBag.idioma;
 }
 
-<div id="propDet" class="secondary">
+@if (idioma.Equals('E'))
+{
+    <div id="propDet" class="secondary">
 
-    <div class="container-fluid">
-        <section class="subtitle">
-            <div class="container">
-                <div class="options">
-                    <div class="op-group">
-                        <div class="op op-propuesta">
-                            <div class="icon icon-propuesta"></div>
-                            <div class="title">BALANCE</div>
+        <div class="container-fluid">
+            <section class="subtitle">
+                <div class="container">
+                    <div class="options">
+                        <div class="op-group">
+                            <div class="op op-propuesta">
+                                <div class="icon icon-propuesta"></div>
+                                <div class="title">BALANCE</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
-    @*<div><b>Table Format Data Displaying in ForEach</b><br /></div>*@
-    <table class="table table-bordered table-responsive table-hover">
-        <tr>
-            <th>Date </th>
-            <th>Detail</th>
-            <th>Balance </th>
-            <th>Payments</th>
-
-        </tr>
-        @foreach (var d in lstBalanceGG)
-        {
-
-
-            totalAbono = totalAbono + Convert.ToInt32(d.Abono);
-            totalCargo = totalCargo + Convert.ToInt32(d.Cargo);
-
+            </section>
+        </div>
+        @*<div><b>Table Format Data Displaying in ForEach</b><br /></div>*@
+        <table class="table table-bordered table-responsive table-hover">
             <tr>
-                <td>@d.FchEmision</td>
-                <td>@d.Referencia</td>
-                <td>@Convert.ToInt32(d.Cargo)</td>
-                <td>@Convert.ToInt32(d.Abono)</td>
+                <th>Date </th>
+                <th>Detail</th>
+                <th>Balance </th>
+                <th>Payments</th>
+
             </tr>
-        }
+            @foreach (var d in lstBalanceGG)
+            {
 
-        @{int totalSaldo = totalCargo - totalAbono; }
-    </table>
-    <div>Total @totalSaldo</div>
 
-</div>
+                totalAbono = totalAbono + Convert.ToInt32(d.Abono);
+                totalCargo = totalCargo + Convert.ToInt32(d.Cargo);
+
+                <tr>
+                    <td>@d.FchEmision</td>
+                    <td>@d.Referencia</td>
+                    <td>@Convert.ToInt32(d.Cargo)</td>
+                    <td>@Convert.ToInt32(d.Abono)</td>
+                </tr>
+            }
+
+            @{int totalSaldo = totalCargo - totalAbono; }
+        </table>
+        <div>Total @totalSaldo</div>
+
+    </div>
+
+}
+else
+{
+
+    <div id="propDet" class="secondary">
+
+        <div class="container-fluid">
+            <section class="subtitle">
+                <div class="container">
+                    <div class="options">
+                        <div class="op-group">
+                            <div class="op op-propuesta">
+                                <div class="icon icon-propuesta"></div>
+                                <div class="title">SALDO</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        @*<div><b>Table Format Data Displaying in ForEach</b><br /></div>*@
+        <table class="table table-bordered table-responsive table-hover">
+            <tr>
+                <th>Fecha </th>
+                <th>Detalles</th>
+                <th>Cargos </th>
+                <th>Abonos</th>
+
+            </tr>
+            @foreach (var d in lstBalanceGG)
+            {
+
+
+                totalAbono = totalAbono + Convert.ToInt32(d.Abono);
+                totalCargo = totalCargo + Convert.ToInt32(d.Cargo);
+
+                <tr>
+                    <td>@d.FchEmision</td>
+                    <td>@d.Referencia</td>
+                    <td>@Convert.ToInt32(d.Cargo)</td>
+                    <td>@Convert.ToInt32(d.Abono)</td>
+                </tr>
+            }
+
+            @{int totalSaldo = totalCargo - totalAbono; }
+        </table>
+        <div>Total @totalSaldo</div>
+
+    </div>
+}
+
+
 
 
 

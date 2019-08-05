@@ -1,68 +1,133 @@
 ﻿@model PeruTourism.Models.PeruTourism.PropuestaViewModel
+@using PeruTourism.Utility
 @{
     ViewBag.Title = "MostrarSaldo";
 
     var lstBalanceGG = Model.lstBalance;
-
-    int totalCargo = 0;
-    int totalAbono = 0;
+    char idioma = ViewBag.FlagIdioma;
+    decimal totalCargo = 0;
+    decimal totalAbono = 0;
 
 }
 
- @if (lstBalanceGG != null)
- {
+@if (lstBalanceGG != null)
+{
 
+    if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+    {
+        <div class="modal fade" id="detalleBalance-1" tabindex="-1" role="dialog" style="display: none;">
+            <div class="modal-dialog modal-DetalleHotel" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>Balance</strong>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        <th>Date </th>
+                                        <th>Detail</th>
+                                        <th>Balance (USD) </th>
+                                        <th>Payments (USD) </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in lstBalanceGG)
+                                    {
 
-<div class="modal fade" id="detalleBalance-1" tabindex="-1" role="dialog" style="display: none;">
-    <div class="modal-dialog modal-DetalleHotel" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <strong>Balance</strong>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-responsive table-hover table-pt">
-                        <thead>
-                            <tr>
-                                <th>Date </th>
-                                <th>Detail</th>
-                                <th>Balance (USD) </th>
-                                <th>Payments (USD) </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var d in lstBalanceGG)
-                            {
+                                        totalAbono = totalAbono + d.Abono;
+                                        totalCargo = totalCargo + d.Cargo;
 
+                                        //    totalAbono = totalAbono + Convert.ToInt32(d.Abono);
+                                        //totalCargo = totalCargo + Convert.ToInt32(d.Cargo);
 
-                                totalAbono = totalAbono + Convert.ToInt32(d.Abono);
-                                totalCargo = totalCargo + Convert.ToInt32(d.Cargo);
+                                        <tr>
+                                            <td>@d.FchEmision.ToString("dd/MM/yyyy")</td>
+                                            <td>@d.Referencia</td>
+                                            <td>@Convert.ToDecimal(d.Cargo).ToString("0.00")</td>
+                                            <td>@Convert.ToDecimal(d.Abono).ToString("0.00")</td>
+                                        </tr>
+                                    }
+                                    @{decimal totalSaldo = totalCargo - totalAbono; }
+                                    <tr class="table-total hidden-xs">
+                                        <td colspan="3">USD Total :</td>
+                                        <td>@Convert.ToDecimal(totalSaldo).ToString("0.00")</td>
+                                    </tr>
+                                </tbody>
 
-                                <tr>
-                                    <td>@d.FchEmision.ToString("dd/MM/yyyy")</td>
-                                    <td>@d.Referencia</td>
-                                    <td>@Convert.ToDecimal(d.Cargo).ToString("#,##0")</td>
-                                    <td>@Convert.ToDecimal(d.Abono).ToString("#,##0")</td>
-                                </tr>
-                            }
-                            @{int totalSaldo = totalCargo - totalAbono; }
-                            <tr class="table-total hidden-xs">
-                                <td colspan="3">USD Total :</td>
-                                <td>@Convert.ToDecimal(totalSaldo).ToString("#,##0")</td>
-                            </tr>
-                        </tbody>
-                   
-                    </table>
+                            </table>
 
-                </div>
-                <div class="div-total visible-xs">
-                    USD Total : @totalSaldo
+                        </div>
+                        <div class="div-total visible-xs">
+                            USD Total : @totalSaldo
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
+    }
+    else
+    {
+        <div class="modal fade" id="detalleBalance-1" tabindex="-1" role="dialog" style="display: none;">
+            <div class="modal-dialog modal-DetalleHotel" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>CARGO</strong>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-responsive table-hover table-pt">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha </th>
+                                        <th>Detalle</th>
+                                        <th>Cargos (USD) </th>
+                                        <th>Abonos (USD) </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in lstBalanceGG)
+                                    {
 
 
-  }
+                                        totalAbono = totalAbono + d.Abono;
+                                        totalCargo = totalCargo + d.Cargo;
+
+                                        //    totalAbono = totalAbono + Convert.ToInt32(d.Abono);
+                                        //totalCargo = totalCargo + Convert.ToInt32(d.Cargo);
+
+                                    <tr>
+                                        <td>@d.FchEmision.ToString("dd/MM/yyyy")</td>
+                                        <td>@d.Referencia</td>
+                                        @*<td>@Convert.ToDecimal(d.Cargo).ToString("#,##0")</td>
+                                        <td>@Convert.ToDecimal(d.Abono).ToString("#,##0")</td>*@
+                                        <td>@Convert.ToDecimal(d.Cargo).ToString("0.00")</td>
+                                        <td>@Convert.ToDecimal(d.Abono).ToString("0.00")</td>
+                                    </tr>
+                                    }
+                                    @{decimal totalSaldo = totalCargo - totalAbono; }
+                                    <tr class="table-total hidden-xs">
+                                        <td colspan="3">USD Total :</td>
+                                        <td>@Convert.ToDecimal(totalSaldo).ToString("0.00")</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <div class="div-total visible-xs">
+                            USD Total : @totalSaldo
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+}

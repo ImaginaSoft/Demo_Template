@@ -8031,3 +8031,7 @@ label.no-pad input {
 table tr {
     text-align: center;
 }
+
+table tr th {
+    text-align: center;
+}

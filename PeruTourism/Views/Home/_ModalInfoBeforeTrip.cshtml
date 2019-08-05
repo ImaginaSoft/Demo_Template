@@ -32,24 +32,25 @@
             border: 0;
         }
 
-        .video-responsive {
-    height: 0;
-    overflow: hidden;
-    padding-bottom: 56.25%;
-    padding-top: 30px;
-    position: relative;
+    .video-responsive {
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        position: relative;
     }
-.video-responsive iframe, .video-responsive object, .video-responsive embed {
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    }
+
+        .video-responsive iframe, .video-responsive object, .video-responsive embed {
+            height: 50%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 50%;
+        }
 </style>
 <style type="text/css">
-     .prop-detalle,
-     .prop-detalle:hover {
+    .prop-detalle,
+    .prop-detalle:hover {
         background: #fafafa;
         box-shadow: none;
     }
@@ -58,7 +59,7 @@
             padding-top: 60px;
         }*/
 
-         .prop-detalle .prop-num::before {
+        .prop-detalle .prop-num::before {
             display: none;
         }
 
@@ -66,7 +67,7 @@
             display: none;
         }
 
-         .prop-detalle .prop-content .group {
+        .prop-detalle .prop-content .group {
             border: 0;
         }
 </style>
@@ -418,19 +419,19 @@
             <div class="modal-dialog modal-DetalleHotel" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <strong>Antes de mi viaje</strong>
+                        <strong>ANTES DE MI VIAJE</strong>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
 
                         <div class="table-responsive">
-                            <div class="prop-title">HOTELES SELECCIONADOS</div>
+                            <div class="prop-title">Hoteles Seleccionados</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
                                     <tr>
-                                        <th>City</th>
+                                        <th>Ciudad</th>
                                         <th>Hotel</th>
-                                        <th>Telephone</th>
+                                        <th>Telefono</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -453,13 +454,13 @@
                         </div>
 
                         <div class="table-responsive">
-                            <div class="prop-title">PERUTOURIS'M 24 HOURS TELEPHONE NUMBER</div>
+                            <div class="prop-title">Telefono 24hrs PeruTourismo (01 615-3111)</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Responsability</th>
-                                        <th>Telephone</th>
+                                        <th>Nombre</th>
+                                        <th>Responsabilidad</th>
+                                        <th>Telefono</th>
 
 
                                     </tr>
@@ -482,25 +483,28 @@
                         </div>
 
                         @*<div><a href="@lstVideoGG.FirstOrDefault().VideoUrl" target="_blank"> Ver Video</a></div>*@
-                        <div class="prop-title">VIDEO</div>
-                        <div class="video-responsive">
-                            
-                            <iframe src="https://www.youtube.com/embed/V8Tr6xh1GgE"
-                                    frameborder="0" allow="accelerometer;
-                                        autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
-                        </div>
+                        <div class="prop-title">Video</div>
+                        <a href="https://www.youtube.com/embed/V8Tr6xh1GgE">Click para ver el video</a><br />  
+                        @*<div class="video-responsive">
+
+                                        <iframe src="https://www.youtube.com/embed/V8Tr6xh1GgE"
+                        frameborder="0" allow="accelerometer;
+                            autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+
+
+                        </div>*@
 
                         <div class="table-responsive">
-                            <div class="prop-title">CLIMA</div>
+                            <div class="prop-title">Clima</div>
                             <table class="table table-bordered table-responsive table-hover table-pt">
                                 <thead>
                                     <tr>
 
-                                        <th>City</th>
-                                        <th>Mont-Year</th>
-                                        <th>Temperature low</th>
-                                        <th>Temperature high</th>
+                                        <th>Ciudad</th>
+                                        <th>Mes-Año</th>
+                                        <th>Temperatura mínima</th>
+                                        <th>Temperatura máxima</th>
 
                                     </tr>
                                 </thead>
@@ -525,26 +529,43 @@
                             </table>
                         </div>
 
-                        <div class="prop-title">REQUERIMIENTOS PARA VISTAR PERÚ</div>
+                        <div class="prop-title">Requerimientos para visitar Perú</div>
                         <div>@info</div>
 
 
 
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span>Clothes</span></div>
+                                <div class="prop-num"><span>Ropa</span></div>
 
                             </div>
                             <div class="prop-content collapse in" id="content1">
                                 <div class="group">
 
 
-                                    <p>
-                                        To confirm confirm your trip we just need a deposit of the 30%, this first payment can be done online through your personalized website only if you hava a Visa Card or Master Card
-                                        , if you have American Express card I will send you our services agreement by email.
-                                        <br />
-                                        The balance due (70%) must be paid at your arrival in Lima.
-                                    </p>
+
+                                    <ul>
+                                        <li>Casaca (chaqueta) y chompa abrigadora.</li>
+                                        <li>Camisetas de manga corta.</li>
+                                        <li>Jeans o pantalones cargo.</li>
+                                        <li>Botas para caminar, zapatillas o tenis y zapatos.</li>
+                                        <li>Medias de algodon.</li>
+                                        <li>Gafas para el sol</li>
+                                        <li>Protector Solar para cara y labios.</li>
+                                        <li>Sombrero o gorra</li>
+                                        <li>Artículos de aseo personal/medicamentos.</li>
+                                        <li>Una pequeña mochila</li>
+                                        <li>Equipo de fotografía y/o video.</li>
+                                        <li>Un Vestido Semi-formal para las cenas (shorts, sandalias no son aceptados en el comedor)</li>
+                                    </ul>
+
+
+                                    @*<p>
+            To confirm confirm your trip we just need a deposit of the 30%, this first payment can be done online through your personalized website only if you hava a Visa Card or Master Card
+            , if you have American Express card I will send you our services agreement by email.
+            <br />
+            The balance due (70%) must be paid at your arrival in Lima.
+        </p>*@
 
 
                                 </div>
@@ -554,18 +575,17 @@
 
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span>Luggage</span></div>
+                                <div class="prop-num"><span>Equipaje</span></div>
 
                             </div>
                             <div class="prop-content collapse in" id="content1">
                                 <div class="group">
 
                                     <ul>
-                                        <li>Binoculars.</li>
-                                        <li>Hotels in Cusco can store suitcases of travelers that spend nights in the Sacred Valley and/or Machu Picchu so you can take just a small bag or backpack with you.</li>
-                                        <li>Self-sealing bags for electronic equipment.</li>
-                                        <li>Windbreaker.</li>
-                                        <li>One small day pack.</li>
+                                        <li>Binoculares</li>
+                                        <li>Bolsa plástica para proteger su equipo fotográfico durante los traslados a las Islas.</li>
+                                        <li>Un rompevientos.</li>
+                                        <li>Una mochila pequeña</li>
                                     </ul>
 
 
@@ -576,7 +596,7 @@
 
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span>Currency & Exchange Rate</span></div>
+                                <div class="prop-num"><span>Moneda y Tipo de Cambio</span></div>
 
                             </div>
                             <div class="prop-content collapse in" id="content1">
@@ -584,13 +604,12 @@
 
                                     <ul>
                                         <li>
-                                            Our ofﬁcial currency is Nuevo Sol. We have bills of 10, 20, 50, 100 and 200 Nuevos Soles. We also have
-                                            coins of 5, 10, 20 and 50 cents as well as coins of 1, 2 and 5 Nuevos Soles.
+                                            Nuetra moneda oficial es el Nuevo Sol. Contamos con billetes de 10, 20, 50, 100 y 200 Nuevos Soles. Las monedas son de 5, 10, 20 y 50 centavos así como de 1, 2 y 5 Nuevos Soles.
                                         </li>
-                                        <li>One American Dolar is around 3 Nuevos Soles.</li>
-                                        <li>One Euro is around 3.88 Nuevos Soles approximately.</li>
-                                        <li>ATM's are very easy to ﬁnd across the country. They are in English and Spanish.</li>
-                                        <li>Credit Cards are welcomed in hotels, restaurants, shops, etc. Visa, American Express and Master Card are the most used.</li>
+                                        <li>Un Dólar Americano equivale a 3 Nuevos Soles aproximadamente.</li>
+                                        <li>Un Euro equivale a 3.88 Nuevos Soles aproximadamente.</li>
+                                        <li>Los cajeros automáticos son muy fáciles de encontrar por todo el país.</li>
+                                        <li>Tarjetas de créditos son muy recibidas tanto en hoteles, restaurantes, tiendas, etc. Las mas usadas son Visa, American Express y Master Card.</li>
                                     </ul>
 
 
@@ -599,7 +618,7 @@
                             <div class="prop-icon"></div>
                         </div>
 
-                        <div class="group prop-detalle">
+                        @*<div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
                                 <div class="prop-num"><span>Tips</span></div>
 
@@ -620,11 +639,11 @@
                                 </div>
                             </div>
                             <div class="prop-icon"></div>
-                        </div>
+                        </div>*@
 
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span>Travel Documents & Vaccines</span></div>
+                                <div class="prop-num"><span>Documentos de Viaje & Vacunas</span></div>
 
                             </div>
                             <div class="prop-content collapse in" id="content1">
@@ -632,25 +651,22 @@
 
                                     <ul>
                                         <li>
-                                            To visit Peru is necessary to bring your valid passport. Only citizens from Colombia, Ecuador, Bolivia, Brazil, Chile and Argentina need their ID to come.
-
+                                            Para visitar Perú es necesario venir con pasaporte. Solo los ciudadanos de Colombia, Ecuador, Bolivia, Brasil, Chile y Argentina pueden viajar con su cédula de identificación (DNI).
                                         </li>
                                         <li>
-                                            Upon your arrival at Lima's airport you will receive your immigration card (TAM) which exempts from paying 10% of hotels taxes. In case you lose this card, for law hotels will have to charge the additional cost.
-
+                                            A su llegada a Lima, recibirá en el aeropuerto su tarjeta de inmigración (TAM) la cual debe cargarla junto con su pasaporte ya que con ella está exonerado del pago del 10% de impuestos hoteleros. En caso de perder esta tarjeta los hoteles se verán obligados por ley a hacer el cargo adicional correspondiente.
                                         </li>
                                         <li>
-                                            In case you would have some stop-overs in other countries during your ﬂights to or from Lima, we rec
-                                            ommend you to check what kind of documentation those countries require (visas, shots, etc).
+                                            En caso tuviera paradas adicionales en otros países durante su vuelos de llegada o salida, le recomendamos revisar que documentación requieren esos países para ser visitados (visas, vacunas, etc).
 
 
                                         </li>
-                                        <li>
-                                            A valid passport is required to enter Ecuador, at least 6 months valid.
+                                        <li>    
+                                            Un pasaporte valido es necesario para ingresar a Ecuador,validez de por lo menos 6 meses de anticipación
 
                                         </li>
                                         <li>
-                                            No inoculations are required to entry to Ecuador.
+                                            Ninguna vacuna es necesaria para ingresar a Ecuador
 
                                         </li>
 
@@ -665,7 +681,7 @@
 
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span>Foods & Drinks</span></div>
+                                <div class="prop-num"><span>Comida & Bebidas</span></div>
 
                             </div>
                             <div class="prop-content collapse in" id="content1">
@@ -673,16 +689,14 @@
 
                                     <ul>
                                         <li>
-                                            In Peru you can ﬁnd restaurants that offer dishes from US$3.00.
+                                            En todo el país se puede encontrar restaurantes con ofertas que van desde los US$3.00.
 
                                         </li>
                                         <li>
-                                            Drink only bottled water, which is widely available. Do not drink tap water, even in major hotels. Agua con gas is carbonated; agua sin gas is plain.
-
+                                            Beban agua embotellada, la cuál es muy fácil de conseguir. No tome agua del caño, aún en los mejores hoteles.
                                         </li>
                                         <li>
-                                            Avoid eating from street vendors.
-
+                                            Evite ingerir alimentos que son vendidos en la calle.
                                         </li>
 
                                     </ul>
@@ -695,7 +709,7 @@
 
                         <div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
-                                <div class="prop-num"><span>Altitude Sickness</span></div>
+                                <div class="prop-num"><span>Mal de Altura</span></div>
 
                             </div>
                             <div class="prop-content collapse in" id="content1">
@@ -703,10 +717,8 @@
 
                                     <ul>
                                         <li>
-                                            During your visits to cities located over the 8200 feet above sea level, like Cusco (11,000 ft) or Lake Titi caca (13,000 ft), shortness of breath and heart pounding are normal, given the scarcity of oxygen. Some people may experience headache, loss of appetite, extreme fatigue and nausea.
-                                            Most symptoms de velop the ﬁrst day at high altitude, though, occasionally, travelers have delayed reactions.
-                                            The best advice is to rest on your ﬁrst day in the highlands. Drink plenty of liquids, including the local remedy: mate de coca or coca - leaf tea (It’s perfectly legal). Avoid alcohol, sodas and heavy food.
-                                            You can avoid altitude sickness taking 500 mg a day of acetazolamide (Diamox or Soroche Pills) taken 24 hours before departure and continued up to 48 hours after arrival to these cities. Acetazolamide should not be given to persons allergic to sulfa drugs.
+                                            Durante sus visitas a destinos ubicados por encima de los 2500 metros sobre el nivel del mar como la ciudad de Cusco (3,330 msnm) o el Lago Titicaca (3,500 msnm) usted podría tener cierta dificultad en respirar por la escasez de oxígeno, así como palpitaciones, ambos síntomas son normales. Algunas personas pueden sufrir dolor de cabeza, pérdida de apetito, fatiga extrema y náusea. La mayoría de estos síntomas motivados por la altura, se presentan en el primer día, aunque a veces, los viajeros pueden tener reacciones retardadas. El mejor consejo es reposar el día de arribo, beber bastante líquido, tomar el remedio local: infusión de coca (es perfectamente legal). No coma mucho y evite el alcohol y las bebidas gaseosas. Usted puede evitar la enfermedad de altura tomando 500 mg. de acetozolamida (Diamox o Sorochil) al día, 24 horas antes de la salida y continuar por 48 horas después del arribo a estas ciudades.
+                                            Las personas alérgicas a las sulfas no deben tomar aceazolamida.
 
                                         </li>
 
@@ -719,7 +731,7 @@
                             <div class="prop-icon"></div>
                         </div>
 
-                        <div class="group prop-detalle">
+                        @*<div class="group prop-detalle">
                             <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content1">
                                 <div class="prop-num"><span>Gastronomy</span></div>
 
@@ -740,10 +752,10 @@
                                 </div>
                             </div>
                             <div class="prop-icon"></div>
-                        </div>
+                        </div>*@
 
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
 
