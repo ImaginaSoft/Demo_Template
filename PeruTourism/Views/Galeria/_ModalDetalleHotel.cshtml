@@ -13,111 +13,116 @@
     string imgSrc_2 = string.Empty;
     string imgSrc_3 = string.Empty;
 
-    if (lstGaleria.FirstOrDefault().Imagen1 != null)
-    {
-        byte[] imageByData_1 = lstGaleria.FirstOrDefault().Imagen1;
-        string base64_1 = Convert.ToBase64String(imageByData_1);
-
-        if (base64_1 == string.Empty)
+   
+        if (lstGaleria.FirstOrDefault().Imagen1 != null)
         {
-            imgSrc_1 = imageDataURL;
+            byte[] imageByData_1 = lstGaleria.FirstOrDefault().Imagen1;
+            string base64_1 = Convert.ToBase64String(imageByData_1);
+
+            if (base64_1 == string.Empty)
+            {
+                imgSrc_1 = imageDataURL;
+            }
+            else
+            {
+                imgSrc_1 = string.Format("data:image/jpg;base64,{0}", base64_1);
+            }
         }
-        else
+
+        if (lstGaleria.FirstOrDefault().Imagen2 != null)
         {
-            imgSrc_1 = string.Format("data:image/jpg;base64,{0}", base64_1);
+            byte[] imageByData_2 = lstGaleria.FirstOrDefault().Imagen2;
+            string base64_2 = Convert.ToBase64String(imageByData_2);
+
+            if (base64_2 == string.Empty)
+            {
+                imgSrc_2 = imageDataURL;
+            }
+            else
+            {
+                imgSrc_2 = string.Format("data:image/jpg;base64,{0}", base64_2);
+            }
         }
-    }
 
-    if (lstGaleria.FirstOrDefault().Imagen2 != null)
-    {
-        byte[] imageByData_2 = lstGaleria.FirstOrDefault().Imagen2;
-        string base64_2 = Convert.ToBase64String(imageByData_2);
-
-        if (base64_2 == string.Empty)
+        if (lstGaleria.FirstOrDefault().Imagen3 != null)
         {
-            imgSrc_2 = imageDataURL;
+            byte[] imageByData_3 = lstGaleria.FirstOrDefault().Imagen3;
+            string base64_3 = Convert.ToBase64String(imageByData_3);
+
+            if (base64_3 == string.Empty)
+            {
+                imgSrc_3 = imageDataURL;
+            }
+            else
+            {
+                imgSrc_3 = string.Format("data:image/jpg;base64,{0}", base64_3);
+            }
         }
-        else
+
+        if (lstGaleria != null)
         {
-            imgSrc_2 = string.Format("data:image/jpg;base64,{0}", base64_2);
-        }
-    }
-    
-    if (lstGaleria.FirstOrDefault().Imagen3 != null)
-    {
-        byte[] imageByData_3 = lstGaleria.FirstOrDefault().Imagen3;
-        string base64_3 = Convert.ToBase64String(imageByData_3);
+            <div class="modal fade" id="detalleHotel-1" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-DetalleHotel" role="document">
+                    <div class="modal-content group">
+                        <div class="modal-header">
+                            <strong>Hotel Detail</strong>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <figure>
+                                <div class="galleryDetalleHotel" id="owl-detailPhotos">
 
-        if (base64_3 == string.Empty)
-        {
-            imgSrc_3 = imageDataURL;
-        }
-        else
-        {
-            imgSrc_3 = string.Format("data:image/jpg;base64,{0}", base64_3);
-        }
-    }
+                                    <div class="item"><img alt="" src="@imgSrc_1" /></div>
+                                    <div class="item"><img alt="" src="@imgSrc_2" /></div>
+                                    <div class="item"><img alt="" src="@imgSrc_3" /></div>
 
-    if (lstGaleria != null)
-    {
-        <div class="modal fade" id="detalleHotel-1" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-DetalleHotel" role="document">
-                <div class="modal-content group">
-                    <div class="modal-header">
-                        <strong>Hotel Detail</strong>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <figure>
-                            <div class="galleryDetalleHotel" id="owl-detailPhotos">
+                                </div>
+                            </figure>
 
-                                <div class="item"><img alt="" src="@imgSrc_1" /></div>
-                                <div class="item"><img alt="" src="@imgSrc_2" /></div>
-                                <div class="item"><img alt="" src="@imgSrc_3" /></div>
-
-                            </div>
-                        </figure>
-
-                        <div class="info-hotel" style="max-width: 374px;">
-                            <div class="form-group">
-                                <h4>
-                                    @lstGaleria.FirstOrDefault().NombreHTL
-                                    @{
-                                        if (lstGaleria.FirstOrDefault().Valoracion != 0)
-                                        {
-                                            <span>
-                                                @for (int i = 1; i <= @lstGaleria.FirstOrDefault().Valoracion; i++)
-                                                {
-                                                    if (i >= 1)
+                            <div class="info-hotel" style="max-width: 374px;">
+                                <div class="form-group">
+                                    <h4>
+                                        @lstGaleria.FirstOrDefault().NombreHTL
+                                        @{
+                                            if (lstGaleria.FirstOrDefault().Valoracion != 0)
+                                            {
+                                                <span>
+                                                    @for (int i = 1; i <= @lstGaleria.FirstOrDefault().Valoracion; i++)
                                                     {
-                                                        <div style="float: left">&starf;</div>
+                                                        if (i >= 1)
+                                                        {
+                                                            <div style="float: left">&starf;</div>
+                                                        }
                                                     }
-                                                }
-                                            </span>
+                                                </span>
+                                            }
                                         }
-                                    }
-                                </h4>
-                            </div>
-                            <br />
-                            <div class="form-group">
-                                <label for="DireccionHTL">Dirección:</label>
-                                <span>@lstGaleria.FirstOrDefault().DireccionHTL</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="Telefono">Telefono:</label>
-                                <span>@lstGaleria.FirstOrDefault().Telefono</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="DescripcionHTL">Descripcion:</label>
-                                <span>@lstGaleria.FirstOrDefault().DescripcionHTL</span>
+                                    </h4>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="DireccionHTL">Dirección:</label>
+                                    <span>@lstGaleria.FirstOrDefault().DireccionHTL</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Telefono">Telefono:</label>
+                                    <span>@lstGaleria.FirstOrDefault().Telefono</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DescripcionHTL">Descripcion:</label>
+                                    <span>@lstGaleria.FirstOrDefault().DescripcionHTL</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    
+
 }
+
+
 
 <script src="~/Scripts/third/owl.carousel.min.js"></script>
 <script src="~/Scripts/views/propuestas.js"></script>

@@ -156,8 +156,12 @@ namespace PeruTourism.Controllers
         {
 
             string nroPedido = KeyReg.Substring(0, 6);
-            string nroPropuesta = KeyReg.Substring(8, 1);
-            string nroVersion = KeyReg.Substring(10, 1);
+            //string nroPropuesta = KeyReg.Substring(8, 1);
+            string nroPropuesta = KeyReg.Substring(8, 2);
+
+            //string nroVersion = KeyReg.Substring(10, 1);
+            string nroVersion = KeyReg.Substring(10, 2);
+
 
             //var codCliente = Session["CodCliente"];
             ViewBag.nroPedido = nroPedido;
@@ -193,7 +197,7 @@ namespace PeruTourism.Controllers
             }
 
 
-            if (nroVersion == "0") {
+            if (nroVersion.Trim() == "0") {
 
                  lstPropuestaDetalle = objPropuesta.ObtenerListadoServiciosPropuesta(Convert.ToInt32(nroPedido), Convert.ToInt32(NroPrograma), FlagIdioma).ToList();
             }
