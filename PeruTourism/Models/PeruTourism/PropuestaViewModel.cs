@@ -25,6 +25,7 @@ namespace PeruTourism.Models.PeruTourism
         public List<Video> lstVideo { get; set; }
         public List<Clima> lstClima { get; set; }
         public string info { get; set; }
+        public char idioma { get; set; }
 
     }
 }

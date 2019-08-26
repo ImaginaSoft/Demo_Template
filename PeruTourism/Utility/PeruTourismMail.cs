@@ -12,7 +12,14 @@ namespace PeruTourism.Utility
     {
 
         public const string strServer = "smtp.gmail.com";
-
+        private const string MailErrorSubject = "ERROR EN LA APLICACION";
+        private const string MailErrorAccountFrom = "soporte@imaginasoftware.com";
+        private const string MailErrorAccountTo = "bdavid2290@gmail.com";
+        private const string MailErrorTemplate = @"<h1> {0} </h1>
+	                                    TargetSite:   <b>{1}</b>  <hr />
+	                                    Source:       <b>{2}</b>  <hr />
+                                            StackTrace:   <b>{3}</b>  <hr />
+	                                    DateTime:     <b>{5}</b>";
         /*Para Implementar
          
               new PeruTourismMail().EnviarCorreo("Error CompraHotel FileAccessDeniedFault", "webmaster@gruponuevomundo.com.pe", "FileAccessDeniedFault: <br>" + ex.Message);*/
@@ -54,7 +61,28 @@ namespace PeruTourism.Utility
             }
         }
 
+        public void EnviarCorreo_GG(string pStrAsunto, string pStrMailTo,string pStrEmailVendedor, string pStrBody)
+        {
+            try
+            {
+                var client = new SmtpClient();
+                var mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress(MailErrorAccountFrom);
+                mailMessage.To.Add(pStrMailTo);
+                mailMessage.Subject = pStrAsunto;
+                mailMessage.CC.Add(pStrEmailVendedor);
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Body = pStrBody;
+                //mailMessage.Body = string.Format(MailErrorTemplate, ex.Message, ex.TargetSite, ex.Source, ex.StackTrace, DateTime.Now.ToString("MMMM dd, yyyy HH:mm tt"));
 
+                client.Send(mailMessage);
+            }
+            catch (Exception ex) {
+
+                throw;
+            }
+           
+        }
 
 
 

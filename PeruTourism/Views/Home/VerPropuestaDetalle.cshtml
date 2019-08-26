@@ -240,9 +240,9 @@
                                         <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
 
                                         @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
-                                            {
-                                                <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
-                                            }*@
+                                {
+                                    <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                                }*@
 
 
 
@@ -307,6 +307,13 @@
                         </div>
                     }
                 </section>
+                <div class="prop-especial">
+                    <h1></h1>
+                    <div class="container">@Html.Raw(lstServicios.FirstOrDefault().Resumen)</div>
+                    <div class="container">@Html.Raw(lstServicios.FirstOrDefault().ResuCaraEspe)</div>
+                    @*<div class="container">@Html.Raw(lstServicios.FirstOrDefault().ResuComida)</div>*@
+                </div>
+
 
                 <div class="prop-table">
                     <div class="col-sm-12">
@@ -366,8 +373,8 @@
                             </a>
                         </div>
                         @*<a class="pago btn btn-primary" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg})">
-                                AGREGAR PASAJERO
-                            </a>*@
+                    AGREGAR PASAJERO
+                </a>*@
 
                         @*<a class="pago btn btn-primary" href="javascript:void(0)" data-toggle="modal" onclick="openBalanceModal(@ViewBag.codCliente,@ViewBag.nroPedido)">BALANCE</a>*@
                     </div>
@@ -697,7 +704,14 @@
                         </div>
                     }
                 </section>
+                <div class="prop-especial">
+                    <h3>Caracteristicas Especiales</h3>
+                    <h4>Este programa ofrece</h4>
 
+                    <div class="container">@Html.Raw(lstServicios.FirstOrDefault().Resumen)</div>
+                    <div class="container">@Html.Raw(lstServicios.FirstOrDefault().ResuCaraEspe)</div>
+                    @*<div class="container">@Html.Raw(lstServicios.FirstOrDefault().ResuComida)</div>*@
+                </div>
                 <div class="prop-table">
                     <div class="col-sm-12">
                         <div class="table-responsive">

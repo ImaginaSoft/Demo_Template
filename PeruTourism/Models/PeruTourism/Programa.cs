@@ -30,6 +30,7 @@ namespace PeruTourism.Models.PeruTourism
         public decimal PrecioxPersona { get; set; }
         public int CantPersonas { get; set; }
         public decimal PrecioTotal { get; set; }
+        public string EmailVendedor { get; set; }
         
 
     }

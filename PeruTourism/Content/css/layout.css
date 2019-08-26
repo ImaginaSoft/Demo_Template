@@ -7612,6 +7612,44 @@ section,
     .prop-table {
       width: 90%; } }
 
+
+.prop-especial {
+    padding: 25px 0;
+    width: 81%;
+    margin: 0 auto;
+}
+
+    .prop-table .table-responsive {
+        margin-bottom: 25px;
+    }
+
+    .prop-table .btn-primary {
+        background: #eb8800;
+        border: 0;
+        font-size: 17px;
+        padding: 10px 30px;
+        -webkit-transition: background .15s linear;
+        -o-transition: background .15s linear;
+        transition: background .15s linear;
+        margin: 3px;
+    }
+
+        .prop-table .btn-primary:hover {
+            background: #ff9d17;
+        }
+
+@media (max-width: 991px) {
+    .prop-table .btn-primary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .prop-table {
+        width: 90%;
+    }
+}
+
 .table-pt thead {
   background: #117036;
   color: #fff; }

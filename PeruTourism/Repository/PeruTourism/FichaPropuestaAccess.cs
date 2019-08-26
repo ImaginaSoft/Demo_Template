@@ -59,7 +59,8 @@ namespace PeruTourism.Repository.PeruTourism
                             StsPrograma = rdr["StsPrograma"].ToString().Trim(),
                             DesPrograma = rdr["DesPrograma"].ToString().Trim(),
                             CantDias = Convert.ToInt32(rdr["CantDias"]),
-                            KeyReg = rdr["KeyReg"].ToString()
+                            KeyReg = rdr["KeyReg"].ToString(),
+                            EmailVendedor = rdr["EmailVendedor"].ToString()
 
                         };
 
@@ -114,10 +115,13 @@ namespace PeruTourism.Repository.PeruTourism
                             Ciudad = rdr["Ciudad"].ToString(),
                             HoraServicio = rdr["HoraServicio"].ToString(),
                             FchInicio = Convert.ToDateTime(rdr["FchInicio"].ToString()),
-							NombreEjecutiva = rdr["CodUsuario"].ToString()
-							//FchInicio = (rdr["FchInicio"] =null)? string.Empty : Convert.ToDateTime(rdr["FchInicio"].ToString())
+							NombreEjecutiva = rdr["CodUsuario"].ToString(),
+                            Resumen = rdr["Resumen"].ToString(),
+                            ResuCaraEspe = rdr["ResuCaraEspe"].ToString(),
+                            ResuComida = rdr["ResuComida"].ToString()
+                            //FchInicio = (rdr["FchInicio"] =null)? string.Empty : Convert.ToDateTime(rdr["FchInicio"].ToString())
 
-						};
+                        };
 
                         lstfservicio.Add(item: fservicio);
                     }
@@ -173,7 +177,10 @@ namespace PeruTourism.Repository.PeruTourism
                             Ciudad = rdr["Ciudad"].ToString(),
                             HoraServicio = rdr["HoraServicio"].ToString(),
                             FchInicio = Convert.ToDateTime(rdr["FchInicio"].ToString()),
-                            NombreEjecutiva = rdr["CodUsuario"].ToString()
+                            NombreEjecutiva = rdr["CodUsuario"].ToString(),
+                            Resumen = rdr["Resumen"].ToString(),
+                            ResuCaraEspe = rdr["ResuCaraEspe"].ToString(),
+                            ResuComida = rdr["ResuComida"].ToString()
                             //FchInicio = (rdr["FchInicio"] =null)? string.Empty : Convert.ToDateTime(rdr["FchInicio"].ToString())
 
                         };

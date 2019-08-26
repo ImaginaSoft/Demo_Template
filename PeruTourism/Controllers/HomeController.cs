@@ -67,6 +67,8 @@ namespace PeruTourism.Controllers
                         Session["IdCliente"] = idCliente.Trim();
                         Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
                         Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
+                        Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
+
                         //Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
                     }
                     else
@@ -74,6 +76,7 @@ namespace PeruTourism.Controllers
                         Session["IdCliente"] = null;
                         Session["CodCliente"] = null;
                         Session["NomCliente"] = null;
+                        Session["EmailCliente"] = null;
                     }
                 }
 
@@ -192,6 +195,7 @@ namespace PeruTourism.Controllers
                 var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCliente));
                 var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().FlagIdioma);
 
+                Session["EmailVendedor"] = lstProgramaGG.FirstOrDefault().EmailVendedor;
                 objPropuestaViewModel.lstPrograma = lstProgramaGG.Where(p => p.NroPrograma == NroPrograma).ToList();
 
             }
@@ -269,6 +273,9 @@ namespace PeruTourism.Controllers
                     objServicio.CodTipoServicio = itemAgrupado.CodTipoServicio;
                     objServicio.NroServicio = itemAgrupado.NroServicio;
 					objServicio.NombreEjecutiva = itemAgrupado.NombreEjecutiva;
+                    objServicio.Resumen = itemAgrupado.Resumen;
+                    objServicio.ResuCaraEspe = itemAgrupado.ResuCaraEspe;
+                    objServicio.ResuComida = itemAgrupado.ResuComida;
                     //objServicio.FchInicio = itemAgrupado.FchInicio;
 
                 }
@@ -285,7 +292,10 @@ namespace PeruTourism.Controllers
                     FchInicio = item.FirstOrDefault().FchInicio,
                     NroServicio = item.FirstOrDefault().NroServicio,
                     CodTipoServicio = item.FirstOrDefault().CodTipoServicio,
-				    NombreEjecutiva = item.FirstOrDefault().NombreEjecutiva
+                    NombreEjecutiva = item.FirstOrDefault().NombreEjecutiva,
+                    Resumen = item.FirstOrDefault().Resumen,
+                    ResuCaraEspe = item.FirstOrDefault().ResuCaraEspe,
+                    ResuComida = item.FirstOrDefault().ResuComida
 				};
 
 
@@ -323,7 +333,7 @@ namespace PeruTourism.Controllers
 
                 //objGaleriaViewModel.lstGaleria = lstGaleria.ToList();
                 objPropuestaViewModel.lstServicio = lstGaleria.ToList();
-
+                objPropuestaViewModel.idioma = Convert.ToChar(Session["Idioma"]);
                 //sIdServicio = lstGaleria.FirstOrDefault().NroServicio.Trim();
 
                 //int sIdServicio_length = sIdServicio.Length;
@@ -343,6 +353,8 @@ namespace PeruTourism.Controllers
         public JsonResult RegistrarHistorialCliente(string pDesLog, string pCodCliente, string pNroPedido, string pNroPropuesta,string pNroVersion)
         {
             string gg = string.Empty;
+            string emailCliente = Convert.ToString(Session["EmailCliente"]);
+            string emailVendedor = Convert.ToString(Session["EmailVendedor"]);
 
             try
             {
@@ -364,7 +376,10 @@ namespace PeruTourism.Controllers
                 //jlopez
                 //PeruTourismEmail gg = new PeruTourismEmail();		
                 PeruTourismMail Mensaje = new PeruTourismMail();
-                Mensaje.EnviarCorreo("Mensaje de prueba", "bdavid2290@gmail.com", pDesLog);
+                // Mensaje.EnviarCorreo("Mensaje de prueba", "bdavid2290@gmail.com", pDesLog);
+                //Mensaje.EnviarCorreo_GG("Mensaje de prueba", "bdavid2290@gmail.com", pDesLog);
+                Mensaje.EnviarCorreo_GG("Peru4me - Propuesta", emailCliente, emailVendedor, pDesLog);
+
 
                 return Json(gg, JsonRequestBehavior.AllowGet);
             }
