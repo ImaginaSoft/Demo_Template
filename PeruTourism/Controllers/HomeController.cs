@@ -70,6 +70,20 @@ namespace PeruTourism.Controllers
                         Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
 
                         //Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
+
+                        //Grabar los log
+                        string gg2 = string.Empty;
+                        FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+                        var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCLiente));
+                        gg2 = objPropuesta.GrabaLog2("Version", "", Convert.ToInt32(codCLiente), lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().NroPropuesta, lstPublicacion.FirstOrDefault().NroVersion, Request.UserHostAddress, "A", "N");
+
+
+
+
+
+
+
+
                     }
                     else
                     {
