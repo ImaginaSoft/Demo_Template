@@ -26,7 +26,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("VTA_ClienteEmail_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.VTA_ClienteEmail_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = codCliente;
@@ -84,7 +84,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
 
 
-                    SqlCommand cmd = new SqlCommand("P4I_PublicaUltimo_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_PublicaUltimo_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@CodZonaVta", SqlDbType.Char, 3).Value = "PER";
