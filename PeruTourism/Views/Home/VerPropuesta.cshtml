@@ -36,7 +36,7 @@
                             {
                                 if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
                                 {
-                                    <div class="title">Proposals for my trip</div>
+                                    <div class="title">My travel itinaries</div>
                                 }
                                 else
                                 {
@@ -80,7 +80,7 @@
 
                     <div class="no_enlace">
                         <span class="breadcrumb__inner">
-                            <span class="breadcrumb__title">Proposals for my trip</span>
+                            <span class="breadcrumb__title">My travel itinaries</span>
                         </span>
                     </div>
 
@@ -148,7 +148,7 @@
 
 
 
-                            <a nroPrograma="@lstGG.NroPrograma" KeyReg="@lstGG.KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstGG.KeyReg.Trim(), NroPrograma = lstGG.NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
+                            <a nroPrograma="@lstGG.NroPrograma" KeyReg="@lstGG.KeyReg" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstGG.KeyReg, NroPrograma = lstGG.NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
                                 <div class="prop-num"><span>@lstGG.NroPrograma</span></div>
                                 <div class="prop-title">@lstGG.DesPrograma</div>
 
@@ -201,7 +201,7 @@
 
 
 
-                    <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg.Trim(), NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
+                    <a nroPrograma="@lstProgramas[i].NroPrograma" KeyReg="@lstProgramas[i].KeyReg.Trim()" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstProgramas[i].KeyReg, NroPrograma = lstProgramas[i].NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
                         <div class="prop-num"><span>@lstProgramas[i].NroPrograma</span></div>
                         <div class="prop-title">@lstProgramas[i].DesPrograma</div>
 

@@ -49,7 +49,10 @@ namespace PeruTourism.Models.PeruTourism
         public string Telefono { get; set; }
         public int Valoracion { get; set; }
         public string DescripcionHTL { get; set; }
-
+        public string DescripcionHTLI { get; set; }
+        public string Resumen { get; set; }
+        public string ResuCaraEspe { get; set; }
+        public string ResuComida { get; set; }
 
     }
 }

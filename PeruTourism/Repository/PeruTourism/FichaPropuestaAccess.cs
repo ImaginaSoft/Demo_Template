@@ -59,7 +59,8 @@ namespace PeruTourism.Repository.PeruTourism
                             StsPrograma = rdr["StsPrograma"].ToString().Trim(),
                             DesPrograma = rdr["DesPrograma"].ToString().Trim(),
                             CantDias = Convert.ToInt32(rdr["CantDias"]),
-                            KeyReg = rdr["KeyReg"].ToString()
+                            KeyReg = rdr["KeyReg"].ToString(),
+                            EmailVendedor = rdr["EmailVendedor"].ToString()
 
                         };
 
@@ -114,10 +115,13 @@ namespace PeruTourism.Repository.PeruTourism
                             Ciudad = rdr["Ciudad"].ToString(),
                             HoraServicio = rdr["HoraServicio"].ToString(),
                             FchInicio = Convert.ToDateTime(rdr["FchInicio"].ToString()),
-							NombreEjecutiva = rdr["CodUsuario"].ToString()
-							//FchInicio = (rdr["FchInicio"] =null)? string.Empty : Convert.ToDateTime(rdr["FchInicio"].ToString())
+							NombreEjecutiva = rdr["CodUsuario"].ToString(),
+                            Resumen = rdr["Resumen"].ToString(),
+                            ResuCaraEspe = rdr["ResuCaraEspe"].ToString(),
+                            ResuComida = rdr["ResuComida"].ToString()
+                            //FchInicio = (rdr["FchInicio"] =null)? string.Empty : Convert.ToDateTime(rdr["FchInicio"].ToString())
 
-						};
+                        };
 
                         lstfservicio.Add(item: fservicio);
                     }
@@ -173,7 +177,10 @@ namespace PeruTourism.Repository.PeruTourism
                             Ciudad = rdr["Ciudad"].ToString(),
                             HoraServicio = rdr["HoraServicio"].ToString(),
                             FchInicio = Convert.ToDateTime(rdr["FchInicio"].ToString()),
-                            NombreEjecutiva = rdr["CodUsuario"].ToString()
+                            NombreEjecutiva = rdr["CodUsuario"].ToString(),
+                            Resumen = rdr["Resumen"].ToString(),
+                            ResuCaraEspe = rdr["ResuCaraEspe"].ToString(),
+                            ResuComida = rdr["ResuComida"].ToString()
                             //FchInicio = (rdr["FchInicio"] =null)? string.Empty : Convert.ToDateTime(rdr["FchInicio"].ToString())
 
                         };
@@ -1235,6 +1242,38 @@ namespace PeruTourism.Repository.PeruTourism
 
 
 
+        public string GrabaLog2(string pDesLog, string pPaterno, int pCodCliente, int pNroPedido, int pNroPropuesta, int pNroVersion, string pIPAddress, string pAcceso, string pAccesoDeMozart)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
+                {
+                    SqlCommand cmd = new SqlCommand("SEG_LogAcceso_I", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlParameter pa = new SqlParameter();
+                    pa = cmd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150);
+                    pa.Direction = ParameterDirection.Output;
+                    pa.Value = string.Empty;
+                    cmd.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = pDesLog;
+                    cmd.Parameters.Add("@Paterno", SqlDbType.VarChar, 25).Value = pPaterno;
+                    cmd.Parameters.Add("@CodCliente", SqlDbType.Int).Value = pCodCliente;
+                    cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
+                    cmd.Parameters.Add("@NroPropuesta", SqlDbType.TinyInt).Value = pNroPropuesta;
+                    cmd.Parameters.Add("@NroVersion", SqlDbType.TinyInt).Value = pNroVersion;
+                    cmd.Parameters.Add("@IPAddress", SqlDbType.VarChar, 25).Value = pIPAddress;
+                    cmd.Parameters.Add("@Acceso", SqlDbType.Char).Value = pAcceso;
+                    cmd.Parameters.Add("@AccesoDeMozart", SqlDbType.Char).Value = pAccesoDeMozart;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                return "ok";
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
 
 
@@ -1244,6 +1283,5 @@ namespace PeruTourism.Repository.PeruTourism
 
 
 
-
-	}
+    }
 }

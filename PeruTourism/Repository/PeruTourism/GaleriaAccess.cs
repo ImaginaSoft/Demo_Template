@@ -90,6 +90,7 @@ namespace PeruTourism.Repository.PeruTourism
 							DireccionHTL = rdr["DireccionHTL"].ToString(),
                             Telefono = rdr["Telefono"].ToString(),
                             DescripcionHTL = rdr["DesHTL"].ToString(),
+                            DescripcionHTLI = rdr["DesHTLI"].ToString()
                         };
                         //pedido.CodVendedor = Convert.ToChar(GetValue(reader, "CodVendedor"));
 
