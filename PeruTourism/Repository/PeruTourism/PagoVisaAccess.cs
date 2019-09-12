@@ -36,7 +36,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                        cmd = new SqlCommand("VISA_Pedido_S", con);
+                        cmd = new SqlCommand("peru4me_new.VISA_Pedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     
@@ -76,7 +76,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                    cmd = new SqlCommand("VISA_Pedido_S", con);
+                    cmd = new SqlCommand("peru4me_new.VISA_Pedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -133,7 +133,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                    cmd = new SqlCommand("VISA_OrdenPago_I", con);
+                    cmd = new SqlCommand("peru4me_new.VISA_OrdenPago_I", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     SqlParameter pa = new SqlParameter();
@@ -326,7 +326,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                    cmd = new SqlCommand("VISA_OrdenPagoETicket_U", con);
+                    cmd = new SqlCommand("peru4me_new.VISA_OrdenPagoETicket_U", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
 
@@ -460,7 +460,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("TAB_Tabla_VisaNetLink_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.TAB_Tabla_VisaNetLink_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
 

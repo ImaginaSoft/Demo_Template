@@ -22,7 +22,7 @@ namespace PeruTourism.Repository.PeruTourism
             {
 				using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
 				{
-					SqlCommand cmd = new SqlCommand("VTA_Pasajero_Ins", con);
+					SqlCommand cmd = new SqlCommand("peru4me_new.VTA_Pasajero_Ins", con);
 
 					cmd.CommandType = CommandType.StoredProcedure;
 
@@ -55,7 +55,7 @@ namespace PeruTourism.Repository.PeruTourism
             {
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
-                    SqlCommand cmd = new SqlCommand("VTA_Pasajero_Del", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.VTA_Pasajero_Del", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -82,7 +82,7 @@ namespace PeruTourism.Repository.PeruTourism
             {
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
-                    SqlCommand cmd = new SqlCommand("VTA_Pasajero_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.VTA_Pasajero_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -132,12 +132,12 @@ namespace PeruTourism.Repository.PeruTourism
                     if (pIdioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES)) {
 
 
-                         cmd = new SqlCommand("TAB_PaisIngles_S", con);
+                         cmd = new SqlCommand("peru4me_new.TAB_PaisIngles_S", con);
                     }
                     else
                     {
 
-                         cmd = new SqlCommand("TAB_Pais_S", con);
+                         cmd = new SqlCommand("peru4me_new.TAB_Pais_S", con);
                     }
 
 
@@ -172,7 +172,7 @@ namespace PeruTourism.Repository.PeruTourism
             {
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
-                    SqlCommand cmd = new SqlCommand("TAB_TipoPasajero", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.TAB_TipoPasajero", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
