@@ -27,7 +27,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                        cmd = new SqlCommand("VTA_ListaIMG_S", con);
+                        cmd = new SqlCommand("peru4me_new.VTA_ListaIMG_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     
@@ -67,7 +67,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                    cmd = new SqlCommand("VTA_ListaIMG_S", con);
+                    cmd = new SqlCommand("peru4me_new.VTA_ListaIMG_S", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@NroServicio", SqlDbType.Int).Value = sNroServicio;
 

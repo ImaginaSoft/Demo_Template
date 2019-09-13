@@ -45,7 +45,15 @@ namespace PeruTourism.Repository.Data
               ";initial catalog =" + StrBD_WebsSql +
               ";User ID=" + StrUsuario_WebsSql +
               ";Password=" + ((NameValueCollection)WebConfigurationManager.GetSection(strSecureAppSettings))[("bdturismo_PASSWORD")];
+
             }
+
+            //get
+            //{
+            //    return
+            // "Server=localhost;Database=BDTURISMO;Trusted_Connection=True;";
+
+            //}
         }
     }
 }

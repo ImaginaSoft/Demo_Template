@@ -24,12 +24,12 @@ namespace PeruTourism.Repository.PeruTourism
 
                     if (pFlagIdioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
                     {
-                        cmd = new SqlCommand("P4I_Publica_S", con);
+                        cmd = new SqlCommand("peru4me_new.P4I_Publica_S", con);
 
                     }
                     else
                     {
-                        cmd = new SqlCommand("P4E_Publica_S", con);
+                        cmd = new SqlCommand("peru4me_new.P4E_Publica_S", con);
                     }
 
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
@@ -89,7 +89,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
-                    SqlCommand cmd = new SqlCommand("P4I_PropuestaServ_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_PropuestaServ_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     // cmd.CommandType = CommandType.Text;
@@ -150,7 +150,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
-                    SqlCommand cmd = new SqlCommand("P4I_PropuestaServVersion_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_PropuestaServVersion_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     // cmd.CommandType = CommandType.Text;
@@ -213,7 +213,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
 
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
-                    SqlCommand cmd = new SqlCommand("P4I_PropuestaNroPropuesta_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_PropuestaNroPropuesta_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     // cmd.CommandType = CommandType.Text;
@@ -264,7 +264,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
 
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
-                    SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S_GG", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.VTA_PropuestaNroPedido_S_GG", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     // cmd.CommandType = CommandType.Text;
@@ -318,7 +318,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("VTA_PropuestaServicio_S_GG", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.VTA_PropuestaServicio_S_GG", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -375,7 +375,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("HST_cliente_I", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.HST_cliente_I", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -414,7 +414,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_MovtosxCliente2_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_MovtosxCliente2_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -481,7 +481,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_PropuestaPrecio_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_PropuestaPrecio_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -550,7 +550,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_Pasajeros_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_Pasajeros_S", con);
               
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -591,7 +591,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_ReservaAereo_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_ReservaAereo_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -656,7 +656,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_ReservaAereo_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_ReservaAereo_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -728,7 +728,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_ReservaHotelFact_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_ReservaHotelFact_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -800,7 +800,7 @@ namespace PeruTourism.Repository.PeruTourism
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                    cmd = new SqlCommand("P4I_VersionFact_S", con);
+                    cmd = new SqlCommand("peru4me_new.P4I_VersionFact_S", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     SqlParameter pa = new SqlParameter();
@@ -881,7 +881,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_VersionHotel_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_VersionHotel_S_new", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -945,7 +945,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_InformacionStaff_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_InformacionStaff_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -1008,7 +1008,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_InformacionVideo_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_InformacionVideo_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -1070,7 +1070,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_VersionInformacionClima_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_VersionInformacionClima_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -1136,7 +1136,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("P4I_InformacionDocReq_S", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_InformacionDocReq_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -1203,7 +1203,7 @@ namespace PeruTourism.Repository.PeruTourism
 				{
 					SqlCommand cmd = new SqlCommand();
 
-					cmd = new SqlCommand("VTA_PasajeroNroPedido_S", con);
+					cmd = new SqlCommand("peru4me_new.VTA_PasajeroNroPedido_S_new", con);
 					
 					cmd.Parameters.Add("@NroPedido", SqlDbType.Int).Value = pNroPedido;
 				
@@ -1248,7 +1248,7 @@ namespace PeruTourism.Repository.PeruTourism
             {
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
-                    SqlCommand cmd = new SqlCommand("SEG_LogAcceso_I", con);
+                    SqlCommand cmd = new SqlCommand("peru4me_new.SEG_LogAcceso_I", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlParameter pa = new SqlParameter();
                     pa = cmd.Parameters.Add("@MsgTrans", SqlDbType.VarChar, 150);
