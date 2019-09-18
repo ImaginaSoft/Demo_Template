@@ -48,12 +48,12 @@ namespace PeruTourism.Repository.Data
 
             }
 
-            //get
-            //{
-            //    return
-            // "Server=localhost;Database=BDTURISMO;Trusted_Connection=True;";
+            //get {
+
+            //    return "Server=localhost;Database=BDTURISMO;Trusted_Connection=True;";
 
             //}
         }
+
     }
 }
