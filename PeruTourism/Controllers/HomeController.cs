@@ -67,6 +67,7 @@ namespace PeruTourism.Controllers
                         Session["IdCliente"] = idCliente.Trim();
                         Session["CodCliente"] = lstCliente.FirstOrDefault().CodCliente;
                         Session["NomCliente"] = lstCliente.FirstOrDefault().NomCliente;
+
                         Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
 
                         //Session["EmailCliente"] = lstCliente.FirstOrDefault().EmailCliente;
@@ -175,7 +176,7 @@ namespace PeruTourism.Controllers
             string nroPedido = KeyReg.Substring(0, 6);
             //string nroPropuesta = KeyReg.Substring(8, 1);
             string nroPropuesta = KeyReg.Substring(8, 2);
-
+            Session["NroPropuesta"] = nroPropuesta;
             //string nroVersion = KeyReg.Substring(10, 1);
             string nroVersion = KeyReg.Substring(10, 2);
 
@@ -369,7 +370,6 @@ namespace PeruTourism.Controllers
             string gg = string.Empty;
             string emailCliente = Convert.ToString(Session["EmailCliente"]);
             string emailVendedor = Convert.ToString(Session["EmailVendedor"]);
-
             try
             {
 
@@ -392,7 +392,7 @@ namespace PeruTourism.Controllers
                 PeruTourismMail Mensaje = new PeruTourismMail();
                 // Mensaje.EnviarCorreo("Mensaje de prueba", "bdavid2290@gmail.com", pDesLog);
                 //Mensaje.EnviarCorreo_GG("Mensaje de prueba", "bdavid2290@gmail.com", pDesLog);
-                Mensaje.EnviarCorreo_GG("Peru4me - Propuesta", emailCliente, emailVendedor, pDesLog);
+                Mensaje.EnviarCorreo_GG("Peru4me - Propuesta " + Session["NroPropuesta"] + Session["NomCliente"], emailCliente, emailVendedor, pDesLog);
 
 
                 return Json(gg, JsonRequestBehavior.AllowGet);
