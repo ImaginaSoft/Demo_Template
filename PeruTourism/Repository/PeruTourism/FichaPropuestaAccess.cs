@@ -728,7 +728,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_ReservaHotelFact_S", con);
+                    SqlCommand cmd = new SqlCommand("P4I_ReservaHotelFact_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -881,7 +881,7 @@ namespace PeruTourism.Repository.PeruTourism
                 using (SqlConnection con = new SqlConnection(Data.Data.StrCnx_WebsSql))
                 {
 
-                    SqlCommand cmd = new SqlCommand("peru4me_new.P4I_VersionHotel_S_new", con);
+                    SqlCommand cmd = new SqlCommand("P4I_VersionHotel_S", con);
                     //SqlCommand cmd = new SqlCommand("VTA_PropuestaNroPedido_S", con);
 
                     cmd.CommandType = CommandType.StoredProcedure;

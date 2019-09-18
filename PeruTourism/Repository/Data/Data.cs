@@ -38,17 +38,22 @@ namespace PeruTourism.Repository.Data
 
         public static string StrCnx_WebsSql
         {
-            get
-            {
-                return
-              "Data Source=" + StrNomServ_WebsSql +
-              ";initial catalog =" + StrBD_WebsSql +
-              ";User ID=" + StrUsuario_WebsSql +
-              ";Password=" + ((NameValueCollection)WebConfigurationManager.GetSection(strSecureAppSettings))[("bdturismo_PASSWORD")];
+            //get
+            //{
+            //    return
+            //  "Data Source=" + StrNomServ_WebsSql +
+            //  ";initial catalog =" + StrBD_WebsSql +
+            //  ";User ID=" + StrUsuario_WebsSql +
+            //  ";Password=" + ((NameValueCollection)WebConfigurationManager.GetSection(strSecureAppSettings))[("bdturismo_PASSWORD")];
+
+            //}
+
+            get {
+
+                return "Server=localhost;Database=BDTURISMO;Trusted_Connection=True;";
 
             }
-
-        
         }
+
     }
 }
