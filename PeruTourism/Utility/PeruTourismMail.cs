@@ -77,7 +77,7 @@ namespace PeruTourism.Utility
                 mailMessage.Priority = MailPriority.High;
 
                 //mailMessage.Body = string.Format(MailErrorTemplate, ex.Message, ex.TargetSite, ex.Source, ex.StackTrace, DateTime.Now.ToString("MMMM dd, yyyy HH:mm tt"));
-                //client.EnableSsl = true;
+                client.EnableSsl = true;
                 client.Send(mailMessage);
                 mailMessage.Dispose();
             }
