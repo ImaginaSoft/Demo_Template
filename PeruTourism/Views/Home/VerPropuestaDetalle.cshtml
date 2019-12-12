@@ -107,6 +107,18 @@
         }
 </style>
 <script src="~/Scripts/Galeria/Galeria.js"></script>
+@*<script>
+    window.onload = function () {
+        //script goes here
+    };
+    //or if you prefer jQuery
+    $(function () {
+        //script goes here
+
+        var dataId = $(this).attr("data-id");
+        alert("The data-id of clicked item is: " + dataId);
+    });
+</script>*@
 @if (lstServicios.Count != 0)
 {
     if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
@@ -240,82 +252,170 @@
                     @for (int i = 0; i < lstServicios.Count; i++)
                     {
                         string[] servicios = lstServicios[i].DesServicioDet.Split('|');
-                        <div class="group prop-detalle">
-                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
-                                <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
-                                <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
-                            </div>
-                            <div class="prop-content collapse in" id="content_@lstServicios[i].NroDia.ToString()">
-                                <div class="group">
-                                    <div class="prop-info">
-                                        <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
 
-                                        @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
+                        if (lstServicios[i].NroDia.ToString() == "1")
+                        {
+
+                            <div class="group prop-detalle">
+                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                                    <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
+                                    <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
+                                </div>
+                                <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
+                                    <div class="group">
+                                        <div class="prop-info">
+                                            <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
+
+                                            @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
                                 {
                                     <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
                                 }*@
 
 
 
-                                        <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
-                                    </div>
-                                    <ul>
-                                        @foreach (string servicio in servicios)
-                                        {
-
-
-
-                                            if (servicio != string.Empty)
+                                            <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
+                                        </div>
+                                        <ul>
+                                            @foreach (string servicio in servicios)
                                             {
 
-                                                var posicionBuscado = servicio.IndexOf("↕");
-                                                var tamañoCadena = servicio.Length;
-
-                                                var starIndex = posicionBuscado + 1;
-                                                var endIndex = tamañoCadena - starIndex;
-                                                var servicioEncontrado = string.Empty;
-
-                                                if (posicionBuscado != -1)
-                                                {
-                                                    servicioEncontrado = servicio.Substring(starIndex, endIndex);
-                                                }
 
 
-
-                                                if (servicioEncontrado != string.Empty)
+                                                if (servicio != string.Empty)
                                                 {
 
-                                                    <li>
-                                                        @Html.Raw(servicio.Substring(0, posicionBuscado))
+                                                    var posicionBuscado = servicio.IndexOf("↕");
+                                                    var tamañoCadena = servicio.Length;
 
-                                                    </li>
+                                                    var starIndex = posicionBuscado + 1;
+                                                    var endIndex = tamañoCadena - starIndex;
+                                                    var servicioEncontrado = string.Empty;
 
-                                                    <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Hotel details</span></a></div>
+                                                    if (posicionBuscado != -1)
+                                                    {
+                                                        servicioEncontrado = servicio.Substring(starIndex, endIndex);
+                                                    }
+
+
+
+                                                    if (servicioEncontrado != string.Empty)
+                                                    {
+
+                                                        <li>
+                                                            @Html.Raw(servicio.Substring(0, posicionBuscado))
+
+                                                        </li>
+
+                                                        <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Hotel details</span></a></div>
+
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <li>
+                                                            @Html.Raw(servicio)
+                                                        </li>
+
+                                                    }
+
+
+
+
 
                                                 }
-                                                else
-                                                {
-
-                                                    <li>
-                                                        @Html.Raw(servicio)
-                                                    </li>
-
-                                                }
-
-
 
 
 
                                             }
-
-
-
-                                        }
-                                    </ul>
+                                        </ul>
+                                    </div>
                                 </div>
+                                <div class="prop-icon"></div>
                             </div>
-                            <div class="prop-icon"></div>
-                        </div>
+
+                        }
+                        else
+                        {
+                            <div class="group prop-detalle">
+                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                                    <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
+                                    <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
+                                </div>
+                                <div class="prop-content collapse in" id="content_@lstServicios[i].NroDia.ToString()">
+                                    <div class="group">
+                                        <div class="prop-info">
+                                            <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
+
+                                            @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
+                                {
+                                    <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                                }*@
+
+
+
+                                            <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
+                                        </div>
+                                        <ul>
+                                            @foreach (string servicio in servicios)
+                                            {
+
+
+
+                                                if (servicio != string.Empty)
+                                                {
+
+                                                    var posicionBuscado = servicio.IndexOf("↕");
+                                                    var tamañoCadena = servicio.Length;
+
+                                                    var starIndex = posicionBuscado + 1;
+                                                    var endIndex = tamañoCadena - starIndex;
+                                                    var servicioEncontrado = string.Empty;
+
+                                                    if (posicionBuscado != -1)
+                                                    {
+                                                        servicioEncontrado = servicio.Substring(starIndex, endIndex);
+                                                    }
+
+
+
+                                                    if (servicioEncontrado != string.Empty)
+                                                    {
+
+                                                        <li>
+                                                            @Html.Raw(servicio.Substring(0, posicionBuscado))
+
+                                                        </li>
+
+                                                        <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Hotel details</span></a></div>
+
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <li>
+                                                            @Html.Raw(servicio)
+                                                        </li>
+
+                                                    }
+
+
+
+
+
+                                                }
+
+
+
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="prop-icon"></div>
+                            </div>
+
+                        }
+
+
                     }
                 </section>
 
@@ -698,82 +798,169 @@
                     @for (int i = 0; i < lstServicios.Count; i++)
                     {
                         string[] servicios = lstServicios[i].DesServicioDet.Split('|');
-                        <div class="group prop-detalle">
-                            <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
-                                <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
-                                <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
-                            </div>
-                            <div class="prop-content collapse in" id="content_@lstServicios[i].NroDia.ToString()">
-                                <div class="group">
-                                    <div class="prop-info">
-                                        <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
 
-                                        @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
+                        if (lstServicios[i].NroDia.ToString() == "1")
+                        {
+
+                            <div class="group prop-detalle">
+                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                                    <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
+                                    <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
+                                </div>
+                                <div class="prop-content collapse in" id="content_@lstServicios[i].NroDia.ToString()">
+                                    <div class="group">
+                                        <div class="prop-info">
+                                            <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
+
+                                            @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
                                 {
                                     <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
                                 }*@
 
 
 
-                                        <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
-                                    </div>
-                                    <ul>
-                                        @foreach (string servicio in servicios)
-                                        {
-
-
-
-                                            if (servicio != string.Empty)
+                                            <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
+                                        </div>
+                                        <ul>
+                                            @foreach (string servicio in servicios)
                                             {
 
-                                                var posicionBuscado = servicio.IndexOf("↕");
-                                                var tamañoCadena = servicio.Length;
-
-                                                var starIndex = posicionBuscado + 1;
-                                                var endIndex = tamañoCadena - starIndex;
-                                                var servicioEncontrado = string.Empty;
-
-                                                if (posicionBuscado != -1)
-                                                {
-                                                    servicioEncontrado = servicio.Substring(starIndex, endIndex);
-                                                }
 
 
-
-                                                if (servicioEncontrado != string.Empty)
+                                                if (servicio != string.Empty)
                                                 {
 
-                                                    <li>
-                                                        @Html.Raw(servicio.Substring(0, posicionBuscado))
+                                                    var posicionBuscado = servicio.IndexOf("↕");
+                                                    var tamañoCadena = servicio.Length;
 
-                                                    </li>
+                                                    var starIndex = posicionBuscado + 1;
+                                                    var endIndex = tamañoCadena - starIndex;
+                                                    var servicioEncontrado = string.Empty;
 
-                                                    <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
+                                                    if (posicionBuscado != -1)
+                                                    {
+                                                        servicioEncontrado = servicio.Substring(starIndex, endIndex);
+                                                    }
+
+
+
+                                                    if (servicioEncontrado != string.Empty)
+                                                    {
+
+                                                        <li>
+                                                            @Html.Raw(servicio.Substring(0, posicionBuscado))
+
+                                                        </li>
+
+                                                        <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
+
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <li>
+                                                            @Html.Raw(servicio)
+                                                        </li>
+
+                                                    }
+
+
+
+
 
                                                 }
-                                                else
-                                                {
-
-                                                    <li>
-                                                        @Html.Raw(servicio)
-                                                    </li>
-
-                                                }
-
-
 
 
 
                                             }
-
-
-
-                                        }
-                                    </ul>
+                                        </ul>
+                                    </div>
                                 </div>
+                                <div class="prop-icon"></div>
                             </div>
-                            <div class="prop-icon"></div>
-                        </div>
+                        }
+                        else
+                        {
+
+                            <div class="group prop-detalle">
+                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                                    <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
+                                    <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
+                                </div>
+                                <div class="prop-content collapse" id="content_@lstServicios[i].NroDia.ToString()">
+                                    <div class="group">
+                                        <div class="prop-info">
+                                            <div class="info"><i class="icon icon-location"></i>  @lstServicios[i].Ciudad.ToString()</div>
+
+                                            @*@if (lstServicios[i].HoraServicio.ToString().Trim() != string.Empty)
+                                {
+                                    <div class="info"><i class="icon icon-time"></i> @lstServicios[i].HoraServicio.ToString()</div>
+                                }*@
+
+
+
+                                            <div class="info"><i class="icon icon-calendar"></i> @lstServicios[i].FchInicio.ToString("dd/MM/yyyy")</div>
+                                        </div>
+                                        <ul>
+                                            @foreach (string servicio in servicios)
+                                            {
+
+
+
+                                                if (servicio != string.Empty)
+                                                {
+
+                                                    var posicionBuscado = servicio.IndexOf("↕");
+                                                    var tamañoCadena = servicio.Length;
+
+                                                    var starIndex = posicionBuscado + 1;
+                                                    var endIndex = tamañoCadena - starIndex;
+                                                    var servicioEncontrado = string.Empty;
+
+                                                    if (posicionBuscado != -1)
+                                                    {
+                                                        servicioEncontrado = servicio.Substring(starIndex, endIndex);
+                                                    }
+
+
+
+                                                    if (servicioEncontrado != string.Empty)
+                                                    {
+
+                                                        <li>
+                                                            @Html.Raw(servicio.Substring(0, posicionBuscado))
+
+                                                        </li>
+
+                                                        <div class="fare-detail" data-toggle="modal"><a href="javascript:void(0);" class="shorttexthref"><span onclick="openDetailHotel(@servicioEncontrado)"><i class="icon icon-hotel-detalle"></i>Detalle Hotel</span></a></div>
+
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <li>
+                                                            @Html.Raw(servicio)
+                                                        </li>
+
+                                                    }
+
+
+
+
+
+                                                }
+
+
+
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="prop-icon"></div>
+                            </div>
+
+                        }
+
                     }
                 </section>
                 <div class="group prop-detalle">
