@@ -471,7 +471,7 @@ h1,
 }
 h2,
 .h2 {
-  font-size: 30px;
+  font-size: 25px;
 }
 h3,
 .h3 {
@@ -5953,4 +5953,13 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+h2, .h2 {
+    font-size: 30px;
+}
+
+element.style {
+    padding: 0;
+    margin: 0;
 }
