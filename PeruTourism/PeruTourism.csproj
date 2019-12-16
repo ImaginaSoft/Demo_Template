@@ -237,6 +237,7 @@
     <Content Include="Content\css\layout.min.css" />
     <Content Include="Content\css\propuestas.css" />
     <Content Include="Content\css\propuestas.min.css" />
+    <Content Include="Content\css\tabla_costos.css" />
     <Content Include="Content\css\tabla_pasajero.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\perutourism.svg" />
