@@ -84,20 +84,42 @@
                 <div class="op-group">
                     <div class="op op-propuesta">
                         <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente , pFlagVendido = flagNoVendido})">
-                            <div class="icon icon-propuesta"></div> 
+                            <div class="icon icon-propuesta"></div>
                             <div class="description">
                                 My travel<br>
                                 proposals
                             </div>
                         </a>
                     </div>
-                    <div class="op op-info">
-                        @*<a href="javascript:mostrarSubMenu()">*@
-                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente ,pFlagVendido = flagVendido})">
-                            <div class="icon icon-info"></div>
-                            <div class="description">My Booked trip</div>
-                        </a>
-                    </div>
+
+
+                    @if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
+                    {
+
+                        <div class="op op-info">
+                            @*<a href="javascript:mostrarSubMenu()">*@
+                            <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente ,pFlagVendido = flagVendido})">
+                                <div class="icon icon-info"></div>
+                                <div class="description">My Booked trip</div>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="op op-info">
+                            @*<a href="javascript:mostrarSubMenu()">*@
+                            <a >
+                                <div class="icon icon-info"></div>
+                                <div class="description">My Booked trip</div>
+                            </a>
+                        </div>
+                    }
+
+
+
+
+
+
                     <div class="op op-testimonio">
                         <a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">
                             <div class="icon icon-testimonio"></div>
@@ -178,12 +200,31 @@
                             </div>
                         </a>
                     </div>
-                    <div class="op op-info">
-                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente , pFlagVendido = flagVendido})">
-                            <div class="icon icon-info"></div>
-                            <div class="description">Mi viaje reservado</div>
-                        </a>
-                    </div>
+
+
+                    @if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
+                    {
+                        <div class="op op-info">
+                            <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente , pFlagVendido = flagVendido})">
+                                <div class="icon icon-info"></div>
+                                <div class="description">Mi viaje reservado</div>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="op op-info">
+                            <a >
+                                <div class="icon icon-info"></div>
+                                <div class="description">Mi viaje reservado</div>
+                            </a>
+                        </div>
+                    }
+
+
+
+
+
                     <div class="op op-testimonio">
                         <a href="https://www.peru-turismo.com/experiencia-de-viaje/comments1" target="_blank">
                             <div class="icon icon-testimonio"></div>
