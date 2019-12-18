@@ -92,6 +92,13 @@
         }
 </style>
 
+<style>
+    #btnMoveRight {
+        border: none;
+        margin-right: 10px;
+    }
+</style>
+
 <style type="text/css">
     #CondicionesContainer .prop-detalle,
     #CondicionesContainer .prop-detalle:hover {
@@ -445,46 +452,52 @@
 
                 <div class="prop-table">
                         <div class="col-sm-12">
-                            <div class="table-responsive">
-                                <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%"
-                                       cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>DESCRIPTION</th>
-                                            <th>PRICE PER PERSON</th>
-                                            <th>NUMBER OF TRAVELLERS</th>
-                                            <th>TOTAL PRICE</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var d in lstPropuestaPrecio)
-                                        {
-
-                                            SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
-
-
+                            <div>
+                                <div class="col-sm-1">
+                                    <img src="~/Repository/FlechaDerecha.gif" id="btnMoveRight" style="width: 50px; margin-top:30px;"/>
+                                </div>
+                                <div class="col-sm-11 table-responsive">
+                                    <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%"
+                                           cellspacing="0">
+                                        <thead>
                                             <tr>
-                                                <td>@d.DesOrden</td>
-                                                <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
-                                                <td>@d.CantPersonas</td>
-                                                <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
+
+                                                <th>DESCRIPCIÓN</th>
+                                                <th>PRICE PER PERSON</th>
+                                                <th>NUMBER OF TRAVELLERS</th>
+                                                <th>TOTAL PRICE</th>
                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var d in lstPropuestaPrecio)
+                                            {
+
+                                                SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
 
 
-                                        }
+                                                <tr>
+                                                    <td>@d.DesOrden</td>
+                                                    <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
+                                                    <td>@d.CantPersonas</td>
+                                                    <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
+                                                </tr>
 
-                                        <tr class="table-total hidden-xs">
-                                            <td colspan="3">Total</td>
-                                            <td>USD @Convert.ToDecimal(SumPrice).ToString("#,##0")</td>
-                                        </tr>
-                                    </tbody>
-                                    @{int totalSumPrice = SumPrice; }
-                                </table>
-                            </div>
-                            <div class="div-total visible-xs">
-                                Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
-                            </div>
-                        </div>
+
+                                            }
+
+                                            <tr class="table-total hidden-xs">
+                                                <td colspan="3">Total</td>
+                                                <td>USD @Convert.ToDecimal(SumPrice).ToString("#,##0")</td>
+                                            </tr>
+                                        </tbody>
+                                        @{int totalSumPrice = SumPrice; }
+                                    </table>
+                                </div>
+                                    </div>
+                                    <div class="div-total visible-xs">
+                                        Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
+                                    </div>
+                                </div>
 
                         <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
                             <div class="col-sm-6" style="padding-top: 15px; padding-bottom: 10px">
@@ -1269,5 +1282,11 @@ else
             $(".marcaMenu").removeClass("active");
             $(".marcaMenu02").addClass("active");
         }
+
+    // Botón mover a la derecha
+        $('#btnMoveRight').click(() => {
+            $('.table-responsive').scrollLeft($('#demoGrid').width() - $('.table-responsive').width())
+        })
+
     });
 </script>
