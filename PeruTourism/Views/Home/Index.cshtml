@@ -45,7 +45,12 @@
     bool flagNoVendido = false;
     
 }
+<script type="text/javascript">
 
+    function gg() {
+        $('#mensajeAlerta').show();
+    }
+</script>
 <script src="~/Scripts/Galeria/Galeria.js"></script>
 
 @if (Session["Idioma"] != null || Session["IdCliente"] != null || Session["NomCliente"] != null || Session["CodCliente"] != null)
@@ -106,13 +111,17 @@
                     }
                     else
                     {
-                        <div class="op op-info">
-                            @*<a href="javascript:mostrarSubMenu()">*@
-                            <a >
-                                <div class="icon icon-info"></div>
-                                <div class="description">My Booked trip</div>
-                            </a>
-                        </div>
+                <div class="op op-info">
+                    @*<a href="javascript:mostrarSubMenu()">*@
+                    <a onclick="gg();">
+                        <div class="icon icon-info"></div>
+                        <div class="description">My Booked trip</div>
+                    </a>
+                    <div id="mensajeAlerta" class="alert alert-warning alert-dismissable" style="display:none">
+                        @*<button type="button" class="close" data-dismiss="alert">&times;</button>*@
+                        <strong>¡Hello!</strong> You still don't have a booked trip.
+                    </div>
+                </div>
                     }
 
 
@@ -214,10 +223,14 @@
                     else
                     {
                         <div class="op op-info">
-                            <a >
+                            <a onclick="gg();">
                                 <div class="icon icon-info"></div>
                                 <div class="description">Mi viaje reservado</div>
                             </a>
+                            <div id="mensajeAlerta" class="alert alert-warning alert-dismissable" style="display:none">
+                                @*<button type="button" class="close" data-dismiss="alert">&times;</button>*@
+                                <strong>¡Hola!</strong> Aún no cuentas un viaje reservados.
+                            </div>
                         </div>
                     }
 
