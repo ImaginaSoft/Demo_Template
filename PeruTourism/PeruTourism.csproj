@@ -252,6 +252,7 @@
     <Content Include="Content\images\demo2.jpg" />
     <Content Include="Content\images\demo3.jpg" />
     <Content Include="Content\images\error-icon.png" />
+    <Content Include="Content\images\FlechaDerecha.gif" />
     <Content Include="Content\images\gg.PNG" />
     <Content Include="Content\images\header-bg.jpg" />
     <Content Include="Content\images\header-bg.png" />
@@ -372,6 +373,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Views\Home\Pago.cshtml" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.disco" />
     <Content Include="Web References\ws_SendGridEmail\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

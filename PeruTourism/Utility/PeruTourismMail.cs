@@ -1,16 +1,10 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Net.Mail;
-using System.Net;
 using ws = PeruTourism.ws_SendGridEmail;
 using System.Text;
 using System.Security.Cryptography;
 using System.Web.Configuration;
-using System.Collections.Specialized;
-using PeruTourism.Repository.Data;
 using PeruTourism.Models.PeruTourism;
 using CustomLog;
 
@@ -21,45 +15,6 @@ namespace PeruTourism.Utility
 
         
         private const string MailAccountFrom = "soporte@imaginasoftware.com";
-        private string strSecureAppSettings;
-
-        public void EnviarCorreo(string pStrAsunto, string pStrMailTo, string pStrBody)
-        {
-            try
-            {
-
-                var fromAddress = new MailAddress("soporte@imaginasoftware.com", "From Name");
-                
-                var toAddress = new MailAddress(pStrMailTo, "To Name");
-                 string fromPassword = "soporteImagina123";
-                 string subject = pStrAsunto;
-                 string body = pStrBody;
-
-                var smtp = new SmtpClient
-                {
-                    Host = "kem10730.inkahosting.com.pe",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                };
-                using (var message = new MailMessage(fromAddress, toAddress)
-                {
-                    Subject = subject,
-                    Body = body
-                })
-                {
-                    smtp.Send(message);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
 
         public void EnviarCorreo_GG(string pStrAsunto, string pStrMailToCliente,string pStrEmailVendedor, string pStrBody)
         {

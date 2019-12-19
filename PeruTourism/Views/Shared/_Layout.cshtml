@@ -1,6 +1,7 @@
 ﻿@using PeruTourism.Utility
 @model PeruTourism.Models.PeruTourism.PropuestaViewModel
 
+
 @{
     bool flagVendido = true;
     bool flagNoVendido = false;
@@ -35,12 +36,11 @@
 
         function gg() {
             $('#mensajeAlerta').show();
-           if($("#mensajeAlerta").length)
-		{
-			var target_offset = $("#mensajeAlerta").offset();
-			var target_top = target_offset.top;
-			$('html,body').animate({scrollTop:target_top},{duration:"slow"});
-		}
+            if ($("#mensajeAlerta").length) {
+                var target_offset = $("#mensajeAlerta").offset();
+                var target_top = target_offset.top;
+                $('html,body').animate({ scrollTop: target_top }, { duration: "slow" });
+            }
 
         }
     </script>
@@ -76,16 +76,21 @@
                                             <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
                                             @*<li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagNoVendido })">My travel itineraries</a></li>*@
 
-                                            @if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
+                                            @if (lstProgramas !=null)
                                             {
-                                                <li class="marcaMenu marcaMenu03"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido })">My booked trip</a></li>
+                                                if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
+                                                {
+                                                    <li class="marcaMenu marcaMenu03"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido })">My booked trip</a></li>
 
-                                            }
-                                            else
-                                            {
-                                                <li class="marcaMenu marcaMenu03" style="display:none"><a onclick="gg();">My booked trip</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="marcaMenu marcaMenu03" style="display:none"><a onclick="gg();">My booked trip</a></li>
 
+                                                }
                                             }
+
+
 
                                             <li class="marcaMenu marcaMenu04"><a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">Our customer´s travel experiences</a></li>
 
@@ -125,16 +130,22 @@
                                             <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Inicio</a></li>
                                             <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagNoVendido})">Propuestas para mi viaje</a></li>
 
-                                            @if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
+                                            @if (lstProgramas != null)
                                             {
-                                                <li class="marcaMenu marcaMenu03"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido })">Mi viaje reservado</a></li>
+                                                if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
+                                                {
+                                                    <li class="marcaMenu marcaMenu03"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagVendido })">Mi viaje reservado</a></li>
+
+                                                }
+                                                else
+                                                {
+                                                    <li class="marcaMenu marcaMenu03" style="display:none"><a onclick="gg();">Mi viaje reservado</a></li>
+
+                                                }
 
                                             }
-                                            else
-                                            {
-                                                <li class="marcaMenu marcaMenu03" style="display:none"><a onclick="gg();">Mi viaje reservado</a></li>
 
-                                            }
+
 
                                             <li class="marcaMenu marcaMenu04"><a href="https://www.peru-turismo.com/experiencia-de-viaje/comments1" target="_blank">Testimonios de nuestros clientes</a></li>
 
