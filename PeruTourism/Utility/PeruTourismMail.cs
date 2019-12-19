@@ -5,24 +5,23 @@ using System.Linq;
 using System.Web;
 using System.Net.Mail;
 using System.Net;
+using ws = PeruTourism.ws_SendGridEmail;
+using System.Text;
+using System.Security.Cryptography;
+using System.Web.Configuration;
+using System.Collections.Specialized;
+using PeruTourism.Repository.Data;
+using PeruTourism.Models.PeruTourism;
+using CustomLog;
 
 namespace PeruTourism.Utility
 {
     public class PeruTourismMail
     {
 
-        //public const string strServer = "smtp.gmail.com";
-        //private const string MailErrorSubject = "ERROR EN LA APLICACION";
+        
         private const string MailAccountFrom = "soporte@imaginasoftware.com";
-        //private const string MailErrorAccountTo = "bdavid2290@gmail.com";
-        //private const string MailErrorTemplate = @"<h1> {0} </h1>
-	       //                             TargetSite:   <b>{1}</b>  <hr />
-	       //                             Source:       <b>{2}</b>  <hr />
-        //                                    StackTrace:   <b>{3}</b>  <hr />
-	       //                             DateTime:     <b>{5}</b>";
-        /*Para Implementar
-         
-              new PeruTourismMail().EnviarCorreo("Error CompraHotel FileAccessDeniedFault", "webmaster@gruponuevomundo.com.pe", "FileAccessDeniedFault: <br>" + ex.Message);*/
+        private string strSecureAppSettings;
 
         public void EnviarCorreo(string pStrAsunto, string pStrMailTo, string pStrBody)
         {
@@ -88,7 +87,64 @@ namespace PeruTourism.Utility
            
         }
 
+        private static string Encriptar(string cadena)
+        {
+            using (System.Security.Cryptography.MD5 md5Hash = MD5.Create())
+            {
+                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(cadena));
 
+                StringBuilder sBuilder = new StringBuilder();
+
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+
+                return sBuilder.ToString();
+            }
+        }
+
+        public void EnviarCorreoSendGrid(string pNombreEmisor,string pCorreoEmisor,string pDestinatarios,string pAsunto,string pCuerpo) {
+
+            var send = new ws.wsMails();
+            var resultado = new RespuestaEmail();
+
+
+            try {
+                // *************************************************************************
+                // Para envio de correos sin adjunto
+                // *************************************************************************
+
+                var enviarSinAdjunto = send.EnviarCorreo(
+                    new ws.Autenticacion
+                    {
+                        InWebId = ws.TipoWeb.Mozart,
+                        StUsuario = Encriptar(WebConfigurationManager.AppSettings["key_usuarioTk"].ToString()),
+                        StClave = Encriptar(WebConfigurationManager.AppSettings["key_claveTk"].ToString())
+                    },
+                    new ws.Correo
+                    {
+                        NombreEmisor = pNombreEmisor,
+                        CorreoEmisor = pCorreoEmisor,
+                        Destinatarios = pDestinatarios,
+                        Asunto = pAsunto,
+                        CuerpoHtml = pCuerpo
+                    });
+                        // *************************************************************************
+
+                        //resultado.Tipo = enviarSinAdjunto.
+                        resultado.Valor = enviarSinAdjunto.Valor;
+            }
+            catch (Exception ex) {
+
+                resultado.Tipo = TipoRespuesta.Error;
+                resultado.Valor = ex.Message;
+
+                Bitacora.Current.Error<PeruTourismMail>(ex, new { TipoRespuesta.Error });
+
+            }
+        
+        }
 
     }
 }

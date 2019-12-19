@@ -4,7 +4,7 @@
 @{
     bool flagVendido = true;
     bool flagNoVendido = false;
-     var lstProgramas = Model.lstPrograma;
+    var lstProgramas = Model.lstPrograma;
 }
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@
     <title>PeruTourism</title>
     <!-- ingresar descripcion del sitio -->
     <meta name="description" content="Peru Tourism: Your customized travel website. Go beyond ordinary travel!">
-    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon">
+    <link rel="shortcut icon" href="@Url.Content("~/perutourismICO.ico")" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0f703a">
@@ -34,7 +34,6 @@
     <script type="text/javascript">
 
         function gg() {
-            debugger
             $('#mensajeAlerta').show();
            if($("#mensajeAlerta").length)
 		{
@@ -75,7 +74,7 @@
                                     <div class="row">
                                         <ul class="nav navbar-nav">
                                             <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
-                                            <li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagNoVendido })">My travel itineraries</a></li>
+                                            @*<li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagNoVendido })">My travel itineraries</a></li>*@
 
                                             @if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
                                             {
