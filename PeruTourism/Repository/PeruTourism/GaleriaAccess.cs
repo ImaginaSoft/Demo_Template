@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.SqlClient;
 using System.Data;
 using PeruTourism.Models.PeruTourism;
-using PeruTourism.Models.Galeria;
-using PeruTourism.Utility;
-using System.Web.Configuration;
-using System.Collections.Specialized;
+
 
 
 namespace PeruTourism.Repository.PeruTourism

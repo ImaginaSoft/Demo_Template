@@ -443,7 +443,7 @@
                         <div class="prop-num"><span>SPECIAL FEATURES</span></div>
                         <div class="prop-title" style="padding:0;margin:0"></div>
                     </div>
-                    <div class="prop-content collapse in" id="content_13">
+                    <div class="prop-content collapse" id="content_13">
                         <div class="group">
                             @*<h2>This program includes :</h2>*@
                             @Html.Raw(lstServicios.FirstOrDefault().Resumen)
@@ -517,7 +517,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-6">
-                                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
+                                <a class="pago btn btn-primary" href="@Url.Action("Pago", "Home",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
                                     PAY NOW
                                 </a>
                             </div>
@@ -1036,10 +1036,10 @@
                 </section>
                 <div class="group prop-detalle">
                     <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_13">
-                        <div class="prop-num"><span>SPECIAL FEATURES</span></div>
+                        <div class="prop-num"><span>CARACTERÍSTICAS ESPECIALES</span></div>
                         <div class="prop-title"></div>
                     </div>
-                    <div class="prop-content collapse in" id="content_13">
+                    <div class="prop-content collapse" id="content_13">
                         <div class="group">
                             @*<h2>This program includes :</h2>*@
                             @Html.Raw(lstServicios.FirstOrDefault().Resumen)
@@ -1117,7 +1117,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-6">
-                                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
+                                <a class="pago btn btn-primary" href="@Url.Action("Pago", "Home",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
                                     PAGA AHORA
                                 </a>
                             </div>
