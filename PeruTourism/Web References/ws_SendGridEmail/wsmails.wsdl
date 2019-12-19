@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="EnviarCorreo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="credenciales" type="tns:Autenticacion" />
+            <s:element minOccurs="0" maxOccurs="1" name="informacion" type="tns:Correo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Autenticacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="InWebId" type="tns:TipoWeb" />
+          <s:element minOccurs="0" maxOccurs="1" name="StUsuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StClave" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TipoWeb">
+        <s:restriction base="s:string">
+          <s:enumeration value="Mozart" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Correo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEmisor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CorreoEmisor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Destinatarios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Asunto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CuerpoTexto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CuerpoHtml" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Adjuntos" type="tns:ArrayOfAdjunto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAdjunto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Adjunto" nillable="true" type="tns:Adjunto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Adjunto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ArchivoBytes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreArchivo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EnviarCorreoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EnviarCorreoResult" type="tns:Respuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Respuesta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="tns:TipoRespuesta" />
+          <s:element minOccurs="0" maxOccurs="1" name="Valor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OtroValor" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TipoRespuesta">
+        <s:restriction base="s:string">
+          <s:enumeration value="Exito" />
+          <s:enumeration value="Alerta" />
+          <s:enumeration value="Error" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="EnviarCorreoSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarCorreo" />
+  </wsdl:message>
+  <wsdl:message name="EnviarCorreoSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarCorreoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wsMailsSoap">
+    <wsdl:operation name="EnviarCorreo">
+      <wsdl:input message="tns:EnviarCorreoSoapIn" />
+      <wsdl:output message="tns:EnviarCorreoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsMailsSoap" type="tns:wsMailsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EnviarCorreo">
+      <soap:operation soapAction="http://tempuri.org/EnviarCorreo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsMailsSoap12" type="tns:wsMailsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EnviarCorreo">
+      <soap12:operation soapAction="http://tempuri.org/EnviarCorreo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsMails">
+    <wsdl:port name="wsMailsSoap" binding="tns:wsMailsSoap">
+      <soap:address location="http://www.pentagrama.com/ws-sendgridemail/wsmails.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsMailsSoap12" binding="tns:wsMailsSoap12">
+      <soap12:address location="http://www.pentagrama.com/ws-sendgridemail/wsmails.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

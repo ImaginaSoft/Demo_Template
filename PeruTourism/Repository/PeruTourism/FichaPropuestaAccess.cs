@@ -397,6 +397,7 @@ namespace PeruTourism.Repository.PeruTourism
             }
             catch (Exception ex)
             {
+                return "Error";
                 throw;
             }
         }

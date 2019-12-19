@@ -196,6 +196,7 @@
     <Compile Include="Models\PeruTourism\PropuestaViewModel.cs" />
     <Compile Include="Models\PeruTourism\ReservaAereo.cs" />
     <Compile Include="Models\PeruTourism\ReservaHotel.cs" />
+    <Compile Include="Models\PeruTourism\RespuestaEmail.cs" />
     <Compile Include="Models\PeruTourism\Servicio.cs" />
     <Compile Include="Models\PeruTourism\Staff.cs" />
     <Compile Include="Models\PeruTourism\UltimaPublicacion.cs" />
@@ -220,6 +221,11 @@
     <Compile Include="Utility\ConstantesWeb.cs" />
     <Compile Include="Utility\PeruTourismMail.cs" />
     <Compile Include="Web References\ws_GenereEticket_Visa\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ws_SendGridEmail\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -367,6 +373,14 @@
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.disco" />
+    <Content Include="Web References\ws_SendGridEmail\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\ws_SendGridEmail\Respuesta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\ws_SendGridEmail\wsmails.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -391,6 +405,7 @@
     <Content Include="Views\Galeria\Galeria.cshtml" />
     <Content Include="Views\Galeria\_ModalDetalleHotel.cshtml" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.wsdl" />
+    <None Include="Web References\ws_SendGridEmail\wsmails.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -411,6 +426,17 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="http://www.pentagrama.com/ws-sendgridemail/wsmails.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ws_SendGridEmail\</RelPath>
+      <UpdateFromURL>http://www.pentagrama.com/ws-sendgridemail/wsmails.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PeruTourism_ws_SendGridEmail_wsMails</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="https://www.multimerchantvisanet.com/WSGenerarEticket/WSEticket.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ws_GenereEticket_Visa\</RelPath>

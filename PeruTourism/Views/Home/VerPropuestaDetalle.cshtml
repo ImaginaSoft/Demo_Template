@@ -115,19 +115,20 @@
             border: 0;
         }
 </style>
-<script src="~/Scripts/Galeria/Galeria.js"></script>
-@*<script>
-        window.onload = function () {
-            //script goes here
-        };
-        //or if you prefer jQuery
-        $(function () {
-            //script goes here
+@*<script type="text/javascript">
+    function validarTextArea() {
 
-            var dataId = $(this).attr("data-id");
-            alert("The data-id of clicked item is: " + dataId);
-        });
-    </script>*@
+      if (!$("#txtMessage").val()) {
+                 $("#mensajeConfirmacion").hide();
+                 $("#mensajeConfirmacionGG").show();
+        }
+    }
+    
+
+
+</script>*@
+<script src="~/Scripts/Galeria/Galeria.js"></script>
+
 @if (lstServicios.Count != 0)
 {
     if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
@@ -137,31 +138,33 @@
             <div class="container-fluid">
                 <section class="slider" id="scenex" style="margin-bottom: 0px;">
                     <div class="container">
+                        <span class="description">Here is where the trip of your lifetime starts...</span>
+
                         <div class="options">
                             <div class="op-group">
                                 @*<span class="description">Details</span>*@
                                 @*<section class="subtitle" style="margin-bottom: 0px;">
-                                        <div class="container">
-                                            <div class="options">
-                                                <div class="op-group">
-                                                    <div class="op op-propuesta">
-                                                        <div class="icon icon-propuesta"></div>
+                    <div class="container">
+                        <div class="options">
+                            <div class="op-group">
+                                <div class="op op-propuesta">
+                                    <div class="icon icon-propuesta"></div>
 
-                                                        @if (flagVendido == true)
-                                                        {
-                                                            <div class="title">My booked trip</div>
-                                                        }
-                                                        else
-                                                        {
+                                    @if (flagVendido == true)
+                                    {
+                                        <div class="title">My booked trip</div>
+                                    }
+                                    else
+                                    {
 
-                                                            <div class="title">My travel itineraries</div>
-                                                        }
+                                        <div class="title">My travel itineraries</div>
+                                    }
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>*@
                             </div>
                         </div>
                     </div>
@@ -694,33 +697,67 @@
     else
     {
 
-        <div id="propDet" class="secondary">
+        <div id="prop" class="secondary">
             <div class="container-fluid">
                 @*<section class="subtitle" style="margin-bottom: 0px;">
+            <div class="container">
+                <div class="options">
+                    <div class="op-group">
+                        <div class="op op-propuesta">
+                                <div class="icon icon-propuesta"></div>
+
+                                @if (flagVendido == true)
+                                {
+                                    <div class="title">Mi viaje reservado</div>
+                                }
+                                else
+                                {
+                                    <div class="title">Propuestas para mi viaje</div>
+                                }
+
+
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+
+                <section class="slider" id="scenex" style="margin-bottom: 0px;">
+                    <div class="container">
+                        <span class="description">Aquí es donde comienza el viaje de tu vida...</span>
+
+                        <div class="options">
+                            <div class="op-group">
+                                @*<span class="description">Details</span>*@
+                                @*<section class="subtitle" style="margin-bottom: 0px;">
                     <div class="container">
                         <div class="options">
                             <div class="op-group">
                                 <div class="op op-propuesta">
-                                        <div class="icon icon-propuesta"></div>
+                                    <div class="icon icon-propuesta"></div>
 
-                                        @if (flagVendido == true)
-                                        {
-                                            <div class="title">Mi viaje reservado</div>
-                                        }
-                                        else
-                                        {
-                                            <div class="title">Propuestas para mi viaje</div>
-                                        }
+                                    @if (flagVendido == true)
+                                    {
+                                        <div class="title">My booked trip</div>
+                                    }
+                                    else
+                                    {
 
+                                        <div class="title">My travel itineraries</div>
+                                    }
 
-
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>*@
+                            </div>
+                        </div>
+                    </div>
+                    <img src="~/Content/images/slider-prop.jpg" class="img-bg" data-depth="0.1">
 
-
+                </section>
 
                 <div class="breadcrumb">
                     <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
