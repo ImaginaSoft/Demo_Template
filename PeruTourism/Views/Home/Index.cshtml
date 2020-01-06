@@ -43,9 +43,14 @@
     var idioma = ViewBag.Idioma == null ? "E" : ViewBag.Idioma;
     bool flagVendido = true;
     bool flagNoVendido = false;
-    
-}
 
+}
+<script type="text/javascript">
+
+    function gg() {
+        $('#mensajeAlerta').show();
+    }
+</script>
 <script src="~/Scripts/Galeria/Galeria.js"></script>
 
 @if (Session["Idioma"] != null || Session["IdCliente"] != null || Session["NomCliente"] != null || Session["CodCliente"] != null)
@@ -64,40 +69,66 @@
 
             @*<div class="breadcrumb">
 
-              
-
-                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
-                    <span class="breadcrumb__inner">
-                        <span class="breadcrumb__desc">Home</span>
-                    </span>
-                </a>
 
 
-            </div>*@
+                    <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Home</span>
+                        </span>
+                    </a>
+
+
+                </div>*@
 
 
         </div>
 
         <div class="container">
-           
+
             <section class="options popupBase">
                 <div class="op-group">
                     <div class="op op-propuesta">
                         <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente , pFlagVendido = flagNoVendido})">
-                            <div class="icon icon-propuesta"></div> 
+                            <div class="icon icon-propuesta"></div>
                             <div class="description">
                                 My travel<br>
                                 proposals
                             </div>
                         </a>
                     </div>
-                    <div class="op op-info">
-                        @*<a href="javascript:mostrarSubMenu()">*@
-                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente ,pFlagVendido = flagVendido})">
-                            <div class="icon icon-info"></div>
-                            <div class="description">My Booked trip</div>
-                        </a>
-                    </div>
+
+
+                    @if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
+                    {
+
+                        <div class="op op-info">
+                            @*<a href="javascript:mostrarSubMenu()">*@
+                            <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente ,pFlagVendido = flagVendido})">
+                                <div class="icon icon-info"></div>
+                                <div class="description">My Booked trip</div>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="op op-info">
+                            @*<a href="javascript:mostrarSubMenu()">*@
+                            <a onclick="gg();">
+                                <div class="icon icon-info"></div>
+                                <div class="description">My Booked trip</div>
+                            </a>
+                            <div id="mensajeAlerta" class="alert alert-warning alert-dismissable" style="display:none">
+                                @*<button type="button" class="close" data-dismiss="alert">&times;</button>*@
+                                <strong>¡Hello!</strong> You still don't have a booked trip.
+                            </div>
+                        </div>
+                    }
+
+
+
+
+
+
                     <div class="op op-testimonio">
                         <a href="https://www.perutourism.com/travel-experiences/comments1" target="_blank">
                             <div class="icon icon-testimonio"></div>
@@ -154,19 +185,19 @@
 
             @*<div class="breadcrumb">
 
-              
-                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
-                    <span class="breadcrumb__inner">
-                        <span class="breadcrumb__desc">Inicio</span>
-                    </span>
-                </a>
 
-            </div>*@
+                    <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__desc">Inicio</span>
+                        </span>
+                    </a>
+
+                </div>*@
 
         </div>
 
         <div class="container">
-        
+
             <section class="options popupBase">
                 <div class="op-group">
                     <div class="op op-propuesta">
@@ -178,14 +209,37 @@
                             </div>
                         </a>
                     </div>
-                    <div class="op op-info">
-                        <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente , pFlagVendido = flagVendido})">
-                            <div class="icon icon-info"></div>
-                            <div class="description">Mi viaje reservado</div>
-                        </a>
-                    </div>
+
+
+                    @if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
+                    {
+                        <div class="op op-info">
+                            <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = CodCliente , pFlagVendido = flagVendido})">
+                                <div class="icon icon-info"></div>
+                                <div class="description">Mi viaje reservado</div>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="op op-info">
+                            <a onclick="gg();">
+                                <div class="icon icon-info"></div>
+                                <div class="description">Mi viaje reservado</div>
+                            </a>
+                            <div id="mensajeAlerta" class="alert alert-warning alert-dismissable" style="display:none">
+                                @*<button type="button" class="close" data-dismiss="alert">&times;</button>*@
+                                <strong>¡Hola!</strong> Aún no cuentas con un viaje reservado.
+                            </div>
+                        </div>
+                    }
+
+
+
+
+
                     <div class="op op-testimonio">
-                        <a href="https://www.peru-turismo.com/experiencia-de-viaje/comments1" target="_blank">
+                        <a href="https://www.peru-turismo.com/experiencia-de-viaje/comments1" target="_self">
                             <div class="icon icon-testimonio"></div>
                             <div class="description">Testimonios de nuestros clientes</div>
                         </a>
@@ -281,7 +335,7 @@ else
     <div class="container-fluid">
         <section class="slider" id="scene">
             <div class="container" data-depth="0.2">
-                <span class="description">Tu sesion ha expirado, haga <a href="http://www.pentagrama.com/mozart/" style="color: white">click aquí</a> para volver a ingresar</span>
+                <span class="description">Tu sesion ha expirado, haga <a href="http://www.pentagrama.com/mozart/" style="color: white"><strong>click aquí</strong></a> para volver a ingresar</span>
                 <img src="~/Content/images/slider-group.png" class="img-group">
             </div>
             <img src="~/Content/images/slider-bg.jpg" class="img-bg" data-depth="0.1">

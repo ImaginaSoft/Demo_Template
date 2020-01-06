@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PeruTourism.Repository.PeruTourism;
 using PeruTourism.Utility;
 using PeruTourism.Models.PeruTourism;
-using System.Data.SqlClient;
 using System.Data;
 using PeruTourism.Models.Galeria;
-using PeruTourism.Models.Pasajero;
 using System.Transactions;
 using System.Web.Script.Serialization;
 using CustomLog;
+using PeruTourism.Models.Visa;
 
 namespace PeruTourism.Controllers
 {
@@ -211,6 +209,7 @@ namespace PeruTourism.Controllers
                 var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().FlagIdioma);
 
                 Session["EmailVendedor"] = lstProgramaGG.FirstOrDefault().EmailVendedor;
+                Session["NombreVendedor"] = lstProgramaGG.FirstOrDefault().NombreVendedor;
                 objPropuestaViewModel.lstPrograma = lstProgramaGG.Where(p => p.NroPrograma == NroPrograma).ToList();
 
             }
@@ -360,53 +359,39 @@ namespace PeruTourism.Controllers
             {
 
                 return View("~/Views/Shared/Error.cshtml");
-                //return Redirect("paquetes");
             }
         }
 
         [HttpPost]
         public JsonResult RegistrarHistorialCliente(string pDesLog, string pCodCliente, string pNroPedido, string pNroPropuesta,string pNroVersion)
         {
-            string gg = string.Empty;
+            string mensajeRespuesta = string.Empty;
             string emailCliente = Convert.ToString(Session["EmailCliente"]);
             string emailVendedor = Convert.ToString(Session["EmailVendedor"]);
+            FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+            PeruTourismMail Mensaje = new PeruTourismMail();
+
             try
             {
 
-                FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
-               
+                mensajeRespuesta = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
 
-                if (pDesLog.Equals(string.Empty))
+                if (mensajeRespuesta.Equals("ok"))
                 {
-                    gg = "gg";
+
+                    Mensaje.EnviarCorreoSendGrid(Session["NomCliente"].ToString(), emailCliente, emailVendedor, "Peru4me - Propuesta " + Session["NroPropuesta"] + Session["NomCliente"], pDesLog);
+
                 }
-                else
-                {
-                    gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
-                }
-
-                //string gg = objPropuesta.InsertarHistorialCliente(pDesLog, pCodCliente, pNroPedido, pNroPropuesta, pNroVersion);
-
-                //jlopez
-                //PeruTourismEmail gg = new PeruTourismEmail();		
-                PeruTourismMail Mensaje = new PeruTourismMail();
-                // Mensaje.EnviarCorreo("Mensaje de prueba", "bdavid2290@gmail.com", pDesLog);
-                //Mensaje.EnviarCorreo_GG("Mensaje de prueba", "bdavid2290@gmail.com", pDesLog);
-                Mensaje.EnviarCorreo_GG("Peru4me - Propuesta " + Session["NroPropuesta"] + Session["NomCliente"], emailCliente, emailVendedor, pDesLog);
-
-
-                return Json(gg, JsonRequestBehavior.AllowGet);
+              
+                return Json(mensajeRespuesta, JsonRequestBehavior.AllowGet);
             }
 
             catch (Exception ex) {
 
-                Bitacora.Current.Error<HomeController>(ex, new { gg });
+                Bitacora.Current.Error<HomeController>(ex, new { mensajeRespuesta });
 
-                return Json(gg, JsonRequestBehavior.AllowGet);
+                return Json(mensajeRespuesta, JsonRequestBehavior.AllowGet);
             }
-
-
-
 
         }
 
@@ -841,6 +826,33 @@ namespace PeruTourism.Controllers
 
 			return View(objPropuestaViewModel);
 		}
+
+
+        public ActionResult Pago(string pIdPedido, string pcodCliente, string pNroPrograma, string pFlagIdioma, bool pFlagVendido)
+        {
+            PagoVisaAccess objPagoVisaAccess = new PagoVisaAccess();
+            PropuestaViewModel objPedidoVisaViewModel = new PropuestaViewModel();
+            string sIdPedido = string.Empty;
+
+            string urlPago = string.Empty;
+
+            urlPago = objPagoVisaAccess.CargaUrlVisanetLink();
+
+            objPedidoVisaViewModel.urlPago = urlPago;
+            objPedidoVisaViewModel.codCliente = pcodCliente;
+            objPedidoVisaViewModel.idPedido = pIdPedido;
+            objPedidoVisaViewModel.nroPrograma = pNroPrograma;
+            objPedidoVisaViewModel.idioma = Convert.ToChar( pFlagIdioma);
+            objPedidoVisaViewModel.flagVendido = pFlagVendido;
+
+            int sIdPedido_length = sIdPedido.Length;
+
+            return View(objPedidoVisaViewModel);
+
+
+        }
+
+
 
         [HttpGet]
         [AllowAnonymous]

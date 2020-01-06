@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Specialized;
 using System.Web.Configuration;
+
 namespace PeruTourism.Repository.Data
 {
     public class Data
@@ -48,7 +44,8 @@ namespace PeruTourism.Repository.Data
 
             }
 
-            //get {
+            //get
+            //{
 
             //    return "Server=localhost;Database=BDTURISMO;Trusted_Connection=True;";
 

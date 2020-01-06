@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Data.SqlClient;
 using System.Data;
 using PeruTourism.Models.PeruTourism;
@@ -60,7 +59,8 @@ namespace PeruTourism.Repository.PeruTourism
                             DesPrograma = rdr["DesPrograma"].ToString().Trim(),
                             CantDias = Convert.ToInt32(rdr["CantDias"]),
                             KeyReg = rdr["KeyReg"].ToString(),
-                            EmailVendedor = rdr["EmailVendedor"].ToString()
+                            EmailVendedor = rdr["EmailVendedor"].ToString(),
+                            NombreVendedor= rdr["NombreVendedor"].ToString()
 
                         };
 
@@ -397,6 +397,7 @@ namespace PeruTourism.Repository.PeruTourism
             }
             catch (Exception ex)
             {
+                return "Error";
                 throw;
             }
         }

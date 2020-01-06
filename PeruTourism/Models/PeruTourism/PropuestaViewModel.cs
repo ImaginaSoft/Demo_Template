@@ -27,5 +27,19 @@ namespace PeruTourism.Models.PeruTourism
         public string info { get; set; }
         public char idioma { get; set; }
 
+
+
+
+        //*****AAAAAAAAAA***//
+        public string urlPago { get; set; }
+
+        public string codCliente { get; set; }
+
+        public string idPedido { get; set; }
+
+        public string nroPrograma { get; set; }
+
+        public bool flagVendido { get; set; }
+
     }
 }
