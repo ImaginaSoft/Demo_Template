@@ -9037,6 +9037,49 @@ section,
             transform: translateY(-50%);
         }
 
+
+        /*Especiales*/
+    .prop-detalle .prop-num-especiales {
+        position: absolute;
+        top: 20px;
+        left: -10px;
+        background: #333333;
+        color: #fff;
+        font-weight: bold;
+        font-size: 21px;
+        padding: 5px 25px 5px 35px;
+        border-radius: 0 25px 25px 0;
+    }
+
+        .prop-detalle .prop-num-especiales::before {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 10px 10px 0;
+            border-color: transparent #333333 transparent transparent;
+            position: absolute;
+            bottom: -10px;
+            content: "";
+            left: 0;
+            display: block !important;
+        }
+
+        .prop-detalle .prop-num-especiales::after {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 5px 0 5px 10px;
+            border-color: transparent transparent transparent #ffffff;
+            position: absolute;
+            top: 50%;
+            content: "";
+            left: 15px;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        /**/
+
     .prop-detalle .prop-title,
     .prop-detalle .prop-content {
         padding-left: 125px;

@@ -439,13 +439,12 @@
                 </section>
 
                 <div class="group prop-detalle">
-                    <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_13">
+                    <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_25">
                         <div class="prop-num"><span>SPECIAL FEATURES</span></div>
-                        <div class="prop-title" style="padding:0;margin:0"></div>
+                        <div class="prop-title"></div>
                     </div>
-                    <div class="prop-content collapse" id="content_13">
+                    <div class="prop-content collapse in" id="content_25">
                         <div class="group">
-                            @*<h2>This program includes :</h2>*@
                             @Html.Raw(lstServicios.FirstOrDefault().Resumen)
                             @Html.Raw(lstServicios.FirstOrDefault().ResuCaraEspe)
 
@@ -702,7 +701,7 @@
                 <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
                 <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
 
-                <div style="font-size:13px; text-align:justify;">Hi I'm @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva) your Travel Designer.From now on, I will immediately answer all your questions. </div>
+                <div style="font-size:13px; text-align:justify;">Hi I'm @Session["NombreVendedor"] your Travel Designer.From now on, I will immediately answer all your questions. </div>
                 <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Your message have been sent</div>
                 <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Please enter your message</div>
                 <textarea placeholder="Write your messages here" id="txtMessage" class="form-control"></textarea>
@@ -1035,11 +1034,11 @@
                     }
                 </section>
                 <div class="group prop-detalle">
-                    <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_13">
-                        <div class="prop-num"><span>CARACTERÍSTICAS ESPECIALES</span></div>
+                    <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_25">
+                        <div class="prop-num-especiales"><span>CARACTERÍSTICAS ESPECIALES</span></div>
                         <div class="prop-title"></div>
                     </div>
-                    <div class="prop-content collapse" id="content_13">
+                    <div class="prop-content collapse in" id="content_25">
                         <div class="group">
                             @*<h2>This program includes :</h2>*@
                             @Html.Raw(lstServicios.FirstOrDefault().Resumen)
@@ -1310,7 +1309,7 @@
                 <input type="text" id="txtNroPropuesta" value="@ViewBag.nroPropuesta" hidden />
                 <input type="text" id="txtNroVersion" value="@ViewBag.nroVersion" hidden />
 
-                <div style="font-size:13px; text-align:justify;">Hola soy @Html.Raw(lstServicios.FirstOrDefault().NombreEjecutiva), tu Diseñadora de Viajes. A partir de ahora, por este medio atenderé de inmediato todas tus consultas.</div>
+                <div style="font-size:13px; text-align:justify;">Hola soy @Session["NombreVendedor"], tu Diseñadora de Viajes. A partir de ahora, por este medio atenderé de inmediato todas tus consultas.</div>
                 <div id="mensajeConfirmacion" class="form-label" hidden style="font-weight: bold;">Tu mensaje ha sido enviado</div>
                 <div id="mensajeConfirmacionGG" class="form-label" hidden style="font-weight: bold;">Por favor ingresa tu mensaje</div>
                 <textarea placeholder="Por favor escribe tu mensaje" id="txtMessage" class="form-control"></textarea>
