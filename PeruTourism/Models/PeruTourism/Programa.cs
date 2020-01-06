@@ -31,6 +31,7 @@ namespace PeruTourism.Models.PeruTourism
         public int CantPersonas { get; set; }
         public decimal PrecioTotal { get; set; }
         public string EmailVendedor { get; set; }
+        public string NombreVendedor {get;set;}
         
 
     }

@@ -59,7 +59,8 @@ namespace PeruTourism.Repository.PeruTourism
                             DesPrograma = rdr["DesPrograma"].ToString().Trim(),
                             CantDias = Convert.ToInt32(rdr["CantDias"]),
                             KeyReg = rdr["KeyReg"].ToString(),
-                            EmailVendedor = rdr["EmailVendedor"].ToString()
+                            EmailVendedor = rdr["EmailVendedor"].ToString(),
+                            NombreVendedor= rdr["NombreVendedor"].ToString()
 
                         };
 

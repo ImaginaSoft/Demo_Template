@@ -209,6 +209,7 @@ namespace PeruTourism.Controllers
                 var lstProgramaGG = objPropuesta.ObtenerListadoPropuesta(lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().FlagIdioma);
 
                 Session["EmailVendedor"] = lstProgramaGG.FirstOrDefault().EmailVendedor;
+                Session["NombreVendedor"] = lstProgramaGG.FirstOrDefault().NombreVendedor;
                 objPropuestaViewModel.lstPrograma = lstProgramaGG.Where(p => p.NroPrograma == NroPrograma).ToList();
 
             }
