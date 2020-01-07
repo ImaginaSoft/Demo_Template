@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PeruTourism.Models.PeruTourism
 {
@@ -41,5 +42,13 @@ namespace PeruTourism.Models.PeruTourism
 
         public bool flagVendido { get; set; }
 
+
+        //*****AAAAAAAAAA***//
+        public IList<SelectListItem> Tipos { get; set; }
+        public IList<SelectListItem> Paises { get; set; }
+
+        public IList<SelectListItem> Generos { get; set; }
+
     }
+
 }

@@ -258,7 +258,7 @@
                             </section>
 
                             <div class="optionsMini op-group text-center">
-                                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new { pIdPedido = nroPedido, pIdioma=idioma })">
+                                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Home",new { pIdPedido = nroPedido, pIdioma=idioma })">
                                     Add Traveler Information
                                 </a>
                             </div>
@@ -440,7 +440,7 @@
 
                 <div class="group prop-detalle">
                     <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_25">
-                        <div class="prop-num"><span>SPECIAL FEATURES</span></div>
+                        <div class="prop-num-especiales"><span>SPECIAL FEATURES</span></div>
                         <div class="prop-title"></div>
                     </div>
                     <div class="prop-content collapse in" id="content_25">
@@ -455,10 +455,10 @@
                 <div class="prop-table">
                         <div class="col-sm-12">
                             <div>
-                                    <div class="col-sm-1">
-                                        <h3><strong>PRICE:</strong></h3>
+                                    <div class="col-sm-12" id="titulo">
+                                        <h3 style="text-align:center"><strong>PRICE:</strong></h3>
                                     </div>
-                                    <div class="col-sm-11" style="text-align: left;">
+                                    <div class="col-sm-11" id="tituloIMG">
                                         <img src="~/Content/images/FlechaDerecha.gif" id="btnMoveRight" style="width: 50px;" />
                                     </div>
                                     <div class="col-sm-12">
@@ -857,7 +857,7 @@
                             </section>
 
                             <div class="optionsMini op-group text-center">
-                                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Pasajero",new {  pIdPedido = nroPedido, pIdioma=idioma })">
+                                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Home",new {  pIdPedido = nroPedido, pIdioma=idioma })">
                                     Agregar pasajero
                                 </a>
                             </div>
@@ -1055,10 +1055,10 @@
     </div>-->
 
 
-                            <div class="col-sm-1">
-                                <h3><strong>PRECIO:</strong></h3>
+                            <div class="col-sm-12" id="titulo">
+                                <h3 style="text-align:center"><strong>PRECIO:</strong></h3>
                             </div>
-                            <div class="col-sm-11" style="text-align: left;">
+                            <div class="col-sm-11" id="tituloIMG" >
                                 <img src="~/Content/images/FlechaDerecha.gif" id="btnMoveRight" style="width: 50px;" />
                             </div>
                             <div class="col-sm-12">

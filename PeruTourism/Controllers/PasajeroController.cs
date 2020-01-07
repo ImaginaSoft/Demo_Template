@@ -6,11 +6,13 @@ using PeruTourism.Utility;
 using PeruTourism.Models.Paises;
 using PeruTourism.Models.TipoPasajero;
 using CustomLog;
+using PeruTourism.Models.PeruTourism;
 
 namespace PeruTourism.Controllers
 {
 	public class PasajeroController : Controller
 	{
+
 		public ActionResult Index()
 		{
 			return View();
@@ -19,16 +21,25 @@ namespace PeruTourism.Controllers
 
 		public ActionResult Pasajero(string pIdPedido, char pIdioma)
 		{
+
+            PropuestaViewModel objPedidoVisaViewModel = new PropuestaViewModel();
+
+
             if (pIdPedido.Contains(" "))
                 ViewBag.nroPedido = pIdPedido.Substring(0, pIdPedido.IndexOf(" "));
             else
                 ViewBag.nroPedido = pIdPedido;
 
-            ViewBag.Genero = ObtenerGeneros(pIdioma);
-            ViewBag.Paises = ObtenerPaises(pIdioma);
-            ViewBag.Tipos = ObtenerTipos();
+            objPedidoVisaViewModel.Generos = ObtenerGeneros(pIdioma);
+            objPedidoVisaViewModel.Tipos = ObtenerTipos();
+            objPedidoVisaViewModel.Paises = ObtenerPaises(pIdioma);
             ViewBag.Idioma = pIdioma;
-            return View("Pasajero");
+
+            //ViewBag.Genero = ObtenerGeneros(pIdioma);
+            //ViewBag.Paises = ObtenerPaises(pIdioma);
+            //ViewBag.Tipos = ObtenerTipos();
+            //ViewBag.Idioma = pIdioma;
+            return View(objPedidoVisaViewModel);
         }
 
         public static IList<SelectListItem> ObtenerGeneros(char pIdioma)

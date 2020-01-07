@@ -9043,7 +9043,7 @@ section,
         position: absolute;
         top: 20px;
         left: -10px;
-        background: #333333;
+        background: #eb8800;
         color: #fff;
         font-weight: bold;
         font-size: 21px;
@@ -9056,7 +9056,7 @@ section,
             height: 0;
             border-style: solid;
             border-width: 0 10px 10px 0;
-            border-color: transparent #333333 transparent transparent;
+            border-color: transparent #eb8800 transparent transparent;
             position: absolute;
             bottom: -10px;
             content: "";
@@ -10294,6 +10294,12 @@ thead {
 #tablaCostos {
     border: 1px solid #dddddd;
     width: 100%;
+}
+
+@media (min-width: 768px) {
+    #tituloIMG {
+        display: none;
+    }
 }
 
 
