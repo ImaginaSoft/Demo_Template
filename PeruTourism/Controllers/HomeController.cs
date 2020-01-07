@@ -10,6 +10,8 @@ using PeruTourism.Models.Galeria;
 using System.Transactions;
 using System.Web.Script.Serialization;
 using CustomLog;
+using PeruTourism.Models.Paises;
+using PeruTourism.Models.TipoPasajero;
 using PeruTourism.Models.Visa;
 
 namespace PeruTourism.Controllers
@@ -75,13 +77,6 @@ namespace PeruTourism.Controllers
                         FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
                         var lstPublicacion = objLogin.LeeUltimaPublicacion(Convert.ToInt32(codCLiente));
                         gg2 = objPropuesta.GrabaLog2("Version", "", Convert.ToInt32(codCLiente), lstPublicacion.FirstOrDefault().NroPedido, lstPublicacion.FirstOrDefault().NroPropuesta, lstPublicacion.FirstOrDefault().NroVersion, Request.UserHostAddress, "A", "N");
-
-
-
-
-
-
-
 
                     }
                     else
@@ -792,16 +787,14 @@ namespace PeruTourism.Controllers
 
         public ActionResult ObtenerPasajero(string pCodCliente)
 		{
+            LoginAccess objLogin = new LoginAccess();
+            FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
+            string lineagg = "pCodCliente :" + pCodCliente;
 
-			//PropuestaViewModel objPropuestaViewModel = new PropuestaViewModel();
-			try
+            try
 			{
-				LoginAccess objLogin = new LoginAccess();
-				FichaPropuestaAccess objPropuesta = new FichaPropuestaAccess();
-
-				//var codCliente = Session["CodCliente"];
-
-				var codCliente = pCodCliente;
+			
+                var codCliente = pCodCliente;
 
 				if (codCliente != null)
 				{
@@ -819,39 +812,160 @@ namespace PeruTourism.Controllers
 			}
 			catch (Exception ex)
 			{
+                Bitacora.Current.Error<HomeController>(ex, new { lineagg });
 
-				return View("~/Views/Shared/Error.cshtml");
+                return View("~/Views/Shared/Error.cshtml");
 			}
 
 
 			return View(objPropuestaViewModel);
 		}
 
-
         public ActionResult Pago(string pIdPedido, string pcodCliente, string pNroPrograma, string pFlagIdioma, bool pFlagVendido)
         {
             PagoVisaAccess objPagoVisaAccess = new PagoVisaAccess();
             PropuestaViewModel objPedidoVisaViewModel = new PropuestaViewModel();
-            string sIdPedido = string.Empty;
+            string lineagg = "NroPedido :"+pIdPedido + "CodCliente :" + pcodCliente + "NroPrograma:" + pNroPrograma;
 
-            string urlPago = string.Empty;
+            try {
 
-            urlPago = objPagoVisaAccess.CargaUrlVisanetLink();
+                string sIdPedido = string.Empty;
+                string urlPago = string.Empty;
 
-            objPedidoVisaViewModel.urlPago = urlPago;
-            objPedidoVisaViewModel.codCliente = pcodCliente;
-            objPedidoVisaViewModel.idPedido = pIdPedido;
-            objPedidoVisaViewModel.nroPrograma = pNroPrograma;
-            objPedidoVisaViewModel.idioma = Convert.ToChar( pFlagIdioma);
-            objPedidoVisaViewModel.flagVendido = pFlagVendido;
+                urlPago = objPagoVisaAccess.CargaUrlVisanetLink();
 
-            int sIdPedido_length = sIdPedido.Length;
+                objPedidoVisaViewModel.urlPago = urlPago;
+                objPedidoVisaViewModel.codCliente = pcodCliente;
+                objPedidoVisaViewModel.idPedido = pIdPedido;
+                objPedidoVisaViewModel.nroPrograma = pNroPrograma;
+                objPedidoVisaViewModel.idioma = Convert.ToChar(pFlagIdioma);
+                objPedidoVisaViewModel.flagVendido = pFlagVendido;
 
-            return View(objPedidoVisaViewModel);
+                int sIdPedido_length = sIdPedido.Length;
+
+                return View(objPedidoVisaViewModel);
+
+            }
+            catch (Exception ex) {
+                Bitacora.Current.Error<HomeController>(ex, new { lineagg });
+                return View("~/Views/Shared/Error.cshtml");
+            }
 
 
         }
 
+        public ActionResult Pasajero(string pIdPedido, char pIdioma)
+        {
+
+            //PropuestaViewModel objPedidoVisaViewModel = new PropuestaViewModel();
+            PropuestaViewModel objPasajeroViewModel = new PropuestaViewModel();
+            string lineagg = "NroPedido :" + pIdPedido + "pIdioma :" + pIdioma;
+
+            try
+            {
+                if (pIdPedido.Contains(" "))
+                    ViewBag.nroPedido = pIdPedido.Substring(0, pIdPedido.IndexOf(" "));
+                else
+                    ViewBag.nroPedido = pIdPedido;
+
+                objPasajeroViewModel.Generos = ObtenerGeneros(pIdioma);
+                objPasajeroViewModel.Tipos = ObtenerTipos();
+                objPasajeroViewModel.Paises = ObtenerPaises(pIdioma);
+                ViewBag.Idioma = pIdioma;
+
+                //ViewBag.Genero = ObtenerGeneros(pIdioma);
+                //ViewBag.Paises = ObtenerPaises(pIdioma);
+                //ViewBag.Tipos = ObtenerTipos();
+                //ViewBag.Idioma = pIdioma;
+                return View(objPasajeroViewModel);
+            }
+            catch (Exception ex)
+            {
+
+                Bitacora.Current.Error<HomeController>(ex, new { lineagg });
+                return View("~/Views/Shared/Error.cshtml");
+            }
+
+         
+        }
+
+        public static IList<SelectListItem> ObtenerGeneros(char pIdioma)
+        {
+
+            if (pIdioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+            {
+                var lresultado = new List<SelectListItem>
+            {
+                new SelectListItem { Value = string.Empty, Text = "(Select)" },
+                new SelectListItem { Value = "M", Text = "Male"},
+                new SelectListItem { Value = "F", Text = "Female" }
+            };
+
+                return lresultado;
+
+            }
+            else
+            {
+                var lresultado = new List<SelectListItem>
+            {
+                new SelectListItem { Value = string.Empty, Text = "(Seleccione)" },
+                new SelectListItem { Value = "M", Text = "Masculino"},
+                new SelectListItem { Value = "F", Text = "Femenino" }
+            };
+
+                return lresultado;
+            }
+
+
+        }
+
+        public static IList<SelectListItem> ObtenerTipos()
+        {
+            List<TipoPasajero> lista;
+            var lresultado = new List<SelectListItem>();
+
+            try
+            {
+                lista = (new PasajeroAccess()).ListarTipoPasajero();
+
+                lresultado.Add(new SelectListItem { Value = string.Empty, Text = "(Seleccione)" });
+
+                foreach (var item in lista)
+                {
+                    lresultado.Add(new SelectListItem { Value = item.CodTipoPasajero, Text = item.NomTipoPasajero });
+                }
+            }
+            catch (Exception ex)
+            {
+                Bitacora.Current.Error<PasajeroController>(ex, new { lresultado });
+                lresultado = new List<SelectListItem>();
+            }
+
+            return lresultado;
+        }
+
+        [NonAction]
+        public static IList<SelectListItem> ObtenerPaises(char pIdioma)
+        {
+            List<Pais> lista;
+            var lresultado = new List<SelectListItem>();
+
+            try
+            {
+                lista = (new PasajeroAccess()).ListarPaises(pIdioma);
+
+                foreach (var item in lista)
+                {
+                    lresultado.Add(new SelectListItem { Value = item.CodPais, Text = item.NomPais });
+                }
+            }
+            catch (Exception ex)
+            {
+                lresultado = new List<SelectListItem>();
+            }
+
+            return lresultado;
+        }
 
 
         [HttpGet]

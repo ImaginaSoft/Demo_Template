@@ -368,12 +368,12 @@
     <Content Include="Views\Shared\MyBookTripMessage.cshtml" />
     <Content Include="Views\Home\_ModalBookingStatus.cshtml" />
     <Content Include="Views\Home\_ModalInfoBeforeTrip.cshtml" />
-    <Content Include="Views\Pasajero\Pasajero.cshtml" />
     <Content Include="Scripts\umd\popper-utils.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Views\Home\Pago.cshtml" />
+    <Content Include="Views\Home\Pasajero.cshtml" />
     <None Include="Web References\ws_GenereEticket_Visa\WSEticket.disco" />
     <Content Include="Web References\ws_SendGridEmail\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
