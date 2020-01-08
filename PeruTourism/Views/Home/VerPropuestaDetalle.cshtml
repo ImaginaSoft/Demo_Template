@@ -60,18 +60,9 @@
 
     int SumPrice = 0;
 
-    @*@foreach (var d in lstPropuestaPrecio)
-        {
-
-            SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
-
-        }*@
-
-
 
     bool flagVendido = ViewBag.FlagVendido;
 }
-@*<link href="~/Content/css/tabla_pasajero.css" rel="stylesheet" />*@
 
 <style type="text/css">
     .prop-clear, .prop-clear:hover {
@@ -123,17 +114,17 @@
         }
 </style>
 @*<script type="text/javascript">
-    function validarTextArea() {
 
-      if (!$("#txtMessage").val()) {
-                 $("#mensajeConfirmacion").hide();
-                 $("#mensajeConfirmacionGG").show();
-        }
-    }
-    
+    $("a[href^='#']").click(function(e) {
+        e.preventDefault();
 
+        var position = $($(this).attr("href")).offset().top;
 
-</script>*@
+        $("body, html").animate({
+            scrollTop: position
+        } /* speed */ );
+    });
+    </script>*@
 <script src="~/Scripts/Galeria/Galeria.js"></script>
 
 @if (lstServicios.Count != 0)
@@ -151,27 +142,27 @@
                             <div class="op-group">
                                 @*<span class="description">Details</span>*@
                                 @*<section class="subtitle" style="margin-bottom: 0px;">
-                    <div class="container">
-                        <div class="options">
-                            <div class="op-group">
-                                <div class="op op-propuesta">
-                                    <div class="icon icon-propuesta"></div>
+                                        <div class="container">
+                                            <div class="options">
+                                                <div class="op-group">
+                                                    <div class="op op-propuesta">
+                                                        <div class="icon icon-propuesta"></div>
 
-                                    @if (flagVendido == true)
-                                    {
-                                        <div class="title">My booked trip</div>
-                                    }
-                                    else
-                                    {
+                                                        @if (flagVendido == true)
+                                                        {
+                                                            <div class="title">My booked trip</div>
+                                                        }
+                                                        else
+                                                        {
 
-                                        <div class="title">My travel itineraries</div>
-                                    }
+                                                            <div class="title">My travel itineraries</div>
+                                                        }
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>*@
                             </div>
                         </div>
                     </div>
@@ -204,8 +195,6 @@
                         </a>
 
                     }
-
-
 
 
                     <div class="no_enlace">
@@ -276,7 +265,7 @@
                         {
 
                             <div class="group prop-detalle">
-                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                                <div class="group group-collapse collapsed" id="section1" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
                                     <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
                                     <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
                                 </div>
@@ -453,127 +442,57 @@
                 </div>
 
                 <div class="prop-table">
-                        <div class="col-sm-12">
-                            <div>
-                                    <div class="col-sm-12" id="titulo">
-                                        <h3 style="text-align:center"><strong>PRICE:</strong></h3>
-                                    </div>
-                                    <div class="col-sm-11" id="tituloIMG">
-                                        <img src="~/Content/images/FlechaDerecha.gif" id="btnMoveRight" style="width: 50px;" />
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="table-responsive">
-                                            <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%"
-                                                   cellspacing="0">
-                                                <thead>
+                    <div class="col-sm-12">
+                        <div>
+                            <div class="col-sm-12" id="titulo">
+                                <h3 style="text-align:center"><strong>PRICE:</strong></h3>
+                            </div>
+                            <div class="col-sm-11" id="tituloIMG">
+                                <img src="~/Content/images/FlechaDerecha.gif" id="btnMoveRight" style="width: 50px;" />
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table-pt" width="100%"
+                                           cellspacing="0">
+                                        <thead>
 
-                                                    <tr>
-                                                        <th>DESCRIPTION</th>
-                                                        <th>PRICE PER PERSON</th>
-                                                        <th>NUMBER OF TRAVELLERS</th>
-                                                        <th>TOTAL PRICE</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach (var d in lstPropuestaPrecio)
-                                                    {
+                                            <tr>
+                                                <th>DESCRIPTION</th>
+                                                <th>PRICE PER PERSON</th>
+                                                <th>NUMBER OF TRAVELLERS</th>
+                                                <th>TOTAL PRICE</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var d in lstPropuestaPrecio)
+                                            {
 
-                                                        SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
-
-
-                                                        <tr>
-                                                            <td>@d.DesOrden</td>
-                                                            <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
-                                                            <td>@d.CantPersonas</td>
-                                                            <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
-                                                        </tr>
+                                                SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
 
 
-                                                    }
+                                                <tr>
+                                                    <td>@d.DesOrden</td>
+                                                    <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
+                                                    <td>@d.CantPersonas</td>
+                                                    <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
+                                                </tr>
 
-                                                    <tr class="table-total hidden-xs">
-                                                        <td colspan="3">Total</td>
-                                                        <td>USD @Convert.ToDecimal(SumPrice).ToString("#,##0")</td>
-                                                    </tr>
-                                                </tbody>
-                                                @{int totalSumPrice = SumPrice; }
-                                            </table>
-                                        </div>
-                                    </div>
+
+                                            }
+
+                                            <tr class="table-total hidden-xs">
+                                                <td colspan="3">Total</td>
+                                                <td>USD @Convert.ToDecimal(SumPrice).ToString("#,##0")</td>
+                                            </tr>
+                                        </tbody>
+                                        @{int totalSumPrice = SumPrice; }
+                                    </table>
                                 </div>
-                                    <div class="div-total visible-xs">
-                                        Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
-                                    </div>
-                                </div>
-
-                        <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
-                            <div class="col-sm-6" style="padding-top: 15px; padding-bottom: 10px">
-                                <a href="javascript:void(0);" class="pago" data-toggle="modal" data-target="#condicionPago">
-                                    <span onclick="">
-                                        <i class="icon icon-hotel-detalle"></i> PAYMENT
-                                        PROCEDURE
-                                    </span>
-                                </a>
                             </div>
-                            <div class="col-sm-6">
-                                <a class="pago btn btn-primary" href="@Url.Action("Pago", "Home",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
-                                    PAY NOW
-                                </a>
-                            </div>
-
-                        </div>
-
-                        <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
-                            <div class="col-sm-6">
-
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="~/Content/images/logos.jpg" width="100%" />
-                            </div>
-                        </div>
-                    </div>
-
-                @*<div class="prop-table">
-
-                    <div class="table-responsive">
-
-                        <table id="tablaCostos" role="table">
-                            <thead role="rowgroup">
-                                <tr role="row">
-                                    <th role="columnheader">DESCRIPTION</th>
-                                    <th role="columnheader">PRICE PER PERSON</th>
-                                    <th role="columnheader">NUMBER OF TRAVELLERS</th>
-                                    <th role="columnheader">TOTAL PRICE</th>
-
-                                </tr>
-                            </thead>
-                            <tbody role="rowgroup">
-                                @foreach (var d in lstPropuestaPrecio)
-                                {
-
-                                    SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
-
-
-                                    <tr>
-                                        <td>@d.DesOrden</td>
-                                        <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
-                                        <td>@d.CantPersonas</td>
-                                        <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
-                                    </tr>
-
-
-                                }
-
-                            </tbody>
-
-                        </table>
-                        <div class="div-total hidden-xs">
-                            Total Price: @Convert.ToDecimal(SumPrice).ToString("#,##0")
                         </div>
                         <div class="div-total visible-xs">
-                            Total Price: @Convert.ToDecimal(SumPrice).ToString("#,##0")
+                            Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
                         </div>
-
                     </div>
 
                     <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
@@ -586,7 +505,7 @@
                             </a>
                         </div>
                         <div class="col-sm-6">
-                            <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
+                            <a class="pago btn btn-primary" href="@Url.Action("Pago", "Home",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
                                 PAY NOW
                             </a>
                         </div>
@@ -601,7 +520,77 @@
                             <img src="~/Content/images/logos.jpg" width="100%" />
                         </div>
                     </div>
-                </div>*@
+                </div>
+
+                @*<div class="prop-table">
+
+                        <div class="table-responsive">
+
+                            <table id="tablaCostos" role="table">
+                                <thead role="rowgroup">
+                                    <tr role="row">
+                                        <th role="columnheader">DESCRIPTION</th>
+                                        <th role="columnheader">PRICE PER PERSON</th>
+                                        <th role="columnheader">NUMBER OF TRAVELLERS</th>
+                                        <th role="columnheader">TOTAL PRICE</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody role="rowgroup">
+                                    @foreach (var d in lstPropuestaPrecio)
+                                    {
+
+                                        SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
+
+
+                                        <tr>
+                                            <td>@d.DesOrden</td>
+                                            <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
+                                            <td>@d.CantPersonas</td>
+                                            <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
+                                        </tr>
+
+
+                                    }
+
+                                </tbody>
+
+                            </table>
+                            <div class="div-total hidden-xs">
+                                Total Price: @Convert.ToDecimal(SumPrice).ToString("#,##0")
+                            </div>
+                            <div class="div-total visible-xs">
+                                Total Price: @Convert.ToDecimal(SumPrice).ToString("#,##0")
+                            </div>
+
+                        </div>
+
+                        <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
+                            <div class="col-sm-6" style="padding-top: 15px; padding-bottom: 10px">
+                                <a href="javascript:void(0);" class="pago" data-toggle="modal" data-target="#condicionPago">
+                                    <span onclick="">
+                                        <i class="icon icon-hotel-detalle"></i> PAYMENT
+                                        PROCEDURE
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
+                                    PAY NOW
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
+                            <div class="col-sm-6">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/Content/images/logos.jpg" width="100%" />
+                            </div>
+                        </div>
+                    </div>*@
 
             </div>
 
@@ -717,28 +706,28 @@
         <div id="prop" class="secondary">
             <div class="container-fluid">
                 @*<section class="subtitle" style="margin-bottom: 0px;">
-            <div class="container">
-                <div class="options">
-                    <div class="op-group">
-                        <div class="op op-propuesta">
-                                <div class="icon icon-propuesta"></div>
+                        <div class="container">
+                            <div class="options">
+                                <div class="op-group">
+                                    <div class="op op-propuesta">
+                                            <div class="icon icon-propuesta"></div>
 
-                                @if (flagVendido == true)
-                                {
-                                    <div class="title">Mi viaje reservado</div>
-                                }
-                                else
-                                {
-                                    <div class="title">Propuestas para mi viaje</div>
-                                }
+                                            @if (flagVendido == true)
+                                            {
+                                                <div class="title">Mi viaje reservado</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="title">Propuestas para mi viaje</div>
+                                            }
 
 
 
+                                        </div>
+                                </div>
                             </div>
-                    </div>
-                </div>
-            </div>
-        </section>*@
+                        </div>
+                    </section>*@
 
                 <section class="slider" id="scenex" style="margin-bottom: 0px;">
                     <div class="container">
@@ -748,27 +737,27 @@
                             <div class="op-group">
                                 @*<span class="description">Details</span>*@
                                 @*<section class="subtitle" style="margin-bottom: 0px;">
-                    <div class="container">
-                        <div class="options">
-                            <div class="op-group">
-                                <div class="op op-propuesta">
-                                    <div class="icon icon-propuesta"></div>
+                                        <div class="container">
+                                            <div class="options">
+                                                <div class="op-group">
+                                                    <div class="op op-propuesta">
+                                                        <div class="icon icon-propuesta"></div>
 
-                                    @if (flagVendido == true)
-                                    {
-                                        <div class="title">My booked trip</div>
-                                    }
-                                    else
-                                    {
+                                                        @if (flagVendido == true)
+                                                        {
+                                                            <div class="title">My booked trip</div>
+                                                        }
+                                                        else
+                                                        {
 
-                                        <div class="title">My travel itineraries</div>
-                                    }
+                                                            <div class="title">My travel itineraries</div>
+                                                        }
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>*@
                             </div>
                         </div>
                     </div>
@@ -820,11 +809,15 @@
             <div class="container">
                 <section class="group prop-group">
 
-                    <div class="group prop">
-                        <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
-                        <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
-                        <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
-                    </div>
+                    <a href="#section1">
+
+                        <div class="group prop">
+                            <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
+                            <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
+                            <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
+                        </div>
+                    </a>
+
 
 
                     @if (flagMostrarBolitas == true)
@@ -857,10 +850,17 @@
                             </section>
 
                             <div class="optionsMini op-group text-center">
+                                    <a class="pago btn btn-primary btnSeleccion"  href="@Url.Action("Pasajero", "Home",new {  pIdPedido = nroPedido, pIdioma=idioma })">
+                                        Agregar pasajero
+                                    </a>
+                                </div>
+                            @*<div class="col-sm-5">
                                 <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Home",new {  pIdPedido = nroPedido, pIdioma=idioma })">
                                     Agregar pasajero
                                 </a>
-                            </div>
+                            </div>*@
+
+
                         </div>
                     }
 
@@ -873,7 +873,7 @@
                         {
 
                             <div class="group prop-detalle">
-                                <div class="group group-collapse collapsed" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
+                                <div class="group group-collapse collapsed" id="section1" data-toggle="collapse" data-target="#content_@lstServicios[i].NroDia.ToString()">
                                     <div class="prop-num"><span>Día @lstServicios[i].NroDia.ToString()</span></div>
                                     <div class="prop-title">@Html.Raw(lstServicios[i].DesServicio)</div>
                                 </div>
@@ -1051,14 +1051,14 @@
                     <div class="col-sm-12">
                         <div>
                             <!--<div class="col-sm-1">
-        <img src="~/Repository/FlechaDerecha.gif" id="btnMoveRight" style="width: 50px; margin-top:30px;" />
-    </div>-->
+                                <img src="~/Repository/FlechaDerecha.gif" id="btnMoveRight" style="width: 50px; margin-top:30px;" />
+                            </div>-->
 
 
                             <div class="col-sm-12" id="titulo">
                                 <h3 style="text-align:center"><strong>PRECIO:</strong></h3>
                             </div>
-                            <div class="col-sm-11" id="tituloIMG" >
+                            <div class="col-sm-11" id="tituloIMG">
                                 <img src="~/Content/images/FlechaDerecha.gif" id="btnMoveRight" style="width: 50px;" />
                             </div>
                             <div class="col-sm-12">
@@ -1101,75 +1101,8 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="div-total visible-xs">
-                                Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
-                            </div>
-                        </div>
-
-                        <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
-                            <div class="col-sm-6" style="padding-top: 15px; padding-bottom: 10px">
-                                <a href="javascript:void(0);" class="pago" data-toggle="modal" data-target="#condicionPago">
-                                    <span onclick="">
-                                        <i class="icon icon-hotel-detalle"></i> PROCEDIMIENTO
-                                        DE PAGO
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="col-sm-6">
-                                <a class="pago btn btn-primary" href="@Url.Action("Pago", "Home",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
-                                    PAGA AHORA
-                                </a>
-                            </div>
-
-                        </div>
-
-                        <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
-                            <div class="col-sm-6">
-
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="~/Content/images/logos.jpg" width="100%" />
-                            </div>
-                        </div>
-                    </div>
-
-                @*<div class="prop-table">
-                    <div class="table-responsive">
-
-                        <table role="table">
-                            <thead role="rowgroup">
-                                <tr role="row">
-                                    <th role="columnheader">DESCRIPCIÓN</th>
-                                    <th role="columnheader">PRECIO POR PERSONA</th>
-                                    <th role="columnheader">NUMERO DE PASAJEROS</th>
-                                    <th role="columnheader">PRECIO</th>
-
-                                </tr>
-                            </thead>
-                            <tbody role="rowgroup">
-                                @foreach (var d in lstPropuestaPrecio)
-                                {
-
-                                    SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
-
-
-                                    <tr>
-                                        <td>@d.DesOrden</td>
-                                        <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
-                                        <td>@d.CantPersonas</td>
-                                        <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
-                                    </tr>
-
-
-                                }
-
-                            </tbody>
-                        </table>
-                        <div class="div-total hidden-xs">
-                            Precio total: @Convert.ToDecimal(SumPrice).ToString("#,##0")
-                        </div>
                         <div class="div-total visible-xs">
-                            Precio total: @Convert.ToDecimal(SumPrice).ToString("#,##0")
+                            Total: @Convert.ToDecimal(totalSumPrice).ToString("#,##0")
                         </div>
                     </div>
 
@@ -1177,14 +1110,14 @@
                         <div class="col-sm-6" style="padding-top: 15px; padding-bottom: 10px">
                             <a href="javascript:void(0);" class="pago" data-toggle="modal" data-target="#condicionPago">
                                 <span onclick="">
-                                    <i class="icon icon-hotel-detalle"></i> PAYMENT
-                                    PROCEDURE
+                                    <i class="icon icon-hotel-detalle"></i> PROCEDIMIENTO
+                                    DE PAGO
                                 </span>
                             </a>
                         </div>
                         <div class="col-sm-6">
-                            <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
-                                PAY NOW
+                            <a class="pago btn btn-primary" href="@Url.Action("Pago", "Home",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
+                                PAGA AHORA
                             </a>
                         </div>
 
@@ -1198,7 +1131,74 @@
                             <img src="~/Content/images/logos.jpg" width="100%" />
                         </div>
                     </div>
-                </div>*@
+                </div>
+
+                @*<div class="prop-table">
+                        <div class="table-responsive">
+
+                            <table role="table">
+                                <thead role="rowgroup">
+                                    <tr role="row">
+                                        <th role="columnheader">DESCRIPCIÓN</th>
+                                        <th role="columnheader">PRECIO POR PERSONA</th>
+                                        <th role="columnheader">NUMERO DE PASAJEROS</th>
+                                        <th role="columnheader">PRECIO</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody role="rowgroup">
+                                    @foreach (var d in lstPropuestaPrecio)
+                                    {
+
+                                        SumPrice = SumPrice + Convert.ToInt32(d.PrecioTotal);
+
+
+                                        <tr>
+                                            <td>@d.DesOrden</td>
+                                            <td>USD @Convert.ToDecimal(d.PrecioxPersona).ToString("#,##0")</td>
+                                            <td>@d.CantPersonas</td>
+                                            <td>USD @Convert.ToDecimal(d.PrecioTotal).ToString("#,##0")</td>
+                                        </tr>
+
+
+                                    }
+
+                                </tbody>
+                            </table>
+                            <div class="div-total hidden-xs">
+                                Precio total: @Convert.ToDecimal(SumPrice).ToString("#,##0")
+                            </div>
+                            <div class="div-total visible-xs">
+                                Precio total: @Convert.ToDecimal(SumPrice).ToString("#,##0")
+                            </div>
+                        </div>
+
+                        <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
+                            <div class="col-sm-6" style="padding-top: 15px; padding-bottom: 10px">
+                                <a href="javascript:void(0);" class="pago" data-toggle="modal" data-target="#condicionPago">
+                                    <span onclick="">
+                                        <i class="icon icon-hotel-detalle"></i> PAYMENT
+                                        PROCEDURE
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a class="pago btn btn-primary" href="@Url.Action("Pago", "PagoVisa",new { pIdPedido = lstProgramas.FirstOrDefault().KeyReg, pCodCliente = ViewBag.codCliente, pNroPrograma = ViewBag.NroPrograma, pFlagIdioma = ViewBag.FlagIdioma, pFlagVendido = flagVendido})">
+                                    PAY NOW
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class=" col-sm-8 col-sm-offset-2 text-center fare-detail">
+                            <div class="col-sm-6">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/Content/images/logos.jpg" width="100%" />
+                            </div>
+                        </div>
+                    </div>*@
 
             </div>
 
@@ -1289,8 +1289,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <div class="floating-chat enter expand">
@@ -1340,7 +1338,7 @@ else
             $(".marcaMenu02").addClass("active");
         }
 
-    // Botón mover a la derecha
+        // Botón mover a la derecha
         $('#btnMoveRight').click(() => {
             $('.table-responsive').scrollLeft($('#demoGrid').width() - $('.table-responsive').width())
         })
