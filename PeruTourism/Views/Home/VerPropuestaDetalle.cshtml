@@ -210,11 +210,16 @@
             <div class="container">
                 <section class="group prop-group">
 
-                    <div class="group prop">
-                        <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
-                        <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
-                        <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
-                    </div>
+                    <a href="#section1">
+
+                        <div class="group prop">
+                            <div class="prop-num"><span>@lstProgramas.FirstOrDefault().NroPrograma</span></div>
+                            <div class="prop-title">@Html.Raw(lstProgramas.FirstOrDefault().DesPrograma)</div>
+                            <div class="prop-status"><span class="status status-new">@lstProgramas.FirstOrDefault().StsPrograma</span></div>
+                        </div>
+                    </a>
+
+
 
 
                     @if (flagMostrarBolitas == true)
@@ -254,7 +259,7 @@
                         </div>
 
 
-                    }   
+                    }
 
 
                     @for (int i = 0; i < lstServicios.Count; i++)
@@ -849,16 +854,22 @@
                                 </div>
                             </section>
 
-                            <div id="opcionPass">
-                                    <a class="agregarPass btn btn-primary btnSeleccion"  href="@Url.Action("Pasajero", "Home",new {  pIdPedido = nroPedido, pIdioma=idioma })">
+                            <div class="optionsMini op-group text-center">
+                                <a class="agregarPass btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Home",new {  pIdPedido = nroPedido, pIdioma=idioma })">
+                                    Agregar información del pasajero
+                                </a>
+                            </div>
+
+                            @*<div class="optionsMini op-group text-center">
+                                    <a class="agregarPass btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Home",new { pIdPedido = nroPedido, pIdioma=idioma })">
+                                        Add Traveler Information
+                                    </a>
+                                </div>*@
+                            @*<div class="col-sm-5">
+                                    <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Home",new {  pIdPedido = nroPedido, pIdioma=idioma })">
                                         Agregar pasajero
                                     </a>
-                                </div>
-                            @*<div class="col-sm-5">
-                                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Home",new {  pIdPedido = nroPedido, pIdioma=idioma })">
-                                    Agregar pasajero
-                                </a>
-                            </div>*@
+                                </div>*@
 
 
                         </div>

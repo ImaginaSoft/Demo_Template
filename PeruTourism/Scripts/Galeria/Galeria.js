@@ -93,7 +93,6 @@ function openDetailHotel(detailName) {
 
 function openBalanceModal(pCliente, pNroPedido, pIdioma) {
     
-    debugger
     var dataToSend = 'pCliente=' + pCliente + '&pNroPedido=' + pNroPedido + '&pIdioma=' + pIdioma;
     
     $.ajax({

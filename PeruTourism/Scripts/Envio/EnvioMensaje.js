@@ -2,13 +2,11 @@
     $("#btnSend").click(function () {
 
         if (!$("#txtMessage").val()) {
-            debugger
             $("#mensajeConfirmacion").hide();
             $("#mensajeConfirmacionGG").show();
             
         }
         else {
-            debugger
             $.ajax({
                 type: "POST",
                 url: "/perutourism-new/Home/RegistrarHistorialCliente",
