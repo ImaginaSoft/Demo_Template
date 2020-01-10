@@ -247,14 +247,14 @@
                             </section>
 
                             <div class="optionsMini op-group text-center">
-                                <a class="pago btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Home",new { pIdPedido = nroPedido, pIdioma=idioma })">
+                                <a class="agregarPass btn btn-primary btnSeleccion" href="@Url.Action("Pasajero", "Home",new { pIdPedido = nroPedido, pIdioma=idioma })">
                                     Add Traveler Information
                                 </a>
                             </div>
                         </div>
 
 
-                    }
+                    }   
 
 
                     @for (int i = 0; i < lstServicios.Count; i++)
@@ -849,8 +849,8 @@
                                 </div>
                             </section>
 
-                            <div class="optionsMini op-group text-center">
-                                    <a class="pago btn btn-primary btnSeleccion"  href="@Url.Action("Pasajero", "Home",new {  pIdPedido = nroPedido, pIdioma=idioma })">
+                            <div id="opcionPass">
+                                    <a class="agregarPass btn btn-primary btnSeleccion"  href="@Url.Action("Pasajero", "Home",new {  pIdPedido = nroPedido, pIdioma=idioma })">
                                         Agregar pasajero
                                     </a>
                                 </div>

@@ -81,6 +81,7 @@ function listarPasajeros(numero) {
     
     parametros["pNroPedido"] = $("#txtNroPedido").val();
     parametros["pNumPasajero"] = numero;
+    parametros["pIdioma"] = $("#txtIdioma").val();
 
     $.ajax({
         type: "POST",

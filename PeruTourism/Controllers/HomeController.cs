@@ -684,12 +684,13 @@ namespace PeruTourism.Controllers
         }
 
         [HttpPost]
-        public JsonResult ListarPasajeros(string pNroPedido = "", Int16 pNumPasajero = 0)
+        public JsonResult ListarPasajeros(string pNroPedido = "", Int16 pNumPasajero = 0, string pIdioma = "")
         {
             JavaScriptSerializer _serializer = new JavaScriptSerializer();
             String mensaje = "";
             String resultado = "";
             List<Pasajero> lista;
+
 
             try
             {
@@ -701,7 +702,27 @@ namespace PeruTourism.Controllers
                 {
                     string tabla = "<table role='table' id='tbPasajeros' class='table table-striped table-bordered dt-responsive nowrap table-pt' width='100%' cellspacing='0' cellpadding='0'>";
 
-                    tabla += @"<thead role='rowgroup'>
+                    if (pIdioma == "I")
+                    {
+
+                        tabla += @"<thead role='rowgroup'>
+                            <tr role='row'>
+                                <th role='columnheader'>NAME</th>
+                                <th role='columnheader'>LAST NAME</th>
+                                <th role='columnheader'>PASAPORTE</th>
+                                <th role='columnheader'>DATE OF BIRTH</th>
+                                <th role='columnheader'>NATIONALITY</th>
+                                <th role='columnheader'>GENDER</th>
+                                <th role='columnheader'>OBSERVATION</th>
+                                <th role='columnheader' style='width: 110px'></th>
+                            </tr>
+                        </thead>
+                        <tbody role='rowgroup'>";
+                    }
+                    else
+                    {
+
+                        tabla += @"<thead role='rowgroup'>
                             <tr role='row'>
                                 <th role='columnheader'>NOMBRE</th>
                                 <th role='columnheader'>APELLIDO</th>
@@ -714,6 +735,9 @@ namespace PeruTourism.Controllers
                             </tr>
                         </thead>
                         <tbody role='rowgroup'>";
+
+                    }
+
 
                     foreach (Pasajero item in lista)
                     {
@@ -735,11 +759,7 @@ namespace PeruTourism.Controllers
 
                     tabla += "</tbody></table>";
 
-                    //tabla += "</tbody><tfoot>";
-
-                    //tabla += String.Format("<tr><td colspan='7'><b>Nro. de pasajeros: {0}</b></td></tr>", lista.Count.ToString());
-
-                    //tabla += "</tfoot></table>";
+ 
 
                     mensaje = tabla;
                 }

@@ -9335,6 +9335,12 @@ section,
     border: 1px solid #e41973;
 }
 
+.btn.agregarPass {
+   background: #e41973;
+    border: 1px solid #e41973;
+    padding: 15px 15px;
+}
+
 #txtMessage {
     height: 320px;
     margin: 10px 0;
@@ -10300,6 +10306,12 @@ thead {
     #tituloIMG {
         display: none;
     }
+}
+
+#opcionPass {
+    background: #e41973;
+	border: 1px solid #e41973;
+	padding: 15px 15px;
 }
 
 
