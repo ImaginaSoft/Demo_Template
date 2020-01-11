@@ -20,27 +20,33 @@
     }
 </style>
 
-<div id="prop" class="secondary">
-    <div class="container-fluid">
-        <section class="slider" id="scenex" style="margin-bottom: 0px;">
-            <div class="container">
-                <span class="description">Here is where the trip of your lifetime starts...</span>
+@if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+{
+    <div id="prop" class="secondary">
+        <div class="container-fluid">
+            <section class="slider" id="scenex" style="margin-bottom: 0px;">
+                <div class="container">
+                    <span class="description">Here is where the trip of your lifetime starts...</span>
 
-                <div class="options">
-                    <div class="op-group">
+                    <div class="options">
+                        <div class="op-group">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <img src="~/Content/images/slider-prop.jpg" class="img-bg" data-depth="0.1">
+                <img src="~/Content/images/slider-prop.jpg" class="img-bg" data-depth="0.1">
 
-        </section>
+            </section>
 
-        @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
-        {
+
             <div class="breadcrumb">
                 <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
                     <span class="breadcrumb__inner">
                         <span class="breadcrumb__desc">Home</span>
+                    </span>
+                </a>
+                <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido = true})">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__desc">My booked trip</span>
                     </span>
                 </a>
 
@@ -50,32 +56,13 @@
                     </span>
                 </div>
             </div>
-        }
-        else
-        {
-            <div class="breadcrumb">
-                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
-                    <span class="breadcrumb__inner">
-                        <span class="breadcrumb__desc">Inicio</span>
-                    </span>
-                </a>
 
-                <div class="no_enlace">
-                    <span class="breadcrumb__inner">
-                        <span class="breadcrumb__title">
-                            Agregar información del pasajero
-                        </span>
-                    </span>
-                </div>
-            </div>
-        }
 
-    </div>
-    <!-- contenido -->
-    <div class="container">
+        </div>
+        <!-- contenido -->
+        <div class="container">
 
-        @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
-        {
+
             <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
             <input type="text" id="txtNroPasajero" value="0" hidden />
             <input type="text" id="txtIdioma" value="@ViewBag.idioma" hidden />
@@ -131,9 +118,56 @@
                 </div>
             </div>
 
-        }
-        else
-        {
+
+
+
+        </div>
+
+    </div>
+
+}
+else
+{
+    <div id="prop" class="secondary">
+        <div class="container-fluid">
+            <section class="slider" id="scenex" style="margin-bottom: 0px;">
+                <div class="container">
+                    <span class="description">Here is where the trip of your lifetime starts...</span>
+
+                    <div class="options">
+                        <div class="op-group">
+                        </div>
+                    </div>
+                </div>
+                <img src="~/Content/images/slider-prop.jpg" class="img-bg" data-depth="0.1">
+
+            </section>
+
+            <div class="breadcrumb">
+                <a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__desc">Inicio</span>
+                    </span>
+                </a>
+                <a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente =  Session["CodCliente"], pFlagVendido = true})">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__desc">Mi viaje reservado</span>
+                    </span>
+                </a>
+                <div class="no_enlace">
+                    <span class="breadcrumb__inner">
+                        <span class="breadcrumb__title">
+                            Agregar información del pasajero
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <!-- contenido -->
+        <div class="container">
+
+
             <input type="text" id="txtNroPedido" value="@ViewBag.nroPedido" hidden />
             <input type="text" id="txtNroPasajero" value="0" hidden />
             <input type="text" id="txtIdioma" value="@ViewBag.idioma" hidden />
@@ -188,13 +222,16 @@
                     </div>
                 </div>
             </div>
-        }
-        @*<section class="group prop-group"></section>*@
 
+
+
+        </div>
 
     </div>
 
-</div>
+}
+
+
 
 <script src="~/Scripts/Pasajero/Pasajero.js"></script>
 
