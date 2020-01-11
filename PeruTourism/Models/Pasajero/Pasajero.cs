@@ -48,5 +48,50 @@ namespace PeruTourism.Models.PeruTourism
 
         [Display(Name = "Observación")]
         public string Observacion { get; set; }
+
+        // INGLES :::
+
+        [StringLength(50)]
+        [Display(Name = "Name")]
+        public string NomPasajeroEN { get; set; }
+
+        [StringLength(50)]
+        [Display(Name = "Surnames")]
+        public string ApePasajeroEN { get; set; }
+
+        [StringLength(30)]
+        [Display(Name = "Passport")]
+        public string PasaporteEN { get; set; }
+
+        [StringLength(10)]
+        [Display(Name = "Date of birth")]
+        public DateTime? FchNacimientoEN { get; set; }
+
+        public string FormatFchNacimientoEN
+        {
+            get { return (FchNacimientoEN.HasValue ? FchNacimientoEN.Value.ToString("dd/MM/yyyy") : string.Empty); }
+        }
+
+        [StringLength(3)]
+        [Display(Name = "Nationality")]
+        public string NacionalidadEN { get; set; }
+
+        [StringLength(1)]
+        [Display(Name = "Gender")]
+        public string GeneroEN { get; set; }
+
+        [StringLength(30)]
+        [Display(Name = "Type of passenger")]
+        public string TipoPasajeroEN { get; set; }
+
+        public Int16 NroPasajeroEN { get; set; }
+        public string CodNacionalidadEN { get; set; }
+        public string CodGeneroEN { get; set; }
+
+        [Display(Name = "Observation")]
+        public string ObservacionEN { get; set; }
+
+
+
     }
 }

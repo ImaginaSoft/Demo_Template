@@ -1,45 +1,4 @@
-﻿//$(document).ready(function () {
-//    $("a").click(function () {
-//        alert("The paragraph was clicked.");
-//    });
-//});
-
-
-//$(function () {
-//    $("#btnGet").click(function () {
-
-//        var dataToSend = 'pNroServicio=' + $("#txtName").val();
-//        debugger
-//        $.ajax({
-//            type: "POST",
-//            url: "/perutourism-new/Home/OpenModalDetailsHotel",
-//            data: dataToSend,
-//            //contentType: "application/json; charset=utf-8",
-//            //dataType: "json",
-//            success: function (result) {
-//                debugger
-//                $("#detailsContainer").html(result);
-//                //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
-//                //alert("Hello: ");
-//            },
-//            failure: function (response) {
-//                debugger
-//                alert(response.responseText);
-//            },
-//            error: function (jqXHR, textStatus, errorThrown) {
-//                debugger
-//                alert("Req: " + jqXHR);
-//                alert("Status: " + textStatus);
-//                alert("Error: " + errorThrown);
-//            },
-//            complete: function () {
-//                debugger
-//                $('#detalleHotel-1').modal('show');
-//            }
-//        });
-//    });
-//});
-
+﻿
 $(document).on('click', '.panel-heading span.icon_minim', function (e) {
     var $this = $(this);
     if (!$this.hasClass('panel-collapsed')) {
@@ -72,6 +31,30 @@ $(document).on('click', '.icon_close', function (e) {
     $("#chat_window_1").remove();
 });
 
+//$("a[href^='#']").click(function (e) {
+
+//    debugger
+//    e.preventDefault();
+
+//    var position = $($(this).attr("href")).offset().top;
+
+//    $("body, html").animate({
+//        scrollTop: position
+//    } /* speed */);
+//});
+
+$(function () {
+    $('a[href*=\\#]:not([href=\\#])').on('click', function () {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.substr(1) + ']');
+        if (target.length) {
+            $('html,body').animate({
+                scrollTop: target.offset().top
+            }, 1000);
+            return false;
+        }
+    });
+});
 
 function openDetailHotel(detailName) {
 
@@ -110,7 +93,6 @@ function openDetailHotel(detailName) {
 
 function openBalanceModal(pCliente, pNroPedido, pIdioma) {
     
-    debugger
     var dataToSend = 'pCliente=' + pCliente + '&pNroPedido=' + pNroPedido + '&pIdioma=' + pIdioma;
     
     $.ajax({

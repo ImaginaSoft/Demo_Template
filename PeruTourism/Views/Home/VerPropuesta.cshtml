@@ -15,40 +15,52 @@
     <div class="container-fluid">
         <section class="slider" id="scenex" style="margin-bottom: 0px;">
             <div class="container">
+
+                @if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                {
+                    <span class="description">Here is where the trip of your lifetime starts...</span>
+
+                }
+                else
+                {
+                    <span class="description">Aquí es donde comienza el viaje de tu vida...</span>
+
+                }
+
                 <div class="options">
                     <div class="op-group">
                         @*<span class="description">My travel itineraries</span>*@
 
-                                        @*<div class="op op-propuesta">
-                            <div class="icon icon-propuesta"></div>
-                            @if (flagVendido == true)
-                            {
-
-                                if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                        @*<div class="op op-propuesta">
+                                <div class="icon icon-propuesta"></div>
+                                @if (flagVendido == true)
                                 {
-                                    <div class="title">My booked trip</div>
+
+                                    if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                                    {
+                                        <div class="title">My booked trip</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="title">Mi viaje reservado</div>
+                                    }
+
                                 }
                                 else
                                 {
-                                    <div class="title">Mi viaje reservado</div>
+                                    if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
+                                    {
+                                         <div class="title">My travel itineraries</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="title">Propuestas para mi viaje</div>
+                                    }
+
                                 }
 
-                            }
-                            else
-                            {
-                                if (idioma.Equals(ConstantesWeb.CHR_IDIOMA_INGLES))
-                                {
-                                     <div class="title">My travel itineraries</div>
-                                }
-                                else
-                                {
-                                    <div class="title">Propuestas para mi viaje</div>
-                                }
 
-                            }
-
-
-                        </div>*@
+                            </div>*@
                     </div>
                 </div>
             </div>
@@ -150,26 +162,26 @@
 
 
 
-                            <a nroPrograma="@lstGG.NroPrograma" KeyReg="@lstGG.KeyReg" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstGG.KeyReg, NroPrograma = lstGG.NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
-                                <div class="prop-num"><span>@lstGG.NroPrograma</span></div>
-                                <div class="prop-title">@lstGG.DesPrograma</div>
+                        <a nroPrograma="@lstGG.NroPrograma" KeyReg="@lstGG.KeyReg" href="@Url.Action("VerPropuestaDetalle", "Home",new { KeyReg = lstGG.KeyReg, NroPrograma = lstGG.NroPrograma.Trim() , FlagIdioma = idioma, pCodCliente=CodCliente , pFlagVendido = flagVendido})" class="group prop">
+                            <div class="prop-num"><span>@lstGG.NroPrograma</span></div>
+                            <div class="prop-title">@lstGG.DesPrograma</div>
 
 
 
-                                @if (lstGG.StsPrograma.Equals("Sold") || lstGG.StsPrograma.Equals("Vendido"))
-                                {
-                                    <div class="prop-status"><span class="status status-sold">@lstGG.StsPrograma</span></div>
-                                }
-                                @*else if (lstProgramas[i].StsPrograma.Equals("Quote") || lstProgramas[i].StsPrograma.Equals("Cotizado"))
+                            @if (lstGG.StsPrograma.Equals("Sold") || lstGG.StsPrograma.Equals("Vendido"))
                             {
-                                <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
+                                <div class="prop-status"><span class="status status-sold">@lstGG.StsPrograma</span></div>
                             }
-                            else
-                            {
-                                <div class="prop-status"><span class="status status-cancel">@lstProgramas[i].StsPrograma</span></div>
-                            }*@
+                            @*else if (lstProgramas[i].StsPrograma.Equals("Quote") || lstProgramas[i].StsPrograma.Equals("Cotizado"))
+                                {
+                                    <div class="prop-status"><span class="status status-new">@lstProgramas[i].StsPrograma</span></div>
+                                }
+                                else
+                                {
+                                    <div class="prop-status"><span class="status status-cancel">@lstProgramas[i].StsPrograma</span></div>
+                                }*@
 
-                            </a>
+                        </a>
 
 
 
@@ -241,16 +253,16 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var flagGG = $('#mostrarMenuVendido').val();
-       
+
 
         if (flagGG != null) {
-              $(".marcaMenu").removeClass("active");
-              $(".marcaMenu03").addClass("active");
+            $(".marcaMenu").removeClass("active");
+            $(".marcaMenu03").addClass("active");
         } else {
-              $(".marcaMenu").removeClass("active");
-              $(".marcaMenu02").addClass("active");
+            $(".marcaMenu").removeClass("active");
+            $(".marcaMenu02").addClass("active");
         }
 
-      
+
     });
 </script>

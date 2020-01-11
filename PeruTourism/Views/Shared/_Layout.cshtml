@@ -76,7 +76,7 @@
                                             <li class="marcaMenu marcaMenu01"><a href="@Url.Action("Login", "Home",new { id = Session["IdCliente"] })">Home</a></li>
                                             @*<li class="marcaMenu marcaMenu02"><a href="@Url.Action("VerPropuesta", "Home",new { pCodCliente = Session["CodCliente"] , pFlagVendido=flagNoVendido })">My travel itineraries</a></li>*@
 
-                                            @if (lstProgramas !=null)
+                                            @if (lstProgramas != null)
                                             {
                                                 if (lstProgramas.Where(p => p.StsPrograma.Equals("Sold") || p.StsPrograma.Equals("Vendido")).Count() != 0)
                                                 {
@@ -119,11 +119,11 @@
                                         <div class="slogan">
                                             <span class="hidden-xs">Tu página personalizada de viajes:</span> <p class="nombrePax"><i class="icon icon-user"></i> @Session["NomCliente"]</p>
                                         </div>
-                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#siteNav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#siteNav" > <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="collapse navbar-collapse in" id="siteNav">
+                            <div class="collapse navbar-collapse in" id="siteNav" >
                                 <div class="container">
                                     <div class="row">
                                         <ul class="nav navbar-nav">

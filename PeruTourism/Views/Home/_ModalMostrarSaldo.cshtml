@@ -46,7 +46,7 @@
                                         <tr>
                                             <td>@d.FchEmision.ToString("dd/MM/yyyy")</td>
                                             <td>@d.Referencia</td>
-                                            <td>@Convert.ToDecimal(d.Cargo).ToString("0.00")</td>
+                                            <td style="color:crimson">@Convert.ToDecimal(d.Cargo).ToString("0.00")</td>
                                             <td>@Convert.ToDecimal(d.Abono).ToString("0.00")</td>
                                         </tr>
                                     }
@@ -105,7 +105,7 @@
                                         <td>@d.Referencia</td>
                                         @*<td>@Convert.ToDecimal(d.Cargo).ToString("#,##0")</td>
                                         <td>@Convert.ToDecimal(d.Abono).ToString("#,##0")</td>*@
-                                        <td>@Convert.ToDecimal(d.Cargo).ToString("0.00")</td>
+                                        <td style="color:crimson">@Convert.ToDecimal(d.Cargo).ToString("0.00")</td>
                                         <td>@Convert.ToDecimal(d.Abono).ToString("0.00")</td>
                                     </tr>
                                     }

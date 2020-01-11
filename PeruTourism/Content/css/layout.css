@@ -8034,6 +8034,7 @@ body {
 @media (min-width: 768px) {
     #header #siteNav {
         display: block !important;
+        /*display: none !important;*/
     }
 
     #header .navbar-header {
@@ -8045,6 +8046,7 @@ body {
         -webkit-transition: background 0.15s linear;
         -o-transition: background 0.15s linear;
         transition: background 0.15s linear;
+       
     }
 
         #header .navbar-toggle .icon-bar {
@@ -8100,6 +8102,12 @@ body {
 }
 
 @media (max-width: 767px) {
+
+    #header #siteNav {
+       /*display: block !important;*/
+       display:none;
+    }
+
     #header .brand {
         padding-bottom: 10px;
         border-bottom: 1px solid #e8e8e8;
@@ -9335,6 +9343,12 @@ section,
     border: 1px solid #e41973;
 }
 
+.btn.agregarPass {
+    background: #337036;
+    border: 1px solid #337036;
+    padding: 15px 15px;
+}
+
 #txtMessage {
     height: 320px;
     margin: 10px 0;
@@ -10300,6 +10314,12 @@ thead {
     #tituloIMG {
         display: none;
     }
+}
+
+#opcionPass {
+    background: #e41973;
+	border: 1px solid #e41973;
+	padding: 15px 15px;
 }
 
 
