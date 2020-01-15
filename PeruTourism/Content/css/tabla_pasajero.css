@@ -43,31 +43,66 @@
             top: 5px;
         }
 
-        td:nth-of-type(1):before {
+        .esp td:nth-of-type(1):before {
             content: "NOMBRE";
         }
 
-        td:nth-of-type(2):before {
-            content: "APELLIDO";
+        .esp  td:nth-of-type(2):before {
+        content: "APELLIDO";
         }
 
-        td:nth-of-type(3):before {
-            content: "NUMERO DE PASAPORTE";
+        .esp td:nth-of-type(3):before {
+        content: "NUMERO DE PASAPORTE";
+         }
+
+        .esp td:nth-of-type(4):before {
+        content: "FECHA DE NACIMIENTO";
         }
 
-        td:nth-of-type(4):before {
-            content: "FECHA DE NACIMIENTO";
+        .esp td:nth-of-type(5):before {
+        content: "NACIONALIDAD";
         }
 
-        td:nth-of-type(5):before {
-            content: "NACIONALIDAD";
+        .esp td:nth-of-type(6):before {
+        content: "GENERO";
         }
 
-        td:nth-of-type(6):before {
-            content: "GENERO";
+        .esp td:nth-of-type(7):before {
+        content: "OBSERVACION";
         }
 
-        td:nth-of-type(7):before {
-            content: "OBSERVACION";
+
+
+
+
+
+        .eng td:nth-of-type(1):before {
+            content: "NAME";
         }
+
+         .eng td:nth-of-type(2):before {
+        content: "SURNAMES";
+        }
+
+        .eng td:nth-of-type(3):before {
+        content: "PASSPORT";
+         }
+
+        .eng td:nth-of-type(4):before {
+        content: "DATE OR BIRTH";
+         }
+
+        .eng td:nth-of-type(5):before {
+        content: "NATIONALITY";
+        }
+
+        .eng td:nth-of-type(6):before {
+        content: "GENDER";
+        }
+
+        .eng td:nth-of-type(7):before {
+            content: "OBSERVATION";
+         }
+
+
 }
