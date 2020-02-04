@@ -741,7 +741,11 @@ namespace PeruTourism.Controllers
 
                     foreach (Pasajero item in lista)
                     {
-                        tabla += String.Format(@"<tr role='row'>
+
+                        if (pIdioma == "E")
+                        {
+
+                            tabla += String.Format(@"<tr role='row' class='esp'>
                                                 <td role='cell' style='vertical-align: middle'>{0}</td>
                                                 <td role='cell' style='vertical-align: middle'>{1}</td>
                                                 <td role='cell' style='vertical-align: middle'>{2}</td>
@@ -754,7 +758,39 @@ namespace PeruTourism.Controllers
                                                     <button type='button' class='btn btn-danger btnAccion' onclick='eliminarPasajero({8})'><span class='fa fa-trash'></span></button>
                                                 </td>
                                              </tr>",
-                                               item.NomPasajero, item.ApePasajero, item.Pasaporte, item.FormatFchNacimiento, item.Nacionalidad, item.Genero, item.Observacion.ToString(), item.NroPasajero.ToString(), item.NroPasajero.ToString());
+                                         item.NomPasajero, item.ApePasajero, item.Pasaporte, item.FormatFchNacimiento, item.Nacionalidad, item.Genero, item.Observacion.ToString(), item.NroPasajero.ToString(), item.NroPasajero.ToString());
+
+
+
+                        }
+
+                        else
+                        {
+
+                            tabla += String.Format(@"<tr role='row' class='eng'>
+                                               <td role='cell' style='vertical-align: middle'>{0}</td>
+                                                <td role='cell' style='vertical-align: middle'>{1}</td>
+                                                <td role='cell' style='vertical-align: middle'>{2}</td>
+                                                <td role='cell' style='vertical-align: middle'>{3}</td>
+                                                <td role='cell' style='vertical-align: middle'>{4}</td>
+                                                <td role='cell' style='vertical-align: middle'>{5}</td>
+                                                <td role='cell' style='vertical-align: middle'>{6}</td>
+                                                <td role='cell' style='text-align: center; vertical-align: middle'>
+                                                    <button type='button' class='btn btn-primary btnAccion' onclick='editarPasajero({7})'><span class='fa fa-pencil'></span></button>
+                                                    <button type='button' class='btn btn-danger btnAccion' onclick='eliminarPasajero({8})'><span class='fa fa-trash'></span></button>
+                                                </td>
+                                             </tr>",
+                                      item.NomPasajero, item.ApePasajero, item.Pasaporte, item.FormatFchNacimiento, item.Nacionalidad, item.Genero, item.Observacion.ToString(), item.NroPasajero.ToString(), item.NroPasajero.ToString());
+
+
+
+
+
+                        }
+
+
+
+
                     }
 
                     tabla += "</tbody></table>";
